@@ -1,0 +1,16 @@
+---
+layout: base
+---
+
+<h1>{{ title }}</h1>
+{{ content | safe }}
+
+{% if strava or komoot %}
+  <aside>
+    <p>Vous pouvez retrouver cette activité sur les sites suivants :</p>
+    <ul>
+      {% if strava %}<li><a href="{{ strava }}">Strava</a></li>{% endif %}
+      {% if komoot %}<li><a href="{{ komoot }}">Komoot</a></li>{% endif %}
+    </ul>
+  </aside>
+{% endif %}
