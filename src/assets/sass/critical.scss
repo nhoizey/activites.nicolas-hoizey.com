@@ -57,8 +57,6 @@ header, main, footer {
 	grid-column: popout-start / popout-end;
 }
 
-// Main content
-
 main {
 	display: grid;
   grid-template-columns: subgrid;
@@ -71,7 +69,6 @@ main {
 
 	h1, h2, h3, h4, h5, h6 {
 		grid-column: popout-start / popout-end;
-		color: var(--accent);
 	}
 }
 
