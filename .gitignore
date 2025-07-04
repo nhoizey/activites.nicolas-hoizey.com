@@ -1,0 +1,8 @@
+# npp modules
+node_modules
+
+# generated files
+_site
+
+# secret data
+.env

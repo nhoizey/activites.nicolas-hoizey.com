@@ -1,0 +1,13 @@
+@use 'every_layout/sidebar' as *;
+@use 'every_layout/cluster' as *;
+@use 'every_layout/stack' as *;
+
+// container for the whole page
+.page {
+	margin: var(--gap);
+
+	display: flex;
+	flex-direction: column;
+
+	min-height: calc(100vh - 2 * var(--gap));
+}

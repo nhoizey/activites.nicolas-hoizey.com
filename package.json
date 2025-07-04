@@ -1,0 +1,61 @@
+{
+	"name": "pack11ty",
+	"version": "2.2.0",
+	"title": "Pack11ty",
+	"description": "an heavily opinionated Eleventy template project",
+	"homepage": "https://pack11ty.dev/",
+	"author": {
+		"name": "Nicolas Hoizey",
+		"url": "https://nicolas-hoizey.com/",
+		"email": "nicolas@hoizey.com"
+	},
+	"keywords": [
+		"eleventy",
+		"starter",
+		"template",
+		"eleventy-website",
+		"eleventy-sample"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/nhoizey/pack11ty.git"
+	},
+	"bugs": {
+		"url": "https://github.com/nhoizey/pack11ty/issues"
+	},
+	"license": "MIT",
+	"type": "module",
+	"scripts": {
+		"clean": "rimraf _site",
+		"build:eleventy": "eleventy",
+		"watch:eleventy": "eleventy --serve",
+		"serviceworker:injectmanifest": "workbox injectManifest workbox.config.cjs",
+		"serviceworker:bundle": "node build-service-worker.js",
+		"build:serviceworker": "npm-run-all --sequential serviceworker:injectmanifest serviceworker:bundle",
+		"start": "npm-run-all --sequential clean watch:eleventy",
+		"start:debug": "DEBUG=Eleventy* npm start",
+		"build": "npm-run-all --sequential clean build:eleventy build:serviceworker",
+		"build:debug": "DEBUG=Eleventy* npm run build",
+		"lint": "npx @biomejs/biome check --write"
+	},
+	"devDependencies": {
+		"@11ty/eleventy": "^3.1.2",
+		"@biomejs/biome": "^1.9.4",
+		"@jlengstorf/get-share-image": "^1.0.2",
+		"cross-env": "^7.0.3",
+		"dotenv": "^16.6.1",
+		"eleventy-plugin-pack11ty": "^2.2.0",
+		"esbuild": "^0.24.2",
+		"image-size": "^1.2.1",
+		"lodash-es": "^4.17.21",
+		"modern-css-reset": "^1.4.0",
+		"npm-run-all": "^4.1.5",
+		"rimraf": "^6.0.1",
+		"sanitize-html": "^2.17.0",
+		"workbox-cli": "^7.3.0",
+		"workbox-recipes": "^7.1.0"
+	},
+	"dependencies": {
+		"toastify-js": "^1.12.0"
+	}
+}

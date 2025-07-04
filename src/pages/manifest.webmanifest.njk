@@ -1,0 +1,33 @@
+---
+permalink: manifest.webmanifest
+layout: null
+---
+{
+  "dir": "ltr",
+  "lang": "en",
+  "name": "{{ pkg.title }}",
+  "short_name": "{{ pkg.title }}",
+  "description": "{{ pkg.description }}",
+  "scope": "/",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#663399",
+  "background_color": "#865aad",
+  "icons": [
+    {
+      "src": "/images/logo-192px.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/logo-512px.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "serviceworker": {
+    "src": "service-worker.js",
+    "scope": "/"
+  }
+}

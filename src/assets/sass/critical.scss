@@ -1,0 +1,34 @@
+// ITCSS Layer 1: Settings (global variables, config switches)
+@use '01_settings/global_custom_properties' as *;
+
+// ITCSS Layer 2: Tools (default mixins and functions)
+@use '02_tools/functions' as *;
+
+// ITCSS Layer 3: Generic (ground-zero styles, normalize.css, resets, box-sizing)
+@use '03_generic/reset' as *;
+
+// ITCSS Layer 4: Base (unclassed HTML elements, a.k.a. type selectors)
+@use '04_base/body' as *;
+@use '04_base/paragraph' as *;
+@use '04_base/heading' as *;
+@use '04_base/link' as *;
+@use '04_base/list' as *;
+@use '04_base/table' as *;
+@use '04_base/figure' as *;
+@use '04_base/main' as *;
+@use '04_base/mark' as *;
+@use '04_base/sub_sup' as *;
+
+// ITCSS Layer 5: Objects (cosmetic-free design patterns)
+@use '05_objects/layout' as *;
+@use '05_objects/markdown-classes' as *;
+
+// ITCSS Layer 6: Components (designed components, chunks of UI)
+@use '06_components/header' as *;
+@use '06_components/pack11ty-logo' as *;
+@use '06_components/logo' as *;
+@use '06_components/news' as *;
+@use '06_components/video' as *;
+
+// ITCSS Layer 7: Trumps (helpers and overrides)
+@use '07_trumps/visually-hidden' as *;
