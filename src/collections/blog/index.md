@@ -1,7 +1,7 @@
 ---
 title: Blog
 nav:
-  order: 2
+  order: 3
 ---
 
 <div class="stack">
