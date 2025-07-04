@@ -1,34 +1,244 @@
-// ITCSS Layer 1: Settings (global variables, config switches)
-@use '01_settings/global_custom_properties' as *;
+@use 'tokens' as *;
 
-// ITCSS Layer 2: Tools (default mixins and functions)
-@use '02_tools/functions' as *;
-
-// ITCSS Layer 3: Generic (ground-zero styles, normalize.css, resets, box-sizing)
-@use '03_generic/reset' as *;
-
-// ITCSS Layer 4: Base (unclassed HTML elements, a.k.a. type selectors)
-@use '04_base/body' as *;
-@use '04_base/paragraph' as *;
-@use '04_base/heading' as *;
-@use '04_base/link' as *;
-@use '04_base/list' as *;
-@use '04_base/table' as *;
-@use '04_base/figure' as *;
-@use '04_base/main' as *;
-@use '04_base/mark' as *;
-@use '04_base/sub_sup' as *;
-
-// ITCSS Layer 5: Objects (cosmetic-free design patterns)
-@use '05_objects/layout' as *;
-@use '05_objects/markdown-classes' as *;
+// https://github.com/hankchizljaw/modern-css-reset
+@use 'modern-css-reset/dist/reset';
 
 // ITCSS Layer 6: Components (designed components, chunks of UI)
 @use '06_components/header' as *;
-@use '06_components/pack11ty-logo' as *;
 @use '06_components/logo' as *;
 @use '06_components/blog' as *;
-@use '06_components/video' as *;
 
-// ITCSS Layer 7: Trumps (helpers and overrides)
-@use '07_trumps/visually-hidden' as *;
+:root {
+	// --gap: 1.5rem;
+	--page-padding: var(--gap);
+	--maxcontent: 80ch;
+}
+
+html {
+	// Enforce a scrollbar at first paint to prevent CLS
+	// https://twitter.com/TimVereecke/status/1239454788116533248
+	// https://twitter.com/lfredolo/status/1240301405325361152
+	overflow-y: scroll;
+	// https://twitter.com/TimVereecke/status/1523583123631804416
+	scrollbar-gutter: stable;
+
+	// Prevent text zoom on iOS landscape
+	// https://kilianvalkhof.com/2022/css-html/your-css-reset-needs-text-size-adjust-probably/
+	-moz-text-size-adjust: none;
+	-webkit-text-size-adjust: none;
+	text-size-adjust: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	// https://css-tricks.com/fixing-smooth-scrolling-with-find-on-page/
+	html:focus-within {
+		scroll-behavior: smooth;
+	}
+}
+
+/* ***********************************************************
+ * Layout
+ *********************************************************** */
+
+body {
+	// https://ryanmulligan.dev/blog/layout-breakouts/
+	display: grid;
+  grid-template-columns:
+    [full-start] minmax(var(--gap), 1fr)
+		[popout-start] minmax(0, 5ch)
+		[main-start] minmax(0, 60ch) [main-end]
+		minmax(0, 5rem) [popout-end]
+		minmax(var(--gap), 1fr) [full-end];
+	grid-template-rows: auto 1fr auto;
+	gap: var(--gap);
+}
+
+header, main, footer {
+	grid-column: popout-start / popout-end;
+}
+
+// Main content
+
+main {
+	display: grid;
+  grid-template-columns: subgrid;
+	grid-template-rows: repeat(auto-fit, minmax(min-content, max-content));
+	gap: var(--gap);
+
+	& > * {
+		grid-column: main-start / main-end;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		grid-column: popout-start / popout-end;
+		color: var(--accent);
+	}
+}
+
+/* ***********************************************************
+ * Main styles
+ *********************************************************** */
+
+body {
+	font-size: calc(0.9em + 0.3vw);
+	line-height: 1.5;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+		Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	color: var(--text-primary);
+	background-color: var(--surface-2);
+}
+
+:is(h1, h2, h3, h4, h5, h6) {
+	color: var(--accent);
+}
+
+// Anchor links
+// Based on https://smolcss.dev/#smol-article-anchors
+.heading-wrapper {
+	margin-top: calc(2 * var(--gap));
+	margin-bottom: 0;
+	border-bottom: 1px solid var(--theme-color);
+
+	display: grid;
+	// anchor link on the far right for long wrapping headings
+	grid-template-columns: minmax(auto, max-content) min-content;
+	gap: calc(var(--gap) / 2);
+	align-items: baseline;
+}
+
+.deeplink {
+	font-size: 1.5rem;
+
+	&:link,
+	&:visited {
+		padding: 0 0.75rem;
+		border-radius: 100%;
+
+		color: var(--color-meta);
+		text-decoration: none;
+	}
+
+	&:hover,
+	&:focus {
+		color: var(--theme-color-contrast);
+
+		background-color: var(--theme-color);
+	}
+}
+
+// external links
+a[href^="https://"]:not([href^="https://activites.nicolas-hoizey.com"]) {
+	padding-right: 15px;
+	background-position: top 0.1em right;
+	background-size: 12px 12px;
+	background-repeat: no-repeat;
+
+	background-image: url('/images/external-link-blue.svg');
+	footer & {
+		background-image: url('/images/external-link-white.svg');
+	}
+}
+
+ul {
+	margin-top: 0;
+	padding-left: calc(1rem + 1vw);
+}
+
+li {
+	margin-top: calc(var(--gap) / 4);
+}
+
+// Images and figures
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+figure {
+	clear: both;
+	display: block;
+	margin: var(--gap) auto;
+	text-align: center;
+
+	img {
+		margin-top: 0;
+		margin-bottom: 0;
+		padding: 0;
+	}
+}
+
+figcaption {
+	// http://nocode.in/aligning-text-smartly-in-css/
+	display: inline-block;
+	text-align: left;
+
+	font-size: smaller;
+	font-style: italic;
+	margin: 0.1em 1em;
+	padding: 0.3em 0;
+	color: #666;
+
+	p {
+		margin: 0;
+	}
+}
+
+// Mark element
+
+// https://www.tpgi.com/short-note-on-making-your-mark-more-accessible/
+mark::before,
+mark::after {
+	content: ' [highlight start] ';
+	clip-path: inset(100%);
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+}
+
+mark::after {
+	content: ' [highlight end] ';
+}
+
+// https://gist.github.com/unruthless/413930
+sub,
+sup {
+	position: relative;
+
+	font-size: 75%;
+	line-height: 0;
+	vertical-align: baseline;
+}
+
+sup {
+	top: -0.5em;
+}
+
+sub {
+	bottom: -0.25em;
+}
+
+
+// Visually hidden (but screen reader friendly) content
+.visually-hidden:not(:focus):not(:active) {
+	/* elementProperties */
+	position: absolute;
+
+	/* Box Model */
+	width: 1px;
+	height: 1px;
+
+	/* Typography */
+	// https://www.24a11y.com/2018/accessible-svg-icons-with-inline-sprites/#div-comment-267
+	white-space: nowrap;
+
+	/* Visual */
+	overflow: hidden;
+
+	/* Clip */
+	// https://www.matuzo.at/blog/2023/css-wish-list/#visually-hidden-content 🤔
+	clip-path: inset(50%);
+}

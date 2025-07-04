@@ -1,8 +1,0 @@
-/*
-Every Layout's stack layout:
-https://absolutely.every-layout.dev/layouts/stack/
-*/
-
-.stack > * + * {
-	margin-top: var(--gap);
-}

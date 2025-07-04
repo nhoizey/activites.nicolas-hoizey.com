@@ -1,0 +1,60 @@
+:root {
+  --white: #ffffff;
+  --red: #a82600;
+
+  // Palette generated with Leonardo
+  // https://leonardocolor.io/theme.html?name=Untitled&config=%7B%22baseScale%22%3A%22Gray%22%2C%22colorScales%22%3A%5B%7B%22name%22%3A%22Gray%22%2C%22colorKeys%22%3A%5B%22%23000000%22%5D%2C%22colorspace%22%3A%22RGB%22%2C%22ratios%22%3A%5B%221.1%22%2C%221.5%22%2C%221.9%22%2C%223.2%22%2C%224.5%22%2C%225.8%22%2C%227.1%22%2C%228.4%22%2C%229.7%22%5D%2C%22smooth%22%3Afalse%7D%2C%7B%22name%22%3A%22Yellow%22%2C%22colorKeys%22%3A%5B%22%23eeb73e%22%5D%2C%22colorspace%22%3A%22RGB%22%2C%22ratios%22%3A%5B%221.1%22%2C%221.5%22%2C%221.9%22%2C%223.2%22%2C%224.5%22%2C%225.8%22%2C%227.1%22%2C%228.4%22%2C%229.7%22%5D%2C%22smooth%22%3Afalse%7D%2C%7B%22name%22%3A%22Green%22%2C%22colorKeys%22%3A%5B%22%231a4344%22%5D%2C%22colorspace%22%3A%22RGB%22%2C%22ratios%22%3A%5B%221.1%22%2C%221.5%22%2C%221.9%22%2C%223.2%22%2C%224.5%22%2C%225.8%22%2C%227.1%22%2C%228.4%22%2C%229.7%22%5D%2C%22smooth%22%3Atrue%7D%5D%2C%22lightness%22%3A100%2C%22contrast%22%3A1%2C%22saturation%22%3A100%2C%22formula%22%3A%22wcag2%22%7D
+  // --color-500 is always AA accessible and --color-700 is always AAA accessible
+  // There is a 1.3 contrast ratio difference between each color in the scale
+  --grey-100: #f3f3f3; // contrast 1.11
+  --grey-200: #d3d3d3; // contrast 1.5
+  --grey-300: #bcbcbc; // contrast 1.9
+  --grey-400: #8f8f8f; // contrast 3.23
+  --grey-500: #767676; // contrast 4.54 -> AA compliant
+  --grey-600: #656565; // contrast 5.83
+  --grey-700: #585858; // contrast 7.11 -> AAA compliant
+  --grey-800: #4d4d4d; // contrast 8.45
+  --grey-900: #454545; // contrast 9.59
+
+  --yellow-100: #fcf3df; // contrast 1.1
+  --yellow-200: #f3ce7b; // contrast 1.51
+  --yellow-300: #e9b33d; // contrast 1.91
+  --yellow-400: #b3892f; // contrast 3.21
+  --yellow-500: #947126; // contrast 4.52 -> AA compliant
+  --yellow-600: #7e6121; // contrast 5.8
+  --yellow-700: #6e541d; // contrast 7.12 -> AAA compliant
+  --yellow-800: #604a19; // contrast 8.43
+  --yellow-900: #554116; // contrast 9.75
+
+  --green-100: #f2f4f4; // contrast 1.1
+  --green-200: #cad5d5; // contrast 1.5
+  --green-300: #aebfbf; // contrast 1.91
+  --green-400: #7a9596; // contrast 3.2
+  --green-500: #5c7c7d; // contrast 4.53 -> AA compliant
+  --green-600: #476b6c; // contrast 5.85
+  --green-700: #385e5f; // contrast 7.16 -> AAA compliant
+  --green-800: #2c5354; // contrast 8.49
+  --green-900: #224a4b; // contrast 9.77
+
+  --surface-0: var(--grey-300);
+  --surface-1: var(--grey-200);
+  --surface-2: var(--grey-100);
+  --text-primary: var(--grey-900);
+  --text-secondary: var(--grey-800);
+
+  --accent: var(--yellow-500);
+  --dimmed: var(--green-500);
+  --danger: var(--red);
+
+  --gap: 1em;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface-0: var(--grey-900);
+    --surface-1: var(--grey-800);
+    --surface-2: var(--grey-700);
+    --text-primary: var(--grey-100);
+    --text-secondary: var(--grey-200);
+  }
+}

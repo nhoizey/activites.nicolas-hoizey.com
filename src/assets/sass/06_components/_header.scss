@@ -41,20 +41,16 @@ nav {
 	a {
 		display: block;
 		padding: 0.1em 0.5em;
-		color: var(--theme-color);
-		background-color: #ddd;
-		border: 2px solid #ddd;
-	}
-
-	.githubstars {
-		padding: 0.1em;
-		line-height: 1;
+		color: var(--white);
+		background-color: var(--green-500);
+		text-decoration: none;
 	}
 
 	a:hover {
 		color: var(--theme-color-contrast);
-		background-color: var(--theme-color);
+		background-color: var(--green-600);
 		border-color: var(--theme-color);
+		text-decoration: underline;
 	}
 
 	.current {
@@ -66,20 +62,6 @@ nav {
 
 		a:hover {
 			text-decoration: underline;
-		}
-	}
-
-	.offline {
-		display: none;
-
-		a {
-			color: #8a6d3b;
-			background-color: #fcf8e3;
-			border-color: #faebcc;
-		}
-
-		body.offline & {
-			display: block;
 		}
 	}
 }
