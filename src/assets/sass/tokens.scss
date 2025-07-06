@@ -42,7 +42,9 @@
 
   --text-primary: var(--grey-900);
   --text-secondary: var(--grey-500);
-  --heading: var(--green-500);
+
+  --heading: var(--green-700);
+  --sub-heading: var(--green-500);
 
   --link-text: var(--green-500);
   --link-decoration: var(--green-300);
@@ -64,12 +66,14 @@
 
     --text-primary: var(--grey-100);
     --text-secondary: var(--grey-200);
-    --heading: var(--green-300);
 
-    --link-text: var(--green-300);
-    --link-decoration: var(--green-500);
-    --link-text-hover: var(--green-500);
-    --link-decoration-hover: var(--green-700);
+    --heading: var(--green-300);
+    --sub-heading: var(--green-100);
+
+    --link-text: var(--green-500);
+    --link-decoration: var(--green-300);
+    --link-text-hover: var(--green-300);
+    --link-decoration-hover: var(--green-100);
   }
 }
 
