@@ -36,45 +36,8 @@
   --green-800: #2c5354; // contrast 8.49
   --green-900: #224a4b; // contrast 9.77
 
-  --surface-0: var(--white);
-  --surface-1: var(--grey-100);
-  --surface-2: var(--grey-200);
-
-  --text-primary: var(--grey-900);
-  --text-secondary: var(--grey-500);
-
-  --heading: var(--green-700);
-  --sub-heading: var(--green-500);
-
-  --link-text: var(--green-500);
-  --link-decoration: var(--green-300);
-  --link-text-hover: var(--green-700);
-  --link-decoration-hover: var(--green-500);
-
-  --accent: var(--yellow-500);
-  --dimmed: var(--green-500);
-  --danger: var(--red);
-
   --gap: 1em;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --surface-0: var(--grey-700);
-    --surface-1: var(--grey-800);
-    --surface-2: var(--grey-900);
-
-    --text-primary: var(--grey-100);
-    --text-secondary: var(--grey-200);
-
-    --heading: var(--green-300);
-    --sub-heading: var(--green-100);
-
-    --link-text: var(--green-500);
-    --link-decoration: var(--green-300);
-    --link-text-hover: var(--green-300);
-    --link-decoration-hover: var(--green-100);
-  }
-}
 
 $breakpoint: 40em;

@@ -1,0 +1,8 @@
+<p>Thème :
+<select id="theme-select" aria-label="Sélection du thème">
+  <option id="theme-system" value="system" selected>système</option>
+  <option id="theme-light" value="light">clair</option>
+  <option id="theme-dark" value="dark">sombre</option>
+</select>
+<script>
+{%- js "not-critical" %}{% renderFile "src/assets/js/theme-selector.js" %}{% endjs %}
