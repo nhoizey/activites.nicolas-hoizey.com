@@ -11,7 +11,3 @@
 <script type="module" src="{% getBundleFileUrl "js", "not-critical" %}"></script>
 
 {%- js "critical" %}{% renderFile "src/assets/js/critical.js" %}{% endjs %}
-
-{%- js "not-critical" %}{% renderFile "src/assets/js/service-worker-install.js" %}{% endjs %}
-{%- js "not-critical" %}{% renderFile "src/assets/js/scrolling-tables.js" %}{% endjs %}
-{%- js "not-critical" %}{% renderFile "src/assets/js/offline-events.js" %}{% endjs %}
