@@ -1,8 +1,10 @@
-<p>Thème :
-<select id="theme-select" aria-label="Sélection du thème">
-  <option id="theme-auto" value="auto" selected>auto</option>
-  <option id="theme-light" value="light">clair</option>
-  <option id="theme-dark" value="dark">sombre</option>
-</select>
-<script>
+<form id="theme-selector">
+  <fieldset aria-label="Quel thème visuel ?">
+    <legend>Thème</legend>
+    <label><input type="radio" name="theme" value="light"> <span>clair</span></label>
+    <label><input type="radio" name="theme" value="auto"> <span>auto</span></label>
+    <label><input type="radio" name="theme" value="dark"> <span>sombre</span></label>
+  </fieldset>
+</form>
+
 {%- js "not-critical" %}{% renderFile "src/assets/js/theme-selector.js" %}{% endjs %}

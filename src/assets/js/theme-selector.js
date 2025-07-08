@@ -1,9 +1,9 @@
-const themeSelector = document.querySelector('#theme-select');
+const themeSelector = document.querySelector('#theme-selector');
 if (themeSelector) {
-  themeSelector.value = localStorage.getItem('theme') || 'auto';
-  themeSelector.addEventListener('change', (event) => {
-    const theme = event.target.value;
-    document.querySelector('html').dataset.theme = theme;
-    localStorage.setItem('theme', theme);
+  themeSelector.elements.theme.value = localStorage.getItem('theme') || 'auto';
+  themeSelector.querySelector('fieldset').addEventListener('change', () => {
+    const newTheme = themeSelector.elements.theme.value;
+    document.querySelector('html').dataset.theme = newTheme;
+    localStorage.setItem('theme', newTheme);
   });
 }
