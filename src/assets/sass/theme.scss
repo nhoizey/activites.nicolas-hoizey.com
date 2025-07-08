@@ -49,6 +49,8 @@
 
   fieldset {
     border: none;
+    position: relative;
+
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -60,7 +62,7 @@
   }
 
   label {
-    position: relative;
+    color: var(--green-200);
   }
 
   label:has(input[type="radio"]:checked) {
