@@ -22,8 +22,8 @@
   --danger: light-dark(var(--red), var(--red));
 }
 
-:root[data-theme="system"],
-:root:has([id="theme-system"]:checked) {
+:root[data-theme="auto"],
+:root:has([id="theme-auto"]:checked) {
 	color-scheme: light dark;
 }
 
