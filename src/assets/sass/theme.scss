@@ -4,18 +4,20 @@
 
 :root {
   --background: light-dark(var(--grey-100), var(--grey-700));
-  --surface: light-dark(var(--grey-200), var(--grey-800));
+  --surface: light-dark(var(--grey-200), var(--grey-900));
 
   --text-primary: light-dark(var(--grey-900), var(--grey-100));
   --text-secondary: light-dark(var(--grey-500), var(--grey-200));
 
-  --heading: light-dark(var(--green-700), var(--green-300));
-  --sub-heading: light-dark(var(--green-500), var(--green-100));
+  --heading: light-dark(var(--grey-700), var(--grey-300));
+  --sub-heading: light-dark(var(--grey-500), var(--grey-100));
 
-  --link-text: light-dark(var(--green-500), var(--green-500));
-  --link-decoration: light-dark(var(--green-300), var(--green-300));
-  --link-text-hover: light-dark(var(--green-700), var(--green-300));
-  --link-decoration-hover: light-dark(var(--green-500), var(--green-100));
+  --link-text: light-dark(var(--green-500), var(--green-200));
+  --link-decoration: light-dark(var(--green-300), var(--green-400));
+  --link-text-hover: light-dark(var(--green-700), var(--green-100));
+  --link-decoration-hover: light-dark(var(--green-500), var(--green-300));
+
+  --meta: light-dark(var(--grey-500), var(--grey-300));
 
   --accent: light-dark(var(--yellow-500), var(--yellow-500));
   --dimmed: light-dark(var(--green-500), var(--green-500));
