@@ -47,26 +47,18 @@
 #theme-selector {
   font-variant: small-caps;
 
-  fieldset {
-    border: none;
-    position: relative;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: var(--gap);
-  }
-
-  legend {
-    display: none;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 12ch;
 
   input[type="range"],
   .theme-labels {
-    width: 14ch;
+    width: 90%;
   }
 
   .theme-labels {
+    width: 100%;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -78,7 +70,6 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    justify-content: space-between;
 
     li:first-child {
       align-self: left;
