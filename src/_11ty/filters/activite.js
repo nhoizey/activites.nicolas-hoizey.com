@@ -56,7 +56,7 @@ export const getPhotos = async (activite) => {
         };
 
         const photoExif = await exifr.parse(path.join(photosPath, file), exifrOptions);
-        console.dir(photoExif);
+        // console.dir(photoExif);
 
         const photoTitle = photoExif.dc?.title.value;
         if (photoTitle) {
