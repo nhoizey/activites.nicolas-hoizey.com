@@ -1,6 +1,7 @@
 // https://github.com/hankchizljaw/modern-css-reset
 @use 'modern-css-reset/dist/reset';
 
+@use 'variables' as *;
 @use 'tokens' as *;
 @use 'theme' as *;
 
@@ -174,10 +175,9 @@ main, article, section {
 	}
 }
 
-.activite #map {
-	width: 100%;
-	height: 400px;
-}
+/* ***********************************************************
+ * Footer
+ *********************************************************** */
 
 footer {
 	background-color: var(--green-700);

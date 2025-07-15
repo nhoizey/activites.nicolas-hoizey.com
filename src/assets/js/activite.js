@@ -1,4 +1,5 @@
 import mapboxgl from "mapbox-gl/dist/mapbox-gl.js";
+import { MapboxStyleSwitcherControl } from "mapbox-gl-style-switcher";
 import { lineString, bbox } from "@turf/turf";
 
 (async (window) => {
@@ -6,32 +7,42 @@ import { lineString, bbox } from "@turf/turf";
   const mapElementId = "map";
   const mapElement = window.document.querySelector(`#${mapElementId}`);
   const maxZoomLevel = 18;
-  const markerStroke = "#ffffff";
+
+  const mapStyles = [
+    {
+      title: "Satellite",
+      uri: 'mapbox://styles/mapbox/standard-satellite',
+    },
+    {
+      title: "Standard",
+      uri: 'mapbox://styles/mapbox/standard',
+    },
+  ];
 
   const geoJsonData = window.trace;
-  window.geoJsonFeatures = geoJsonData.features;
 
-  let bearing = 0;
-  let pitch = 45; // Start with a default pitch angle
+  const bboxCoordinates = bbox(lineString(geoJsonData.features[0].geometry.coordinates));
+  console.dir(bboxCoordinates)
 
   if (mapElement) {
     mapboxgl.accessToken = window.MAPBOX_ACCESS_TOKEN;
     const map = new mapboxgl.Map({
       container: mapElementId,
-      style: 'mapbox://styles/mapbox/standard',
+      style: `mapbox://styles/mapbox/standard${localStorage.getItem("mapStyle") === "Satellite" ? "-satellite" : ""}`,
       projection: "globe",
-      bounds: bbox(lineString(geoJsonData.features[0].geometry.coordinates)),
+      bounds: bboxCoordinates,
       fitBoundsOptions: {
         padding: 25
       },
       minZoom: 1,
       maxZoom: maxZoomLevel,
       scrollZoom: true,
-      attributionControl: false,
+      attributionControl: true,
       cooperativeGestures: false, // https://docs.mapbox.com/mapbox-gl-js/example/cooperative-gestures/
       hash: true,
       renderWorldCopies: true,
     });
+
 
     map.on('load', () => {
       map.addSource("trace", {
@@ -48,97 +59,69 @@ import { lineString, bbox } from "@turf/turf";
           'line-cap': 'round'
         },
         'paint': {
-          'line-color': '#e9b33d',
+          'line-color': '#f03800',
           'line-width': 3
         }
       });
 
-      // const addControls = () => {
-      //   // Add navigation controls
+      map.addControl(
+        new mapboxgl.NavigationControl({
+          showCompass: true,
+          visualizePitch: true,
+        }),
+        "top-right",
+      );
 
-    });
-    //   map.addControl(
-    //     new mapboxgl.NavigationControl({
-    //       showCompass: true,
-    //       visualizePitch: true,
-    //     }),
-    //     "top-right",
-    //   );
+      // Add button to toggle between 2D and 3D views
+      // Based on https://github.com/tobinbradley/mapbox-gl-pitch-toggle-control
+      class PitchToggle {
+        onAdd(map) {
+          const div = document.createElement("div");
+          div.className = "mapboxgl-ctrl mapboxgl-ctrl-group";
+          div.innerHTML = `<button class="mapboxgl-ctrl-3d-toggle"><span class="mapboxgl-ctrl-icon" aria-hidden="true" aria-label="Toggle 3D"></span></button>`;
+          if (map.getPitch() !== 0) {
+            div
+              .querySelector("button")
+              .classList.toggle("mapboxgl-ctrl-3d-toggle-active", true);
+          }
+          div.addEventListener("contextmenu", (e) => e.preventDefault());
+          div.addEventListener("click", () => {
+            if (map.getPitch() === 0) {
+              map.easeTo({ pitch: 70, bearing: -20 });
+              div
+                .querySelector("button")
+                .classList.toggle("mapboxgl-ctrl-3d-toggle-active", true);
+            } else {
+              map.easeTo({ pitch: 0, bearing: 0 });
+              div
+                .querySelector("button")
+                .classList.toggle("mapboxgl-ctrl-3d-toggle-active", false);
+            }
+          });
 
-    //   // Add button to toggle between 2D and 3D views
-    //   // Based on https://github.com/tobinbradley/mapbox-gl-pitch-toggle-control
-    //   class PitchToggle {
-    //     onAdd(map) {
-    //       const div = document.createElement("div");
-    //       div.className = "mapboxgl-ctrl mapboxgl-ctrl-group";
-    //       div.innerHTML = `<button class="mapboxgl-ctrl-3d-toggle"><span class="mapboxgl-ctrl-icon" aria-hidden="true" aria-label="Toggle 3D"></span></button>`;
-    //       if (map.getPitch() !== 0) {
-    //         div
-    //           .querySelector("button")
-    //           .classList.toggle("mapboxgl-ctrl-3d-toggle-active", true);
-    //       }
-    //       div.addEventListener("contextmenu", (e) => e.preventDefault());
-    //       div.addEventListener("click", () => {
-    //         if (map.getPitch() === 0) {
-    //           map.easeTo({ pitch: 70, bearing: -20 });
-    //           div
-    //             .querySelector("button")
-    //             .classList.toggle("mapboxgl-ctrl-3d-toggle-active", true);
-    //         } else {
-    //           map.easeTo({ pitch: 0, bearing: 0 });
-    //           div
-    //             .querySelector("button")
-    //             .classList.toggle("mapboxgl-ctrl-3d-toggle-active", false);
-    //         }
-    //       });
+          return div;
+        }
+      }
+      map.addControl(new PitchToggle());
 
-    //       return div;
-    //     }
-    //   }
-    //   map.addControl(new PitchToggle());
+      // Add button to toggle fullscreen mode
+      map.addControl(new mapboxgl.FullscreenControl());
 
-    //   // Add button to allow users to find their location
-    //   map.addControl(
-    //     new mapboxgl.GeolocateControl({
-    //       positionOptions: {
-    //         enableHighAccuracy: true,
-    //       },
-    //       // When active the map will receive updates to the device's location as it changes.
-    //       trackUserLocation: true,
-    //       // Draw an arrow next to the location dot to indicate which direction the device is heading.
-    //       showUserHeading: true,
-    //     }),
-    //   );
-
-    //   // Add button to toggle fullscreen mode
-    //   map.addControl(new mapboxgl.FullscreenControl());
-
-    //   // Add buttons to switch between drawn map and satellite photography
-    //   const mapStyles = [
-    //     {
-    //       title: "Satellite",
-    //       uri: `${window.location.origin}/map/mapbox-style-satellite.json`,
-    //     },
-    //     {
-    //       title: "Terrain",
-    //       uri: `${window.location.origin}/map/mapbox-style-terrain.json`,
-    //     },
-    //   ];
-    //   map.addControl(
-    //     new MapboxStyleSwitcherControl(mapStyles, {
-    //       defaultStyle: localStorage.getItem("mapStyle") || "Satellite",
-    //       eventListeners: {
-    //         onChange: (_event, style) => {
-    //           localStorage.setItem(
-    //             "mapStyle",
-    //             style.match(/satellite/) ? "Satellite" : "Terrain",
-    //           );
-    //           // map.setConfigProperty(style.match(/satellite/) ? "satellite" : "terrain", 'show3dObjects', false);
-    //           addLayers();
-    //         },
-    //       },
-    //     }),
-    //   );
+      // Add buttons to switch between drawn map and satellite photography
+      // map.addControl(
+      //   new MapboxStyleSwitcherControl(mapStyles, {
+      //     defaultStyle: localStorage.getItem("mapStyle") || "Satellite",
+      //     eventListeners: {
+      //       onChange: (_event, style) => {
+      //         localStorage.setItem(
+      //           "mapStyle",
+      //           style.match(/satellite/) ? "Satellite" : "Terrain",
+      //         );
+      //         // map.setConfigProperty(style.match(/satellite/) ? "satellite" : "terrain", 'show3dObjects', false);
+      //       },
+      //     },
+      //   }),
+      // );
 
     //   class AutoPlayButton {
     //     onAdd(map) {
@@ -257,8 +240,8 @@ import { lineString, bbox } from "@turf/turf";
     //   }
     //   map.addControl(new AutoPlayButton());
 
-    //   // https://docs.mapbox.com/mapbox-gl-js/example/navigation-scale/
-    //   map.addControl(new mapboxgl.ScaleControl());
+      // https://docs.mapbox.com/mapbox-gl-js/example/navigation-scale/
+      map.addControl(new mapboxgl.ScaleControl());
 
     //   map.addControl(
     //     new GlobeMinimap({
@@ -266,7 +249,6 @@ import { lineString, bbox } from "@turf/turf";
     //     }),
     //     "bottom-right",
     //   );
-    // };
-
+    });
   }
 })(window);

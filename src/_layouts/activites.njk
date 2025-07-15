@@ -2,6 +2,9 @@
 layout: base
 ---
 
+
+<style>{% renderFile "src/assets/sass/activite.scss" %}</style>
+
 <article class="activite">
   <h1>{{ title }}</h1>
 
@@ -39,10 +42,7 @@ layout: base
 
   {% if strava or komoot %}
     <section class="links">
-      <p>Vous pouvez retrouver cette activité sur les sites suivants :</p>
-      <ul>
-        {% if strava %}<li><a href="{{ strava }}">Strava</a></li>{% endif %}
-        {% if komoot %}<li><a href="{{ komoot }}">Komoot</a></li>{% endif %}
+      <p>Vous pouvez retrouver cette activité sur {% if strava %}<a href="{{ strava }}">Strava</a>{% endif %}{% if strava and komoot %} et {% endif %}{% if komoot %}<a href="{{ komoot }}">Komoot</a>.{% endif %}
       </ul>
     </section>
   {% endif %}
