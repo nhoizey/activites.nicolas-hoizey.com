@@ -52,10 +52,11 @@ layout: base
         {% for photo in photos %}
           <li>
             <figure>
-              <img src="{{ photo.src | url }}" alt="{{ photo.title }}" />
+              <img src="{{ photo.src | url }}" alt="{{ photo.description }}" />
               {% if photo.title %}
                 <figcaption>{{ photo.title }}</figcaption>
               {% endif %}
+              {# {{ photo | dump }} #}
             </figure>
           </li>
         {% endfor %}

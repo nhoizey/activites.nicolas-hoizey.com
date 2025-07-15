@@ -56,11 +56,13 @@ export const getPhotos = async (activite) => {
         };
 
         const photoExif = await exifr.parse(path.join(photosPath, file), exifrOptions);
-        // console.dir(photoExif);
+        // if (file === "IMG_3400.jpeg") {
+        //   console.dir(photoExif);
+        // }
 
-        const photoTitle = photoExif.dc?.title.value;
+        const photoTitle = photoExif.dc?.title.value || photoExif.iptc?.ObjectName;
         if (photoTitle) {
-          photo.title = photoTitle;
+          photo.title = utf8.decode(photoTitle);
         }
 
         const photoDescription = photoExif.ifd0?.ImageDescription.trim();
