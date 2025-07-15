@@ -8,7 +8,7 @@ article.activite {
 	grid-template-areas: "title"
 											 "meta"
 											 "description"
-											 "links";
+											 "photos";
 	grid-template-columns: 1fr;
 	gap: var(--gap);
 
@@ -24,8 +24,24 @@ article.activite {
 		grid-area: description;
 	}
 
-	.links {
-		grid-area: links;
+	.photos {
+		grid-area: photos;
+
+		ul {
+			list-style: none;
+			padding-inline-start: 0;
+
+			display: grid;
+			gap: var(--gap);
+			grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+
+			img {
+				width: 100%;
+				height: auto;
+				aspect-ratio: 1;
+				object-fit: contain;
+			}
+		}
 	}
 }
 
@@ -34,13 +50,13 @@ article.activite:has(.trace) {
 											 "meta"
 											 "description"
 											 "map"
-											 "links";
+											 "photos";
 
 	@media screen and (min-width: $breakpoint-map) {
 		grid-template-areas: "title title"
 												 "meta meta"
 												 "description map"
-												 "links map";
+												 "photos photos";
 		grid-template-columns: 1fr 1fr;
 	}
 

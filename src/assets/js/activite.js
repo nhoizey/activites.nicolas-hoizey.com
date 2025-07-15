@@ -1,5 +1,5 @@
 import mapboxgl from "mapbox-gl/dist/mapbox-gl.js";
-import { MapboxStyleSwitcherControl } from "mapbox-gl-style-switcher";
+// import { MapboxStyleSwitcherControl } from "mapbox-gl-style-switcher";
 import { lineString, bbox } from "@turf/turf";
 
 (async (window) => {
@@ -8,16 +8,16 @@ import { lineString, bbox } from "@turf/turf";
   const mapElement = window.document.querySelector(`#${mapElementId}`);
   const maxZoomLevel = 18;
 
-  const mapStyles = [
-    {
-      title: "Satellite",
-      uri: 'mapbox://styles/mapbox/standard-satellite',
-    },
-    {
-      title: "Standard",
-      uri: 'mapbox://styles/mapbox/standard',
-    },
-  ];
+  // const mapStyles = [
+  //   {
+  //     title: "Satellite",
+  //     uri: 'mapbox://styles/mapbox/standard-satellite',
+  //   },
+  //   {
+  //     title: "Standard",
+  //     uri: 'mapbox://styles/mapbox/standard',
+  //   },
+  // ];
 
   const geoJsonData = window.trace;
 
@@ -28,7 +28,8 @@ import { lineString, bbox } from "@turf/turf";
     mapboxgl.accessToken = window.MAPBOX_ACCESS_TOKEN;
     const map = new mapboxgl.Map({
       container: mapElementId,
-      style: `mapbox://styles/mapbox/standard${localStorage.getItem("mapStyle") === "Satellite" ? "-satellite" : ""}`,
+      // style: `mapbox://styles/mapbox/standard${localStorage.getItem("mapStyle") === "Satellite" ? "-satellite" : ""}`,
+      style: "mapbox://styles/mapbox/standard-satellite",
       projection: "globe",
       bounds: bboxCoordinates,
       fitBoundsOptions: {

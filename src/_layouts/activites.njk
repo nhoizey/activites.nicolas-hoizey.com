@@ -21,6 +21,10 @@ layout: base
 
   <section class="description">
     {{ content | safe }}
+
+    {% if strava or komoot %}
+      <p><em>Vous pouvez retrouver cette activité sur {% if strava %}<a href="{{ strava }}">Strava</a>{% endif %}{% if strava and komoot %} et {% endif %}{% if komoot %}<a href="{{ komoot }}">Komoot</a>{% endif %}.</em></p>
+    {% endif %}
   </section>
 
   {% set trace = page.filePathStem | getTrace %}
@@ -40,9 +44,21 @@ layout: base
     {%- js "activite" %}{% renderFile "src/assets/js/activite.js" %}{% endjs %}
   {% endif %}
 
-  {% if strava or komoot %}
-    <section class="links">
-      <p>Vous pouvez retrouver cette activité sur {% if strava %}<a href="{{ strava }}">Strava</a>{% endif %}{% if strava and komoot %} et {% endif %}{% if komoot %}<a href="{{ komoot }}">Komoot</a>.{% endif %}
+  {% set photos = page.filePathStem | getPhotos %}
+
+  {% if photos %}
+    <section class="photos">
+      <ul>
+        {% for photo in photos %}
+          <li>
+            <figure>
+              <img src="{{ photo.src | url }}" alt="{{ photo.title }}" />
+              {% if photo.title %}
+                <figcaption>{{ photo.title }}</figcaption>
+              {% endif %}
+            </figure>
+          </li>
+        {% endfor %}
       </ul>
     </section>
   {% endif %}
