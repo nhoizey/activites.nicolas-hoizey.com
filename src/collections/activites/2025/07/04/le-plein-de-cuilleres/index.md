@@ -1,7 +1,10 @@
 ---
 title: Le plein de cuillères
 date: 2025-07-04
-tags: [gravel, forêt, Squadrats]
+type: gravel
+time: 1:14:39
+distance: 18.75
+tags: [forêt]
 strava: https://www.strava.com/activities/15001745426
 komoot: https://www.komoot.com/tour/2376696409
 ---
