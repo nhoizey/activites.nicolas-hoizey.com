@@ -39,15 +39,22 @@
 		"@11ty/eleventy": "^3.1.2",
 		"@biomejs/biome": "^2.0.6",
 		"@jlengstorf/get-share-image": "^1.0.2",
+		"@mapbox/togeojson": "^0.16.2",
+		"@turf/turf": "^7.2.0",
 		"cross-env": "^7.0.3",
 		"dotenv": "^16.6.1",
 		"eleventy-plugin-pack11ty": "^2.2.0",
 		"esbuild": "^0.24.2",
+		"feather-icons": "^4.29.2",
 		"image-size": "^1.2.1",
 		"lodash-es": "^4.17.21",
+		"majesticons": "^2.1.2",
+		"mapbox-gl": "^3.13.0",
 		"modern-css-reset": "^1.4.0",
 		"npm-run-all": "^4.1.5",
 		"rimraf": "^6.0.1",
-		"sanitize-html": "^2.17.0"
+		"sanitize-html": "^2.17.0",
+		"simple-icons": "^15.6.0",
+		"xmldom": "^0.6.0"
 	}
 }

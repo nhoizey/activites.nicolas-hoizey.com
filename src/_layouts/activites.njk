@@ -2,15 +2,48 @@
 layout: base
 ---
 
-<h1>{{ title }}</h1>
-{{ content | safe }}
+<article class="activite">
+  <h1>{{ title }}</h1>
 
-{% if strava or komoot %}
-  <aside>
-    <p>Vous pouvez retrouver cette activité sur les sites suivants :</p>
-    <ul>
-      {% if strava %}<li><a href="{{ strava }}">Strava</a></li>{% endif %}
-      {% if komoot %}<li><a href="{{ komoot }}">Komoot</a></li>{% endif %}
-    </ul>
-  </aside>
-{% endif %}
+  <ul class="meta">
+    <li class="date">
+      <svg class="icon" aria-hidden="true"><use xlink:href="#date-icon" /></svg>
+      <time class="dt-published" datetime="{{ date | isoDate }}" data-pagefind-sort="date[datetime]">{{ date | readableDate }}</time>
+    </li>
+    <li class="type">
+      {% inline_icon 'info' %}
+      <span>{{ type }}</span>
+    </li>
+  </ul>
+
+  <section class="description">
+    {{ content | safe }}
+  </section>
+
+  {% set trace = page.filePathStem | getTrace %}
+
+  {% if trace %}
+    <section class="trace">
+      <div id="map"></div>
+      <noscript>
+        <p>You need JavaScript to see this map.</p>
+      </noscript>
+      <script>
+      window.trace = {{ trace | safe }};
+      </script>
+    </section>
+
+    <script type="module" src="{% getBundleFileUrl "js", "activite" %}"></script>
+    {%- js "activite" %}{% renderFile "src/assets/js/activite.js" %}{% endjs %}
+  {% endif %}
+
+  {% if strava or komoot %}
+    <section class="links">
+      <p>Vous pouvez retrouver cette activité sur les sites suivants :</p>
+      <ul>
+        {% if strava %}<li><a href="{{ strava }}">Strava</a></li>{% endif %}
+        {% if komoot %}<li><a href="{{ komoot }}">Komoot</a></li>{% endif %}
+      </ul>
+    </section>
+  {% endif %}
+</article>
