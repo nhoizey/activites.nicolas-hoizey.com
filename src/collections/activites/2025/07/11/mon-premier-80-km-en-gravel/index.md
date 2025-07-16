@@ -2,7 +2,7 @@
 title: Mon premier 80 km en gravel ! 🥳
 date: 2025-07-11
 type: gravel
-time: 7:44:25
+duration: 7:44:25
 distance: 83.87
 tags: [forêt, boulangerie, pâtisserie]
 strava: https://www.strava.com/activities/15082842838

@@ -18,7 +18,7 @@ const ICONS = {
   map: { name: "map-simple-marker-line", source: "majesticons" },
   tag: { name: "tag-line", source: "majesticons" },
   share: { name: "share-line", source: "majesticons" },
-  shutter_speed: { name: "timer-line", source: "majesticons" },
+  duration: { name: "timer-line", source: "majesticons" },
   search: { name: "search-line", source: "majesticons" },
   statistics: { name: "pie-chart", source: "feather" },
   download: { name: "download", source: "feather" },

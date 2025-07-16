@@ -2,7 +2,7 @@
 title: Le plein de cuillères
 date: 2025-07-04
 type: gravel
-time: 1:14:39
+duration: 1:14:39
 distance: 18.75
 tags: [forêt]
 strava: https://www.strava.com/activities/15001745426

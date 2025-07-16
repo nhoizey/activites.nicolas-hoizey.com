@@ -2,7 +2,7 @@
 title: Autour de l'Yerres
 date: 2025-07-14
 type: gravel
-time: 1:57:51
+duration: 1:57:51
 distance: 28.78
 tags: [cascade]
 strava: https://www.strava.com/activities/15109450054
