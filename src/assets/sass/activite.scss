@@ -10,6 +10,7 @@ article.activite {
 											 "description"
 											 "photos";
 	grid-template-columns: 1fr;
+	align-content: start;
 	gap: var(--gap);
 
 	h1 {
@@ -53,11 +54,12 @@ article.activite:has(.trace) {
 											 "photos";
 
 	@media screen and (min-width: $breakpoint-map) {
-		grid-template-areas: "title title"
-												 "meta meta"
+		grid-template-areas: "title map"
+												 "meta map"
 												 "description map"
 												 "photos photos";
 		grid-template-columns: 2fr 3fr;
+		grid-template-rows: auto auto 1fr auto;
 	}
 
 	.trace {

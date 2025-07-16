@@ -65,7 +65,7 @@ layout: base
       <ul>
         {% for photo in photos %}
           <li>
-            <figure>
+            <figure{% if photo.geo %} data-longitude="{{ photo.geo.longitude }}" data-latitude="{{ photo.geo.latitude }}"{% endif %}>
               <img src="{{ photo.src | url }}" alt="{{ photo.description }}" />
               {% if photo.title %}
                 <figcaption>{{ photo.title }}</figcaption>

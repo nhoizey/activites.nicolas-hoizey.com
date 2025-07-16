@@ -22,7 +22,6 @@ import { lineString, bbox } from "@turf/turf";
   const geoJsonData = window.trace;
 
   const bboxCoordinates = bbox(lineString(geoJsonData.features[0].geometry.coordinates));
-  console.dir(bboxCoordinates)
 
   if (mapElement) {
     mapboxgl.accessToken = window.MAPBOX_ACCESS_TOKEN;
@@ -61,9 +60,44 @@ import { lineString, bbox } from "@turf/turf";
         },
         'paint': {
           'line-color': '#f03800',
-          'line-width': 3
+          'line-width': 5
         }
       });
+
+      const photos = window.document.querySelectorAll(".photos figure");
+      if (photos.length > 0) {
+        photos.forEach((photo) => {
+          const longitude = photo.getAttribute("data-longitude");
+          const latitude = photo.getAttribute("data-latitude");
+          if (longitude && latitude) {
+            const imageElement = photo.querySelector("img");
+            const src = imageElement.getAttribute("src");
+
+            // Create a DOM element for each marker.
+            const el = document.createElement('div');
+            el.className = 'marker';
+            el.style.backgroundImage = `url(${src})`;
+            el.style.width = "50px";
+            el.style.height = "50px";
+            el.style.borderRadius = "50%";
+            el.style.border = "2px solid #fff";
+            el.style.backgroundSize = 'contain';
+            el.style.cursor = 'pointer';
+
+            // Add the marker to the map
+            new mapboxgl.Marker(el)
+              .setLngLat([longitude, latitude])
+              .setPopup(
+                new mapboxgl.Popup({ offset: 25 })
+                  .setHTML(photo.innerHTML)
+              )
+              .addTo(map);
+          }
+        });
+      }
+
+      // Load an image from an external URL.
+
 
       map.addControl(
         new mapboxgl.NavigationControl({
