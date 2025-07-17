@@ -1,15 +1,17 @@
 import mapboxgl from "mapbox-gl/dist/mapbox-gl.js";
 // import { MapboxStyleSwitcherControl } from "mapbox-gl-style-switcher";
-import { lineString, bbox, bearing, point, simplify } from "@turf/turf";
+import { lineString, bbox, bearing, point, polygon, centroid } from "@turf/turf";
 import { times } from "lodash-es";
 
 (async (window) => {
   // Load Mapbox map if necessary
   const mapElementId = "map";
   const mapElement = window.document.querySelector(`#${mapElementId}`);
-  const maxZoomLevel = 18;
 
-  const traceColor = '#bd12f1';
+  const MAX_ZOOM_LEVEL = 18;
+  const TRACE_COLOR = '#bd12f1';
+  const SEGMENT_BASE_LENGTH = 10;
+  const ANIMATED_POINTS_PER_SECOND = 5;
 
   // const mapStyles = [
   //   {
@@ -23,15 +25,8 @@ import { times } from "lodash-es";
   // ];
 
   const geoJsonData = window.trace;
-  const bboxCoordinates = bbox(lineString(geoJsonData.features[0].geometry.coordinates));
-
-  // https://docs.mapbox.com/mapbox-gl-js/api/properties/#paddingoptions
-  const EASE_TO_PADDING = {
-    top: window.innerHeight * 0.3, // 30% of the viewport height
-    bottom: 0,
-    left: 0,
-    right: 0,
-  };
+  const coordinates = geoJsonData.features[0].geometry.coordinates;
+  const bboxCoordinates = bbox(lineString(coordinates));
 
   if (mapElement) {
     mapboxgl.accessToken = window.MAPBOX_ACCESS_TOKEN;
@@ -45,7 +40,7 @@ import { times } from "lodash-es";
         padding: 25
       },
       minZoom: 1,
-      maxZoom: maxZoomLevel,
+      maxZoom: MAX_ZOOM_LEVEL,
       scrollZoom: true,
       attributionControl: true,
       cooperativeGestures: false, // https://docs.mapbox.com/mapbox-gl-js/example/cooperative-gestures/
@@ -68,7 +63,7 @@ import { times } from "lodash-es";
           'line-cap': 'round'
         },
         'paint': {
-          'line-color': traceColor,
+          'line-color': TRACE_COLOR,
           'line-width': 3,
           'line-opacity': 0.9
         }
@@ -78,20 +73,20 @@ import { times } from "lodash-es";
         'type': 'raster-dem',
         'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
         'tileSize': 512,
-        'maxzoom': maxZoomLevel
+        'maxzoom': MAX_ZOOM_LEVEL
       });
       map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 2 });
 
       const points = [];
       geoJsonData.features[0].properties.coordTimes.forEach((time, index) => {
-        const coordinates = geoJsonData.features[0].geometry.coordinates[index];
+        const pointCoordinates = coordinates[index];
         points.push({
           date: Date.parse(time),
           type: "point",
           coordinates: {
-            longitude: coordinates[0],
-            latitude: coordinates[1],
-            altitude: coordinates[2] || 0,
+            longitude: pointCoordinates[0],
+            latitude: pointCoordinates[1],
+            altitude: pointCoordinates[2] || 0,
           },
         });
       });
@@ -199,7 +194,6 @@ import { times } from "lodash-es";
         onAdd(map) {
           let currentlyPlaying = false;
 
-          const POINTS_PER_SECOND = 5;
           let previousIndex = 0;
           let animation;
           let startTime = 0;
@@ -233,7 +227,7 @@ import { times } from "lodash-es";
               'line-cap': 'round'
             },
             'paint': {
-              'line-color': traceColor,
+              'line-color': TRACE_COLOR,
               'line-width': 5,
               'line-opacity': 1
             }
@@ -248,32 +242,38 @@ import { times } from "lodash-es";
             } else {
               progress = timestamp - startTime;
             }
-            // console.log(`Progress: ${progress}ms`);
 
-            const currentIndex = Math.max(0, Math.floor(progress * POINTS_PER_SECOND / 1000));
+            const currentIndex = Math.max(0, Math.floor(progress * ANIMATED_POINTS_PER_SECOND / 1000));
 
             if (currentIndex !== previousIndex) {
-              const easeToDuration = (currentIndex - previousIndex) / POINTS_PER_SECOND * 1000;
+              const easeToDuration = (currentIndex - previousIndex) / ANIMATED_POINTS_PER_SECOND * 1000;
 
               previousIndex = currentIndex;
 
               // strop animation if we reached the end of the points
-              if (currentIndex >= points.length) {
+              if (currentIndex >= coordinates.length) {
                 cancelAnimationFrame(animation);
                 map.setLayoutProperty('route-dyn', 'visibility', 'none');
                 map.setLayoutProperty('route', 'visibility', 'visible');
                 // TODO: reset play button
               } else {
-                animatedGeoJSON.features[0].geometry.coordinates = geoJsonData.features[0].geometry.coordinates.slice(0, currentIndex);
+                animatedGeoJSON.features[0].geometry.coordinates = coordinates.slice(0, currentIndex);
                 map.getSource('trace-dyn').setData(animatedGeoJSON);
 
+                // Find the segment of points around the current index
+                const currentSegment = coordinates.slice(Math.max(0, currentIndex - SEGMENT_BASE_LENGTH), Math.min(coordinates.length - 1, currentIndex + SEGMENT_BASE_LENGTH * 2)).map(point => point.slice(0, 2));
+
+                // Find the centroid of the current segment
+                const centroidPoint = centroid(polygon([[...currentSegment, currentSegment[0]]]));
+
+                // Find the bearing angle between the extremes of the current segment
+                const bearingAngle = bearing(point(currentSegment[0]), point(currentSegment[currentSegment.length - 1]));
+
                 // Move the map to the new point
-                map.easeTo({
-                  center: geoJsonData.features[0].geometry.coordinates.slice(currentIndex, currentIndex + 1)[0].slice(0, 2),
-                  padding: EASE_TO_PADDING,
+                map.panTo(centroidPoint.geometry.coordinates, {
                   zoom: 16, // TODO: adapt zoom level based on speed
                   pitch: 60,
-                  bearing: bearing(point([points[Math.max(0, currentIndex - 20)].coordinates.longitude, points[Math.max(0, currentIndex - 20)].coordinates.latitude]), point([points[Math.min(points.length - 1, currentIndex + 20)].coordinates.longitude, points[Math.min(points.length - 1, currentIndex + 20)].coordinates.latitude])),
+                  bearing: bearingAngle,
                   duration: easeToDuration,
                   essential: true, // This animation is considered essential with respect to &prefers-reduced-motion
                 });
@@ -326,10 +326,9 @@ import { times } from "lodash-es";
               map.setLayoutProperty('route', 'visibility', 'none');
               map.setLayoutProperty('route-dyn', 'visibility', 'visible');
 
-              const currentIndex = Math.max(0, Math.floor(progress * POINTS_PER_SECOND / 1000))
+              const currentIndex = Math.max(0, Math.floor(progress * ANIMATED_POINTS_PER_SECOND / 1000))
               map.easeTo({
-                center: geoJsonData.features[0].geometry.coordinates.slice(currentIndex, currentIndex + 1)[0].slice(0, 2),
-                padding: EASE_TO_PADDING,
+                center: coordinates.slice(currentIndex, currentIndex + 1)[0].slice(0, 2),
                 zoom: 16, // TODO: adapt zoom level based on speed
                 pitch: 60,
                 bearing: bearing(point([points[Math.max(0, currentIndex - 20)].coordinates.longitude, points[Math.max(0, currentIndex - 20)].coordinates.latitude]), point([points[Math.min(points.length - 1, currentIndex + 20)].coordinates.longitude, points[Math.min(points.length - 1, currentIndex + 20)].coordinates.latitude])),
