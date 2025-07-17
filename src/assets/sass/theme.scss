@@ -3,8 +3,8 @@
  *********************************************************** */
 
 :root {
-  --background: light-dark(var(--grey-100), var(--grey-700));
-  --surface: light-dark(var(--grey-200), var(--grey-900));
+  --surface-0: light-dark(var(--grey-200), var(--grey-800));
+  --surface-1: light-dark(var(--grey-100), var(--grey-700));
 
   --text-primary: light-dark(var(--grey-900), var(--grey-100));
   --text-secondary: light-dark(var(--grey-500), var(--grey-200));
@@ -17,7 +17,8 @@
   --link-text-hover: light-dark(var(--green-700), var(--green-100));
   --link-decoration-hover: light-dark(var(--green-500), var(--green-300));
 
-  --meta: light-dark(var(--grey-500), var(--grey-300));
+  --meta: light-dark(var(--green-500), var(--green-300));
+  --meta-icon: light-dark(var(--green-700), var(--green-600));
 
   --theme-text: light-dark(var(--yellow-300), var(--yellow-300));
   --theme-decoration: light-dark(var(--yellow-200), var(--yellow-200));

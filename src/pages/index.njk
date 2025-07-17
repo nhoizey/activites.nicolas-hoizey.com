@@ -1,0 +1,38 @@
+---
+layout: accueil
+title: Les activités de Nicolas Hoizey
+nav:
+  order: 1
+  title: Accueil
+  icon: home
+---
+
+{% from "macros/meta.njk" import meta %}
+
+<p>Bienvenue sur ce site, qui présente les activités sportives de Nicolas Hoizey.</p>
+
+<h2>Activités récentes</h2>
+
+<ul class="activites">
+  {% for entry in collections.activites %}
+    <li class="card">
+      <a href="{{ entry.url }}">
+        <h3>{{ entry.data.title }}</h3>
+        {{ meta(entry.data.date, entry.data.type, entry.data.distance, entry.data.duration) }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+
+<h2>Dans le blog</h2>
+
+<ul class="blog">
+  {% for entry in collections.blog %}
+    <li class="card">
+      <a href="{{ entry.url }}">
+        <h3>{{ entry.data.title }}</h3>
+        {{ meta(entry.data.date) }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>

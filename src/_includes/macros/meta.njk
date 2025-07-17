@@ -1,0 +1,29 @@
+{% macro meta(date, type="", distance="", duration="") %}
+  <ul class="meta">
+    <li class="date">
+      <svg class="icon" aria-hidden="true"><use xlink:href="#date-icon" /></svg>
+      <time class="dt-published" datetime="{{ date | isoDate }}" data-pagefind-sort="date[datetime]">{{ date | readableDate }}</time>
+    </li>
+    {% if type %}
+      <li class="type">
+        {% inline_icon 'info' %}
+        <span>{{ type }}</span>
+      </li>
+    {% endif %}
+    {% if distance %}
+      <li class="distance">
+        {% inline_icon 'map' %}
+        <span>{{ distance }} km</span>
+      </li>
+    {% endif %}
+    {% if duration %}
+      <li class="duration">
+        {% inline_icon 'duration' %}
+        <span>{{ duration }}</span>
+      </li>
+    {% endif %}
+  </ul>
+{% endmacro %}
+
+
+
