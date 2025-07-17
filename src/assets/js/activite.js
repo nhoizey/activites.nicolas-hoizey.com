@@ -1,7 +1,6 @@
 import mapboxgl from "mapbox-gl/dist/mapbox-gl.js";
 // import { MapboxStyleSwitcherControl } from "mapbox-gl-style-switcher";
-import { lineString, bbox, bearing, point, polygon, centroid } from "@turf/turf";
-import { times } from "lodash-es";
+import { lineString, bbox, bearing, point } from "@turf/turf";
 
 (async (window) => {
   // Load Mapbox map if necessary
@@ -10,7 +9,7 @@ import { times } from "lodash-es";
 
   const MAX_ZOOM_LEVEL = 18;
   const TRACE_COLOR = '#bd12f1';
-  const SEGMENT_BASE_LENGTH = 10;
+  const SEGMENT_BASE_LENGTH = 20;
   const ANIMATED_POINTS_PER_SECOND = 5;
 
   // const mapStyles = [
@@ -263,21 +262,16 @@ import { times } from "lodash-es";
                 // Find the segment of points around the current index
                 const currentSegment = coordinates.slice(Math.max(0, currentIndex - SEGMENT_BASE_LENGTH), Math.min(coordinates.length - 1, currentIndex + SEGMENT_BASE_LENGTH * 2)).map(point => point.slice(0, 2));
 
-                // Find the centroid of the current segment
-                const centroidPoint = centroid(polygon([[...currentSegment, currentSegment[0]]]));
-
                 // Find the bearing angle between the extremes of the current segment
                 const bearingAngle = bearing(point(currentSegment[0]), point(currentSegment[currentSegment.length - 1]));
 
                 // Move the map to the new point
-                map.panTo(centroidPoint.geometry.coordinates, {
-                  zoom: 16, // TODO: adapt zoom level based on speed
+                map.fitBounds(bbox(lineString(currentSegment)), {
                   pitch: 60,
                   bearing: bearingAngle,
                   duration: easeToDuration,
                   essential: true, // This animation is considered essential with respect to &prefers-reduced-motion
                 });
-
               }
             }
             // Request the next frame of the animation.
