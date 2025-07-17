@@ -77,12 +77,6 @@ import { lineString, bbox } from "@turf/turf";
             const el = document.createElement('div');
             el.className = 'marker';
             el.style.backgroundImage = `url(${src})`;
-            el.style.width = "50px";
-            el.style.height = "50px";
-            el.style.borderRadius = "50%";
-            el.style.border = "2px solid #fff";
-            el.style.backgroundSize = 'contain';
-            el.style.cursor = 'pointer';
 
             // Add the marker to the map
             new mapboxgl.Marker(el)
@@ -95,9 +89,6 @@ import { lineString, bbox } from "@turf/turf";
           }
         });
       }
-
-      // Load an image from an external URL.
-
 
       map.addControl(
         new mapboxgl.NavigationControl({
