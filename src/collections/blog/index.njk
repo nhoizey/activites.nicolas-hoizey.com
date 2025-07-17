@@ -1,0 +1,19 @@
+---
+title: Blog
+nav:
+  order: 3
+  icon: blog
+---
+
+{% from "macros/meta.njk" import meta %}
+
+<ul class="blog">
+  {% for entry in collections.blog %}
+    <li class="card">
+      <a href="{{ entry.url }}">
+        <h3>{{ entry.data.title }}</h3>
+        {{ meta(entry.data.date) }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
