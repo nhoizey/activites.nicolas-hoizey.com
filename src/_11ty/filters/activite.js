@@ -75,19 +75,8 @@ export const getPhotos = async (activite) => {
           luxonDate = DateTime.fromHTTP(
             photoExif.exif.DateTimeOriginal.toGMTString(),
           ).setZone(`UTC+${Number.parseInt(photoExif.exif.OffsetTime, 10)}`);
-          photo.date = luxonDate.toFormat("yyyy-LL-dd HH:mm:ss ZZ");
-        } else {
-          console.error("  ⚠ exif.DateTimeOriginal missing");
-          if (
-            photoExif.iptc?.DigitalCreationDate &&
-            photoExif.iptc?.DigitalCreationTime
-          ) {
-            luxonDate = DateTime.fromFormat(
-              `${photoExif.iptc.DigitalCreationDate} ${photoExif.iptc.DigitalCreationTime}`,
-              "yyyyLLdd HHmmssZZZ",
-            );
-            photo.date = luxonDate.toFormat("yyyy-LL-dd HH:mm:ss ZZ");
-          }
+          photo.date = luxonDate.toISO();
+          photo.readableTime = luxonDate.toFormat("H'h'mm");
         }
 
         if (photoExif.gps?.latitude && photoExif.gps?.longitude) {

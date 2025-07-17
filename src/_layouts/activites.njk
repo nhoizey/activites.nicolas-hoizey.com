@@ -67,9 +67,10 @@ layout: base
           <li>
             <figure{% if photo.geo %} data-longitude="{{ photo.geo.longitude }}" data-latitude="{{ photo.geo.latitude }}"{% endif %}>
               <img src="{{ photo.src | url }}" alt="{{ photo.description }}" />
-              {% if photo.title %}
-                <figcaption>{{ photo.title }}</figcaption>
-              {% endif %}
+              <figcaption>
+                <time class="dt-published" datetime="{{ photo.date }}" data-pagefind-sort="date[datetime]">{{ photo.readableTime }}</time>
+                {{ photo.title }}
+              </figcaption>
             </figure>
           </li>
         {% endfor %}

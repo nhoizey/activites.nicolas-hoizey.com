@@ -1,12 +1,15 @@
 import mapboxgl from "mapbox-gl/dist/mapbox-gl.js";
 // import { MapboxStyleSwitcherControl } from "mapbox-gl-style-switcher";
-import { lineString, bbox } from "@turf/turf";
+import { lineString, bbox, bearing, point, simplify } from "@turf/turf";
+import { times } from "lodash-es";
 
 (async (window) => {
   // Load Mapbox map if necessary
   const mapElementId = "map";
   const mapElement = window.document.querySelector(`#${mapElementId}`);
   const maxZoomLevel = 18;
+
+  const traceColor = '#bd12f1';
 
   // const mapStyles = [
   //   {
@@ -20,15 +23,22 @@ import { lineString, bbox } from "@turf/turf";
   // ];
 
   const geoJsonData = window.trace;
-
   const bboxCoordinates = bbox(lineString(geoJsonData.features[0].geometry.coordinates));
+
+  // https://docs.mapbox.com/mapbox-gl-js/api/properties/#paddingoptions
+  const EASE_TO_PADDING = {
+    top: window.innerHeight * 0.3, // 30% of the viewport height
+    bottom: 0,
+    left: 0,
+    right: 0,
+  };
 
   if (mapElement) {
     mapboxgl.accessToken = window.MAPBOX_ACCESS_TOKEN;
     const map = new mapboxgl.Map({
       container: mapElementId,
       // style: `mapbox://styles/mapbox/standard${localStorage.getItem("mapStyle") === "Satellite" ? "-satellite" : ""}`,
-      style: "mapbox://styles/mapbox/standard-satellite",
+      style: "mapbox://styles/mapbox/standard",
       projection: "globe",
       bounds: bboxCoordinates,
       fitBoundsOptions: {
@@ -39,7 +49,7 @@ import { lineString, bbox } from "@turf/turf";
       scrollZoom: true,
       attributionControl: true,
       cooperativeGestures: false, // https://docs.mapbox.com/mapbox-gl-js/example/cooperative-gestures/
-      hash: true,
+      hash: false,
       renderWorldCopies: true,
     });
 
@@ -49,7 +59,6 @@ import { lineString, bbox } from "@turf/turf";
         type: "geojson",
         data: geoJsonData,
       });
-
       map.addLayer({
         'id': 'route',
         'type': 'line',
@@ -59,9 +68,32 @@ import { lineString, bbox } from "@turf/turf";
           'line-cap': 'round'
         },
         'paint': {
-          'line-color': '#f03800',
-          'line-width': 5
+          'line-color': traceColor,
+          'line-width': 3,
+          'line-opacity': 0.9
         }
+      });
+
+      map.addSource('mapbox-dem', {
+        'type': 'raster-dem',
+        'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
+        'tileSize': 512,
+        'maxzoom': maxZoomLevel
+      });
+      map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 2 });
+
+      const points = [];
+      geoJsonData.features[0].properties.coordTimes.forEach((time, index) => {
+        const coordinates = geoJsonData.features[0].geometry.coordinates[index];
+        points.push({
+          date: Date.parse(time),
+          type: "point",
+          coordinates: {
+            longitude: coordinates[0],
+            latitude: coordinates[1],
+            altitude: coordinates[2] || 0,
+          },
+        });
       });
 
       const photos = window.document.querySelectorAll(".photos figure");
@@ -72,6 +104,18 @@ import { lineString, bbox } from "@turf/turf";
           if (longitude && latitude) {
             const imageElement = photo.querySelector("img");
             const src = imageElement.getAttribute("src");
+
+            const photoPoint = {
+              date: Date.parse(photo.querySelector('time').getAttribute("datetime")),
+              type: "photo",
+              coordinates: {
+                longitude: Number.parseFloat(longitude),
+                latitude: Number.parseFloat(latitude),
+                altitude: 0,
+              },
+              innerHTML: photo.innerHTML,
+            };
+            points.push(photoPoint);
 
             // Create a DOM element for each marker.
             const el = document.createElement('div');
@@ -89,6 +133,8 @@ import { lineString, bbox } from "@turf/turf";
           }
         });
       }
+
+      points.sort((a, b) => a.date - b.date);
 
       map.addControl(
         new mapboxgl.NavigationControl({
@@ -149,122 +195,179 @@ import { lineString, bbox } from "@turf/turf";
       //   }),
       // );
 
-    //   class AutoPlayButton {
-    //     onAdd(map) {
-    //       let currentlyPlaying = false;
-    //       let currentPhotoIndex =
-    //         Number.parseInt(localStorage.getItem("currentPhotoIndex"), 10) || 0;
-    //       // let intervalID = null;
+      class AutoPlayButton {
+        onAdd(map) {
+          let currentlyPlaying = false;
 
-    //       const flyToNextPhoto = () => {
-    //         if (popup) {
-    //           popup.remove();
-    //           popup = null;
-    //         }
+          const POINTS_PER_SECOND = 5;
+          let previousIndex = 0;
+          let animation;
+          let startTime = 0;
+          let progress = 0;
+          let resetTime = false;
 
-    //         const photoData = window.geoJsonFeatures[currentPhotoIndex];
-    //         const photoProperties = photoData.properties;
+          const animatedGeoJSON = {
+            'type': 'FeatureCollection',
+            'features': [
+              {
+                'type': 'Feature',
+                'geometry': {
+                  'type': 'LineString',
+                  'coordinates': [],
+                }
+              }
+            ]
+          };
 
-    //         // Calculate target height and width based on the aspect ratio
-    //         const ratio = photoProperties.width / photoProperties.height;
-    //         // Ensure the target height does not exceed 40% of the viewport height
-    //         let targetHeight = Math.min(
-    //           Math.sqrt(SMALL_VERSION_PIXELS / ratio),
-    //           window.innerHeight * 0.5,
-    //         );
-    //         let targetWidth = ratio * targetHeight;
+          // Add dynamic source and layer
+          map.addSource("trace-dyn", {
+            'type': 'geojson',
+            'data': animatedGeoJSON
+          });
+          map.addLayer({
+            'id': 'route-dyn',
+            'type': 'line',
+            'source': 'trace-dyn',
+            'layout': {
+              'line-join': 'round',
+              'line-cap': 'round'
+            },
+            'paint': {
+              'line-color': traceColor,
+              'line-width': 5,
+              'line-opacity': 1
+            }
+          });
 
-    //         // Ensure the target width does not exceed 40% of the viewport width
-    //         // This is to prevent the popup from being too large on smaller screens
-    //         if (targetWidth > window.innerWidth * 0.8) {
-    //           targetWidth = window.innerWidth * 0.8;
-    //           targetHeight = targetWidth / ratio;
-    //         }
 
-    //         // Either use the direction embedded in the photo's metadata, or a random variation from previous bearing
-    //         bearing =
-    //           photoData.geometry.direction ||
-    //           (bearing + Math.random() * 60 - 30) % 360; // 360 degrees starting from North
-    //         // console.log(`Bearing: ${bearing}`);
+          function animateTrace(timestamp) {
+            if (resetTime) {
+              // resume previous progress
+              startTime = performance.now() - progress;
+              resetTime = false;
+            } else {
+              progress = timestamp - startTime;
+            }
+            // console.log(`Progress: ${progress}ms`);
 
-    //         // Use a random pitch variation from previous one, but ensure it stays within 30 to 60 degrees
-    //         pitch = Math.max(
-    //           PITCH_MIN,
-    //           Math.min(
-    //             PITCH_MAX,
-    //             pitch + Math.random() * PITCH_STEP * 2 - PITCH_STEP,
-    //           ),
-    //         ); // 0 (zenith) -> 90 degrees
-    //         // console.log(`Pitch: ${pitch}`);
+            const currentIndex = Math.max(0, Math.floor(progress * POINTS_PER_SECOND / 1000));
 
-    //         flying = true;
-    //         map.flyTo({
-    //           center: photoData.geometry.coordinates,
-    //           padding: FLY_TO_PADDING,
-    //           zoom: 16,
-    //           pitch: pitch,
-    //           bearing: bearing,
-    //           curve: 2,
-    //           speed: FLY_SPEED,
-    //           essential: true, // This animation is considered essential with respect to &prefers-reduced-motion
-    //         });
+            if (currentIndex !== previousIndex) {
+              const easeToDuration = (currentIndex - previousIndex) / POINTS_PER_SECOND * 1000;
 
-    //         // End of flight when the map has stopped moving
-    //         map.once("moveend", () => {
-    //           flying = false;
+              previousIndex = currentIndex;
 
-    //           if (popup) {
-    //             popup.remove();
-    //             popup = null;
-    //           }
+              // strop animation if we reached the end of the points
+              if (currentIndex >= points.length) {
+                cancelAnimationFrame(animation);
+                map.setLayoutProperty('route-dyn', 'visibility', 'none');
+                map.setLayoutProperty('route', 'visibility', 'visible');
+                // TODO: reset play button
+              } else {
+                animatedGeoJSON.features[0].geometry.coordinates = geoJsonData.features[0].geometry.coordinates.slice(0, currentIndex);
+                map.getSource('trace-dyn').setData(animatedGeoJSON);
 
-    //           popup = new AnimatedPopup({
-    //             openingAnimation: POPUP_OPENING_ANIMATION,
-    //             closingAnimation: POPUP_CLOSING_ANIMATION,
-    //             offset: 20,
-    //             closeButton: false,
-    //             maxWidth: `${Math.floor(targetWidth)}px`,
-    //             className: `autoplay ${photoProperties.height / photoProperties.width > 1 ? "portrait" : "landscape"}`,
-    //           })
-    //             .setLngLat(photoData.geometry.coordinates)
-    //             .setHTML(
-    //               `<a href="${photoProperties.url}"><img src="/photos/${photoProperties.slug}/small.jpg" width="${targetWidth}" height="${targetHeight}" alt>${photoProperties.title}</a>`,
-    //             )
-    //             .addTo(map);
+                // Move the map to the new point
+                map.easeTo({
+                  center: geoJsonData.features[0].geometry.coordinates.slice(currentIndex, currentIndex + 1)[0].slice(0, 2),
+                  padding: EASE_TO_PADDING,
+                  zoom: 16, // TODO: adapt zoom level based on speed
+                  pitch: 60,
+                  bearing: bearing(point([points[Math.max(0, currentIndex - 20)].coordinates.longitude, points[Math.max(0, currentIndex - 20)].coordinates.latitude]), point([points[Math.min(points.length - 1, currentIndex + 20)].coordinates.longitude, points[Math.min(points.length - 1, currentIndex + 20)].coordinates.latitude])),
+                  duration: easeToDuration,
+                  essential: true, // This animation is considered essential with respect to &prefers-reduced-motion
+                });
 
-    //           if (currentlyPlaying) {
-    //             setTimeout(flyToNextPhoto, FLY_INTERVAL);
-    //           }
-    //         });
+              }
+            }
+            // Request the next frame of the animation.
+            animation = requestAnimationFrame(animateTrace);
+          };
 
-    //         currentPhotoIndex =
-    //           (currentPhotoIndex + 1) % window.geoJsonFeatures.length;
-    //         localStorage.setItem("currentPhotoIndex", currentPhotoIndex);
-    //       };
+          // const flyToNextPoint = () => {
+          //   // if (popup) {
+          //   //   popup.remove();
+          //   //   popup = null;
+          //   // }
 
-    //       const div = document.createElement("div");
-    //       div.className = "mapboxgl-ctrl mapboxgl-ctrl-group";
-    //       div.innerHTML = `<button class="mapboxgl-ctrl-autoplay"><span class="mapboxgl-ctrl-icon" aria-hidden="true" title="Auto play"></span></button>`;
-    //       div.addEventListener("contextmenu", (e) => e.preventDefault());
-    //       div.addEventListener("click", () => {
-    //         currentlyPlaying = !currentlyPlaying;
+          //   // Either use the direction embedded in the photo's metadata, or a random variation from previous bearing
+          //   // bearing =
+          //   //   photoData.geometry.direction ||
+          //   //   (bearing + Math.random() * 60 - 30) % 360; // 360 degrees starting from North
 
-    //         if (currentlyPlaying) {
-    //           flyToNextPhoto();
-    //         }
 
-    //         div
-    //           .querySelector("button")
-    //           .classList.toggle(
-    //             "mapboxgl-ctrl-autoplay-active",
-    //             currentlyPlaying,
-    //           );
-    //       });
+          //     // if (popup) {
+          //     //   popup.remove();
+          //     //   popup = null;
+          //     // }
 
-    //       return div;
-    //     }
-    //   }
-    //   map.addControl(new AutoPlayButton());
+          //     // popup = new AnimatedPopup({
+          //     //   openingAnimation: POPUP_OPENING_ANIMATION,
+          //     //   closingAnimation: POPUP_CLOSING_ANIMATION,
+          //     //   offset: 20,
+          //     //   closeButton: false,
+          //     //   maxWidth: `${Math.floor(targetWidth)}px`,
+          //     //   className: `autoplay ${photoProperties.height / photoProperties.width > 1 ? "portrait" : "landscape"}`,
+          //     // })
+          //     //   .setLngLat(photoData.geometry.coordinates)
+          //     //   .setHTML(
+          //     //     `<a href="${photoProperties.url}"><img src="/photos/${photoProperties.slug}/small.jpg" width="${targetWidth}" height="${targetHeight}" alt>${photoProperties.title}</a>`,
+          //     //   )
+          //     //   .addTo(map);
+
+          const div = document.createElement("div");
+          div.className = "mapboxgl-ctrl mapboxgl-ctrl-group";
+          div.innerHTML = `<button class="mapboxgl-ctrl-autoplay"><span class="mapboxgl-ctrl-icon" aria-hidden="true" title="Auto play"></span></button>`;
+          div.addEventListener("contextmenu", (e) => e.preventDefault());
+          div.addEventListener("click", () => {
+            currentlyPlaying = !currentlyPlaying;
+
+            if (currentlyPlaying) {
+              map.setLayoutProperty('route', 'visibility', 'none');
+              map.setLayoutProperty('route-dyn', 'visibility', 'visible');
+
+              const currentIndex = Math.max(0, Math.floor(progress * POINTS_PER_SECOND / 1000))
+              map.easeTo({
+                center: geoJsonData.features[0].geometry.coordinates.slice(currentIndex, currentIndex + 1)[0].slice(0, 2),
+                padding: EASE_TO_PADDING,
+                zoom: 16, // TODO: adapt zoom level based on speed
+                pitch: 60,
+                bearing: bearing(point([points[Math.max(0, currentIndex - 20)].coordinates.longitude, points[Math.max(0, currentIndex - 20)].coordinates.latitude]), point([points[Math.min(points.length - 1, currentIndex + 20)].coordinates.longitude, points[Math.min(points.length - 1, currentIndex + 20)].coordinates.latitude])),
+                duration: 500,
+                essential: true, // This animation is considered essential with respect to &prefers-reduced-motion
+              });
+
+              resetTime = true;
+              setTimeout(animateTrace, 1000);
+            } else {
+              cancelAnimationFrame(animation);
+
+              map.fitBounds(bboxCoordinates, {
+                fitBoundsOptions: {
+                  padding: 25
+                },
+                pitch: 0,
+                bearing: 0,
+                duration: 2000,
+                essential: true, // This animation is considered essential with respect to &prefers-reduced-motion
+              });
+
+              map.setLayoutProperty('route-dyn', 'visibility', 'none');
+              map.setLayoutProperty('route', 'visibility', 'visible');
+            }
+
+            div
+              .querySelector("button")
+              .classList.toggle(
+                "mapboxgl-ctrl-autoplay-active",
+                currentlyPlaying,
+              );
+          });
+
+          return div;
+        }
+      }
+      map.addControl(new AutoPlayButton());
 
       // https://docs.mapbox.com/mapbox-gl-js/example/navigation-scale/
       map.addControl(new mapboxgl.ScaleControl());
