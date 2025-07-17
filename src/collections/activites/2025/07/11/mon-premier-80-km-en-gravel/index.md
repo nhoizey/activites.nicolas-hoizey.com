@@ -1,5 +1,5 @@
 ---
-title: Mon premier 80 km en gravel ! 🥳
+title: Mon premier 80 km en gravel !
 date: 2025-07-11
 type: gravel
 duration: 7:44:25

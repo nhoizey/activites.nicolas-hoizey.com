@@ -1,5 +1,5 @@
 ---
-title: Parti à la fraîche, revenu dans la fournaise… 🥵
+title: Parti à la fraîche, revenu dans la fournaise…
 date: 2025-06-21
 type: gravel
 duration: 3:39:21
