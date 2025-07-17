@@ -41,6 +41,7 @@
 				height: auto;
 				aspect-ratio: 1;
 				object-fit: contain;
+				object-position: bottom;
 			}
 		}
 	}
@@ -71,6 +72,10 @@
 	width: 100%;
 	aspect-ratio: 1;
 	position: relative;
+
+	background-color: var(--surface-1);
+	border: 2px solid var(--map-border);
+	border-radius: var(--gap);
 }
 
 .mapboxgl-ctrl-top-right {

@@ -45,6 +45,7 @@
               <img src="{{ photo.src | url }}" alt="{{ photo.description }}" />
               <figcaption>
                 <time class="dt-published" datetime="{{ photo.date }}" data-pagefind-sort="date[datetime]">{{ photo.readableTime }}</time>
+                {{ ":" if photo.title }}
                 {{ photo.title }}
               </figcaption>
             </figure>

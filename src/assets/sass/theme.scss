@@ -20,12 +20,7 @@
   --meta: light-dark(var(--green-500), var(--green-300));
   --meta-icon: light-dark(var(--green-700), var(--green-600));
 
-  --theme-text: light-dark(var(--yellow-300), var(--yellow-300));
-  --theme-decoration: light-dark(var(--yellow-200), var(--yellow-200));
-
-  --accent: light-dark(var(--yellow-500), var(--yellow-500));
-  --dimmed: light-dark(var(--green-500), var(--green-500));
-  --danger: light-dark(var(--red), var(--red));
+  --map-border: light-dark(var(--green-500), var(--green-300));
 }
 
 :root[data-theme="auto"],
