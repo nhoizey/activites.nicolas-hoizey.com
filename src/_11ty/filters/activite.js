@@ -17,8 +17,9 @@ export const getTrace = (activite) => {
   if (fs.existsSync(gpxFile)) {
     const gpxContent = new DOMParser().parseFromString(fs.readFileSync(gpxFile, 'utf8'));
     const geoJSON = togeojson.gpx(gpxContent);
-    fs.writeFileSync(geojsonFile, JSON.stringify(geoJSON, null, 2), 'utf8');
-    return geoJSON;
+    const geoJSONString = JSON.stringify(geoJSON, null, 2);
+    fs.writeFileSync(geojsonFile, geoJSONString, 'utf8');
+    return geoJSONString;
   }
 
   return false;

@@ -11,10 +11,10 @@ nav:
 
 <p>Bienvenue sur ce site, qui présente les activités sportives de Nicolas Hoizey.</p>
 
-<h2>Activités récentes</h2>
+<h2>Dernières activités</h2>
 
 <ul class="activites">
-  {% for entry in collections.activites %}
+  {% for entry in collections.activites | limit(5) %}
     <li class="card">
       <a href="{{ entry.url }}">
         <h3>{{ entry.data.title }}</h3>
@@ -23,6 +23,7 @@ nav:
     </li>
   {% endfor %}
 </ul>
+<p>Découvrez toutes les <a href="/activites/">activités</a>.</p>
 
 <h2>Dans le blog</h2>
 

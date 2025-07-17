@@ -187,6 +187,7 @@ main {
 	h1, h2 {
 		font-weight: bold;
 		color: var(--heading);
+		margin-block-start: 3rem !important;
 	}
 
 	h1 {
