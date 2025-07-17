@@ -187,7 +187,7 @@ main {
 	h1, h2 {
 		font-weight: bold;
 		color: var(--heading);
-		margin-block-start: 3rem !important;
+		--local-gap: 3rem;
 	}
 
 	h1 {
@@ -203,13 +203,11 @@ main {
 		color: var(--sub-heading);
 		font-size: 1.1em;
 	}
-
-	// The lobotomized owl
 }
 
 main, article, section {
 	& > *:not(style) + * {
-		margin-block-start: var(--gap);
+		margin-block-start: var(--local-gap, var(--gap));
 	}
 }
 
