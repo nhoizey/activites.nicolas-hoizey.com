@@ -4,6 +4,7 @@ title: Les activités de Nicolas Hoizey
 nav:
   order: 1
   title: Accueil
+  icon: home
 ---
 
 Bienvenue sur ce site, qui présente les activités sportives de Nicolas Hoizey.

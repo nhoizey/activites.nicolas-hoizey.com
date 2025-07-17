@@ -1,11 +1,10 @@
----
-layout: base
----
+{% extends "./base.njk" %}
 
+{% block bodyclasses %}activite{% endblock %}
 
-<style>{% renderFile "src/assets/sass/activite.scss" %}</style>
+{% block content %}
+  <style>{% renderFile "src/assets/sass/activite.scss" %}</style>
 
-<article class="activite">
   <h1>{{ title }}</h1>
 
   <ul class="meta">
@@ -77,4 +76,5 @@ layout: base
       </ul>
     </section>
   {% endif %}
-</article>
+
+{% endblock %}

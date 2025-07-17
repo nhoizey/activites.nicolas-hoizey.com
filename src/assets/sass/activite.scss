@@ -2,7 +2,7 @@
 @use '../../../node_modules/mapbox-gl-style-switcher/styles.css';
 @use 'variables' as *;
 
-article.activite {
+.activite main {
 	display: grid;
 
 	grid-template-areas: "title"
@@ -46,7 +46,7 @@ article.activite {
 	}
 }
 
-article.activite:has(.trace) {
+.activite main:has(.trace) {
 	grid-template-areas: "title"
 											 "meta"
 											 "description"
@@ -123,3 +123,7 @@ article.activite:has(.trace) {
 		z-index: 2;
 	}
 }
+
+// .mapboxgl-ctrl:has(> .mapboxgl-ctrl-logo) {
+// 	display: none !important;
+// }

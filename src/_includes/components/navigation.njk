@@ -1,11 +1,13 @@
-<nav role="navigation" class="cluster">
+<nav role="navigation">
 	<ul>
 		{% for item in collections.navigation %}
 			{% set link_title = item.data.nav.title or item.data.title %}
 			<li
 				class="{{ link_title | slugify }} {% if item.url == '/' and page.url == '/' or (item.url != '/' and page.url != false and item.url in page.url) %}current{% endif %}"
 			>
-				<a href="{{ item.data.nav.away or item.url }}">{{ link_title }}</a>
+				<a href="{{ item.data.nav.away or item.url }}">
+					{% inline_icon item.data.nav.icon %}{{ link_title }}
+				</a>
 			</li>
 		{% endfor %}
 	</ul>

@@ -2,6 +2,7 @@
 title: Blog
 nav:
   order: 3
+  icon: blog
 ---
 
 <div>

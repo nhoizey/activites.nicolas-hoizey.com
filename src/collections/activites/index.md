@@ -3,6 +3,7 @@ title: Activités
 layout: pages
 nav:
   order: 2
+  icon: map
 ---
 
 <div>
