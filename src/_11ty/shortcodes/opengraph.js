@@ -7,7 +7,7 @@ export const ogImage = (title) => {
 				imageHeight: 630,
 				cloudName: "nho",
 			imagePublicID: "resources/activites-opengraph-background",
-			titleFont: "Lexend",
+			titleFont: "Roboto",
 			textAreaWidth: 900,
 			textLeftOffset: 200,
 				titleBottomOffset: 330,
