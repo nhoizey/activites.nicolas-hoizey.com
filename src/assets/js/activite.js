@@ -252,8 +252,29 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
               // strop animation if we reached the end of the points
               if (currentIndex >= coordinates.length) {
                 cancelAnimationFrame(animation);
+                resetTime = true;
                 map.setLayoutProperty('route-dyn', 'visibility', 'none');
                 map.setLayoutProperty('route', 'visibility', 'visible');
+
+                map.fitBounds(bboxCoordinates, {
+                  fitBoundsOptions: {
+                    padding: 25
+                  },
+                  pitch: 0,
+                  bearing: 0,
+                  duration: 2000,
+                  essential: true,
+                });
+
+                currentlyPlaying = false;
+                div
+                  .querySelector("button")
+                  .classList.toggle(
+                    "mapboxgl-ctrl-autoplay-active",
+                    currentlyPlaying,
+                  );
+
+
                 // TODO: reset play button
               } else {
                 animatedGeoJSON.features[0].geometry.coordinates = coordinates.slice(0, currentIndex);
