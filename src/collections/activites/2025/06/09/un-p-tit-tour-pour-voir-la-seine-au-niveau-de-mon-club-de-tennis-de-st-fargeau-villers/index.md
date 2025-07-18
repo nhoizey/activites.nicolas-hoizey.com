@@ -1,6 +1,6 @@
 ---
 title: Un p'tit tour pour voir la Seine au niveau de mon club de tennis de St Fargeau Villers
-date: 2025-06-09
+date: 2025-06-09 10:56:00 +02:00
 type: gravel
 duration: 3:01:55
 distance: 41.40

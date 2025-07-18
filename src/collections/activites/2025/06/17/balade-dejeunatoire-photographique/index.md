@@ -1,6 +1,6 @@
 ---
 title: Balade déjeunatoire photographique
-date: 2025-06-17
+date: 2025-06-17 12:48:00 +02:00
 type: marche
 duration: 0:47:24
 distance: 3.15

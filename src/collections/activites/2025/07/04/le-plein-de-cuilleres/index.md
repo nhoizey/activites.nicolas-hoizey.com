@@ -1,6 +1,6 @@
 ---
 title: Le plein de cuillères
-date: 2025-07-04
+date: 2025-07-04 07:51:00 +02:00
 type: gravel
 duration: 1:14:39
 distance: 18.75

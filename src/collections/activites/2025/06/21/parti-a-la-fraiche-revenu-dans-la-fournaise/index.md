@@ -1,6 +1,6 @@
 ---
 title: Parti à la fraîche, revenu dans la fournaise…
-date: 2025-06-21
+date: 2025-06-21 08:39:00 +02:00
 type: gravel
 duration: 3:39:21
 distance: 41.92

@@ -1,6 +1,6 @@
 ---
 title: Autour de l'Yerres
-date: 2025-07-14
+date: 2025-07-14 10:52:00 +02:00
 type: gravel
 duration: 1:57:51
 distance: 28.78
