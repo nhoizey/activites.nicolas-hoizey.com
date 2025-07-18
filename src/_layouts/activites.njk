@@ -13,7 +13,9 @@
     {{ content | safe }}
 
     {% if strava or komoot %}
-      <p><em>Vous pouvez retrouver cette activité sur {% if strava %}<a href="{{ strava }}">Strava</a>{% endif %}{% if strava and komoot %} et {% endif %}{% if komoot %}<a href="{{ komoot }}">Komoot</a>{% endif %}.</em></p>
+    <aside class="links">
+      <p>Vous pouvez retrouver cette activité sur {% if strava %}<a href="{{ strava }}">Strava</a>{% endif %}{% if strava and komoot %} et {% endif %}{% if komoot %}<a href="{{ komoot }}">Komoot</a>{% endif %}.</p>
+    </aside>
     {% endif %}
   </section>
 
