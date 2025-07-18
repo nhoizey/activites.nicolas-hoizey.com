@@ -21,6 +21,10 @@
   --meta-icon: light-dark(var(--green-700), var(--green-600));
 
   --map-border: light-dark(var(--green-500), var(--green-100));
+
+  --message-background: light-dark(var(--green-100), var(--green-700));
+  --message-border: light-dark(var(--green-200), var(--green-800));
+  --message-text: light-dark(var(--green-700), var(--green-200));
 }
 
 :root[data-theme="auto"],
