@@ -94,11 +94,6 @@ a:hover {
 	text-decoration-color: var(--link-decoration-hover);
 }
 
-
-header, main {
-	padding: var(--gap);
-}
-
 header {
 	padding: var(--gap);
 	background-color: var(--green-900);
@@ -130,6 +125,7 @@ nav {
 
 	position: sticky;
 	top: 0;
+	z-index: 1000;
 
 	ul {
 		list-style-type: none;
@@ -160,7 +156,11 @@ nav {
 		svg.icon {
 			width: var(--nav-icons-size);
 			height: var(--nav-icons-size);
-			margin-inline-end: var(--gap);
+			margin-inline-end: calc(var(--gap) / 3);
+
+			@media (min-width: $breakpoint) {
+				margin-inline-end: var(--gap);
+			}
 		}
 	}
 
@@ -181,8 +181,8 @@ nav {
 }
 
 main {
-	padding-inline: calc(var(--gap) * 2);
 	background-color: var(--surface-0);
+	padding: var(--gap);
 
 	h1, h2 {
 		font-weight: bold;
@@ -203,11 +203,9 @@ main {
 		color: var(--sub-heading);
 		font-size: 1.1em;
 	}
-}
 
-main, article, section {
-	& > *:not(style) + * {
-		margin-block-start: var(--local-gap, var(--gap));
+	p {
+		margin-block: var(--gap);
 	}
 }
 

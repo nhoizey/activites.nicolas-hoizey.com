@@ -1,0 +1,37 @@
+{% extends "./base.njk" %}
+
+{% block bodyclasses %}activites{% endblock %}
+
+{% block content %}
+  <style>{% renderFile "src/assets/sass/page-avec-carte.scss" %}</style>
+
+  <section class="content">
+    {% if title %}<h1>{{ title }}</h1>{% endif %}
+    {{ content | safe }}
+  </section>
+
+  <section class="map">
+    <div id="map"></div>
+    <noscript>
+      <p>You need JavaScript to see this map.</p>
+    </noscript>
+    <script>
+    window.traces = {};
+    {% if page.url == '/' %}
+      {% set entries = collections.activites | limit(5) %}
+    {% else %}
+      {% set entries = collections.activites %}
+    {% endif %}
+
+    {% for entry in entries %}
+      {% set trace = entry.filePathStem | getTrace %}
+      {% if trace %}
+      window.traces['{{ entry.date | isoDate }}'] = {{ trace | safe }};
+      {% endif %}
+    {% endfor %}
+    </script>
+  </section>
+
+  <script type="module" src="{% getBundleFileUrl "js", "page-avec-carte" %}"></script>
+  {%- js "page-avec-carte" %}{% renderFile "src/assets/js/page-avec-carte.js" %}{% endjs %}
+{% endblock %}

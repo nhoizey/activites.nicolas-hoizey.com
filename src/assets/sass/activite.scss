@@ -13,6 +13,8 @@
 	align-content: start;
 	gap: var(--gap);
 
+	padding: var(--gap);
+
 	h1 {
 		grid-area: title;
 	}
@@ -70,18 +72,17 @@
 
 .activite #map {
 	width: 100%;
-	aspect-ratio: 1;
+	height: calc(100dvh - 1rem - 4 * var(--gap));
 	position: relative;
 
 	background-color: var(--surface-1);
-	border: 2px solid var(--map-border);
-	border-radius: var(--gap);
+	border: 1px solid var(--map-border);
 }
 
 .mapboxgl-ctrl-top-right {
 	position: absolute;
-	top: var(--gap);
-	right: var(--gap);
+	top: calc(var(--gap) / 2);
+	right: calc(var(--gap) / 2);
 }
 
 .mapboxgl-style-list button {

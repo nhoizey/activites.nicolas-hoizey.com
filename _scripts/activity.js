@@ -2,6 +2,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { execSync } from 'node:child_process';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { sharedSlugify } from '../node_modules/eleventy-plugin-pack11ty/_11ty/utils/slugify.js';
@@ -28,6 +29,7 @@ const argv = yargs(hideBin(process.argv))
 
 const slug = sharedSlugify(argv.title);
 const folder = path.join('./src/collections/activites/', argv.date.replaceAll('-', '/'), slug);
+const file = path.join(folder, 'index.md');
 const content = `---
 title: ${argv.title}
 date: ${argv.date}
@@ -53,5 +55,7 @@ if (fs.existsSync(folder)) {
   }
 });
 
-fs.writeFileSync(path.join(folder, "index.md"), content, 'utf8');
+fs.writeFileSync(file, content, 'utf8');
 console.log(`Activity created at: ${folder}`);
+
+execSync(`code ${file}`);

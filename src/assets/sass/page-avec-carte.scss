@@ -1,0 +1,49 @@
+@use '../../../node_modules/mapbox-gl/dist/mapbox-gl.css';
+@use '../../../node_modules/mapbox-gl-style-switcher/styles.css';
+@use 'variables' as *;
+
+main {
+	display: grid;
+
+	grid-template-areas: "content"
+											 "map";
+
+	grid-template-columns: 1fr;
+		grid-template-rows: auto auto;
+	align-content: start;
+	gap: var(--gap);
+
+	.content {
+		grid-area: content;
+	}
+
+	.map {
+		grid-area: map;
+	}
+
+	@media screen and (min-width: $breakpoint) {
+		grid-template-areas: "content map";
+		grid-template-columns: 2fr 3fr;
+		grid-template-rows: auto;
+	}
+}
+
+#map {
+	width: 100%;
+	height: calc(100dvh - 4 * var(--gap) - 1rem);
+	position: relative;
+
+	background-color: var(--surface-1);
+	border: 1px solid var(--map-border);
+
+		@media screen and (min-width: $breakpoint) {
+			position: sticky;
+			top: calc(1rem + 3 * var(--gap));
+		}
+}
+
+.mapboxgl-ctrl-top-right {
+	position: absolute;
+	top: var(--gap);
+	right: var(--gap);
+}
