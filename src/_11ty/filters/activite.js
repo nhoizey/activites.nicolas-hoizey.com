@@ -47,11 +47,22 @@ export const getPhotos = async (activite) => {
     userComment: false,
   };
 
+  const cacheDir = path.join("src/_cache/photos/", path.dirname(activite));
+  if (!fs.existsSync(cacheDir)) {
+    fs.mkdirSync(cacheDir, { recursive: true });
+  }
+
   const photosPath = path.join("src", path.dirname(activite), "photos");
   if (fs.existsSync(photosPath) && fs.lstatSync(photosPath).isDirectory()) {
     const photosDataPromises = fs.readdirSync(photosPath)
       .filter(file => /\.jpe?g$/i.test(file))
       .map(async file => {
+
+        const photoCache = path.join(cacheDir, `${file}.json`);
+        if (fs.existsSync(photoCache)) {
+          return fs.readFileSync(photoCache, 'utf8');
+        }
+
         const photo = {
           src: path.join(path.dirname(activite).replace(/^\/collections/, ""), "photos", file)
         };
@@ -96,6 +107,8 @@ export const getPhotos = async (activite) => {
             photo.geo.city = utf8.decode(photoExif.iptc.City);
           }
         }
+
+        fs.writeFileSync(photoCache, JSON.stringify(photo, null, 2), 'utf8');
 
         return photo;
       });

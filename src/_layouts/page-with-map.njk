@@ -3,7 +3,7 @@
 {% block bodyclasses %}activites{% endblock %}
 
 {% block content %}
-  <style>{% renderFile "src/assets/sass/page-avec-carte.scss" %}</style>
+  <style>{% renderFile "src/assets/sass/page-with-map.scss" %}</style>
 
   <section class="content">
     {% if title %}<h1>{{ title }}</h1>{% endif %}
@@ -32,6 +32,6 @@
     </script>
   </section>
 
-  <script type="module" src="{% getBundleFileUrl "js", "page-avec-carte" %}"></script>
-  {%- js "page-avec-carte" %}{% renderFile "src/assets/js/page-avec-carte.js" %}{% endjs %}
+  <script type="module" src="{% getBundleFileUrl "js", "page-with-map" %}"></script>
+  {%- js "page-with-map" %}{% renderFile "src/assets/js/page-with-map.js" %}{% endjs %}
 {% endblock %}
