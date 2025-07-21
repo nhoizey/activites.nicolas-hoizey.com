@@ -52,16 +52,17 @@ export const getPhotos = async (activite) => {
     fs.mkdirSync(cacheDir, { recursive: true });
   }
 
+  const photosDataCache = path.join(cacheDir, 'photos.json');
+  if (fs.existsSync(photosDataCache)) {
+    return fs.readFileSync(photosDataCache, 'utf8');
+  }
+
   const photosPath = path.join("src", path.dirname(activite), "photos");
   if (fs.existsSync(photosPath) && fs.lstatSync(photosPath).isDirectory()) {
     const photosDataPromises = fs.readdirSync(photosPath)
       .filter(file => /\.jpe?g$/i.test(file))
       .map(async file => {
 
-        const photoCache = path.join(cacheDir, `${file}.json`);
-        if (fs.existsSync(photoCache)) {
-          return fs.readFileSync(photoCache, 'utf8');
-        }
 
         const photo = {
           src: path.join(path.dirname(activite).replace(/^\/collections/, ""), "photos", file)
@@ -108,11 +109,12 @@ export const getPhotos = async (activite) => {
           }
         }
 
-        fs.writeFileSync(photoCache, JSON.stringify(photo, null, 2), 'utf8');
 
         return photo;
       });
     const photosData = await Promise.all(photosDataPromises);
+
+    fs.writeFileSync(photosDataCache, JSON.stringify(photosData, null, 2), 'utf8');
 
     return photosData;
   }
