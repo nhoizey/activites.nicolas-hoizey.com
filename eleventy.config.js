@@ -15,7 +15,7 @@ export default async function (eleventyConfig) {
 
 	const pack11tyConfig = {
 		responsiver: false, //isProd && responsiverConfig,
-		minifyHtml: isProd,
+		minifyHtml: false, //isProd,
 		markdown: {
 			firstLevel: 2,
 			containers: ["success", "warning", "error"],
