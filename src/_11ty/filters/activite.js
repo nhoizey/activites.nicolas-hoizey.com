@@ -54,7 +54,7 @@ export const getPhotos = async (activite) => {
 
   const photosDataCache = path.join(cacheDir, 'photos.json');
   if (fs.existsSync(photosDataCache)) {
-    return fs.readFileSync(photosDataCache, 'utf8');
+    return JSON.parse(fs.readFileSync(photosDataCache, 'utf8'));
   }
 
   const photosPath = path.join("src", path.dirname(activite), "photos");
