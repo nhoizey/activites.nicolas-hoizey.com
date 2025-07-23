@@ -120,12 +120,17 @@ header {
 }
 
 nav {
-	overflow-x: hidden;
+	overflow-x: scroll;
+
 	background-color: var(--surface-1);
 
 	position: sticky;
 	top: 0;
 	z-index: 1000;
+
+	@media (min-width: $breakpoint) {
+		overflow-x: hidden;
+	}
 
 	ul {
 		list-style-type: none;
@@ -353,7 +358,7 @@ ul:has(> .card) {
 	padding: 0;
 
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(25em, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, 25em), 1fr));
 	gap: var(--gap);
 }
 
@@ -376,6 +381,8 @@ ul:has(> .card) {
 			height: 3em;
 			padding: .1em;
 			color: var(--yellow-500);
+			fill: currentColor;
+			stroke-width: 0;
 		}
 
 		h3 {
