@@ -3,8 +3,9 @@
  *********************************************************** */
 
 :root {
-  --surface-0: light-dark(var(--grey-200), var(--grey-800));
-  --surface-1: light-dark(var(--grey-100), var(--grey-700));
+  --surface-0: light-dark(var(--grey-300), var(--grey-800));
+  --surface-1: light-dark(var(--grey-200), var(--grey-700));
+  --surface-2: light-dark(var(--grey-100), var(--grey-600));
 
   --text-primary: light-dark(var(--grey-900), var(--grey-100));
   --text-secondary: light-dark(var(--grey-500), var(--grey-200));

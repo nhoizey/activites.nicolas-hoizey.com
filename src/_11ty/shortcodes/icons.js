@@ -24,6 +24,11 @@ const ICONS = {
   download: { name: "download", source: "feather" },
   feeds: { name: "rss", source: "feather" },
   mastodon: { name: "mastodon", source: "simple" },
+
+  gravel: { name: "bike", source: "local" }, // https://www.svgrepo.com/svg/509755/bicycle
+  tennis: { name: "tennis", source: "local" }, // https://www.svgrepo.com/svg/308122/tennis-person-play-sport
+  padel: { name: "tennis", source: "local" }, // https://www.svgrepo.com/svg/308122/tennis-person-play-sport
+  marche: { name: "walking", source: "local" }, // https://www.svgrepo.com/svg/308152/walking-person-go-walk-move
 };
 
 const inline_iconMemoize = {};
@@ -37,17 +42,19 @@ export const inline_icon = (icon) => {
     path.join(ICONS_FOLDERS[source], `${name}.svg`),
     "utf8",
   );
-  inlineSvg = inlineSvg.replace('width="24" height="24"', "");
-  inlineSvg = inlineSvg.replace(/fill="[^"]+"/g, "");
-  inlineSvg = inlineSvg.replace(/stroke="[^"]+"/g, "");
-  inlineSvg = inlineSvg.replace(/stroke-width="[^"]+"/g, "");
-  inlineSvg = inlineSvg.replace(/stroke-linecap="[^"]+"/g, "");
-  inlineSvg = inlineSvg.replace(/stroke-linejoin="[^"]+"/g, "");
-  inlineSvg = inlineSvg.replace(/class="[^"]+"/g, "");
-  inlineSvg = inlineSvg.replace(
-    'viewBox="0 0 24 24"',
-    `viewBox="0 0 24 24" width="1.2em" height="1.2em" id="${icon}-icon" class="icon" aria-hidden="true"`,
-  );
+  if (source !== "local") {
+    inlineSvg = inlineSvg.replace('width="24" height="24"', "");
+    inlineSvg = inlineSvg.replace(/fill="[^"]+"/g, "");
+    inlineSvg = inlineSvg.replace(/stroke="[^"]+"/g, "");
+    inlineSvg = inlineSvg.replace(/stroke-width="[^"]+"/g, "");
+    inlineSvg = inlineSvg.replace(/stroke-linecap="[^"]+"/g, "");
+    inlineSvg = inlineSvg.replace(/stroke-linejoin="[^"]+"/g, "");
+    inlineSvg = inlineSvg.replace(/class="[^"]+"/g, "");
+    inlineSvg = inlineSvg.replace(
+      'viewBox="0 0 24 24"',
+      `viewBox="0 0 24 24" width="1.2em" height="1.2em" id="${icon}-icon" class="icon" aria-hidden="true"`,
+    );
+  }
   inline_iconMemoize[icon] = inlineSvg;
   return inlineSvg;
 };

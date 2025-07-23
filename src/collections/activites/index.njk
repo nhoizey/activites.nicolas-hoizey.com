@@ -1,4 +1,5 @@
 ---
+layout: pages
 title: Activités
 nav:
   order: 2
@@ -11,8 +12,9 @@ nav:
   {% for entry in collections.activites %}
     <li class="card">
       <a href="{{ entry.url }}">
+        {% inline_icon entry.data.type %}
         <h3>{{ entry.data.title }}</h3>
-        {{ meta(entry.data.date, entry.data.type, entry.data.distance, entry.data.duration) }}
+        {{ meta(entry.data.date, entry.data.distance, entry.data.duration) }}
       </a>
     </li>
   {% endfor %}
