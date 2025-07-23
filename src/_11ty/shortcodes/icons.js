@@ -25,10 +25,11 @@ const ICONS = {
   feeds: { name: "rss", source: "feather" },
   mastodon: { name: "mastodon", source: "simple" },
 
-  gravel: { name: "bike", source: "local" }, // https://www.svgrepo.com/svg/509755/bicycle
+  vélo: { name: "vélo", source: "local" }, // https://www.svgrepo.com/svg/509755/bicycle
+  gravel: { name: "gravel", source: "local" }, // https://www.svgrepo.com/svg/509755/bicycle
   tennis: { name: "tennis", source: "local" }, // https://www.svgrepo.com/svg/308122/tennis-person-play-sport
-  padel: { name: "tennis", source: "local" }, // https://www.svgrepo.com/svg/308122/tennis-person-play-sport
-  marche: { name: "walking", source: "local" }, // https://www.svgrepo.com/svg/308152/walking-person-go-walk-move
+  padel: { name: "padel", source: "local" }, // https://www.svgrepo.com/svg/308122/tennis-person-play-sport
+  marche: { name: "marche", source: "local" }, // https://www.svgrepo.com/svg/308152/walking-person-go-walk-move
 };
 
 const inline_iconMemoize = {};
@@ -42,6 +43,7 @@ export const inline_icon = (icon) => {
     path.join(ICONS_FOLDERS[source], `${name}.svg`),
     "utf8",
   );
+
   if (source !== "local") {
     inlineSvg = inlineSvg.replace('width="24" height="24"', "");
     inlineSvg = inlineSvg.replace(/fill="[^"]+"/g, "");
@@ -50,11 +52,12 @@ export const inline_icon = (icon) => {
     inlineSvg = inlineSvg.replace(/stroke-linecap="[^"]+"/g, "");
     inlineSvg = inlineSvg.replace(/stroke-linejoin="[^"]+"/g, "");
     inlineSvg = inlineSvg.replace(/class="[^"]+"/g, "");
-    inlineSvg = inlineSvg.replace(
-      'viewBox="0 0 24 24"',
-      `viewBox="0 0 24 24" width="1.2em" height="1.2em" id="${icon}-icon" class="icon" aria-hidden="true"`,
-    );
   }
+
+  inlineSvg = inlineSvg.replace(
+    'viewBox="0 0 24 24"',
+    `viewBox="0 0 24 24" width="1.2em" height="1.2em" id="${icon}-icon" class="icon" aria-hidden="true"`,
+  );
   inline_iconMemoize[icon] = inlineSvg;
   return inlineSvg;
 };
