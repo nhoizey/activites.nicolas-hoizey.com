@@ -3,29 +3,29 @@
  *********************************************************** */
 
 :root {
-  --surface-0: light-dark(var(--grey-300), var(--grey-800));
-  --surface-1: light-dark(var(--grey-200), var(--grey-700));
-  --surface-2: light-dark(var(--grey-100), var(--grey-600));
+  --surface-0: light-dark(var(--moka-200), var(--moka-1000));
+  --surface-1: light-dark(var(--moka-150), var(--moka-900));
+  --surface-2: light-dark(var(--moka-100), var(--moka-700));
 
-  --text-primary: light-dark(var(--grey-900), var(--grey-100));
-  --text-secondary: light-dark(var(--grey-500), var(--grey-200));
+  --text-primary: light-dark(var(--moka-900), var(--moka-100));
+  --text-secondary: light-dark(var(--moka-500), var(--moka-200));
 
-  --heading: light-dark(var(--grey-700), var(--grey-300));
-  --sub-heading: light-dark(var(--grey-500), var(--grey-100));
+  --heading: light-dark(var(--moka-700), var(--moka-300));
+  --sub-heading: light-dark(var(--moka-500), var(--moka-100));
 
   --link-text: light-dark(var(--green-500), var(--green-200));
   --link-decoration: light-dark(var(--green-300), var(--green-400));
   --link-text-hover: light-dark(var(--green-700), var(--green-100));
   --link-decoration-hover: light-dark(var(--green-500), var(--green-300));
 
-  --meta: light-dark(var(--green-500), var(--green-300));
-  --meta-icon: light-dark(var(--green-700), var(--green-600));
+  --meta: light-dark(var(--green-600), var(--moka-400));
+  --meta-icon: light-dark(var(--green-500), var(--moka-500));
 
-  --map-border: light-dark(var(--green-500), var(--green-100));
+  --map-border: light-dark(var(--green-500), var(--moka-200));
 
-  --message-background: light-dark(var(--green-100), var(--green-700));
-  --message-border: light-dark(var(--green-200), var(--green-800));
-  --message-text: light-dark(var(--green-700), var(--green-200));
+  --message-background: light-dark(var(--moka-150), var(--moka-900));
+  --message-border: light-dark(var(--moka-100), var(--moka-700));
+  --message-text: light-dark(var(--moka-700), var(--moka-200));
 }
 
 :root[data-theme="auto"],

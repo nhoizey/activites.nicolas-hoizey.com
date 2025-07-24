@@ -3,11 +3,13 @@
   --red: #a82600;
 
   // Palette generated with Leonardo
-  // https://leonardocolor.io/theme.html?name=Untitled&config=%7B%22baseScale%22%3A%22Gray%22%2C%22colorScales%22%3A%5B%7B%22name%22%3A%22Gray%22%2C%22colorKeys%22%3A%5B%22%23000000%22%5D%2C%22colorspace%22%3A%22RGB%22%2C%22ratios%22%3A%5B%221.1%22%2C%221.5%22%2C%221.9%22%2C%223.2%22%2C%224.5%22%2C%225.8%22%2C%227.1%22%2C%228.4%22%2C%229.7%22%5D%2C%22smooth%22%3Afalse%7D%2C%7B%22name%22%3A%22Yellow%22%2C%22colorKeys%22%3A%5B%22%23eeb73e%22%5D%2C%22colorspace%22%3A%22RGB%22%2C%22ratios%22%3A%5B%221.1%22%2C%221.5%22%2C%221.9%22%2C%223.2%22%2C%224.5%22%2C%225.8%22%2C%227.1%22%2C%228.4%22%2C%229.7%22%5D%2C%22smooth%22%3Afalse%7D%2C%7B%22name%22%3A%22Green%22%2C%22colorKeys%22%3A%5B%22%231a4344%22%5D%2C%22colorspace%22%3A%22RGB%22%2C%22ratios%22%3A%5B%221.1%22%2C%221.5%22%2C%221.9%22%2C%223.2%22%2C%224.5%22%2C%225.8%22%2C%227.1%22%2C%228.4%22%2C%229.7%22%5D%2C%22smooth%22%3Atrue%7D%5D%2C%22lightness%22%3A100%2C%22contrast%22%3A1%2C%22saturation%22%3A100%2C%22formula%22%3A%22wcag2%22%7D
-  // --color-500 is always AA accessible and --color-700 is always AAA accessible
-  // There is a 1.3 contrast ratio difference between each color in the scale
+  // https://leonardocolor.io/theme.html?name=Untitled&config=%7B%22baseScale%22%3A%22Gray%22%2C%22colorScales%22%3A%5B%7B%22name%22%3A%22Gray%22%2C%22colorKeys%22%3A%5B%22%23000000%22%5D%2C%22colorspace%22%3A%22RGB%22%2C%22ratios%22%3A%5B%221.1%22%2C%221.3%22%2C%221.5%22%2C%221.7%22%2C%221.9%22%2C%223.2%22%2C%224.5%22%2C%225.8%22%2C%227.1%22%2C%228.4%22%2C%229.7%22%2C%2211%22%5D%2C%22smooth%22%3Afalse%7D%2C%7B%22name%22%3A%22Yellow%22%2C%22colorKeys%22%3A%5B%22%23eeb73e%22%5D%2C%22colorspace%22%3A%22RGB%22%2C%22ratios%22%3A%5B%221.1%22%2C%221.3%22%2C%221.5%22%2C%221.7%22%2C%221.9%22%2C%223.2%22%2C%224.5%22%2C%225.8%22%2C%227.1%22%2C%228.4%22%2C%229.7%22%2C%2211%22%5D%2C%22smooth%22%3Afalse%7D%2C%7B%22name%22%3A%22Green%22%2C%22colorKeys%22%3A%5B%22%231a4344%22%5D%2C%22colorspace%22%3A%22RGB%22%2C%22ratios%22%3A%5B%221.1%22%2C%221.3%22%2C%221.5%22%2C%221.7%22%2C%221.9%22%2C%223.2%22%2C%224.5%22%2C%225.8%22%2C%227.1%22%2C%228.4%22%2C%229.7%22%2C%2211%22%5D%2C%22smooth%22%3Atrue%7D%2C%7B%22name%22%3A%22Moka%22%2C%22colorKeys%22%3A%5B%22%23935100%22%5D%2C%22colorspace%22%3A%22RGB%22%2C%22ratios%22%3A%5B%221.1%22%2C%221.3%22%2C%221.5%22%2C%221.7%22%2C%221.9%22%2C%223.2%22%2C%224.5%22%2C%225.8%22%2C%227.1%22%2C%228.4%22%2C%229.7%22%2C%2211%22%5D%2C%22smooth%22%3Afalse%7D%5D%2C%22lightness%22%3A100%2C%22contrast%22%3A1%2C%22saturation%22%3A100%2C%22formula%22%3A%22wcag2%22%7D
+  // --color-500 is always AA accessible and --color-700 is always AAA accessible (on white)
+
   --grey-100: #f3f3f3; // contrast 1.11
+  --grey-150: #e1e1e1; // contrast 1.31
   --grey-200: #d3d3d3; // contrast 1.5
+  --grey-250: #c6c6c6; // contrast 1.71
   --grey-300: #bcbcbc; // contrast 1.9
   --grey-400: #8f8f8f; // contrast 3.23
   --grey-500: #767676; // contrast 4.54 -> AA compliant
@@ -15,9 +17,12 @@
   --grey-700: #585858; // contrast 7.11 -> AAA compliant
   --grey-800: #4d4d4d; // contrast 8.45
   --grey-900: #454545; // contrast 9.59
+  --grey-1000: #3d3d3d; // contrast 10.86
 
   --yellow-100: #fcf3df; // contrast 1.1
+  --yellow-150: #f8dfaa; // contrast 1.3
   --yellow-200: #f3ce7b; // contrast 1.51
+  --yellow-250: #f0c056; // contrast 1.7
   --yellow-300: #e9b33d; // contrast 1.91
   --yellow-400: #b3892f; // contrast 3.21
   --yellow-500: #947126; // contrast 4.52 -> AA compliant
@@ -25,9 +30,12 @@
   --yellow-700: #6e541d; // contrast 7.12 -> AAA compliant
   --yellow-800: #604a19; // contrast 8.43
   --yellow-900: #554116; // contrast 9.75
+  --yellow-1000: #4b3913; // contrast 11.09
 
   --green-100: #f2f4f4; // contrast 1.1
+  --green-150: #dce3e3; // contrast 1.3
   --green-200: #cad5d5; // contrast 1.5
+  --green-250: #bbc9ca; // contrast 1.7
   --green-300: #aebfbf; // contrast 1.91
   --green-400: #7a9596; // contrast 3.2
   --green-500: #5c7c7d; // contrast 4.53 -> AA compliant
@@ -35,6 +43,20 @@
   --green-700: #385e5f; // contrast 7.16 -> AAA compliant
   --green-800: #2c5354; // contrast 8.49
   --green-900: #224a4b; // contrast 9.77
+  --green-1000: #194243; // contrast 11.04
+
+  --moka-100: #f7f3ed; // contrast 1.11
+  --moka-150: #ebdfd0; // contrast 1.31
+  --moka-200: #e2d0b9; // contrast 1.5
+  --moka-250: #dac3a8; // contrast 1.7
+  --moka-300: #d3b897; // contrast 1.9
+  --moka-400: #b58750; // contrast 3.21
+  --moka-500: #a36a25; // contrast 4.52
+  --moka-600: #965507; // contrast 5.83
+  --moka-700: #854900; // contrast 7.12
+  --moka-800: #754000; // contrast 8.43
+  --moka-900: #673900; // contrast 9.71
+  --moka-1000: #5b3200; // contrast 11.05
 
   --gap: 1rem;
   --nav-icons-size: 1.5rem;

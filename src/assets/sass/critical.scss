@@ -122,7 +122,7 @@ header {
 nav {
 	overflow-x: scroll;
 
-	background-color: var(--surface-1);
+	background-color: var(--surface-2);
 
 	position: sticky;
 	top: 0;
@@ -302,6 +302,7 @@ figcaption {
 
 	svg.icon {
 		opacity: 0.8;
+		color: var(--meta-icon);
 	}
 
 	a:has(&) {
