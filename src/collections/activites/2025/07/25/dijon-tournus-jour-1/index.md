@@ -7,6 +7,8 @@ duration: 3:18:42
 strava: https://www.strava.com/activities/15231620281
 ---
 
+C’est parti pour 4 jours à vélo entre Dijon et Tournus avec Laurence et Olivier !
+
 Première étape sous forme de mise en jambes, avec arrêts sympa pour le déjeuner puis pour une glace au bord du canal.
 
 Quelques petites accélérations pour le plaisir.
