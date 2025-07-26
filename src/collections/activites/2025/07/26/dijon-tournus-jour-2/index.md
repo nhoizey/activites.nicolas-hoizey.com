@@ -7,7 +7,7 @@ duration: 4:48:49
 strava: https://www.strava.com/activities/15242748066
 ---
 
-2e jour de notre sortie avec Laurence et Olivier.
+2e jour de notre sortie avec Laurence et Olivier, entre Dole et Louhans.
 
 La plus grosse étape du week-end. 💪
 
