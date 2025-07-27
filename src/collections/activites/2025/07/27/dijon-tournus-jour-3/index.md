@@ -2,9 +2,9 @@
 title: Dijon → Tournus - Jour 3
 date: 2025-07-27
 type: gravel
-distance: 46.6
-duration: 2:51
-strava: 
+distance: 46.77
+duration: 2:47:58
+strava: https://www.strava.com/activities/15253629417
 komoot: https://www.komoot.com/fr-FR/tour/2441029001
 ---
 
