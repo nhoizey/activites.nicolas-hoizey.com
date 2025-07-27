@@ -8,7 +8,7 @@ strava: https://www.strava.com/activities/15253629417
 komoot: https://www.komoot.com/fr-FR/tour/2441029001
 ---
 
-3e jour de notre sortie avec Laurence et Olivier, entre Dole et Louhans.
+3e jour de notre sortie avec Laurence et Olivier, entre Louhans et Chalon-sur-Saône.
 
 Étape tranquille sur la voie cyclable empruntant le chemin de l’ancienne voie ferrée, et un peu de petites routes de campagne vallonnées.
 
