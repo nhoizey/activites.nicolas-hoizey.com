@@ -1,6 +1,6 @@
 ---
 title: Reconnaissance à la gare de Bercy en passant par la Marne
-date: 2025-07-19
+date: 2025-07-19 17:54:00 +02:00
 type: gravel
 duration: 2:28:56
 distance: 43.96

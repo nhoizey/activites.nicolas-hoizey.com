@@ -1,6 +1,6 @@
 ---
 title: Petit simple amical
-date: 2025-07-23
+date: 2025-07-23 20:05:00 +02:00
 type: tennis
 duration: 1:30:55
 distance: 7.55

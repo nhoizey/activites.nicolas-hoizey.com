@@ -1,10 +1,14 @@
 ---
 title: Dijon → Tournus - Jour 2
-date: 2025-07-26
+date: 2025-07-26 08:35:00 +02:00
 type: gravel
 distance: 85.76
 duration: 4:48:49
 strava: https://www.strava.com/activities/15242748066
+komoot: https://www.komoot.com/fr-fr/tour/2438904737
+squadrats:
+  - squadrat: 52
+  - squadratinhos: 455
 ---
 
 2e jour de notre sortie avec Laurence et Olivier, entre Dole et Louhans.

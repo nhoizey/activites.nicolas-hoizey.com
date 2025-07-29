@@ -1,10 +1,14 @@
 ---
 title: Dijon → Tournus - Jour 1
-date: 2025-07-25
+date: 2025-07-25 09:19:00 +02:00
 type: gravel
 distance: 58.83
 duration: 3:18:42
 strava: https://www.strava.com/activities/15231620281
+komoot: https://www.komoot.com/fr-fr/tour/2438830268
+squadrats:
+  - squadrat: 44
+  - squadratinhos: 363
 ---
 
 C’est parti pour 4 jours à vélo entre Dijon et Tournus avec Laurence et Olivier !

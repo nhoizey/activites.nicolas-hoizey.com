@@ -39,6 +39,9 @@ distance:
 tags: []
 strava:
 komoot:
+squadrats:
+  - squadrat:
+  - squadratinhos:
 ---
 
 `;

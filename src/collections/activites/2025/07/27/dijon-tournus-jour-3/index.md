@@ -1,11 +1,14 @@
 ---
 title: Dijon → Tournus - Jour 3
-date: 2025-07-27
+date: 2025-07-27 09:39:00 +02:00
 type: gravel
 distance: 46.77
 duration: 2:47:58
 strava: https://www.strava.com/activities/15253629417
 komoot: https://www.komoot.com/fr-FR/tour/2441029001
+squadrats:
+  - squadrat: 33
+  - squadratinhos: 271
 ---
 
 3e jour de notre sortie avec Laurence et Olivier, entre Louhans et Chalon-sur-Saône.

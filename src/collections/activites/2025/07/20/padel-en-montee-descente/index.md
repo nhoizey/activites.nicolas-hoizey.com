@@ -1,6 +1,6 @@
 ---
 title: Padel en montée/descente
-date: 2025-07-20
+date: 2025-07-20 20:00:00 +02:00
 type: padel
 duration: 3:08:55
 tags: []
