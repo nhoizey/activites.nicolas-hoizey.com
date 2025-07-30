@@ -1,7 +1,7 @@
-// https://github.com/hankchizljaw/modern-css-reset
-@use 'modern-css-reset/dist/reset';
-
 @use 'variables' as *;
+
+@use 'reset' as *;
+
 @use 'tokens' as *;
 @use 'theme' as *;
 
