@@ -23,7 +23,9 @@ const ICONS = {
   statistics: { name: "pie-chart", source: "feather" },
   download: { name: "download", source: "feather" },
   feeds: { name: "rss", source: "feather" },
+  komoot: { name: "komoot", source: "simple" },
   mastodon: { name: "mastodon", source: "simple" },
+  strava: { name: "strava", source: "simple" },
 
   vélo: { name: "vélo", source: "local" }, // https://www.svgrepo.com/svg/509755/bicycle
   gravel: { name: "gravel", source: "local" }, // https://www.svgrepo.com/svg/509755/bicycle
