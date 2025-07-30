@@ -5,6 +5,7 @@ import { DOMParser } from 'xmldom'
 import exifr from "exifr";
 import { DateTime } from "luxon";
 import utf8 from "utf8";
+import simplify from 'simplify-geojson';
 
 
 export const getTrace = (activite) => {
@@ -13,10 +14,19 @@ export const getTrace = (activite) => {
     return fs.readFileSync(geojsonFile, 'utf8');
   }
 
-  const gpxFile = path.join("src", path.dirname(activite), "trace.gpx");
-  if (fs.existsSync(gpxFile)) {
-    const gpxContent = new DOMParser().parseFromString(fs.readFileSync(gpxFile, 'utf8'));
+  const minifiedGpxFile = path.join("src", path.dirname(activite), "sources/minified.gpx");
+  const gpxFile = path.join("src", path.dirname(activite), "sources/original.gpx");
+  let gpxContent;
+
+  if (fs.existsSync(minifiedGpxFile)) {
+    gpxContent = new DOMParser().parseFromString(fs.readFileSync(minifiedGpxFile, 'utf8'));
+  } else if (fs.existsSync(gpxFile)) {
+    gpxContent = new DOMParser().parseFromString(fs.readFileSync(gpxFile, 'utf8'));
+  }
+
+  if (gpxContent) {
     const geoJSON = togeojson.gpx(gpxContent);
+    // const geoJSON = simplify(geoJSON, 0.0001);
     const geoJSONString = JSON.stringify(geoJSON, null, 2);
     fs.writeFileSync(geojsonFile, geoJSONString, 'utf8');
     return geoJSONString;
