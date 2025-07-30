@@ -16,8 +16,16 @@ if (themeSelector) {
   // Update the theme when the range input changes
   rangeInput.addEventListener('input', (event) => {
     const newTheme = themes[event.target.value];
-    document.querySelector('html').dataset.theme = newTheme;
     localStorage.setItem('theme', newTheme);
+
+    if (!document.startViewTransition) {
+      document.querySelector('html').dataset.theme = newTheme;
+      return;
+    }
+
+    document.startViewTransition(() => {
+      document.querySelector('html').dataset.theme = newTheme;
+    });
   });
 
   // Add event listeners to the labels
