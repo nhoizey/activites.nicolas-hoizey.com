@@ -12,12 +12,6 @@ html {
 	overflow-y: scroll;
 	// https://twitter.com/TimVereecke/status/1523583123631804416
 	scrollbar-gutter: stable;
-
-	// Prevent text zoom on iOS landscape
-	// https://kilianvalkhof.com/2022/css-html/your-css-reset-needs-text-size-adjust-probably/
-	-moz-text-size-adjust: none;
-	-webkit-text-size-adjust: none;
-	text-size-adjust: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -32,6 +26,7 @@ html {
  *********************************************************** */
 
 body {
+	margin: 0;
 	display: grid;
 	grid-template-areas: "header"
 											 "nav"
