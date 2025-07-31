@@ -8,22 +8,29 @@ import utf8 from "utf8";
 
 
 export const getTrace = (activite) => {
-  const geojsonFile = path.join("src", path.dirname(activite), "trace.geojson");
+  const cacheDir = path.join("src/_cache/geojson/", path.dirname(activite));
+  if (!fs.existsSync(cacheDir)) {
+    fs.mkdirSync(cacheDir, { recursive: true });
+  }
+
+  const geojsonFile = path.join(cacheDir, "trace.geojson");
   if (fs.existsSync(geojsonFile)) {
     return fs.readFileSync(geojsonFile, 'utf8');
   }
 
+  let gpxContentFile;
   const minifiedGpxFile = path.join("src", path.dirname(activite), "sources/minified.gpx");
-  const gpxFile = path.join("src", path.dirname(activite), "sources/original.gpx");
-
-  let gpxContent;
   if (fs.existsSync(minifiedGpxFile)) {
-    gpxContent = new DOMParser().parseFromString(fs.readFileSync(minifiedGpxFile, 'utf8'));
-  } else if (fs.existsSync(gpxFile)) {
-    gpxContent = new DOMParser().parseFromString(fs.readFileSync(gpxFile, 'utf8'));
+    gpxContentFile = minifiedGpxFile;
+  } else {
+    const originalGpxFile = path.join("src", path.dirname(activite), "sources/original.gpx");
+    if (fs.existsSync(originalGpxFile)) {
+      gpxContentFile = originalGpxFile;
+    }
   }
 
-  if (gpxContent) {
+  if (gpxContentFile) {
+    const gpxContent = new DOMParser().parseFromString(fs.readFileSync(gpxContentFile, 'utf8'));
     const geoJSON = togeojson.gpx(gpxContent);
     const geoJSONString = JSON.stringify(geoJSON);
     fs.writeFileSync(geojsonFile, geoJSONString, 'utf8');
