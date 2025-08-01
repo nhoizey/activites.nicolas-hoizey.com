@@ -1,14 +1,14 @@
 import fs from "node:fs";
 import path from "node:path";
+import { execSync } from 'node:child_process';
 import togeojson from "@mapbox/togeojson";
 import { DOMParser } from 'xmldom'
 import exifr from "exifr";
 import { DateTime } from "luxon";
 import utf8 from "utf8";
 
-
 export const getTrace = (activite) => {
-  const cacheDir = path.join("src/_cache/geojson/", path.dirname(activite));
+  const cacheDir = path.join("src/_cache/traces/", path.dirname(activite));
   if (!fs.existsSync(cacheDir)) {
     fs.mkdirSync(cacheDir, { recursive: true });
   }
@@ -19,13 +19,20 @@ export const getTrace = (activite) => {
   }
 
   let gpxContentFile;
-  const minifiedGpxFile = path.join("src", path.dirname(activite), "sources/minified.gpx");
-  if (fs.existsSync(minifiedGpxFile)) {
-    gpxContentFile = minifiedGpxFile;
+  const gpsbabelFile = path.join(cacheDir, "gpsbabel.gpx");
+  if (fs.existsSync(gpsbabelFile)) {
+    gpxContentFile = gpsbabelFile;
   } else {
     const originalGpxFile = path.join("src", path.dirname(activite), "sources/original.gpx");
     if (fs.existsSync(originalGpxFile)) {
-      gpxContentFile = originalGpxFile;
+      if (process.env.ELEVENTY_RUN_MODE === "build") {
+      // No GPSBabel conversion in production
+        gpxContentFile = originalGpxFile;
+      } else {
+        // Use GPSBabel to simplify the GPX file with 5 meters tolerance
+        execSync(`/opt/homebrew/bin/gpsbabel -r -i gpx -f ${originalGpxFile} -x simplify,error=0.0005k -o gpx -F ${gpsbabelFile}`);
+        gpxContentFile = gpsbabelFile;
+      }
     }
   }
 
@@ -84,9 +91,6 @@ export const getPhotos = async (activite) => {
         };
 
         const photoExif = await exifr.parse(path.join(photosPath, file), exifrOptions);
-        // if (file === "IMG_3400.jpeg") {
-        //   console.dir(photoExif);
-        // }
 
         const photoTitle = photoExif.dc?.title.value || photoExif.iptc?.ObjectName;
         if (photoTitle) {
