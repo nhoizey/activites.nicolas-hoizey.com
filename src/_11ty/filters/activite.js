@@ -30,6 +30,7 @@ export const getTrace = (activite) => {
         gpxContentFile = originalGpxFile;
       } else {
         // Use GPSBabel to simplify the GPX file with 5 meters tolerance
+        // https://www.gpsbabel.org/htmldoc-development/filter_simplify.html
         execSync(`/opt/homebrew/bin/gpsbabel -r -i gpx -f ${originalGpxFile} -x simplify,error=0.0005k -o gpx -F ${gpsbabelFile}`);
         gpxContentFile = gpsbabelFile;
       }
