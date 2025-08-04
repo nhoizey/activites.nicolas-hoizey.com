@@ -88,7 +88,7 @@ export const getPhotos = async (activite) => {
 
 
         const photo = {
-          src: path.join(path.dirname(activite).replace(/^\/collections/, ""), "photos", file)
+          src: path.join("photos", file)
         };
 
         const photoExif = await exifr.parse(path.join(photosPath, file), exifrOptions);

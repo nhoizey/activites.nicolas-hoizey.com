@@ -36,7 +36,7 @@
 
 			display: grid;
 			gap: var(--gap);
-			grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+			grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
 
 			img {
 				width: 100%;

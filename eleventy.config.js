@@ -1,20 +1,17 @@
 import path from "node:path";
 
 import eleventyPluginPack11ty from "eleventy-plugin-pack11ty";
+import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 
 const isProd = process.env.ELEVENTY_RUN_MODE === "build";
 
 export default async function (eleventyConfig) {
 	// ------------------------------------------------------------------------
-	// Plugins
+	// Pack11ty plugin
 	// ------------------------------------------------------------------------
 
-	const { responsiverConfig } = await import(
-		path.join(import.meta.dirname, "src/_11ty/images-responsiver-config.js")
-	);
-
 	const pack11tyConfig = {
-		responsiver: false, //isProd && responsiverConfig,
+		responsiver: false,
 		minifyHtml: isProd,
 		markdown: {
 			firstLevel: 2,
@@ -24,6 +21,39 @@ export default async function (eleventyConfig) {
 	};
 
 	eleventyConfig.addPlugin(eleventyPluginPack11ty, pack11tyConfig);
+
+	// ------------------------------------------------------------------------
+	// Image transformation plugin
+	// ------------------------------------------------------------------------
+
+	const imageOptions = {
+		formats: ["jpeg"],
+		widths: [640, 800],
+		htmlOptions: {
+			imgAttributes: {
+				loading: "lazy",
+				decoding: "async",
+			},
+			pictureAttributes: {}
+		},
+	}
+
+	if (isProd) {
+		imageOptions.urlFormat = ({
+			hash,
+			src,
+			width,
+			format,
+		}) => {
+			return `https://res.cloudinary.com/nho/image/fetch/q_auto,f_auto/w_${width}/https://activites.nicolas-hoizey.com/${src.replace(/^src\//, "")}`;
+		};
+	}
+
+	eleventyConfig.addPlugin(eleventyImageTransformPlugin, imageOptions);
+
+	// ------------------------------------------------------------------------
+	// General configuration
+	// ------------------------------------------------------------------------
 
 	eleventyConfig.setDataDeepMerge(true);
 	eleventyConfig.setQuietMode(true);
