@@ -1,0 +1,24 @@
+.meta {
+  margin: 0;
+  padding: 0;
+
+	display: flex;
+  gap: .3em 1em;
+  flex-wrap: wrap;
+
+	font-size: 0.9em;
+  color: var(--meta);
+
+  list-style-type: none;
+
+	& > li {
+		white-space: nowrap;
+	}
+
+	svg.icon {
+		opacity: 0.8;
+    fill: none;
+		color: var(--meta-icon);
+    stroke: currentColor;
+	}
+}

@@ -1,0 +1,16 @@
+{% from "macros/meta.njk" import meta %}
+
+{% macro card(type, title, url, date, distance, duration, where="page") %}
+  <div class="card">
+    <div class="type">
+      {% inline_icon type %}
+      <small>{{ type }}</small>
+    </div>
+    {% if where=="page" %}
+      <h1>{{ title }}</h1>
+    {% else %}
+      <h3><a href="{{ url }}">{{ title }}</a></h3>
+    {% endif %}
+    {{ meta(date, distance, duration) }}
+  </div>
+{% endmacro %}

@@ -1,0 +1,70 @@
+/* ***********************************************************
+ * Cards
+ *********************************************************** */
+
+.cards {
+  margin-block: calc(2 * var(--gap));
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, 25em), 1fr));
+	gap: var(--gap);
+}
+
+.card {
+	display: grid;
+	grid-template-areas: "type title"
+												"type meta";
+	grid-template-columns: fit-content(4em) 1fr;
+  align-items: flex-start;
+	gap: var(--gap);
+
+	padding: 0;
+
+  .cards & {
+    padding: var(--gap);
+    background-color: var(--surface-1);
+    border-radius: .5em;
+
+    a {
+      color: var(--sub-heading);
+      text-decoration: none;
+    }
+
+
+    &:hover {
+      background-color: var(--surface-2);
+
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+
+	.type {
+    grid-area: type;
+
+    color: var(--heading);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .icon {
+      width: 3em;
+      height: 3em;
+      padding: .1em;
+      fill: currentColor;
+      stroke-width: 0;
+    }
+	}
+
+  h1, h3 {
+		grid-area: title;
+    margin-block: 0;
+		color: var(--heading);
+	}
+
+	.meta {
+		grid-area: meta;
+	}
+}
+

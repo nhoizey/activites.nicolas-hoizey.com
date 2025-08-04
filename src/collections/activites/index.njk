@@ -6,16 +6,10 @@ nav:
   icon: date
 ---
 
-{% from "macros/meta.njk" import meta %}
+{% from "macros/card.njk" import card %}
 
-<ul class="activites">
+<div class="activites cards">
   {% for entry in collections.activites %}
-    <li class="card">
-      <a href="{{ entry.url }}">
-        {% inline_icon entry.data.type %}
-        <h3>{{ entry.data.title }}</h3>
-        {{ meta(entry.data.date, entry.data.distance, entry.data.duration) }}
-      </a>
-    </li>
+    {{ card(entry.data.type, entry.data.title, entry.url, entry.data.date, entry.data.distance, entry.data.duration, "list") }}
   {% endfor %}
-</ul>
+</div>

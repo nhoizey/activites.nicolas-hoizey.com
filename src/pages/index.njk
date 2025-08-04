@@ -5,34 +5,28 @@ nav:
   icon: home
 ---
 
+{% from "macros/card.njk" import card %}
 {% from "macros/meta.njk" import meta %}
 
 <p>Bienvenue sur ce site, qui présente les activités sportives de Nicolas Hoizey.</p>
 
 <h2>Dernières activités</h2>
 
-<ul class="activites">
+<div class="activites cards">
+
   {% for entry in collections.activites | limit(5) %}
-    <li class="card">
-      <a href="{{ entry.url }}">
-        {% inline_icon entry.data.type %}
-        <h3>{{ entry.data.title }}</h3>
-        {{ meta(entry.data.date, entry.data.distance, entry.data.duration) }}
-      </a>
-    </li>
+    {{ card(entry.data.type, entry.data.title, entry.url, entry.data.date, entry.data.distance, entry.data.duration, "list") }}
   {% endfor %}
-</ul>
+</div>
 <p>Découvrez toutes les <a href="/activites/">activités</a>.</p>
 
 <h2>Dans le blog</h2>
 
-<ul class="blog">
+<div class="blog cards">
   {% for entry in collections.blog %}
-    <li class="card">
-      <a href="{{ entry.url }}">
-        <h3>{{ entry.data.title }}</h3>
-        {{ meta(entry.data.date) }}
-      </a>
-    </li>
+    <div class="card">
+      <h3><a href="{{ entry.url }}">{{ entry.data.title }}</a></h3>
+      {{ meta(entry.data.date) }}
+    </div>
   {% endfor %}
-</ul>
+</div>

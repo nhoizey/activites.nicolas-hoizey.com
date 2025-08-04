@@ -2,13 +2,12 @@
 
 {% block bodyclasses %}activite{% endblock %}
 
-{% from "macros/meta.njk" import meta %}
+{% from "macros/card.njk" import card %}
 
 {% block content %}
   <style>{% renderFile "src/assets/sass/activite.scss" %}</style>
 
-  <h1>{{ title }}</h1>
-  {{ meta(date, distance, duration) }}
+  {{ card(type, title, url, date, distance, duration, "page") }}
   <section class="description">
     {{ content | safe }}
 

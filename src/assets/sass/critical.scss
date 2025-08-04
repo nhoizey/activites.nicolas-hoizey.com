@@ -184,10 +184,14 @@ main {
 	background-color: var(--surface-0);
 	padding: var(--gap);
 
+	h1, h2, h3, h4, h5, h6 {
+		margin-block: 0 var(--gap);
+		line-height: 1.2;
+	}
+
 	h1, h2 {
 		font-weight: bold;
 		color: var(--heading);
-		--local-gap: 3rem;
 	}
 
 	h1 {
@@ -278,34 +282,6 @@ figcaption {
 	}
 }
 
-.meta {
-  margin-bottom: 0;
-  padding: 0;
-
-	display: flex;
-  gap: .3em 1em;
-  flex-wrap: wrap;
-
-	font-size: 0.9em;
-  color: var(--meta);
-
-  list-style-type: none;
-
-	& > li {
-		white-space: nowrap;
-	}
-
-	svg.icon {
-		opacity: 0.8;
-		color: var(--meta-icon);
-	}
-
-	a:has(&) {
-		color: var(--meta);
-		text-decoration: none;
-	}
-}
-
 svg.icon {
   width: 1.2em;
   height: 1.2em;
@@ -343,61 +319,6 @@ svg.icon {
 	/* Clip */
 	// https://www.matuzo.at/blog/2023/css-wish-list/#visually-hidden-content 🤔
 	clip-path: inset(50%);
-}
-
-/* ***********************************************************
- * Cards
- *********************************************************** */
-
-ul:has(> .card) {
-	list-style: none;
-	padding: 0;
-
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(min(100%, 25em), 1fr));
-	gap: var(--gap);
-}
-
-.card {
-	a {
-		display: grid;
-		grid-template-areas: "icon title"
-		"icon meta";
-		grid-template-columns: fit-content(4em) 1fr;
-		grid-template-rows: auto auto;
-		gap: var(--gap);
-
-		padding: var(--gap);
-		background-color: var(--surface-1);
-		border-radius: .5em;
-
-		& > .icon {
-			grid-area: icon;
-			width: 3em;
-			height: 3em;
-			padding: .1em;
-			color: var(--yellow-500);
-			fill: currentColor;
-			stroke-width: 0;
-		}
-
-		h3 {
-			color: var(--heading);
-			grid-area: title;
-		}
-
-		.meta {
-			grid-area: meta;
-		}
-
-		&:hover {
-			background-color: var(--surface-2);
-
-			h3 {
-				text-decoration: underline;
-			}
-		}
-	}
 }
 
 /* ***********************************************************
