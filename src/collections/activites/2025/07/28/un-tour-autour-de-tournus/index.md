@@ -2,7 +2,7 @@
 title: Un tour autour de Tournus
 date: 2025-07-28 13:52:00 +02:00
 type: gravel
-duration: 44:28:00
+duration: 00:44:28
 distance: 10.61
 tags: []
 strava: https://www.strava.com/activities/15263050357
