@@ -2,10 +2,12 @@
 
 {% macro card(type, title, url, date, distance, duration, where="page") %}
   <div class="card">
+    {% if type != "blog" %}
     <div class="type">
       {% inline_icon type %}
       <small>{{ type }}</small>
     </div>
+    {% endif %}
     {% if where=="page" %}
       <h1>{{ title }}</h1>
     {% else %}

@@ -1,19 +1,15 @@
 ---
+layout: pages
 title: Blog
 nav:
   order: 4
   icon: blog
 ---
 
-{% from "macros/meta.njk" import meta %}
+{% from "macros/card.njk" import card %}
 
-<ul class="blog">
+<div class="blog cards">
   {% for entry in collections.blog %}
-    <li class="card">
-      <a href="{{ entry.url }}">
-        <h3>{{ entry.data.title }}</h3>
-        {{ meta(entry.data.date) }}
-      </a>
-    </li>
+    {{ card("blog", entry.data.title, entry.url, entry.data.date, "", "", "list") }}
   {% endfor %}
-</ul>
+</div>

@@ -1,6 +1,12 @@
----
-layout: base
----
+{% extends "./base.njk" %}
 
-<h1>{{ title }}</h1>
-{{ content | safe }}
+{% block bodyclasses %}activite{% endblock %}
+
+{% from "macros/card.njk" import card %}
+
+{% block content %}
+  {{ card("blog", title, url, date, "", "", "page") }}
+  <section class="description">
+    {{ content | safe }}
+  </section>
+{% endblock %}

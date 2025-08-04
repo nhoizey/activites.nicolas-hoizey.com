@@ -24,9 +24,6 @@ nav:
 
 <div class="blog cards">
   {% for entry in collections.blog %}
-    <div class="card">
-      <h3><a href="{{ entry.url }}">{{ entry.data.title }}</a></h3>
-      {{ meta(entry.data.date) }}
-    </div>
+    {{ card("blog", entry.data.title, entry.url, entry.data.date, "", "", "list") }}
   {% endfor %}
 </div>
