@@ -114,7 +114,8 @@
 .marker {
 	border-radius: 50%;
 	border: 2px solid #fff;
-	background-size: contain;
+	background-size: cover;
+	background-repeat: no-repeat;
 	cursor: pointer;
 
 	width: 30px;
