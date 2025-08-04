@@ -58,6 +58,6 @@
   --moka-900: #673900; // contrast 9.71
   --moka-1000: #5b3200; // contrast 11.05
 
-  --gap: 1rem;
-  --nav-icons-size: 1.5rem;
+  --gap: calc(1rem + 0.3vw);
+  --nav-icons-size: calc(1.5rem + 0.3vw);
 }
