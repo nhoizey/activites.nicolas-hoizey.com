@@ -114,7 +114,7 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
             // Create a DOM element for each marker.
             const el = document.createElement('div');
             el.className = 'marker';
-            el.style.backgroundImage = `url(${src})`;
+            el.style.backgroundImage = `url(${src.replace(/\/w_640\//, '/w_150/')})`;
 
             // Add the marker to the map
             new mapboxgl.Marker(el)
