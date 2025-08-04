@@ -45,7 +45,7 @@ export default async function (eleventyConfig) {
 			width,
 			format,
 		}) => {
-			return `https://res.cloudinary.com/nho/image/fetch/q_auto,f_auto/w_${width}/https://activites.nicolas-hoizey.com/${src.replace(/^src\//, "")}`;
+			return `https://res.cloudinary.com/nho/image/fetch/q_auto,f_auto/w_${width}/https://activites.nicolas-hoizey.com/${src.replace(/^src\//, "").replace(/^collections\//, "")}`;
 		};
 	}
 
