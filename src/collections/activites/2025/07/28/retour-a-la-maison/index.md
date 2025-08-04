@@ -10,3 +10,7 @@ komoot: https://www.komoot.com/fr-fr/tour/2463591855
 ---
 
 Quand on a un vélo, une bonne météo, les bords de Seine, et la belle lumière du soleil couchant… pourquoi prendre le RER ?
+
+Petit bonus, vidéo accélérée de ce trajet, soit presque une heure en 3 minutes :
+
+https://youtu.be/KRAw_ssj41o

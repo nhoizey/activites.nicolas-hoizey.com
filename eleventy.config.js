@@ -51,6 +51,12 @@ export default async function (eleventyConfig) {
 
 	eleventyConfig.addPlugin(eleventyImageTransformPlugin, imageOptions);
 
+	eleventyConfig.addPassthroughCopy({
+		[path.join(import.meta.dirname, "node_modules/lite-youtube-embed/src")]:
+			"assets/vendors/lite-youtube-embed",
+	});
+
+
 	// ------------------------------------------------------------------------
 	// General configuration
 	// ------------------------------------------------------------------------
