@@ -7,6 +7,7 @@
 
 	grid-template-areas: "card"
 											 "description"
+											 "photos-title"
 											 "photos";
 	grid-template-columns: 1fr;
 	align-content: start;
@@ -20,6 +21,10 @@
 
 	.description {
 		grid-area: description;
+	}
+
+	.photos-title {
+		grid-area: photos-title;
 	}
 
 	.photos {
@@ -48,14 +53,16 @@
 	grid-template-areas: "card"
 											"description"
 											"map"
+											"photos-title"
 											"photos";
 
 	@media screen and (min-width: $breakpoint-map) {
 		grid-template-areas: "card map"
 												"description map"
+												"photos-title map"
 												"photos photos";
 		grid-template-columns: 2fr 3fr;
-		grid-template-rows: auto 1fr auto;
+		grid-template-rows: auto 1fr auto auto;
 	}
 
 	.trace {
@@ -136,5 +143,11 @@
 	p {
 		margin: 0;
 		color: var(--message-text);
+	}
+}
+
+.photos-title::after {
+	@media screen and (min-width: $breakpoint-map) {
+		content: " \002193" / "Voir ci-dessous";
 	}
 }

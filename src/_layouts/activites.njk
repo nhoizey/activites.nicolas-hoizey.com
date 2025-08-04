@@ -38,6 +38,7 @@
   {% set photos = page.filePathStem | getPhotos %}
 
   {% if photos %}
+    <h2 class="photos-title">Photos</h2>
     <section class="photos">
       <ul>
         {% for photo in photos %}
