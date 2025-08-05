@@ -39,23 +39,12 @@ export default async function (eleventyConfig) {
 	}
 
 	if (isProd) {
-		imageOptions.urlFormat = ({
-			hash,
-			src,
-			width,
-			format,
-		}) => {
+		imageOptions.urlFormat = ({ hash, src, width, format }) => {
 			return `https://res.cloudinary.com/nho/image/fetch/q_auto,f_auto/w_${width}/https://activites.nicolas-hoizey.com/${src.replace(/^src\//, "").replace(/^collections\//, "")}`;
 		};
 	}
 
 	eleventyConfig.addPlugin(eleventyImageTransformPlugin, imageOptions);
-
-	eleventyConfig.addPassthroughCopy({
-		[path.join(import.meta.dirname, "node_modules/lite-youtube-embed/src")]:
-			"assets/vendors/lite-youtube-embed",
-	});
-
 
 	// ------------------------------------------------------------------------
 	// General configuration
