@@ -36,8 +36,9 @@
   {% endif %}
 
   {% set photos = page.filePathStem | getPhotos %}
+  {% set photosNumber = photos | length %}
 
-  {% if photos %}
+  {% if photosNumber > 0 %}
     <h2 class="photos-title">Photos</h2>
     <section class="photos">
       <ul>
