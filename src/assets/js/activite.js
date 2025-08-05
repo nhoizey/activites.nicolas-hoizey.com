@@ -9,8 +9,8 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
 
   const MAX_ZOOM_LEVEL = 18;
   const TRACE_COLOR = '#bd12f1';
-  const SEGMENT_BASE_LENGTH = 20;
-  const ANIMATED_POINTS_PER_SECOND = 5;
+  const SEGMENT_BASE_LENGTH = 30;
+  const ANIMATED_POINTS_PER_SECOND = 10;
 
   // const mapStyles = [
   //   {
