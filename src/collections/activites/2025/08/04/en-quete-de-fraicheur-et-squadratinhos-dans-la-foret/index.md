@@ -8,8 +8,8 @@ tags: []
 strava: https://www.strava.com/activities/15344217263
 komoot: https://www.komoot.com/fr-fr/tour/2463558817
 squadrats:
-  - squadrat: 0
   - squadratinhos: 21
+  - yardinho: 109
 ---
 
 28°C à l'ombre ? Allons voir en forêt si c'est mieux…

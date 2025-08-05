@@ -8,7 +8,6 @@ tags: []
 strava: https://www.strava.com/activities/15234930370
 komoot:
 squadrats:
-  - squadrat: 0
   - squadratinhos: 1
 ---
 

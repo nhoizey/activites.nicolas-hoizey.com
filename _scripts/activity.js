@@ -40,8 +40,12 @@ tags: []
 strava:
 komoot:
 squadrats:
-  - squadrat:
-  - squadratinhos:
+  - squadrats: 0
+  - yard: 0
+  - übersquadrat: 0
+  - squadratinhos: 0
+  - yardinho: 0
+  - übersquadratinho: 0
 ---
 
 `;

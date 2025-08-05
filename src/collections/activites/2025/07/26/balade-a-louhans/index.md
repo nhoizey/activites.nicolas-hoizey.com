@@ -7,7 +7,6 @@ distance: 1.21
 tags: []
 strava: https://www.strava.com/activities/15244980684
 squadrats:
-  - squadrat: 0
   - squadratinhos: 2
 ---
 

@@ -7,6 +7,10 @@ distance: 41.40
 tags: [forêt, panne, Garmin]
 strava: https://www.strava.com/activities/14743522843
 komoot: https://www.komoot.com/fr-fr/tour/2310861517
+squadrats:
+  - squadrats: 12
+  - yard: 4
+  - squadratinhos: 151
 ---
 
 Pas mal pour un reprise du Gravel après une déchirure musculaire au mollet (aka « tennis leg ») ! 💪

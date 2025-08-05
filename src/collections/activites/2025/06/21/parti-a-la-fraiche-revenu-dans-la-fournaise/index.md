@@ -7,6 +7,10 @@ distance: 41.92
 tags: [forêt, ville]
 strava: https://www.strava.com/activities/14868384472
 komoot: https://www.komoot.com/fr-fr/tour/2344837580
+squadrats:
+  - squadratinhos: 91
+  - yardinho: 161
+  - übersquadratinho: 1
 ---
 
 J’étais parti pour un tour à vélo, à la fraîche, en forêt. 🚴‍♂️🌳😍

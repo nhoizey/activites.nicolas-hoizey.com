@@ -7,6 +7,9 @@ distance: 43.96
 tags: []
 strava: https://www.strava.com/activities/15168828559
 komoot: https://www.komoot.com/fr-fr/tour/2419167655
+squadrats:
+  - squadrats: 22
+  - squadratinhos: 212
 ---
 
 Je vais prendre pour la première fois le train avec mon vélo jeudi, alors je voulais être sûr du trajet pour y aller.

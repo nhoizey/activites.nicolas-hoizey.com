@@ -8,7 +8,7 @@ tags: []
 strava: https://www.strava.com/activities/15261203277
 komoot: https://www.komoot.com/fr-fr/tour/2445906638
 squadrats:
-  - squadrat: 20
+  - squadrats: 20
   - squadratinhos: 165
 ---
 

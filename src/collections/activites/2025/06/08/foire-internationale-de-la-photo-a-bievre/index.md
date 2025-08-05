@@ -6,6 +6,9 @@ duration: 0:25:12
 distance: 2
 tags: []
 strava: https://www.strava.com/activities/14735700970
+squadrats:
+  - squadrats: 1
+  - squadratinhos: 4
 ---
 
 J'ai trouvé un vieil appareil Polaroid pour une bouchée de pain, le même que j'avais monté quelques jours plus tôt en Lego ! 😍

@@ -7,6 +7,12 @@ distance: 28.78
 tags: [cascade]
 strava: https://www.strava.com/activities/15109450054
 komoot: https://www.komoot.com/fr-fr/tour/2404291410
+squadrats:
+  - squadrats: 4
+  - yard: 15
+  - übersquadrat: 1
+  - squadratinhos: 88
+  - yardinho: 5
 ---
 
 Le prétexte de cette sortie était un repérage à la cascade de Périgny, et la récupération de 4 squadrats qu'il me manquait pour passer mon übersquadrat à 6×6.

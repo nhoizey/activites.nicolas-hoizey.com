@@ -7,5 +7,8 @@ distance: 3.15
 tags: [ville]
 strava: https://www.strava.com/activities/14826662364
 komoot: https://www.komoot.com/fr-fr/tour/2332362852
+squadrats:
+  - squadrats: 2
+  - squadratinhos: 15
 ---
 

@@ -7,6 +7,10 @@ distance: 14.9
 tags: []
 strava: https://www.strava.com/activities/14384091716
 komoot: https://www.komoot.com/fr-fr/tour/2219739978
+squadrats:
+  - squadratinhos: 17
+  - yardinho: 44
+  - übersquadratinho: 2
 ---
 
 Beau ciel bleu, pas trop chaud (~15°C), forêt presque déserte… 😍

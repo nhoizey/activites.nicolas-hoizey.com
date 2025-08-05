@@ -7,6 +7,11 @@ distance: 83.87
 tags: [forêt, boulangerie, pâtisserie]
 strava: https://www.strava.com/activities/15082842838
 komoot: https://www.komoot.com/fr-fr/tour/2396383165
+squadrats:
+  - squadrats: 22
+  - yard: 21
+  - squadratinhos: 311
+  - yardinho: 4
 ---
 
 J'étais parti pour 70 km, mais bon, on va pas faire la fine bouche. Mon record précédent était à 43 km, belle progression. 💪

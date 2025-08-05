@@ -7,7 +7,7 @@ duration: 4:48:49
 strava: https://www.strava.com/activities/15242748066
 komoot: https://www.komoot.com/fr-fr/tour/2438904737
 squadrats:
-  - squadrat: 52
+  - squadrats: 52
   - squadratinhos: 455
 ---
 

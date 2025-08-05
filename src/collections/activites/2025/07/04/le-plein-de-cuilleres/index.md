@@ -7,6 +7,10 @@ distance: 18.75
 tags: [forêt]
 strava: https://www.strava.com/activities/15001745426
 komoot: https://www.komoot.com/tour/2376696409
+squadrats:
+  - squadratinhos: 26
+  - yardinho: 11
+  - übersquadratinho: 2
 ---
 
 Levé à l'aube pour faire un tour en forêt à la fraîche et faire le plein de cuillères.
