@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { sharedSlugify } from '../../../node_modules/eleventy-plugin-pack11ty/_11ty/utils/slugify.js';
 
 const ICONS_FOLDERS = {
   feather: "node_modules/feather-icons/dist/icons/",
@@ -27,20 +28,23 @@ const ICONS = {
   mastodon: { name: "mastodon", source: "simple" },
   strava: { name: "strava", source: "simple" },
 
-  vélo: { name: "vélo", source: "local" }, // https://www.svgrepo.com/svg/509755/bicycle
-  gravel: { name: "gravel", source: "local" }, // https://www.svgrepo.com/svg/509755/bicycle
-  tennis: { name: "tennis", source: "local" }, // https://www.svgrepo.com/svg/308122/tennis-person-play-sport
-  padel: { name: "padel", source: "local" }, // https://www.svgrepo.com/svg/308122/tennis-person-play-sport
+  velo: { name: "velo", source: "local" }, // https://www.svgrepo.com/svg/509755/bicycle MIT
+  gravel: { name: "gravel", source: "local" }, // https://www.svgrepo.com/svg/509755/bicycle MIT
+  tennis: { name: "tennis", source: "local" }, // https://www.svgrepo.com/svg/308122/tennis-person-play-sport CC0
+  padel: { name: "padel", source: "local" }, // https://www.svgrepo.com/svg/308122/tennis-person-play-sport CC0
   marche: { name: "marche", source: "local" }, // https://www.svgrepo.com/svg/308152/walking-person-go-walk-move
+  "ski-alpin": { name: "ski-alpin", source: "local" }, // https://www.svgrepo.com/svg/521848/skiing
 };
 
 const inline_iconMemoize = {};
 
 export const inline_icon = (icon) => {
-  if (inline_iconMemoize[icon]) {
-    return inline_iconMemoize[icon];
+  const iconName = sharedSlugify(icon);
+
+  if (inline_iconMemoize[iconName]) {
+    return inline_iconMemoize[iconName];
   }
-  const { name, source } = ICONS[icon] || { name: icon, source: "local" };
+  const { name, source } = ICONS[iconName] || { name: iconName, source: "local" };
   let inlineSvg = fs.readFileSync(
     path.join(ICONS_FOLDERS[source], `${name}.svg`),
     "utf8",
@@ -58,28 +62,30 @@ export const inline_icon = (icon) => {
 
   inlineSvg = inlineSvg.replace(
     'viewBox="0 0 24 24"',
-    `viewBox="0 0 24 24" width="1.2em" height="1.2em" id="${icon}-icon" class="icon" aria-hidden="true"`,
+    `viewBox="0 0 24 24" width="1.2em" height="1.2em" id="${iconName}-icon" class="icon" aria-hidden="true"`,
   );
-  inline_iconMemoize[icon] = inlineSvg;
+  inline_iconMemoize[iconName] = inlineSvg;
   return inlineSvg;
 };
 
 const external_iconMemoize = {};
 
 export const external_icon = (icon) => {
-  if (external_iconMemoize[icon]) {
-    return external_iconMemoize[icon];
+  const iconName = sharedSlugify(icon);
+
+  if (external_iconMemoize[iconName]) {
+    return external_iconMemoize[iconName];
   }
 
   const externalSvg = fs.readFileSync(
-    `src/static/ui/icons/${icon}.svg`,
+    `src/static/ui/icons/${iconName}.svg`,
     "utf8",
   );
   const width =
     Number.parseFloat(externalSvg.replace(/^.*?width="([^"]+)".*/, "$1")) * 16;
   const height =
     Number.parseFloat(externalSvg.replace(/^.*?height="([^"]+)".*/, "$1")) * 16;
-  const inlineHtml = `<img src="/ui/icons/${icon}.svg" width="${width}" height="${height}" class="icon" loading="lazy" alt="" />`;
-  external_iconMemoize[icon] = inlineHtml;
+  const inlineHtml = `<img src="/ui/icons/${iconName}.svg" width="${width}" height="${height}" class="icon" loading="lazy" alt="" />`;
+  external_iconMemoize[iconName] = inlineHtml;
   return inlineHtml;
 };
