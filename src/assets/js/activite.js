@@ -74,7 +74,7 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
         'tileSize': 512,
         'maxzoom': MAX_ZOOM_LEVEL
       });
-      map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 2 });
+      map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
 
       const points = [];
       geoJsonData.features[0].properties.coordTimes.forEach((time, index) => {
@@ -288,7 +288,7 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
 
                 // Move the map to the new point
                 map.fitBounds(bbox(lineString(currentSegment)), {
-                  pitch: 60,
+                  pitch: 40,
                   bearing: bearingAngle,
                   duration: easeToDuration,
                   essential: true, // This animation is considered essential with respect to &prefers-reduced-motion
@@ -345,7 +345,7 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
               map.easeTo({
                 center: coordinates.slice(currentIndex, currentIndex + 1)[0].slice(0, 2),
                 zoom: 16, // TODO: adapt zoom level based on speed
-                pitch: 60,
+                pitch: 40,
                 bearing: bearing(point([points[Math.max(0, currentIndex - 20)].coordinates.longitude, points[Math.max(0, currentIndex - 20)].coordinates.latitude]), point([points[Math.min(points.length - 1, currentIndex + 20)].coordinates.longitude, points[Math.min(points.length - 1, currentIndex + 20)].coordinates.latitude])),
                 duration: 500,
                 essential: true, // This animation is considered essential with respect to &prefers-reduced-motion
