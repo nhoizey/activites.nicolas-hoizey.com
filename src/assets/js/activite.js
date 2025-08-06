@@ -32,7 +32,7 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
     const map = new mapboxgl.Map({
       container: mapElementId,
       // style: `mapbox://styles/mapbox/standard${localStorage.getItem("mapStyle") === "Satellite" ? "-satellite" : ""}`,
-      style: "mapbox://styles/mapbox/standard",
+      style: "mapbox://styles/mapbox/standard-satellite",
       config: {
         basemap: {
           show3dObjects: false,
