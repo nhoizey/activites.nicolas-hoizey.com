@@ -1,7 +1,7 @@
 ---
 title: Balade lyonnaise
 date: 2024-12-24 14:31:00 +01:00
-type: vélo
+type: gravel
 duration: 0:55:24
 distance: 13.96
 tags: []

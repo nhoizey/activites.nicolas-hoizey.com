@@ -26,6 +26,11 @@
   --message-background: light-dark(var(--moka-150), var(--moka-900));
   --message-border: light-dark(var(--moka-100), var(--moka-700));
   --message-text: light-dark(var(--moka-700), var(--moka-200));
+
+  --filtre-off-background: light-dark(var(--moka-500), var(--moka-800));
+  --filtre-off-text: light-dark(var(--moka-100), var(--moka-300));
+  --filtre-on-background: light-dark(var(--green-600), var(--green-800));
+  --filtre-on-text: light-dark(var(--green-100), var(--green-100));
 }
 
 :root[data-theme="auto"],

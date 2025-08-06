@@ -343,3 +343,61 @@ svg.icon {
 ::view-transition-new(root) {
   animation-duration: 1s;
 }
+
+/* ***********************************************************
+ * Filtres d'activités
+ *********************************************************** */
+
+ .filtres {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+  align-items: center;
+
+  margin-block-end: var(--gap);
+
+  ul {
+		padding: 0;
+    list-style: none;
+
+    display: inline-flex;
+    flex-wrap: nowrap;
+    gap: 0;
+    align-items: center;
+
+    li {
+			a,
+      span {
+				white-space: nowrap;
+				background-color: var(--filtre-off-background);
+				color: var(--filtre-off-text);
+        padding: 0.5rem 2vw;
+        box-shadow: inset 0.15rem 0.15rem 0 rgba(255, 255, 255, 0.2);
+
+				.icon {
+					fill: currentColor;
+					stroke-width: 0;
+				}
+      }
+
+      &:first-child :is(a, span) {
+        border-radius: 0.5rem 0 0 0.5rem;
+      }
+
+      &:last-child :is(a, span){
+        border-radius: 0 0.5rem 0.5rem 0;
+      }
+
+			a {
+				text-decoration: none;
+			}
+
+			&.actif span, a:hover,
+      a:focus {
+				background-color: var(--filtre-on-background);
+				color: var(--filtre-on-text);
+        box-shadow: inset -0.15rem -0.15rem 0 rgba(255, 255, 255, 0.2);
+      }
+    }
+  }
+}
