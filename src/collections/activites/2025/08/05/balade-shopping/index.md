@@ -6,6 +6,7 @@ duration: 0:59:52
 distance: 4.89
 tags: []
 strava: https://www.strava.com/activities/15351626237
+komoot: https://www.komoot.com/fr-fr/tour/2468100319
 squadrats:
   - squadratinhos: 17
 ---
