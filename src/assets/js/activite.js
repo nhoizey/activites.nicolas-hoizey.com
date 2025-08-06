@@ -33,6 +33,11 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
       container: mapElementId,
       // style: `mapbox://styles/mapbox/standard${localStorage.getItem("mapStyle") === "Satellite" ? "-satellite" : ""}`,
       style: "mapbox://styles/mapbox/standard",
+      config: {
+        basemap: {
+          show3dObjects: false,
+        }
+      },
       projection: "globe",
       bounds: bboxCoordinates,
       fitBoundsOptions: {
