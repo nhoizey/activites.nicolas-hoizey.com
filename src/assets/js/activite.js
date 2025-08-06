@@ -9,8 +9,10 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
 
   const MAX_ZOOM_LEVEL = 18;
   const TRACE_COLOR = '#bd12f1';
+  const TRACE_COLOR_HEAD = '#f1123f';
   const SEGMENT_BASE_LENGTH = 30;
   const ANIMATED_POINTS_PER_SECOND = 10;
+  const DYNAMIC_PITCH = 40;
 
   // const mapStyles = [
   //   {
@@ -68,7 +70,7 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
         },
         'paint': {
           'line-color': TRACE_COLOR,
-          'line-width': 3,
+          'line-width': 5,
           'line-opacity': 0.9
         }
       });
@@ -217,6 +219,19 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
             ]
           };
 
+          const animatedGeoJSONHead = {
+            'type': 'FeatureCollection',
+            'features': [
+              {
+                'type': 'Feature',
+                'geometry': {
+                  'type': 'LineString',
+                  'coordinates': [],
+                }
+              }
+            ]
+          };
+
           // Add dynamic source and layer
           map.addSource("trace-dyn", {
             'type': 'geojson',
@@ -232,11 +247,37 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
             },
             'paint': {
               'line-color': TRACE_COLOR,
-              'line-width': 5,
+              'line-width': 7,
               'line-opacity': 1
             }
           });
 
+          map.addSource("trace-dyn-head", {
+            'type': 'geojson',
+            'lineMetrics': true,
+            'data': animatedGeoJSONHead
+          });
+          map.addLayer({
+            'id': 'route-dyn-head',
+            'type': 'line',
+            'source': 'trace-dyn-head',
+            'layout': {
+              'line-join': 'round',
+              'line-cap': 'round'
+            },
+            'paint': {
+              'line-color': TRACE_COLOR,
+              'line-gradient': [
+                'interpolate',
+                ['linear'],
+                ['line-progress'],
+                0, TRACE_COLOR,
+                1, TRACE_COLOR_HEAD
+              ],
+              'line-width': 8,
+              'line-opacity': 1
+            }
+          });
 
           function animateTrace(timestamp) {
             if (resetTime) {
@@ -250,15 +291,16 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
             const currentIndex = Math.max(0, Math.floor(progress * ANIMATED_POINTS_PER_SECOND / 1000));
 
             if (currentIndex !== previousIndex) {
-              const easeToDuration = (currentIndex - previousIndex) / ANIMATED_POINTS_PER_SECOND * 1000;
+              const easeToDuration = (currentIndex - previousIndex) / ANIMATED_POINTS_PER_SECOND * 5000;
 
               previousIndex = currentIndex;
 
-              // strop animation if we reached the end of the points
+              // stop animation if we reached the end of the points
               if (currentIndex >= coordinates.length) {
                 cancelAnimationFrame(animation);
                 resetTime = true;
                 map.setLayoutProperty('route-dyn', 'visibility', 'none');
+                map.setLayoutProperty('route-dyn-head', 'visibility', 'none');
                 map.setLayoutProperty('route', 'visibility', 'visible');
 
                 map.fitBounds(bboxCoordinates, {
@@ -267,7 +309,7 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
                   },
                   pitch: 0,
                   bearing: 0,
-                  duration: 2000,
+                  duration: 1500,
                   essential: true,
                 });
 
@@ -279,21 +321,23 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
                     currentlyPlaying,
                   );
 
-
                 // TODO: reset play button
               } else {
-                animatedGeoJSON.features[0].geometry.coordinates = coordinates.slice(0, currentIndex);
+                animatedGeoJSON.features[0].geometry.coordinates = coordinates.slice(0, Math.max(0, currentIndex - 9));
                 map.getSource('trace-dyn').setData(animatedGeoJSON);
 
+                animatedGeoJSONHead.features[0].geometry.coordinates = coordinates.slice(Math.max(0, currentIndex - 11), currentIndex);
+                map.getSource('trace-dyn-head').setData(animatedGeoJSONHead);
+
                 // Find the segment of points around the current index
-                const currentSegment = coordinates.slice(Math.max(0, currentIndex - SEGMENT_BASE_LENGTH), Math.min(coordinates.length - 1, currentIndex + SEGMENT_BASE_LENGTH * 2)).map(point => point.slice(0, 2));
+                const currentSegment = coordinates.slice(Math.max(0, currentIndex - SEGMENT_BASE_LENGTH * 2), Math.min(coordinates.length - 1, currentIndex + SEGMENT_BASE_LENGTH)).map(point => point.slice(0, 2));
 
                 // Find the bearing angle between the extremes of the current segment
                 const bearingAngle = bearing(point(currentSegment[0]), point(currentSegment[currentSegment.length - 1]));
 
                 // Move the map to the new point
                 map.fitBounds(bbox(lineString(currentSegment)), {
-                  pitch: 40,
+                  pitch: DYNAMIC_PITCH,
                   bearing: bearingAngle,
                   duration: easeToDuration,
                   essential: true, // This animation is considered essential with respect to &prefers-reduced-motion
@@ -343,15 +387,24 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
             currentlyPlaying = !currentlyPlaying;
 
             if (currentlyPlaying) {
+              progress = 0;
+
               map.setLayoutProperty('route', 'visibility', 'none');
               map.setLayoutProperty('route-dyn', 'visibility', 'visible');
+              map.setLayoutProperty('route-dyn-head', 'visibility', 'visible');
 
-              const currentIndex = Math.max(0, Math.floor(progress * ANIMATED_POINTS_PER_SECOND / 1000))
-              map.easeTo({
-                center: coordinates.slice(currentIndex, currentIndex + 1)[0].slice(0, 2),
-                zoom: 16, // TODO: adapt zoom level based on speed
-                pitch: 40,
-                bearing: bearing(point([points[Math.max(0, currentIndex - 20)].coordinates.longitude, points[Math.max(0, currentIndex - 20)].coordinates.latitude]), point([points[Math.min(points.length - 1, currentIndex + 20)].coordinates.longitude, points[Math.min(points.length - 1, currentIndex + 20)].coordinates.latitude])),
+              const currentIndex = Math.max(0, Math.floor(progress * ANIMATED_POINTS_PER_SECOND / 1000));
+
+              // Find the segment of points around the current index
+              const currentSegment = coordinates.slice(Math.max(0, currentIndex - SEGMENT_BASE_LENGTH * 2), Math.min(coordinates.length - 1, currentIndex + SEGMENT_BASE_LENGTH)).map(point => point.slice(0, 2));
+
+              // Find the bearing angle between the extremes of the current segment
+              const bearingAngle = bearing(point(currentSegment[0]), point(currentSegment[currentSegment.length - 1]));
+
+              // Move the map to the new point
+              map.fitBounds(bbox(lineString(currentSegment)), {
+                pitch: DYNAMIC_PITCH,
+                bearing: bearingAngle,
                 duration: 500,
                 essential: true, // This animation is considered essential with respect to &prefers-reduced-motion
               });
@@ -367,11 +420,12 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
                 },
                 pitch: 0,
                 bearing: 0,
-                duration: 2000,
+                duration: 1500,
                 essential: true, // This animation is considered essential with respect to &prefers-reduced-motion
               });
 
               map.setLayoutProperty('route-dyn', 'visibility', 'none');
+              map.setLayoutProperty('route-dyn-head', 'visibility', 'none');
               map.setLayoutProperty('route', 'visibility', 'visible');
             }
 
