@@ -6,15 +6,12 @@ nav:
   icon: date
 ---
 
-<div class="filtres">
-  <p class="label">Filtrer :</p>
-  <ul>
-    <li class="actif"><span>tout</span></li>
-    {% for typeItem in collections.types %}
-      <li><a href="/activites/{{ typeItem | slugify }}/">{% inline_icon typeItem %} {{ typeItem | safe }}</a></li>
-    {% endfor %}
-  </ul>
-</div>
+<ul class="filtres">
+  <li class="actif"><span>tout</span></li>
+  {% for typeItem in collections.types %}
+    <li><a href="/activites/{{ typeItem | slugify }}/">{% inline_icon typeItem %} {{ typeItem | safe }}</a></li>
+  {% endfor %}
+</ul>
 
 {% from "macros/card.njk" import card %}
 

@@ -9,19 +9,16 @@ pagination:
 permalink: "/activites/{{ type | slugify }}/"
 ---
 
-<div class="filtres">
-  <p class="label">Filtrer :</p>
-  <ul>
-    <li><a href="/activites/">tout</a></li>
-    {% for typeItem in collections.types %}
-      {% if typeItem == type %}
-        <li class="actif"><span>{% inline_icon typeItem %} {{ typeItem | safe }}</span></li>
-      {% else %}
-        <li><a href="/activites/{{ typeItem | slugify }}/">{% inline_icon typeItem %} {{ typeItem | safe }}</a></li>
-      {% endif %}
-    {% endfor %}
-  </ul>
-</div>
+<ul class="filtres">
+  <li><a href="/activites/">tout</a></li>
+  {% for typeItem in collections.types %}
+    {% if typeItem == type %}
+      <li class="actif"><span>{% inline_icon typeItem %} {{ typeItem | safe }}</span></li>
+    {% else %}
+      <li><a href="/activites/{{ typeItem | slugify }}/">{% inline_icon typeItem %} {{ typeItem | safe }}</a></li>
+    {% endif %}
+  {% endfor %}
+</ul>
 
 {% from "macros/card.njk" import card %}
 
