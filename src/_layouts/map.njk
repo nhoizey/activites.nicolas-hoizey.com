@@ -21,7 +21,7 @@
   {% for entry in collections.activites %}
     {% set trace = entry.filePathStem | getTrace(entry.data.type) %}
     {% if trace %}
-    window.traces.push({{ trace | safe }});
+    window.traces['{{ entry.date | isoDate }}'] = {{ trace | safe }};
     {% endif %}
   {% endfor %}
   </script>

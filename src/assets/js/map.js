@@ -13,10 +13,18 @@ import { lineString, bbox } from "@turf/turf";
   // https://carbondesignsystem.com/data-visualization/color-palettes/
   // const TRACE_COLORS = ['#6929c4', '#1192e8', '#005d5d', '#9f1853', '#9f1853', '#570408', '#198038', '#002d9c', '#ee538b', '#b28600', '#009d9a', '#012749', '#8a3800', '#a56eff'];
   const TRACE_COLORS = ['#8a3ffc', '#33b1ff', '#007d79', '#ff7eb6', '#fa4d56', '#fff1f1', '#6fdc8c', '#4589ff', '#d12771', '#d2a106', '#08bdba', '#bae6ff', '#ba4e00', '#d4bbff'];
+  const TRACE_COLORS_BY_TYPE = {
+    gravel: '#d12771',
+    vélo: '#d12771',
+    marche: '#08bdba',
+    tennis: '#d2a106',
+    padel: '#d2a106',
+    'ski alpin': '#fff1f1'
+  };
 
   const geoJsonDatas = window.traces;
   let allCoordinates = [];
-  for (const geoJsonData of geoJsonDatas) {
+  for (const [traceDate, geoJsonData] of Object.entries(geoJsonDatas)) {
     allCoordinates = [...allCoordinates, ...geoJsonData.features[0].geometry.coordinates];
   }
   const bboxCoordinates = bbox(lineString(allCoordinates));
@@ -42,22 +50,28 @@ import { lineString, bbox } from "@turf/turf";
     map.on('load', () => {
       let traceIndex = 0;
 
-      for (const [key, geoJsonData] of Object.entries(geoJsonDatas)) {
-        map.addSource(`trace-${key}`, {
+      for (const [traceDate, geoJsonData] of Object.entries(geoJsonDatas)) {
+        map.addSource(`trace-${traceDate}`, {
           type: "geojson",
           data: geoJsonData,
         });
         map.addLayer({
-          'id': `route-${key}`,
+          'id': `route-${traceDate}`,
           'type': 'line',
-          'source': `trace-${key}`,
+          'source': `trace-${traceDate}`,
           'layout': {
             'line-join': 'round',
             'line-cap': 'round'
           },
           'paint': {
-            'line-color': TRACE_COLORS[traceIndex % TRACE_COLORS.length],
-            'line-width': 2,
+            'line-color': TRACE_COLORS_BY_TYPE[geoJsonData.features[0].properties.type] || TRACE_COLORS[traceIndex % TRACE_COLORS.length],
+            'line-width': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              0, 15,
+              18, 3
+            ],
             'line-opacity': .7
           }
         });
