@@ -11,8 +11,8 @@ import { lineString, bbox } from "@turf/turf";
   const MAX_ZOOM_LEVEL = 18;
 
   // https://carbondesignsystem.com/data-visualization/color-palettes/
-  // const TRACE_COLORS = ['#6929c4', '#1192e8', '#005d5d', '#9f1853', '#9f1853', '#570408', '#198038', '#002d9c', '#ee538b', '#b28600', '#009d9a', '#012749', '#8a3800', '#a56eff'];
-  const TRACE_COLORS = ['#8a3ffc', '#33b1ff', '#007d79', '#ff7eb6', '#fa4d56', '#fff1f1', '#6fdc8c', '#4589ff', '#d12771', '#d2a106', '#08bdba', '#bae6ff', '#ba4e00', '#d4bbff'];
+  // const TRACE_COLORS_ON_LIGHT = ['#6929c4', '#1192e8', '#005d5d', '#9f1853', '#9f1853', '#570408', '#198038', '#002d9c', '#ee538b', '#b28600', '#009d9a', '#012749', '#8a3800', '#a56eff'];
+  const TRACE_COLORS_ON_DARK = ['#8a3ffc', '#33b1ff', '#007d79', '#ff7eb6', '#fa4d56', '#fff1f1', '#6fdc8c', '#4589ff', '#d12771', '#d2a106', '#08bdba', '#bae6ff', '#ba4e00', '#d4bbff'];
   const TRACE_COLORS_BY_TYPE = {
     gravel: '#d12771',
     vélo: '#d12771',
@@ -65,7 +65,7 @@ import { lineString, bbox } from "@turf/turf";
             'line-cap': 'round'
           },
           'paint': {
-            'line-color': TRACE_COLORS_BY_TYPE[geoJsonData.features[0].properties.type] || TRACE_COLORS[traceIndex % TRACE_COLORS.length],
+            'line-color': TRACE_COLORS_BY_TYPE[geoJsonData.features[0].properties.type] || TRACE_COLORS_ON_DARK[traceIndex % TRACE_COLORS_ON_DARK.length],
             'line-width': [
               'interpolate',
               ['linear'],
