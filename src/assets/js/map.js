@@ -71,9 +71,15 @@ import { lineString, bbox } from "@turf/turf";
               ['linear'],
               ['zoom'],
               0, 25,
-              18, 3
+              16, 3
             ],
-            'line-opacity': .7
+            'line-opacity': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              0, 1,
+              16, .7
+            ],
           }
         });
 
