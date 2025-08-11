@@ -69,7 +69,7 @@ import { lineString, bbox } from "@turf/turf";
               'interpolate',
               ['linear'],
               ['zoom'],
-              0, 15,
+              0, 25,
               18, 3
             ],
             'line-opacity': .7
