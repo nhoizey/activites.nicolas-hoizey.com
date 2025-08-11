@@ -11,11 +11,12 @@ import { lineString, bbox } from "@turf/turf";
   const MAX_ZOOM_LEVEL = 18;
 
   // https://carbondesignsystem.com/data-visualization/color-palettes/
-  const TRACE_COLORS = ['#6929c4', '#1192e8', '#005d5d', '#9f1853', '#9f1853', '#570408', '#198038', '#002d9c', '#ee538b', '#b28600', '#009d9a', '#012749', '#8a3800', '#a56eff'];
+  // const TRACE_COLORS = ['#6929c4', '#1192e8', '#005d5d', '#9f1853', '#9f1853', '#570408', '#198038', '#002d9c', '#ee538b', '#b28600', '#009d9a', '#012749', '#8a3800', '#a56eff'];
+  const TRACE_COLORS = ['#8a3ffc', '#33b1ff', '#007d79', '#ff7eb6', '#fa4d56', '#fff1f1', '#6fdc8c', '#4589ff', '#d12771', '#d2a106', '#08bdba', '#bae6ff', '#ba4e00', '#d4bbff'];
 
   const geoJsonDatas = window.traces;
   let allCoordinates = [];
-  for (const [key, geoJsonData] of Object.entries(geoJsonDatas)) {
+  for (const geoJsonData of geoJsonDatas) {
     allCoordinates = [...allCoordinates, ...geoJsonData.features[0].geometry.coordinates];
   }
   const bboxCoordinates = bbox(lineString(allCoordinates));
@@ -24,12 +25,11 @@ import { lineString, bbox } from "@turf/turf";
     mapboxgl.accessToken = window.MAPBOX_ACCESS_TOKEN;
     const map = new mapboxgl.Map({
       container: mapElementId,
-      style: "mapbox://styles/mapbox/standard",
+      style: "mapbox://styles/mapbox/standard-satellite",
       projection: "globe",
       bounds: bboxCoordinates,
-      fitBoundsOptions: {
-        padding: 25
-      },
+      center: [3, 35],
+      zoom: 3,
       minZoom: 1,
       maxZoom: MAX_ZOOM_LEVEL,
       scrollZoom: true,

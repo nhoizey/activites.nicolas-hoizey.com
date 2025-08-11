@@ -7,7 +7,7 @@ import exifr from "exifr";
 import { DateTime } from "luxon";
 import utf8 from "utf8";
 
-export const getTrace = (activite) => {
+export const getTrace = (activite, type) => {
   const cacheDir = path.join("src/_cache/traces/", path.dirname(activite));
   if (!fs.existsSync(cacheDir)) {
     fs.mkdirSync(cacheDir, { recursive: true });
@@ -40,6 +40,7 @@ export const getTrace = (activite) => {
   if (gpxContentFile) {
     const gpxContent = new DOMParser().parseFromString(fs.readFileSync(gpxContentFile, 'utf8'));
     const geoJSON = togeojson.gpx(gpxContent);
+    geoJSON.features[0].properties.type = type;
     const geoJSONString = JSON.stringify(geoJSON);
     fs.writeFileSync(geojsonFile, geoJSONString, 'utf8');
     return geoJSONString;

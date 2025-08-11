@@ -2,44 +2,43 @@
 @use '../../../node_modules/mapbox-gl-style-switcher/styles.css';
 @use 'variables' as *;
 
-main {
-	display: grid;
+body.map {
+	grid-template-areas: "header"
+											"nav"
+											"main";
+	grid-template-rows: minmax(0, auto) auto 1fr;
 
-	grid-template-areas: "content"
-											 "map";
+	@media (min-width: $breakpoint) {
+		grid-template-areas: "header header"
+												"nav main";
+		grid-template-rows: minmax(0, auto) 1fr;
 
-	grid-template-columns: 1fr;
-		grid-template-rows: auto auto;
-	align-content: start;
-	gap: var(--gap);
-
-	.content {
-		grid-area: content;
 	}
 
-	.map {
-		grid-area: map;
+	main {
+		position: relative;
+		padding: 0;
 	}
 
-	@media screen and (min-width: $breakpoint) {
-		grid-template-areas: "content map";
-		grid-template-columns: 2fr 3fr;
-		grid-template-rows: auto;
+	h1 {
+		position: absolute;
+		top: var(--gap);
+		left: var(--gap);
+		z-index: 1;
+		color: white;
+		text-shadow: 3px 3px 1rem rgba(0, 0, 0, 0.8);
+	}
+
+	footer {
+		display: none;
 	}
 }
 
 #map {
-	width: 100%;
-	height: calc(100dvh - 4 * var(--gap) - 1rem);
-	position: relative;
+	position: absolute;
+	inset: 0;
 
 	background-color: var(--surface-1);
-	border: 1px solid var(--map-border);
-
-		@media screen and (min-width: $breakpoint) {
-			position: sticky;
-			top: calc(1rem + 3 * var(--gap));
-		}
 }
 
 .mapboxgl-ctrl-top-right {

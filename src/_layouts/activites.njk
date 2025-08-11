@@ -18,13 +18,13 @@
     {% endif %}
   </section>
 
-  {% set trace = page.filePathStem | getTrace %}
+  {% set trace = page.filePathStem | getTrace(type) %}
 
   {% if trace %}
     <section class="trace">
       <div id="map"></div>
       <noscript>
-        <p>You need JavaScript to see this map.</p>
+        <p>JavaScript doit être activé pour voir cette carte.</p>
       </noscript>
       <script>
       window.trace = {{ trace | safe }};

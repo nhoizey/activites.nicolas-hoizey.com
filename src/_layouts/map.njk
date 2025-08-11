@@ -1,36 +1,30 @@
 {% extends "./base.njk" %}
 
-{% block bodyclasses %}activites{% endblock %}
+{% block bodyclasses %}map{% endblock %}
 
 {% block content %}
   <style>{% renderFile "src/assets/sass/map.scss" %}</style>
 
-  <section class="content">
-    {% if title %}<h1>{{ title }}</h1>{% endif %}
-    {{ content | safe }}
-  </section>
-
-  <section class="map">
-    <div id="map"></div>
-    <noscript>
-      <p>You need JavaScript to see this map.</p>
-    </noscript>
-    <script>
-    window.traces = {};
-    {% if page.url == '/' %}
-      {% set entries = collections.activites | limit(5) %}
-    {% else %}
-      {% set entries = collections.activites %}
-    {% endif %}
-
-    {% for entry in entries %}
-      {% set trace = entry.filePathStem | getTrace %}
-      {% if trace %}
-      window.traces['{{ entry.date | isoDate }}'] = {{ trace | safe }};
-      {% endif %}
+  <h1>{{ title }}</h1>
+  <div id="map"></div>
+  <noscript>
+    <p>JavaScript doit être activé pour voir cette carte.</p>
+  </noscript>
+  <script>
+  window.types = [
+    {% for type in collections.types %}
+    '{{ type }}'{% if not loop.last %},{% endif %}
     {% endfor %}
-    </script>
-  </section>
+  ];
+  window.traces = [];
+
+  {% for entry in collections.activites %}
+    {% set trace = entry.filePathStem | getTrace(entry.data.type) %}
+    {% if trace %}
+    window.traces.push({{ trace | safe }});
+    {% endif %}
+  {% endfor %}
+  </script>
 
   <script type="module" src="{% getBundleFileUrl "js", "map" %}"></script>
   {%- js "map" %}{% renderFile "src/assets/js/map.js" %}{% endjs %}
