@@ -38,6 +38,7 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
       config: {
         basemap: {
           show3dObjects: false,
+          showLandmarkIcons: true,
         }
       },
       projection: "globe",

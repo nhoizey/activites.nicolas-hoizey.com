@@ -34,6 +34,12 @@ import { lineString, bbox } from "@turf/turf";
     const map = new mapboxgl.Map({
       container: mapElementId,
       style: "mapbox://styles/mapbox/standard-satellite",
+      config: {
+        basemap: {
+          show3dObjects: false,
+          showLandmarkIcons: true,
+        }
+      },
       projection: "globe",
       bounds: bboxCoordinates,
       fitBoundsOptions: {
@@ -137,38 +143,86 @@ import { lineString, bbox } from "@turf/turf";
       // Add button to toggle fullscreen mode
       map.addControl(new mapboxgl.FullscreenControl());
 
+      // Add button to show filters
+      class FilterActivities {
+        onAdd(map) {
+          const updateActivities = () => {
+            const currentFilters = [];
+            for (const input of div.querySelectorAll("input")) {
+              if (input.checked) {
+                currentFilters.push(input.id);
+              }
+            }
+
+            for (const [traceDate, geoJsonData] of Object.entries(geoJsonDatas)) {
+              // Show or hide activités based on active filters
+              if (currentFilters.includes(geoJsonData.features[0].properties.type)) {
+                // show
+                map.setLayoutProperty(`route-${traceDate}`, 'visibility', 'visible');
+              } else {
+                // hide
+                map.setLayoutProperty(`route-${traceDate}`, 'visibility', 'none');
+              }
+            }
+          };
+
+          let areFiltersShown = false;
+
+          const div = document.createElement("div");
+          div.className = "mapboxgl-ctrl mapboxgl-ctrl-group";
+          div.innerHTML = `<button class="mapboxgl-ctrl-filters"><span class="mapboxgl-ctrl-icon" aria-hidden="true" aria-label="Filter activities"></span></button><ul class="filters">${window.types.map(type => `<li><input type="checkbox" id="${type}" checked /> <label for="${type}">${type}</label></li>`).join('')}</ul>`;
+          div.querySelectorAll("input").forEach((checkbox) => {
+            checkbox.addEventListener("change", (e) => updateActivities());
+          });
+          div.addEventListener("contextmenu", (e) => e.preventDefault());
+          div.addEventListener("click", () => {
+            if (areFiltersShown) {
+              // Hide the filters
+              document.querySelector(".mapboxgl-ctrl-filters + ul").style.display = 'none';
+            } else {
+              // Show the filters
+              document.querySelector(".mapboxgl-ctrl-filters + ul").style.display = 'block';
+            }
+            areFiltersShown = !areFiltersShown;
+          });
+
+          return div;
+        }
+      }
+      map.addControl(new FilterActivities());
+
       // https://docs.mapbox.com/mapbox-gl-js/example/navigation-scale/
       map.addControl(new mapboxgl.ScaleControl());
 
-      window.document.querySelectorAll("ul.activites a").forEach((activity) => {
-        const isoDate = activity.querySelector("time").getAttribute("datetime");
-        if (isoDate in geoJsonDatas) {
-          activity.addEventListener("mouseenter", (event) => {
-            map.setPaintProperty(`route-${isoDate}`, 'line-opacity', 1).setPaintProperty(`route-${isoDate}`, 'line-width', 5);
-            map.fitBounds(bbox(lineString(geoJsonDatas[isoDate].features[0].geometry.coordinates)), {
-              fitBoundsOptions: {
-                padding: 25
-              },
-              pitch: 0,
-              bearing: 0,
-              duration: 3000,
-              essential: true,
-            });
-          });
-          activity.addEventListener("mouseleave", (event) => {
-            map.setPaintProperty(`route-${isoDate}`, 'line-opacity', .7).setPaintProperty(`route-${isoDate}`, 'line-width', 2);
-            map.fitBounds(bboxCoordinates, {
-              fitBoundsOptions: {
-                padding: 25
-              },
-              pitch: 0,
-              bearing: 0,
-              duration: 2000,
-              essential: true,
-            });
-          });
-        }
-      });
+      // window.document.querySelectorAll("ul.activites a").forEach((activity) => {
+      //   const isoDate = activity.querySelector("time").getAttribute("datetime");
+      //   if (isoDate in geoJsonDatas) {
+      //     activity.addEventListener("mouseenter", (event) => {
+      //       map.setPaintProperty(`route-${isoDate}`, 'line-opacity', 1).setPaintProperty(`route-${isoDate}`, 'line-width', 5);
+      //       map.fitBounds(bbox(lineString(geoJsonDatas[isoDate].features[0].geometry.coordinates)), {
+      //         fitBoundsOptions: {
+      //           padding: 25
+      //         },
+      //         pitch: 0,
+      //         bearing: 0,
+      //         duration: 3000,
+      //         essential: true,
+      //       });
+      //     });
+      //     activity.addEventListener("mouseleave", (event) => {
+      //       map.setPaintProperty(`route-${isoDate}`, 'line-opacity', .7).setPaintProperty(`route-${isoDate}`, 'line-width', 2);
+      //       map.fitBounds(bboxCoordinates, {
+      //         fitBoundsOptions: {
+      //           padding: 25
+      //         },
+      //         pitch: 0,
+      //         bearing: 0,
+      //         duration: 2000,
+      //         essential: true,
+      //       });
+      //     });
+      //   }
+      // });
     });
   }
 })(window);
