@@ -102,6 +102,38 @@ import { lineString, bbox } from "@turf/turf";
         "top-right",
       );
 
+      // Add button to toggle between 2D and 3D views
+      // Based on https://github.com/tobinbradley/mapbox-gl-pitch-toggle-control
+      class PitchToggle {
+        onAdd(map) {
+          const div = document.createElement("div");
+          div.className = "mapboxgl-ctrl mapboxgl-ctrl-group";
+          div.innerHTML = `<button class="mapboxgl-ctrl-3d-toggle"><span class="mapboxgl-ctrl-icon" aria-hidden="true" aria-label="Toggle 3D"></span></button>`;
+          if (map.getPitch() !== 0) {
+            div
+              .querySelector("button")
+              .classList.toggle("mapboxgl-ctrl-3d-toggle-active", true);
+          }
+          div.addEventListener("contextmenu", (e) => e.preventDefault());
+          div.addEventListener("click", () => {
+            if (map.getPitch() === 0) {
+              map.easeTo({ pitch: 70, bearing: -20 });
+              div
+                .querySelector("button")
+                .classList.toggle("mapboxgl-ctrl-3d-toggle-active", true);
+            } else {
+              map.easeTo({ pitch: 0, bearing: 0 });
+              div
+                .querySelector("button")
+                .classList.toggle("mapboxgl-ctrl-3d-toggle-active", false);
+            }
+          });
+
+          return div;
+        }
+      }
+      map.addControl(new PitchToggle());
+
       // Add button to toggle fullscreen mode
       map.addControl(new mapboxgl.FullscreenControl());
 
