@@ -36,8 +36,9 @@ import { lineString, bbox } from "@turf/turf";
       style: "mapbox://styles/mapbox/standard-satellite",
       projection: "globe",
       bounds: bboxCoordinates,
-      center: [3, 35],
-      zoom: 3,
+      fitBoundsOptions: {
+        padding: 25
+      },
       minZoom: 1,
       maxZoom: MAX_ZOOM_LEVEL,
       scrollZoom: true,
