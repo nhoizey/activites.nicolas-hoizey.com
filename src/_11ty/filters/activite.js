@@ -41,6 +41,7 @@ export const getTrace = (activite, type) => {
     const gpxContent = new DOMParser().parseFromString(fs.readFileSync(gpxContentFile, 'utf8'));
     const geoJSON = togeojson.gpx(gpxContent);
     geoJSON.features[0].properties.type = type;
+    geoJSON.features[0].properties.month = `${geoJSON.features[0].properties.time.slice(0, 7)}-01`;
     const geoJSONString = JSON.stringify(geoJSON);
     fs.writeFileSync(geojsonFile, geoJSONString, 'utf8');
     return geoJSONString;
