@@ -24,10 +24,27 @@ import { lineString, bbox } from "@turf/turf";
 
   const geoJsonDatas = window.traces;
   let allCoordinates = [];
+  const allMonths = new Set();
+
+  // Loop through all traces to collect useful data
   for (const [traceDate, geoJsonData] of Object.entries(geoJsonDatas)) {
     allCoordinates = [...allCoordinates, ...geoJsonData.features[0].geometry.coordinates];
+    allMonths.add(geoJsonData.features[0].properties.month);
   }
   const bboxCoordinates = bbox(lineString(allCoordinates));
+
+  // Sort months
+  const sortedMonths = Array.from(allMonths).sort((a, b) => {
+    return new Date(a) - new Date(b);
+  });
+  const readableMonths = sortedMonths.map((month) => {
+    const date = new Date(month);
+    return date.toLocaleDateString('fr-FR', {
+      month: 'long',
+      year: 'numeric',
+    });
+  });
+  const sliderMaxValue = sortedMonths.length - 1;
 
   if (mapElement) {
     mapboxgl.accessToken = window.MAPBOX_ACCESS_TOKEN;
@@ -146,6 +163,12 @@ import { lineString, bbox } from "@turf/turf";
       // Add button to show filters
       class FilterActivities {
         onAdd(map) {
+          let areFiltersShown = false;
+
+          let fromMonth = 0;
+          let toMonth = sliderMaxValue;
+
+          // Function to update the visibility of activities based on selected filters
           const updateActivities = () => {
             const currentFilters = [];
             for (const input of div.querySelectorAll("input")) {
@@ -154,9 +177,11 @@ import { lineString, bbox } from "@turf/turf";
               }
             }
 
+            const currentMonths = sortedMonths.slice(fromMonth, toMonth + 1);
+
             for (const [traceDate, geoJsonData] of Object.entries(geoJsonDatas)) {
               // Show or hide activités based on active filters
-              if (currentFilters.includes(geoJsonData.features[0].properties.type)) {
+              if (currentFilters.includes(geoJsonData.features[0].properties.type) && currentMonths.includes(geoJsonData.features[0].properties.month)) {
                 // show
                 map.setLayoutProperty(`route-${traceDate}`, 'visibility', 'visible');
               } else {
@@ -166,22 +191,100 @@ import { lineString, bbox } from "@turf/turf";
             }
           };
 
-          let areFiltersShown = false;
-
           const div = document.createElement("div");
           div.className = "mapboxgl-ctrl mapboxgl-ctrl-group";
-          div.innerHTML = `<button class="mapboxgl-ctrl-filters"><span class="mapboxgl-ctrl-icon" aria-hidden="true" aria-label="Filter activities"></span></button><ul class="filters">${window.types.map(type => `<li><label for="${type}"><input type="checkbox" id="${type}" checked /> <span class="name">${type}</span> <span class="color" style="background-color: ${TRACE_COLORS_BY_TYPE[type]}"></span></label></li>`).join('')}</ul>`;
-          div.querySelectorAll("input").forEach((checkbox) => {
-            checkbox.addEventListener("change", (e) => updateActivities());
+          div.innerHTML = `
+<button class="mapboxgl-ctrl-filters">
+  <span class="mapboxgl-ctrl-icon" aria-hidden="true" aria-label="Filter activities"></span>
+</button>
+<div class="filters">
+  <p>Types d'activités :</p>
+  <ul class="types">
+    ${window.types.map(type => `
+    <li>
+      <label for="${type}">
+        <input type="checkbox" id="${type}" checked />
+        <span class="name">${type}</span>
+        <span class="color" style="background-color: ${TRACE_COLORS_BY_TYPE[type]}"></span>
+      </label>
+    </li>`).join('')}
+  </ul>
+  <div class="dates">
+    <div class="labels">
+      <label for="fromMonth">Entre</label>
+      <output id="fromMonth"></output>
+      <label for="toMonth">et</label>
+      <output id="toMonth"></output>
+    </div>
+    <div class="sliders">
+      <div class="track"></div>
+      <input id="fromSlider" name="fromSlider" type="range" min="0" max="${sliderMaxValue}" step="1" value="0" />
+      <input id="toSlider" name="toSlider" type="range" min="0" max="${sliderMaxValue}" step="1" value="${sliderMaxValue}" />
+    </div>
+  </div>
+</div>
+`;
+          // Add event listeners to the type checkboxes
+          div.querySelectorAll(".types input").forEach((checkbox) => {
+            checkbox.addEventListener("change", (event) => updateActivities());
           });
-          div.querySelector("button").addEventListener("contextmenu", (e) => e.preventDefault());
+
+          // Add event listeners to the month sliders
+          const updateSlidersValues = () => {
+            let needsUpdate = false;
+
+            const newFromMonth = Number.parseInt(div.querySelector("#fromSlider").value, 10);
+            div.querySelector("#fromMonth").textContent = readableMonths[newFromMonth];
+
+            const newToMonth = Number.parseInt(div.querySelector("#toSlider").value, 10);
+            div.querySelector("#toMonth").textContent = readableMonths[newToMonth];
+
+            // Update the track background
+            const percent1 = (newFromMonth / sliderMaxValue) * 100;
+            const percent2 = (newToMonth / sliderMaxValue) * 100;
+            div.querySelector(".track").style.background = `linear-gradient(to right, var(--grey-300) ${percent1}%, var(--green-700) ${percent1}%, var(--green-700) ${percent2}%, var(--grey-300) ${percent2}%)`;
+
+            if (newFromMonth !== fromMonth) {
+              needsUpdate = true;
+              fromMonth = newFromMonth;
+            }
+            if (newToMonth !== toMonth) {
+              needsUpdate = true;
+              toMonth = newToMonth;
+            }
+
+            if (needsUpdate) {
+              updateActivities();
+            }
+          }
+          div.querySelector("#fromSlider").addEventListener("input", (event) => {
+            const fromValue = Number.parseInt(event.target.value, 10);
+            const toValue = Number.parseInt(div.querySelector("#toSlider").value, 10);
+            if (fromValue >= toValue) {
+              event.target.value = toValue - 1; // Ensure "from" is always less than "to"
+            }
+            updateSlidersValues();
+          });
+          div.querySelector("#toSlider").addEventListener("input", (event) => {
+            const toValue = Number.parseInt(event.target.value, 10)
+            const fromValue = Number.parseInt(div.querySelector("#fromSlider").value, 10);
+            if (toValue <= fromValue) {
+              event.target.value = fromValue + 1; // Ensure "to" is always greater than "from"
+            }
+            updateSlidersValues();
+          });
+
+          updateSlidersValues();
+
+          // Manage filters visibility
+          div.querySelector("button").addEventListener("contextmenu", (event) => event.preventDefault());
           div.querySelector("button").addEventListener("click", () => {
             if (areFiltersShown) {
               // Hide the filters
-              document.querySelector(".mapboxgl-ctrl-filters + ul").style.display = 'none';
+              document.querySelector(".mapboxgl-ctrl-filters + .filters").style.display = 'none';
             } else {
               // Show the filters
-              document.querySelector(".mapboxgl-ctrl-filters + ul").style.display = 'block';
+              document.querySelector(".mapboxgl-ctrl-filters + .filters").style.display = 'block';
             }
             areFiltersShown = !areFiltersShown;
           });
