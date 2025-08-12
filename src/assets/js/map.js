@@ -17,9 +17,9 @@ import { lineString, bbox } from "@turf/turf";
     gravel: '#d12771',
     vélo: '#ee80af',
     marche: '#08bdba',
-    tennis: '#d2a106',
-    padel: '#f6d25e',
-    'ski alpin': '#fff1f1'
+    tennis: '#8a3ffc',
+    padel: '#a36df4ff',
+    'ski alpin': '#4589ff'
   };
 
   const geoJsonDatas = window.traces;
@@ -93,15 +93,15 @@ import { lineString, bbox } from "@turf/turf";
               'interpolate',
               ['linear'],
               ['zoom'],
-              0, 25,
+              0, 40,
               16, 3
             ],
             'line-opacity': [
               'interpolate',
               ['linear'],
               ['zoom'],
-              0, 1,
-              16, .7
+              0, .9,
+              16, .6
             ],
           }
         });
@@ -170,6 +170,8 @@ import { lineString, bbox } from "@turf/turf";
 
           // Function to update the visibility of activities based on selected filters
           const updateActivities = () => {
+            let shownCoordinates = [];
+
             const currentFilters = [];
             for (const input of div.querySelectorAll("input")) {
               if (input.checked) {
@@ -184,11 +186,22 @@ import { lineString, bbox } from "@turf/turf";
               if (currentFilters.includes(geoJsonData.features[0].properties.type) && currentMonths.includes(geoJsonData.features[0].properties.month)) {
                 // show
                 map.setLayoutProperty(`route-${traceDate}`, 'visibility', 'visible');
+                shownCoordinates = [...shownCoordinates, ...geoJsonData.features[0].geometry.coordinates];
               } else {
                 // hide
                 map.setLayoutProperty(`route-${traceDate}`, 'visibility', 'none');
               }
             }
+
+            const newBboxCoordinates = bbox(lineString(shownCoordinates));
+            map.fitBounds(newBboxCoordinates, {
+              fitBoundsOptions: {
+                padding: 50
+              },
+              easing: (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2,
+              speed: .8,
+              essential: true,
+            });
           };
 
           const div = document.createElement("div");
