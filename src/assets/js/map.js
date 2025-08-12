@@ -100,8 +100,8 @@ import { lineString, bbox } from "@turf/turf";
               'interpolate',
               ['linear'],
               ['zoom'],
-              0, .9,
-              16, .6
+              0, .6,
+              16, .9
             ],
           }
         });
