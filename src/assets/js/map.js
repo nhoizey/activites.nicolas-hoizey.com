@@ -15,10 +15,10 @@ import { lineString, bbox } from "@turf/turf";
   const TRACE_COLORS_ON_DARK = ['#8a3ffc', '#33b1ff', '#007d79', '#ff7eb6', '#fa4d56', '#fff1f1', '#6fdc8c', '#4589ff', '#d12771', '#d2a106', '#08bdba', '#bae6ff', '#ba4e00', '#d4bbff'];
   const TRACE_COLORS_BY_TYPE = {
     gravel: '#d12771',
-    vélo: '#d12771',
+    vélo: '#ee80af',
     marche: '#08bdba',
     tennis: '#d2a106',
-    padel: '#d2a106',
+    padel: '#f6d25e',
     'ski alpin': '#fff1f1'
   };
 
@@ -43,7 +43,7 @@ import { lineString, bbox } from "@turf/turf";
       projection: "globe",
       bounds: bboxCoordinates,
       fitBoundsOptions: {
-        padding: 25
+        padding: 50
       },
       minZoom: 1,
       maxZoom: MAX_ZOOM_LEVEL,
@@ -170,12 +170,12 @@ import { lineString, bbox } from "@turf/turf";
 
           const div = document.createElement("div");
           div.className = "mapboxgl-ctrl mapboxgl-ctrl-group";
-          div.innerHTML = `<button class="mapboxgl-ctrl-filters"><span class="mapboxgl-ctrl-icon" aria-hidden="true" aria-label="Filter activities"></span></button><ul class="filters">${window.types.map(type => `<li><input type="checkbox" id="${type}" checked /> <label for="${type}">${type}</label></li>`).join('')}</ul>`;
+          div.innerHTML = `<button class="mapboxgl-ctrl-filters"><span class="mapboxgl-ctrl-icon" aria-hidden="true" aria-label="Filter activities"></span></button><ul class="filters">${window.types.map(type => `<li><label for="${type}"><input type="checkbox" id="${type}" checked /> <span class="name">${type}</span> <span class="color" style="background-color: ${TRACE_COLORS_BY_TYPE[type]}"></span></label></li>`).join('')}</ul>`;
           div.querySelectorAll("input").forEach((checkbox) => {
             checkbox.addEventListener("change", (e) => updateActivities());
           });
-          div.addEventListener("contextmenu", (e) => e.preventDefault());
-          div.addEventListener("click", () => {
+          div.querySelector("button").addEventListener("contextmenu", (e) => e.preventDefault());
+          div.querySelector("button").addEventListener("click", () => {
             if (areFiltersShown) {
               // Hide the filters
               document.querySelector(".mapboxgl-ctrl-filters + ul").style.display = 'none';

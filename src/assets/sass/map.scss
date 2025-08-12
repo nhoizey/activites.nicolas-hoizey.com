@@ -65,34 +65,46 @@ body.map {
 		display: none;
 
 		background-color: var(--surface-2);
+		border-radius: .2em;
 
 		position: absolute;
 		top: var(--gap);
 		right: 0;
 
 		list-style: none;
-		padding: 0;
+		padding: .3em;
 
-		li {
-			display: flex;
-			align-items: center;
-			gap: calc(var(--gap) / 2);
-			padding: .2em;
+		label {
 			cursor: pointer;
+			padding: .3em;
+
+			display: grid;
+			gap: .3em;
+			align-items: center;
+			grid-template-columns: 1.2em auto 1.2em;
+
+			white-space: nowrap;
+			width: 100%;
 
 			&:hover {
 				background-color: var(--surface-1);
 			}
 
-			input[type="checkbox"] {
-				width: 1.5em;
-				height: 1.5em;
-				cursor: pointer;
-			}
-
-			label {
-				white-space: nowrap;
+			.color {
+				display: inline-block;
+				width: 1.2em;
+				height: 1.2em;
+				border: solid 1px var(--grey-900);
+				border-radius: 50%;
 			}
 		}
+
+		input[type="checkbox"] {
+			margin: 0;
+			width: 1.2em;
+			height: 1.2em;
+			cursor: pointer;
+		}
+
 	}
 }
