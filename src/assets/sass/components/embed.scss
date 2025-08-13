@@ -3,74 +3,61 @@
 @use 'variables' as *;
 @use 'card' as *;
 
-.embed {
-	display: grid;
-
+.embed:has(.map) {
+  display: grid;
 	grid-template-areas: "cards"
-                      "map";
+											"map";
+
+  grid-template-areas: "cards";
 	grid-template-columns: 1fr;
 	align-content: start;
 	gap: var(--gap);
 
 	.cards {
-		grid-area: cards;
+    grid-area: cards;
 	}
 
 	.map {
-		grid-area: map;
+    grid-area: map;
 	}
-
-	.photos-title {
-		grid-area: photos-title;
-	}
-
-	.photos {
-		grid-area: photos;
-
-		ul {
-			list-style: none;
-			padding-inline-start: 0;
-
-			display: grid;
-			gap: var(--gap);
-			grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-
-			img {
-				width: 100%;
-				height: auto;
-				aspect-ratio: 1;
-				object-fit: contain;
-				object-position: bottom;
-			}
-		}
-	}
-}
-
-.embed :has(.trace) {
-	grid-template-areas: "card"
-											"description"
-											"map"
-											"photos-title"
-											"photos";
 
 	@media screen and (min-width: $breakpoint-map) {
-		grid-template-areas: "card map"
-												"description map"
-												"photos-title map"
-												"photos photos";
+		grid-template-areas: "cards map";
 		grid-template-columns: 2fr 3fr;
-		grid-template-rows: auto 1fr auto auto;
-	}
-
-	.trace {
-		grid-area: map;
+		grid-template-rows: auto;
 	}
 }
 
-.activite #map {
+.embed {
+  &, & + p {
+  	margin-block-start: var(--gap);
+  }
+
+  .activite {
+    border: 2px solid var(--map-border);
+    border-radius: .5em;
+  }
+
+  .cards {
+    margin-block: 0;
+
+    .card {
+      border-radius: .5em .5em 0 0;
+    }
+  }
+
+  .content {
+    padding: var(--gap);
+    border-top: 3px solid var(--activite-color);
+  }
+}
+
+.embed .map {
 	width: 100%;
-	height: calc(100dvh - 1rem - 4 * var(--gap));
-	position: relative;
+	max-height: calc(100dvh - 2 * var(--gap));
+
+  position: sticky;
+  top: var(--gap);
 
 	background-color: var(--surface-1);
 	border: 1px solid var(--map-border);
@@ -140,11 +127,5 @@
 	p {
 		margin: 0;
 		color: var(--message-text);
-	}
-}
-
-.photos-title::after {
-	@media screen and (min-width: $breakpoint-map) {
-		content: " \002193" / "Voir ci-dessous";
 	}
 }

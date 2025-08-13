@@ -1,17 +1,44 @@
-{% from "macros/card.njk" import card %}
+{%- from "macros/card.njk" import card -%}
 
-{% macro embed(collection, pathStems) %}
+{%- set TRACE_COLORS_ON_DARK = ['#8a3ffc', '#33b1ff', '#007d79', '#ff7eb6', '#fa4d56', '#fff1f1', '#6fdc8c', '#4589ff', '#d12771', '#d2a106', '#08bdba', '#bae6ff', '#ba4e00', '#d4bbff'] -%}
+{%- set COLORS_NUMBER = TRACE_COLORS_ON_DARK | length -%}
+
+{%- macro embed(collection, pathStems) -%}
   {%- if pathStems.length > 0 -%}
-    <div class="embed">
-      <div class="cards">
+    {%- set embedId = pathStems | join("|") | slugify -%}
+    <script>
+    if (window.embeds === undefined) {
+      window.embeds = {};
+    }
+    </script>
+    {%- set tracesNumber = 0 -%}
+    <div class="embed" data-embed-id="{{- embedId -}}">
+      <div class="activites cards">
         {%- for pathStem in pathStems -%}
           {%- set activity = collection | withPathStem(pathStem) -%}
           {%- if activity -%}
-            {{- card(activity.data.type, activity.data.title, activity.url, activity.date, activity.data.distance, activity.data.duration, "list") -}}
+            <div class="activite" data-path-stem="{{- pathStem -}}" style="--activite-color: {{- TRACE_COLORS_ON_DARK[tracesNumber % COLORS_NUMBER] -}}">
+              {{- card(activity.data.type, activity.data.title, activity.url, activity.date, activity.data.distance, activity.data.duration, "list") -}}
+              <section class="content">
+                {{- activity.content | safe -}}
+              </section>
+            </div>
+            {%- set trace = activity.filePathStem | getTrace(activity.data.type) -%}
+            {%- if trace -%}
+              {%- set tracesNumber = tracesNumber + 1 -%}
+              <script>
+              {%- if tracesNumber == 1 -%}
+              window.embeds["{{- embedId -}}"] = {};
+              {%- endif -%}
+              window.embeds["{{- embedId -}}"]["{{- pathStem -}}"] = {{- trace | safe -}};
+              </script>
+            {%- endif -%}
           {%- endif -%}
         {%- endfor -%}
       </div>
-      <div class="map"></div>
+      {%- if tracesNumber > 0 -%}
+        <div id="map-{{- embedId -}}" class="map"></div>
+      {%- endif -%}
     </div>
-  {% endif %}
-{% endmacro %}
+  {%- endif -%}
+{%- endmacro -%}

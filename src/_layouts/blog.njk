@@ -10,4 +10,12 @@
   <section class="description">
     {{ content | safe }}
   </section>
+  <script>
+  if (window.embeds !== undefined) {
+    let embedMapsScript = document.createElement('script');
+    embedMapsScript.src = "{% getBundleFileUrl "js", "embedMaps" %}";
+    window.document.querySelector("head").appendChild(embedMapsScript);
+  }
+  </script>
+  {%- js "embedMaps" %}{% renderFile "src/assets/js/embed-maps.js" %}{% endjs %}
 {% endblock %}

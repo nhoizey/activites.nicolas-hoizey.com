@@ -60,7 +60,13 @@ main {
 	}
 
 	p {
-		margin-block: var(--gap);
+		max-width: 60ch;
+	}
+
+	p + p,
+	.description,
+	.eleventy-plugin-youtube-embed {
+		margin-block-start: var(--gap);
 	}
 }
 
