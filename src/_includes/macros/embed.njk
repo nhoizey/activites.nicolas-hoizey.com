@@ -1,0 +1,17 @@
+{% from "macros/card.njk" import card %}
+
+{% macro embed(collection, pathStems) %}
+  {%- if pathStems.length > 0 -%}
+    <div class="embed">
+      <div class="cards">
+        {%- for pathStem in pathStems -%}
+          {%- set activity = collection | withPathStem(pathStem) -%}
+          {%- if activity -%}
+            {{- card(activity.data.type, activity.data.title, activity.url, activity.date, activity.data.distance, activity.data.duration, "list") -}}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      <div class="map"></div>
+    </div>
+  {% endif %}
+{% endmacro %}

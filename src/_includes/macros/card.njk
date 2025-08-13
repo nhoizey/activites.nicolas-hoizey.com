@@ -1,36 +1,33 @@
 {% macro card(type, title, url, date, distance, duration, where="page") %}
-
   <div class="card">
-    {% if type != "blog" %}
+    {%- if type != "blog" -%}
     <div class="type">
-      {% inline_icon type %}
+      {%- inline_icon type -%}
       <small>{{ type }}</small>
     </div>
-    {% endif %}
-    {% if where=="page" %}
+    {%- endif -%}
+    {%- if where=="page" -%}
       <h1>{{ title }}</h1>
-    {% else %}
+    {%- else -%}
       <h3><a href="{{ url }}">{{ title }}</a></h3>
-    {% endif %}
-
+    {%- endif -%}
     <ul class="meta">
       <li class="date">
         <svg class="icon" aria-hidden="true"><use xlink:href="#date-icon" /></svg>
-        <time class="dt-published" datetime="{{ date | isoDate }}" data-pagefind-sort="date[datetime]">{{ date | readableDate }}</time>
+        <time class="dt-published" datetime="{{- date | isoDate -}}" data-pagefind-sort="date[datetime]">{{- date | readableDate -}}</time>
       </li>
-      {% if distance %}
+      {%- if distance -%}
         <li class="distance">
-          {% inline_icon 'map' %}
-          <span>{{ distance }} km</span>
+          {%- inline_icon 'map' -%}
+          <span>{{- distance -}} km</span>
         </li>
-      {% endif %}
-      {% if duration %}
+      {%- endif -%}
+      {%- if duration -%}
         <li class="duration">
-          {% inline_icon 'duration' %}
-          <span>{{ duration }}</span>
+          {%- inline_icon 'duration' -%}
+          <span>{{- duration -}}</span>
         </li>
-      {% endif %}
+      {%- endif -%}
     </ul>
-
   </div>
 {% endmacro %}
