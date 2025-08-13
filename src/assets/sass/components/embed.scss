@@ -29,8 +29,10 @@
 }
 
 .embed {
-  &, & + p {
-  	margin-block-start: var(--gap);
+  margin-block: calc(2 * var(--gap));
+
+  & + p {
+    margin-block-start: var(--gap);
   }
 
   .activite {
