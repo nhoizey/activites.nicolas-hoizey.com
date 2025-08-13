@@ -1,4 +1,4 @@
-{% macro card(type, title, url, date, distance, duration, where="page") %}
+{% macro card(type, title, url, date, distance=0, duration=0, where="page") %}
   <div class="card">
     {%- if type != "blog" -%}
     <div class="type">
@@ -16,13 +16,13 @@
         <svg class="icon" aria-hidden="true"><use xlink:href="#date-icon" /></svg>
         <time class="dt-published" datetime="{{- date | isoDate -}}" data-pagefind-sort="date[datetime]">{{- date | readableDate -}}</time>
       </li>
-      {%- if distance -%}
+      {%- if distance != 0 -%}
         <li class="distance">
           {%- inline_icon 'map' -%}
           <span>{{- distance -}} km</span>
         </li>
       {%- endif -%}
-      {%- if duration -%}
+      {%- if duration != 0 -%}
         <li class="duration">
           {%- inline_icon 'duration' -%}
           <span>{{- duration -}}</span>
