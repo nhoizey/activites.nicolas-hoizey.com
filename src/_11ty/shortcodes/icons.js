@@ -13,6 +13,7 @@ const ICONS = {
   blog: { name: "article-line", source: "majesticons" },
   date: { name: "calendar-line", source: "majesticons" },
   camera: { name: "camera-line", source: "majesticons" },
+  filter: { name: "filter-line", source: "majesticons" },
   home: { name: "home-line", source: "majesticons" },
   info: { name: "info-circle-line", source: "majesticons" },
   landscape: { name: "image-line", source: "majesticons" },
