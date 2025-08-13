@@ -6,6 +6,8 @@ nav:
   icon: date
 ---
 
+{%- css "critical" %}{% renderFile "src/assets/sass/components/filters.scss" %}{% endcss %}
+
 <ul class="filtres">
   <li class="actif"><span>tout</span></li>
   {% for typeItem in collections.types %}
@@ -13,6 +15,7 @@ nav:
   {% endfor %}
 </ul>
 
+{%- css "critical" %}{% renderFile "src/assets/sass/components/card.scss" %}{% endcss %}
 {% from "macros/card.njk" import card %}
 
 <div class="activites cards">

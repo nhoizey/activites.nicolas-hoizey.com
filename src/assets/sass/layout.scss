@@ -1,0 +1,42 @@
+@use 'variables' as *;
+
+body {
+	margin: 0;
+	display: grid;
+	grid-template-areas: "header"
+                      "nav"
+                      "main"
+                      "footer";
+	grid-template-rows: minmax(0, auto) auto 1fr auto;
+
+	gap: 0;
+
+	@media (min-width: $breakpoint) {
+		grid-template-areas: "header header"
+		"nav main"
+		"footer footer";
+		grid-template-rows: minmax(0, auto) 1fr auto;
+		grid-template-columns: calc(var(--gap) * 2 + var(--nav-icons-size)) 1fr;
+	}
+
+	@media (min-width: $breakpoint-map) {
+		grid-template-columns: minmax(0, auto) 1fr;
+	}
+}
+
+header {
+	grid-area: header;
+}
+
+nav {
+	grid-area: nav;
+}
+
+main {
+	grid-area: main;
+}
+
+footer {
+	grid-area: footer;
+}
+

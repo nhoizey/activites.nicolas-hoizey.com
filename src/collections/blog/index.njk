@@ -7,6 +7,7 @@ nav:
 ---
 
 {% from "macros/card.njk" import card %}
+{%- css "critical" %}{% renderFile "src/assets/sass/components/card.scss" %}{% endcss %}
 
 <div class="blog cards">
   {% for entry in collections.blog %}

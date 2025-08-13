@@ -6,7 +6,7 @@ nav:
 ---
 
 {% from "macros/card.njk" import card %}
-{% from "macros/meta.njk" import meta %}
+{%- css "critical" %}{% renderFile "src/assets/sass/components/card.scss" %}{% endcss %}
 
 <p>Bienvenue sur ce site, qui présente les activités sportives de Nicolas Hoizey.</p>
 

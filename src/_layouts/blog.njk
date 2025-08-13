@@ -3,6 +3,7 @@
 {% block bodyclasses %}activite{% endblock %}
 
 {% from "macros/card.njk" import card %}
+{%- css "critical" %}{% renderFile "src/assets/sass/components/card.scss" %}{% endcss %}
 
 {% block content %}
   {{ card("blog", title, url, date, "", "", "page") }}
