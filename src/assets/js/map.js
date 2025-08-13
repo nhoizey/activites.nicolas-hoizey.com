@@ -2,11 +2,9 @@ import mapboxgl from "mapbox-gl/dist/mapbox-gl.js";
 import { lineString, bbox } from "@turf/turf";
 
 (async (window) => {
-  // console.dir(window.traces);
-
   // Load Mapbox map if necessary
   const mapElementId = "map";
-  const mapElement = window.document.querySelector(`#${mapElementId}`);
+  const mapElement = window.document.getElementById(mapElementId);
 
   const MAX_ZOOM_LEVEL = 18;
 
@@ -66,13 +64,14 @@ import { lineString, bbox } from "@turf/turf";
       fitBoundsOptions: {
         padding: 50
       },
-      minZoom: 1,
+      minZoom: 0,
       maxZoom: MAX_ZOOM_LEVEL,
       scrollZoom: true,
       attributionControl: true,
       cooperativeGestures: false, // https://docs.mapbox.com/mapbox-gl-js/example/cooperative-gestures/
-      hash: false,
+      hash: true,
       renderWorldCopies: true,
+      language: "fr",
     });
 
     map.on('load', () => {
@@ -315,11 +314,57 @@ import { lineString, bbox } from "@turf/turf";
       }
       map.addControl(new FilterActivities());
 
+      // Add button to show filters
+      class Help {
+        onAdd(map) {
+          let isHelpShown = false;
+
+          const div = document.createElement("div");
+          div.className = "mapboxgl-ctrl mapboxgl-ctrl-group";
+          div.innerHTML = `
+<button class="mapboxgl-ctrl-help">
+  <span class="mapboxgl-ctrl-icon" aria-hidden="true" aria-label="Help"></span>
+</button>
+<div class="help">
+  <p>Raccourcis clavier :</p>
+  <dl>
+    <dt><kbd>=</kbd> ou <kbd>+</kbd></dt>
+    <dd>Augmente le zoom</dd>
+    <dt><kbd>-</kbd></dt>
+    <dd>Diminue le zoom</dd>
+    <dt><kbd>&larr;</kbd> ou <kbd>&uarr;</kbd> ou <kbd>&rarr;</kbd> ou <kbd>&darr;</kbd></dt>
+    <dd>Déplacement</dd>
+    <dt><kbd>Shift</kbd> et <kbd>&larr;</kbd> ou <kbd>&rarr;</kbd></dt>
+    <dd>Rotation</dd>
+    <dt><kbd>Shift</kbd> et <kbd>&uarr;</kbd> ou <kbd>&darr;</kbd></dt>
+    <dd>Angle de vue</dd>
+  </dl>
+</div>
+`;
+          const help = div.querySelector(".help");
+
+          // Manage help visibility
+          div.querySelector("button").addEventListener("contextmenu", (event) => event.preventDefault());
+          div.querySelector("button").addEventListener("click", () => {
+            if (isHelpShown) {
+              // Hide the help
+              help.style.display = 'none';
+            } else {
+              // Show the help
+              help.style.display = 'block';
+            }
+            isHelpShown = !isHelpShown;
+          });
+
+          return div;
+        }
+      }
+      map.addControl(new Help());
+
       // https://docs.mapbox.com/mapbox-gl-js/example/navigation-scale/
       map.addControl(new mapboxgl.ScaleControl());
 
-      // window.document.querySelectorAll("ul.activites a").forEach((activity) => {
-      //   const isoDate = activity.querySelector("time").getAttribute("datetime");
+      // window.document.querySelectorAll("ul.activites a").forEach((getElementById){     //   const isoDate = activity.querySelector("time").getAttribute("datetime");
       //   if (isoDate in geoJsonDatas) {
       //     activity.addEventListener("mouseenter", (event) => {
       //       map.setPaintProperty(`route-${isoDate}`, 'line-opacity', 1).setPaintProperty(`route-${isoDate}`, 'line-width', 5);
