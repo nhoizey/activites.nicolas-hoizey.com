@@ -25,11 +25,13 @@ import { lineString, bbox } from "@turf/turf";
   const geoJsonDatas = window.traces;
   let allCoordinates = [];
   const allMonths = new Set();
+  const allTypes = new Set();
 
   // Loop through all traces to collect useful data
   for (const [traceDate, geoJsonData] of Object.entries(geoJsonDatas)) {
     allCoordinates = [...allCoordinates, ...geoJsonData.features[0].geometry.coordinates];
     allMonths.add(geoJsonData.features[0].properties.month);
+    allTypes.add(geoJsonData.features[0].properties.type);
   }
   const bboxCoordinates = bbox(lineString(allCoordinates));
 
@@ -45,6 +47,8 @@ import { lineString, bbox } from "@turf/turf";
     });
   });
   const sliderMaxValue = sortedMonths.length - 1;
+
+  const shownTypes = Array.from(new Set(window.types).intersection(allTypes));
 
   if (mapElement) {
     mapboxgl.accessToken = window.MAPBOX_ACCESS_TOKEN;
@@ -213,7 +217,7 @@ import { lineString, bbox } from "@turf/turf";
 <div class="filters">
   <p>Types d'activités :</p>
   <ul class="types">
-    ${window.types.map(type => `
+    ${shownTypes.map(type => `
     <li>
       <label for="${type}">
         <input type="checkbox" id="${type}" checked />
@@ -224,12 +228,13 @@ import { lineString, bbox } from "@turf/turf";
   </ul>
   <div class="dates">
     <div class="labels">
-      <label for="fromMonth">Entre</label>
+      <label for="fromMonth">De</label>
       <output id="fromMonth"></output>
-      <label for="toMonth">et</label>
+      <label for="toMonth">à</label>
       <output id="toMonth"></output>
     </div>
-    <div class="sliders">
+    <div class="sliders" role="group" aria-labelledby="multi-label">
+      <div id="multi-label" class="visually-hidden">Sélecteur des mois de début et fin de période à afficher</div>
       <div class="track"></div>
       <input id="fromSlider" name="fromSlider" type="range" min="0" max="${sliderMaxValue}" step="1" value="0" />
       <input id="toSlider" name="toSlider" type="range" min="0" max="${sliderMaxValue}" step="1" value="${sliderMaxValue}" />
@@ -237,13 +242,17 @@ import { lineString, bbox } from "@turf/turf";
   </div>
 </div>
 `;
+          const filters = div.querySelector(".filters");
+          const fromSlider = div.querySelector("#fromSlider");
+          const toSlider = div.querySelector("#toSlider");
+          const track = div.querySelector(".track");
+
           // Add event listeners to the type checkboxes
           div.querySelectorAll(".types input").forEach((checkbox) => {
-            checkbox.addEventListener("change", (event) => updateActivities());
+            checkbox.addEventListener("change", () => updateActivities());
           });
 
-          // Add event listeners to the month sliders
-          const updateSlidersValues = () => {
+          const updateSlidersLabels = () => {
             let needsUpdate = false;
 
             const newFromMonth = Number.parseInt(div.querySelector("#fromSlider").value, 10);
@@ -253,9 +262,8 @@ import { lineString, bbox } from "@turf/turf";
             div.querySelector("#toMonth").textContent = readableMonths[newToMonth];
 
             // Update the track background
-            const percent1 = (newFromMonth / sliderMaxValue) * 100;
-            const percent2 = (newToMonth / sliderMaxValue) * 100;
-            div.querySelector(".track").style.background = `linear-gradient(to right, var(--grey-300) ${percent1}%, var(--green-700) ${percent1}%, var(--green-700) ${percent2}%, var(--grey-300) ${percent2}%)`;
+            track.style.setProperty("--from", newFromMonth / sliderMaxValue);
+            track.style.setProperty("--to", newToMonth / sliderMaxValue);
 
             if (newFromMonth !== fromMonth) {
               needsUpdate = true;
@@ -270,34 +278,34 @@ import { lineString, bbox } from "@turf/turf";
               updateActivities();
             }
           }
-          div.querySelector("#fromSlider").addEventListener("input", (event) => {
-            const fromValue = Number.parseInt(event.target.value, 10);
-            const toValue = Number.parseInt(div.querySelector("#toSlider").value, 10);
+          fromSlider.addEventListener("input", () => {
+            const fromValue = Number.parseInt(fromSlider.value, 10);
+            const toValue = Number.parseInt(toSlider.value, 10);
             if (fromValue >= toValue) {
-              event.target.value = toValue - 1; // Ensure "from" is always less than "to"
+              fromSlider.value = toValue - 1; // Ensure "from" is always less than "to"
             }
-            updateSlidersValues();
+            updateSlidersLabels();
           });
-          div.querySelector("#toSlider").addEventListener("input", (event) => {
-            const toValue = Number.parseInt(event.target.value, 10)
-            const fromValue = Number.parseInt(div.querySelector("#fromSlider").value, 10);
+          toSlider.addEventListener("input", () => {
+            const fromValue = Number.parseInt(fromSlider.value, 10);
+            const toValue = Number.parseInt(toSlider.value, 10);
             if (toValue <= fromValue) {
-              event.target.value = fromValue + 1; // Ensure "to" is always greater than "from"
+              toSlider.value = fromValue + 1; // Ensure "to" is always greater than "from"
             }
-            updateSlidersValues();
+            updateSlidersLabels();
           });
 
-          updateSlidersValues();
+          updateSlidersLabels();
 
           // Manage filters visibility
           div.querySelector("button").addEventListener("contextmenu", (event) => event.preventDefault());
           div.querySelector("button").addEventListener("click", () => {
             if (areFiltersShown) {
               // Hide the filters
-              document.querySelector(".mapboxgl-ctrl-filters + .filters").style.display = 'none';
+              filters.style.display = 'none';
             } else {
               // Show the filters
-              document.querySelector(".mapboxgl-ctrl-filters + .filters").style.display = 'block';
+              filters.style.display = 'block';
             }
             areFiltersShown = !areFiltersShown;
           });
