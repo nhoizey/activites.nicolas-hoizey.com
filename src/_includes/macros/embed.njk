@@ -17,11 +17,9 @@
         {%- for pathStem in pathStems -%}
           {%- set activity = collection | withPathStem(pathStem) -%}
           {%- if activity -%}
-            <p>Before: {{ activity.filePathStem }}</p>
             {# {%- set photos = activity.filePathStem | getPhotos -%} #}
             {%- set photos = [] -%}
             {%- set photosNumber = photos | length -%}
-            <p>After: {{ activity.filePathStem }}</p>
             <div class="activite" data-path-stem="{{- pathStem -}}" style="--activite-color: {{- TRACE_COLORS_ON_DARK[tracesNumber % COLORS_NUMBER] -}}">
               {{- card(activity.data.type, activity.data.title, activity.url, activity.date, activity.data.distance, activity.data.duration, "list") -}}
               <section class="content">
