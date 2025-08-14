@@ -83,9 +83,10 @@ figure {
 	}
 }
 
+/* Photos dans les contenus */
 p:has(:is(.left, .right)) {
 	max-width: 33%;
-	margin-block-end: var(--gap);
+	margin-block-end: calc(2 * var(--gap));
 }
 
 p:has(.left) {
@@ -96,6 +97,12 @@ p:has(.left) {
 p:has(.right) {
 	float: right;
 	margin-inline-start: var(--gap);
+}
+
+p:has(.center) {
+	max-width: 66%;
+	margin-inline: auto;
+	margin-block: var(--gap);
 }
 
 figcaption {
