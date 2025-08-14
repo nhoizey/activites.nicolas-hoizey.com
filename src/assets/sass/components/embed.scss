@@ -4,6 +4,7 @@
 @use 'card' as *;
 
 .embed {
+  clear: both;
   margin-block: calc(2 * var(--gap));
 
   & + p {

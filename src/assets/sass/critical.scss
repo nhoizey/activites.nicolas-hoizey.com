@@ -83,6 +83,21 @@ figure {
 	}
 }
 
+p:has(:is(.left, .right)) {
+	max-width: 33%;
+	margin-block-end: var(--gap);
+}
+
+p:has(.left) {
+	margin-inline-end: var(--gap);
+	float: left;
+}
+
+p:has(.right) {
+	float: right;
+	margin-inline-start: var(--gap);
+}
+
 figcaption {
 	// http://nocode.in/aligning-text-smartly-in-css/
 	display: inline-block;
