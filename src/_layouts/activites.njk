@@ -46,7 +46,7 @@
         {% for photo in photos %}
           <li>
             <figure{% if photo.geo %} data-longitude="{{ photo.geo.longitude }}" data-latitude="{{ photo.geo.latitude }}"{% endif %}>
-              <img src="{{ photo.src }}" alt="{{ photo.description }}" sizes="27rem" />
+              <a href="{{ photo.src }}" target="_blank"><img src="{{ photo.src }}" alt="{{ photo.description }}" sizes="27rem" /></a>
               <figcaption>
                 <time class="dt-published" datetime="{{ photo.date }}" data-pagefind-sort="date[datetime]">{{ photo.readableTime }}</time>
                 {{ ":" if photo.title }}
