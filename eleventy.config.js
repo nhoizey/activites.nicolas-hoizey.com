@@ -36,6 +36,7 @@ export default async function (eleventyConfig) {
 			},
 			pictureAttributes: {}
 		},
+		fixOrientation: true,
 	}
 
 	if (isProd) {
