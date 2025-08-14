@@ -12,6 +12,10 @@ squadrats:
   - squadratinhos: 58
 ---
 
-Le train n’étant que dans 3h, je n’allais quand même pas poireauter sur le quai de la gare, donc petit tour autour de Tournus.
+Le train n’étant que dans 3h, je n’allais quand même pas poireauter sur le quai de la gare, donc petit tour dans les colines autour de Tournus.
 
-Bin c’est vallonné ! 😅
+Bin c’est vallonné, j'avoue que j'ai mis pied à terre dans plusieurs grosses côtes, je n'étais pas habitué ! 😅
+
+![Vue sur la campagne environnante depuis les hauteurs](/collections/activites/2025/07/28/un-tour-autour-de-tournus/photos/IMG_4006.jpeg){.center}
+
+Et un petit goûter pour finir en beauté et compenser l'effort, c'est toujours un plaisir.

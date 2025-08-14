@@ -10,4 +10,10 @@ squadrats:
   - squadratinhos: 2
 ---
 
-C’est la fête du poulet de Bresse !
+Après avoir laissé passer l'orage, petite balade à Louhans.
+
+C’est la fête du poulet de Bresse à Louhans ce jour-là, les gens font la queue pour acheter du poulet et manger sur des tables installées dans la rue.
+
+![Photo de la distribution de poulet sous un barnum, dans la rue principale de Louhans](/collections/activites/2025/07/26/balade-a-louhans/photos/IMG_3865.jpeg){.center}
+
+Nous avions déjà réservé le dîner dans le restaurant de l'hôtel, il faudra revenir pour goûter le poulet de Bresse préparé localement.
