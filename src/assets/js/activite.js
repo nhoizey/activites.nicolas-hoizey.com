@@ -57,6 +57,25 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
 
 
     map.on('load', () => {
+      map.addSource("trace-white", {
+        type: "geojson",
+        data: geoJsonData,
+      });
+      map.addLayer({
+        'id': 'route-white',
+        'type': 'line',
+        'source': 'trace-white',
+        'layout': {
+          'line-join': 'round',
+          'line-cap': 'round'
+        },
+        'paint': {
+          'line-color': 'white',
+          'line-width': 6,
+          'line-opacity': 1
+        }
+      });
+
       map.addSource("trace", {
         type: "geojson",
         data: geoJsonData,
@@ -71,8 +90,8 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
         },
         'paint': {
           'line-color': TRACE_COLOR,
-          'line-width': 5,
-          'line-opacity': 0.9
+          'line-width': 4,
+          'line-opacity': 1
         }
       });
 
@@ -302,6 +321,7 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
                 resetTime = true;
                 map.setLayoutProperty('route-dyn', 'visibility', 'none');
                 map.setLayoutProperty('route-dyn-head', 'visibility', 'none');
+                map.setLayoutProperty('route-white', 'visibility', 'visible');
                 map.setLayoutProperty('route', 'visibility', 'visible');
 
                 map.fitBounds(bboxCoordinates, {
@@ -390,6 +410,7 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
             if (currentlyPlaying) {
               progress = 0;
 
+              map.setLayoutProperty('route-white', 'visibility', 'none');
               map.setLayoutProperty('route', 'visibility', 'none');
               map.setLayoutProperty('route-dyn', 'visibility', 'visible');
               map.setLayoutProperty('route-dyn-head', 'visibility', 'visible');
@@ -427,6 +448,7 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
 
               map.setLayoutProperty('route-dyn', 'visibility', 'none');
               map.setLayoutProperty('route-dyn-head', 'visibility', 'none');
+              map.setLayoutProperty('route-white', 'visibility', 'visible');
               map.setLayoutProperty('route', 'visibility', 'visible');
             }
 

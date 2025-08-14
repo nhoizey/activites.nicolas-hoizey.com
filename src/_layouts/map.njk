@@ -19,7 +19,7 @@
   window.traces = [];
 
   {% for entry in collections.activites %}
-    {% set trace = entry.filePathStem | getTrace(entry.data.type) %}
+    {% set trace = entry.data.trace %}
     {% if trace %}
     window.traces['{{ entry.date | isoDate }}'] = {{ trace | safe }};
     {% endif %}

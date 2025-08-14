@@ -17,9 +17,7 @@
         {%- for pathStem in pathStems -%}
           {%- set activity = collection | withPathStem(pathStem) -%}
           {%- if activity -%}
-            {# {%- set photos = activity.filePathStem | getPhotos -%} #}
-            {%- set photos = [] -%}
-            {%- set photosNumber = photos | length -%}
+            {%- set photosNumber = activity.data.photos | length -%}
             <div class="activite" data-path-stem="{{- pathStem -}}" style="--activite-color: {{- TRACE_COLORS_ON_DARK[tracesNumber % COLORS_NUMBER] -}}">
               {{- card(activity.data.type, activity.data.title, activity.url, activity.date, activity.data.distance, activity.data.duration, "list") -}}
               <section class="content">
@@ -28,14 +26,13 @@
                 <aside class="links">Vous pouvez <a href="{{- activity.url -}}">voir cette activité en détail</a>{%- if photosNumber == 0 %} et{%- else -%},{%- endif %} interagir avec sa carte{%- if photosNumber > 0 %} et voir {% if photosNumber == 1 %}sa photo{% else %}ses {{ photosNumber }} photos{%- endif -%}{%- endif -%}.</aside>
               </section>
             </div>
-            {%- set trace = activity.filePathStem | getTrace(activity.data.type) -%}
-            {%- if trace -%}
+            {%- if activity.data.trace -%}
               {%- set tracesNumber = tracesNumber + 1 -%}
               <script>
               {%- if tracesNumber == 1 -%}
               window.embeds["{{- embedId -}}"] = {};
               {%- endif -%}
-              window.embeds["{{- embedId -}}"]["{{- pathStem -}}"] = {{- trace | safe -}};
+              window.embeds["{{- embedId -}}"]["{{- pathStem -}}"] = {{- activity.data.trace | safe -}};
               </script>
             {%- endif -%}
           {%- endif -%}

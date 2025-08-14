@@ -18,8 +18,7 @@
     </aside>
     {% endif %}
   </section>
-
-  {% set trace = page.filePathStem | getTrace(type) %}
+  {% set trace = page.data.trace %}
 
   {% if trace %}
     <section class="trace">
@@ -36,7 +35,7 @@
     {%- js "activite" %}{% renderFile "src/assets/js/activite.js" %}{% endjs %}
   {% endif %}
 
-  {% set photos = page.filePathStem | getPhotos %}
+  {% set photos = page.data.photos %}
   {% set photosNumber = photos | length %}
 
   {% if photosNumber > 0 %}
