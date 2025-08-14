@@ -3,31 +3,6 @@
 @use 'variables' as *;
 @use 'card' as *;
 
-.embed:has(.map) {
-  display: grid;
-	grid-template-areas: "cards"
-											"map";
-
-  grid-template-areas: "cards";
-	grid-template-columns: 1fr;
-	align-content: start;
-	gap: var(--gap);
-
-	.cards {
-    grid-area: cards;
-	}
-
-	.map {
-    grid-area: map;
-	}
-
-	@media screen and (min-width: $breakpoint-map) {
-		grid-template-areas: "cards map";
-		grid-template-columns: 2fr 3fr;
-		grid-template-rows: auto;
-	}
-}
-
 .embed {
   margin-block: calc(2 * var(--gap));
 
@@ -54,15 +29,48 @@
   }
 }
 
+.embed:has(.map) {
+  display: grid;
+	grid-template-areas: "map"
+											"cards";
+	grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+	align-content: start;
+	gap: var(--gap);
+
+	.cards {
+    grid-area: cards;
+	}
+
+	.map {
+    grid-area: map;
+	}
+
+	@media screen and (min-width: $breakpoint-map) {
+		grid-template-areas: "cards map";
+		grid-template-columns: 2fr 3fr;
+		grid-template-rows: auto;
+	}
+}
+
 .embed .map {
 	width: 100%;
-	max-height: calc(100dvh - 2 * var(--gap));
 
   position: sticky;
   top: var(--gap);
 
 	background-color: var(--surface-1);
 	border: 1px solid var(--map-border);
+
+  height: calc(50dvh - 2 * var(--gap));
+
+  // Add a bottom shadow to enhance the sticky/floating effect
+  box-shadow: calc(-1 * var(--gap)) 0 var(--surface-0), var(--gap) 0 var(--surface-0), 0 calc(-1 * var(--gap)) 0 var(--surface-0), 0 var(--gap) calc(var(--gap) / 2) calc(var(--gap) / -2) rgb(0, 0, 0, .3);
+
+  @media screen and (min-width: $breakpoint-map) {
+    height: auto;
+  	max-height: calc(100dvh - 2 * var(--gap));
+  }
 }
 
 .mapboxgl-ctrl-top-right {
