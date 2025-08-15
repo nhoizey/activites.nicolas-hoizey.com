@@ -21,6 +21,7 @@ const ICONS = {
   tag: { name: "tag-line", source: "majesticons" },
   share: { name: "share-line", source: "majesticons" },
   duration: { name: "timer-line", source: "majesticons" },
+  recits: { name: "map-marker-path-line", source: "majesticons" },
   search: { name: "search-line", source: "majesticons" },
   statistics: { name: "pie-chart", source: "feather" },
   download: { name: "download", source: "feather" },

@@ -10,3 +10,6 @@ squadrats:
   - squadratinhos: 3
 ---
 
+Ce soir là, nous nous rendons dans le quartier récemment transformé de **Solsiden**, qui était autrefois un port industriel, mais qui est maintenant un lieu animé et tendance avec des restaurants et des bars au bord de l'eau, et un centre commercial.
+
+![Aperçu des anciens bâtiments industriels en briques, transformés en lieu branché](photos/IMG_4290.jpeg){.center}

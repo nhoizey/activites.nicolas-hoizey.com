@@ -1,6 +1,6 @@
 {% macro card(type, title, url, date, distance=0, duration=0, where="page") %}
   <div class="card">
-    {%- if type != "blog" -%}
+    {%- if type != "blog" and type != "recits" -%}
     <div class="type">
       {%- inline_icon type -%}
       <small>{{ type }}</small>

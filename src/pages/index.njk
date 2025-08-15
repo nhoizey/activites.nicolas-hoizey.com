@@ -19,6 +19,15 @@ nav:
   {% endfor %}
 </div>
 
+<h2>Récits</h2>
+
+<div class="recits cards">
+  {% for entry in collections.recits %}
+    {{ card("recits", entry.data.title, entry.url, entry.data.date, where="list") }}
+  {% endfor %}
+</div>
+
+
 <h2>Dans le blog</h2>
 
 <div class="blog cards">

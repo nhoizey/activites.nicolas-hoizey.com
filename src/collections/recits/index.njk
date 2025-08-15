@@ -1,0 +1,16 @@
+---
+layout: pages
+title: Récits
+nav:
+  order: 4
+  icon: recits
+---
+
+{% from "macros/card.njk" import card %}
+{%- css "critical" %}{% renderFile "src/assets/sass/components/card.scss" %}{% endcss %}
+
+<div class="recits cards">
+  {% for entry in collections.recits %}
+    {{ card("recits", entry.data.title, entry.url, entry.data.date, where="list") }}
+  {% endfor %}
+</div>

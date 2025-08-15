@@ -11,4 +11,10 @@ squadrats:
   - squadratinhos: 20
 ---
 
-Première découverte de la ville, très agréable.
+Première découverte de la ville, très jolie avec ses maisons en bois colorées, notamment le long de la **Nidelva**, le fleuve qui traverse la ville.
+
+![Maisons colorées le long de la Nidelva](/collections/activites/2025/08/08/balade-dans-trondheim/photos/IMG_4208.jpeg){.center}
+
+Découverte aussi que la ville est répartie sur des collines, nous avions présumé qu'elle était plate, ça va faire plus d'exercice que prévu… 😅
+
+Ambiance de bord de mer, la ville étant au bord d'un grand fjord, et avec les goélands qui crient en survollant les rues.
