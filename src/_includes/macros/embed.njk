@@ -21,7 +21,7 @@
             <div class="activite" data-path-stem="{{- pathStem -}}" style="--activite-color: {{- TRACE_COLORS_ON_DARK[tracesNumber % COLORS_NUMBER] -}}">
               {{- card(activity.data.type, activity.data.title, activity.url, activity.date, activity.data.distance, activity.data.duration, "list") -}}
               <section class="content">
-                {{- activity.content | safe -}}
+                {{- activity.content | fixPhotoUrls(pathStem) | safe -}}
 
                 <aside class="links">Vous pouvez <a href="{{- activity.url -}}">voir cette activité en détail</a>{%- if photosNumber == 0 %} et{%- else -%},{%- endif %} interagir avec sa carte{%- if photosNumber > 0 %} et voir {% if photosNumber == 1 %}sa photo{% else %}ses {{ photosNumber }} photos{%- endif -%}{%- endif -%}.</aside>
               </section>
