@@ -19,7 +19,7 @@ Itinéraire très sympa, varié, notamment sur d’anciennes voies ferrées conv
 
 Petite péripétie en route tout de même, quand nous nous retrouvons bloqués par de nombreux arbres tombés sur la piste, à cause d'une tornade qui a traversé le secteur quelques jours plus tôt. Nous avons dû faire un détour par des routes départementales, avec un peu plus de dénivelé.
 
-![Photo d'arbres tombés sur la piste, avec Laurence et Olivier en train de les enjamber avec leurs vélos](/collections/activites/2025/07/26/dijon-tournus-jour-2/photos/IMG_3800.jpeg){.center}
+![Photo d'arbres tombés sur la piste, avec Laurence et Olivier en train de les enjamber avec leurs vélos](photos/IMG_3800.jpeg){.center}
 
 Une fois encore, après que nous soyons arrivés à l'hôtel à Louhans, un gros orage s'est déclenché. Un peu de chance pour nous ! 🤞
 

@@ -16,6 +16,6 @@ Le train n’étant que dans 3h, je n’allais quand même pas poireauter sur le
 
 Bin c’est vallonné, j'avoue que j'ai mis pied à terre dans plusieurs grosses côtes, je n'étais pas habitué ! 😅
 
-![Vue sur la campagne environnante depuis les hauteurs](/collections/activites/2025/07/28/un-tour-autour-de-tournus/photos/IMG_4006.jpeg){.center}
+![Vue sur la campagne environnante depuis les hauteurs](photos/IMG_4006.jpeg){.center}
 
 Et un petit goûter pour finir en beauté et compenser l'effort, c'est toujours un plaisir.

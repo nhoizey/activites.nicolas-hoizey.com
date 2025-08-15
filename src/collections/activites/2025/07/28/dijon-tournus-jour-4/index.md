@@ -18,7 +18,7 @@ Quelques routes de campagne (avec de gros semi-remorques qui roulent trop vite �
 
 Une super pause café à mi-parcours, au bar « le P'tit vélo » de Gigny-sur-Saône, parfait pour une petite pose pendant une randonnée à vélo. Le propriétaire a même des jumelles à disposition pour observer les cigognes qui nichent dans les arbres sur la rive en face.
 
-![Photo du bar « le P'tit vélo », avec un petit vélo pour enfant utilisé comme enseigne](/collections/activites/2025/07/28/dijon-tournus-jour-4/photos/IMG_3973.jpeg){.center}
+![Photo du bar « le P'tit vélo », avec un petit vélo pour enfant utilisé comme enseigne](photos/IMG_3973.jpeg){.center}
 
 Et une dernière partie très roulante, toujours en bord de Saône, avant une petite côte assassine (relativement) pour monter jusqu’à la gare.
 

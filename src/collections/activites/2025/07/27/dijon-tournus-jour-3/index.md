@@ -15,10 +15,10 @@ squadrats:
 
 Étape tranquille sur la voie cyclable empruntant le chemin de l’ancienne voie ferrée sur la suite de [la Voie Bressane](https://www.jura.fr/veloroutes-et-voies-vertes/veloroutes-et-voies-vertes/le-grand-c/la-voie-bressane/), et un peu de petites routes de campagne vallonnées.
 
-![En vélo sur la Voie Bressane](/collections/activites/2025/07/27/dijon-tournus-jour-3/photos/IMG_3885.jpeg){.center}
+![En vélo sur la Voie Bressane](photos/IMG_3885.jpeg){.center}
 
 Petit couac vers la fin quand j’ai tordu l’obus de la valve de mon pneu arrière en voulant le regonfler sur une borne publique d’entretien de vélo. 😱
 
-![Photo de l'obus tordu sur la valve de mon pneu](/collections/activites/2025/07/27/dijon-tournus-jour-3/photos/IMG_3893.jpeg){.center}
+![Photo de l'obus tordu sur la valve de mon pneu](photos/IMG_3893.jpeg){.center}
 
 Du coup j’ai perdu un peu de pression, mais j’ai continué comme ça pour ne pas risquer que ça empire. Plus qu’une vingtaine de kilomètres à faire le lendemain avant le retour à la maison, je verrai ensuite.

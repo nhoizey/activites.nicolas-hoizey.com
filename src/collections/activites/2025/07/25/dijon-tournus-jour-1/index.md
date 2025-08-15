@@ -17,7 +17,7 @@ Première étape entre Dijon et Dole sous forme de mise en jambes, avec l'immens
 
 Un arrêt sympa pour le déjeuner en bord de Saône à Saint-Jean-de-Losne, avec une formule « Pizz'A Vélo » astucieuse :
 
-![](/collections/activites/2025/07/25/dijon-tournus-jour-1/photos/IMG_3717.jpeg){.center}
+![](photos/IMG_3717.jpeg){.center}
 
 Un peu plus tard, arrivés sur le canal du Rhône au Rhin, une petite pose glace et remplissage des gourdes s'impose.
 

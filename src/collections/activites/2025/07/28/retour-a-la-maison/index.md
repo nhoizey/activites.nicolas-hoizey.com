@@ -13,7 +13,7 @@ Quand on a un vélo, une bonne météo, les bords de Seine, et la belle lumière
 
 J'ai donc décidé de prolonger un peu cette escapade à vélo, et de rentrer à la maison en pédalant, sur une trace [déjà testée](/activites/2025/07/19/reconnaissance-a-la-gare-de-bercy-en-passant-par-la-marne/) le long de la Seine.
 
-![Vue sur la Seine](/collections/activites/2025/07/28/retour-a-la-maison/photos/IMG_4037.jpeg){.center}
+![Vue sur la Seine](photos/IMG_4037.jpeg){.center}
 
 Petit bonus, vidéo accélérée de ce trajet, soit presque une heure en juste un peu plus de 3 minutes :
 

@@ -15,4 +15,4 @@ J'ai découvert Dole, une très jolie ville avec un grand patrimoine historique,
 
 Le clou du spectacle est la partie basse de la ville, avec la « petite Venise jurassienne », autour du canal des Tanneurs, un ancien bras du Doubs. Splendide !
 
-![Photo du canal des Tanneurs à Dole](/collections/activites/2025/07/25/balade-dans-dole/photos/IMG_3772.jpeg){.center}
+![Photo du canal des Tanneurs à Dole](photos/IMG_3772.jpeg){.center}
