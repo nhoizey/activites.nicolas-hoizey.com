@@ -34,8 +34,10 @@ const content = `---
 title: ${argv.title}
 date: ${argv.date}
 type:
+score:
 duration:
 distance:
+elevation:
 tags: []
 strava:
 komoot:
