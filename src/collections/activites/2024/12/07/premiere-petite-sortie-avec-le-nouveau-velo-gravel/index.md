@@ -15,6 +15,7 @@ squadrats:
 ---
 
 Notes pour plus tard :
+
 - les mitaines, ça suffit pas pour l’hiver
 - la sous-couche sans manches, ça ne tient pas chaud aux bras
 - le casque bien ventilé ne tient pas non plus la tête aux chaud
