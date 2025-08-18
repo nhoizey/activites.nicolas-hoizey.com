@@ -1,6 +1,6 @@
 ---
 title: Victoire en double ! 💪
-date: 2024-10-20 11:14:00 +01:00
+date: 2024-10-20 11:14:00 +02:00
 type: tennis
 score: 6/3 3/6 11/9
 duration: 1:37:59

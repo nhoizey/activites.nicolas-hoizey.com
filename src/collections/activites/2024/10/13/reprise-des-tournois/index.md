@@ -1,6 +1,6 @@
 ---
 title: Reprise des tournois
-date: 2024-10-13 11:17:00 +01:00
+date: 2024-10-13 11:17:00 +02:00
 type: tennis
 score: 0/6 2/6
 duration: 1:24:44

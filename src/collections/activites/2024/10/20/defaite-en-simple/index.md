@@ -1,6 +1,6 @@
 ---
 title: Défaite en simple
-date: 2024-10-20 9:10:00 +01:00
+date: 2024-10-20 9:10:00 +02:00
 type: tennis
 score: 2/6 2/6
 duration: 1:41:03
