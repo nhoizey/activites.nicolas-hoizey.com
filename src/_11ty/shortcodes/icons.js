@@ -66,6 +66,14 @@ export const inline_icon = (icon) => {
     inlineSvg = inlineSvg.replace(/stroke-linecap="[^"]+"/g, "");
     inlineSvg = inlineSvg.replace(/stroke-linejoin="[^"]+"/g, "");
     inlineSvg = inlineSvg.replace(/class="[^"]+"/g, "");
+
+    // Clean Lucide icons
+    inlineSvg = inlineSvg.replace(/<!-- @license lucide-static v[.0-9]+ - ISC -->/g, "");
+
+    // Remove newlines and extra spaces
+    inlineSvg = inlineSvg.replace(/\n+/g, " ");
+    inlineSvg = inlineSvg.replace(/ +/g, " ");
+    inlineSvg = inlineSvg.replace(/> </g, "><");
   }
 
   inlineSvg = inlineSvg.replace(
