@@ -29,6 +29,7 @@ const ICONS = {
   alwaysdata: { name: "alwaysdata", source: "simple" },
   cloudinary: { name: "cloudinary", source: "simple" },
   eleventy: { name: "eleventy", source: "simple" },
+  github: { name: "github", source: "simple" },
   komoot: { name: "komoot", source: "simple" },
   lucide: { name: "lucide", source: "simple" },
   mapbox: { name: "mapbox", source: "simple" },
