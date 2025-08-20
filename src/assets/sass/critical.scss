@@ -135,6 +135,11 @@ svg.icon {
     vector-effect: non-scaling-stroke;
     stroke: currentColor;
   }
+
+	p & {
+		stroke-width: 0;
+		fill: currentColor;
+	}
 }
 
 /* ***********************************************************
