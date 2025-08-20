@@ -26,7 +26,12 @@ const ICONS = {
   statistics: { name: "pie-chart", source: "lucide" },
   tag: { name: "tag", source: "lucide" },
 
+  alwaysdata: { name: "alwaysdata", source: "simple" },
+  cloudinary: { name: "cloudinary", source: "simple" },
+  eleventy: { name: "eleventy", source: "simple" },
   komoot: { name: "komoot", source: "simple" },
+  lucide: { name: "lucide", source: "simple" },
+  mapbox: { name: "mapbox", source: "simple" },
   mastodon: { name: "mastodon", source: "simple" },
   strava: { name: "strava", source: "simple" },
 

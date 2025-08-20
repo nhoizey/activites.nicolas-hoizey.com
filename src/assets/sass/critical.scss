@@ -123,8 +123,8 @@ figcaption {
 }
 
 svg.icon {
-  width: 1.2em;
-  height: 1.2em;
+  width: 1.1em;
+  height: 1.1em;
   vertical-align: sub;
   fill: none;
   stroke-width: 1px;
@@ -146,8 +146,28 @@ svg.icon {
  * Brand icons
  *********************************************************** */
 
+#alwaysdata-icon {
+	fill: #d76092;
+	stroke-width: 0;
+}
+
+#cloudinary-icon {
+	fill: #3448C5;
+	stroke-width: 0;
+}
+
 #komoot-icon {
 	fill: #6AA127;
+	stroke-width: 0;
+}
+
+#mapbox-icon {
+	fill: #1c4892;
+	stroke-width: 0;
+}
+
+#mastodon-icon {
+	fill: #563ACC;
 	stroke-width: 0;
 }
 
