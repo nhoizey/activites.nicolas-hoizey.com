@@ -5,9 +5,41 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
   const MAX_ZOOM_LEVEL = 18;
   const TRACE_COLORS_ON_DARK = ['#8a3ffc', '#33b1ff', '#007d79', '#ff7eb6', '#fa4d56', '#fff1f1', '#6fdc8c', '#4589ff', '#d12771', '#d2a106', '#08bdba', '#bae6ff', '#ba4e00', '#d4bbff'];
 
+  const highligthRoute = (map, activityId, bbox) => {
+    map.setPaintProperty(`route-${activityId}-white`, 'line-width', 8).setPaintProperty(`route-${activityId}-white`, 'line-opacity', 1);
+    map.setPaintProperty(`route-${activityId}`, 'line-width', 6).setPaintProperty(`route-${activityId}`, 'line-opacity', 1);
+    if (bbox !== undefined) {
+      map.fitBounds(bbox, {
+        fitBoundsOptions: {
+          padding: 25
+        },
+        pitch: 0,
+        bearing: 0,
+        duration: 3000,
+        essential: true,
+      });
+    }
+  };
+  const unhighligthRoute = (map, activityId, bbox) => {
+    map.setPaintProperty(`route-${activityId}-white`, 'line-width', 5).setPaintProperty(`route-${activityId}-white`, 'line-opacity', .8);
+    map.setPaintProperty(`route-${activityId}`, 'line-width', 3).setPaintProperty(`route-${activityId}`, 'line-opacity', .8);
+    if (bbox !== undefined) {
+      map.fitBounds(bbox, {
+        fitBoundsOptions: {
+          padding: 25
+        },
+        pitch: 0,
+        bearing: 0,
+        duration: 3000,
+        essential: true,
+      });
+    }
+  };
+
   // Load Mapbox map if necessary
   if (window.embeds !== undefined) {
     for (const [embedId, embedData] of Object.entries(window.embeds)) {
+      const embed = window.document.querySelector(`[data-embed-id="${embedId}"]`);
       const mapElementId = `map-${embedId}`;
       const mapElement = window.document.querySelector(`#${mapElementId}`);
 
@@ -16,7 +48,7 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
       for (const [activityId, geoJsonData] of Object.entries(embedData)) {
         allCoordinates = [...allCoordinates, ...geoJsonData.features[0].geometry.coordinates];
       }
-      const bboxCoordinates = bbox(lineString(allCoordinates));
+      const embedBbox = bbox(lineString(allCoordinates));
 
       if (mapElement) {
         mapboxgl.accessToken = window.MAPBOX_ACCESS_TOKEN;
@@ -30,7 +62,7 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
             }
           },
           projection: "globe",
-          bounds: bboxCoordinates,
+          bounds: embedBbox,
           fitBoundsOptions: {
             padding: 50
           },
@@ -45,6 +77,8 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
           let traceIndex = 0;
 
           for (const [activityId, geoJsonData] of Object.entries(embedData)) {
+            const activityBbox = bbox(lineString(geoJsonData.features[0].geometry.coordinates))
+
             map.addSource(`trace-${activityId}-white`, {
               type: "geojson",
               data: geoJsonData,
@@ -59,8 +93,8 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
               },
               'paint': {
                 'line-color': 'white',
-                'line-width': 6,
-                'line-opacity': 1,
+                'line-width': 5,
+                'line-opacity': .8,
               }
             });
 
@@ -78,9 +112,31 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
               },
               'paint': {
                 'line-color': TRACE_COLORS_ON_DARK[traceIndex % TRACE_COLORS_ON_DARK.length],
-                'line-width': 4,
-                'line-opacity': 1,
+                'line-width': 3,
+                'line-opacity': .8,
               }
+            });
+
+            const activity = embed.querySelector(`[data-activity-id="${activityId}"]`);
+
+            // Add interactivity on the routes on the map
+            map.on('mouseenter', `route-${activityId}`, () => {
+              highligthRoute(map, activityId);
+            });
+            map.on('mouseleave', `route-${activityId}`, () => {
+              unhighligthRoute(map, activityId);
+            });
+            map.on('click', `route-${activityId}`, () => {
+              highligthRoute(map, activityId, activityBbox);
+              activity.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+
+            // Add interactivity on the activities in the list
+            activity.addEventListener("mouseenter", () => {
+              highligthRoute(map, activityId, activityBbox);
+            });
+            activity.addEventListener("mouseleave", () => {
+              unhighligthRoute(map, activityId, embedBbox);
             });
 
             traceIndex++;
@@ -96,38 +152,8 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
 
           // https://docs.mapbox.com/mapbox-gl-js/example/navigation-scale/
           map.addControl(new mapboxgl.ScaleControl());
-
-          // window.document.querySelectorAll("ul.activites a").forEach((getElementById){     //   const isoDate = activity.querySelector("time").getAttribute("datetime");
-          //   if (isoDate in geoJsonDatas) {
-          //     activity.addEventListener("mouseenter", (event) => {
-          //       map.setPaintProperty(`route-${isoDate}`, 'line-opacity', 1).setPaintProperty(`route-${isoDate}`, 'line-width', 5);
-          //       map.fitBounds(bbox(lineString(geoJsonDatas[isoDate].features[0].geometry.coordinates)), {
-          //         fitBoundsOptions: {
-          //           padding: 25
-          //         },
-          //         pitch: 0,
-          //         bearing: 0,
-          //         duration: 3000,
-          //         essential: true,
-          //       });
-          //     });
-          //     activity.addEventListener("mouseleave", (event) => {
-          //       map.setPaintProperty(`route-${isoDate}`, 'line-opacity', .7).setPaintProperty(`route-${isoDate}`, 'line-width', 2);
-          //       map.fitBounds(bboxCoordinates, {
-          //         fitBoundsOptions: {
-          //           padding: 25
-          //         },
-          //         pitch: 0,
-          //         bearing: 0,
-          //         duration: 2000,
-          //         essential: true,
-          //       });
-          //     });
-          //   }
-          // });
         });
       }
-
     }
   }
 })(window);
