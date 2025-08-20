@@ -3,7 +3,7 @@ import path from "node:path";
 import { sharedSlugify } from '../../../node_modules/eleventy-plugin-pack11ty/_11ty/utils/slugify.js';
 
 const ICONS_FOLDERS = {
-  feather: "node_modules/feather-icons/dist/icons/",
+  lucide: "node_modules/lucide-static/icons/",
   majesticons: "node_modules/majesticons/line/",
   simple: "node_modules/simple-icons/icons/",
   local: "src/assets/svg/",
@@ -23,15 +23,16 @@ const ICONS = {
   duration: { name: "timer-line", source: "majesticons" },
   recits: { name: "map-marker-path-line", source: "majesticons" },
   search: { name: "search-line", source: "majesticons" },
-  statistics: { name: "pie-chart", source: "feather" },
-  download: { name: "download", source: "feather" },
-  feeds: { name: "rss", source: "feather" },
+  statistics: { name: "pie-chart", source: "lucide" },
+  download: { name: "download", source: "lucide" },
+  feeds: { name: "rss", source: "lucide" },
   komoot: { name: "komoot", source: "simple" },
   mastodon: { name: "mastodon", source: "simple" },
   strava: { name: "strava", source: "simple" },
 
   velo: { name: "velo", source: "local" }, // https://www.svgrepo.com/svg/509755/bicycle MIT
   gravel: { name: "gravel", source: "local" }, // https://www.svgrepo.com/svg/509755/bicycle MIT
+  vtt: { name: "vtt", source: "local" }, // https://www.svgrepo.com/svg/509755/bicycle MIT
   tennis: { name: "tennis", source: "local" }, // https://www.svgrepo.com/svg/308122/tennis-person-play-sport CC0
   padel: { name: "padel", source: "local" }, // https://www.svgrepo.com/svg/308122/tennis-person-play-sport CC0
   marche: { name: "marche", source: "local" }, // https://www.svgrepo.com/svg/308152/walking-person-go-walk-move
