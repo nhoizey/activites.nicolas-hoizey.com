@@ -14,10 +14,11 @@ import { lineString, bbox } from "@turf/turf";
   const TRACE_COLORS_BY_TYPE = {
     gravel: '#d12771',
     vélo: '#ee80af',
+    VTT: '#de5590',
     marche: '#08bdba',
     tennis: '#8a3ffc',
     padel: '#a36df4ff',
-    'ski alpin': '#4589ff'
+    'ski alpin': '#4589ff',
   };
 
   const geoJsonDatas = window.traces;
@@ -46,7 +47,8 @@ import { lineString, bbox } from "@turf/turf";
   });
   const sliderMaxValue = sortedMonths.length - 1;
 
-  const shownTypes = Array.from(new Set(window.types).intersection(allTypes));
+  const shownTypes = Array.from(allTypes.intersection(new Set(window.types)));
+  shownTypes.sort((a, b) => window.types.indexOf(a) - window.types.indexOf(b));
 
   if (mapElement) {
     mapboxgl.accessToken = window.MAPBOX_ACCESS_TOKEN;
