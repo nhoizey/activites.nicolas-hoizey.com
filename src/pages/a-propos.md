@@ -4,7 +4,7 @@ title: À propos
 
 Je m'appelle Nicolas Hoizey.
 
-J'ai [lancé ce site le 4 juillet 2025](/blog/2025/07/04/independance-day/) pour partager mes activités sportives, pour gagner en indépendance par rapport à Strava, Komoot et autres services en ligne.
+J'ai [lancé ce site le 4 juillet 2025](/blog/2025/07/04/independance-day/) pour partager mes activités sportives, pour gagner en indépendance par rapport à {% inline_icon 'strava' %}&nbsp;[Strava](https://www.strava.com/), {% inline_icon 'komoot' %}&nbsp;[Komoot](https://www.komoot.com/fr-fr) et autres services en ligne.
 
 Pour l'instant, je continuerai à utiliser ces services et d'autres, mais je veux pouvoir ne plus en dépendre, en publiant mes activités ici.
 
