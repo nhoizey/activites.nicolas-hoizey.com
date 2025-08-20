@@ -15,7 +15,7 @@ export default async function (eleventyConfig) {
 		minifyHtml: isProd,
 		markdown: {
 			firstLevel: 2,
-			containers: ["success", "warning", "error"],
+			containers: ["info", "success", "warning", "error"],
 		},
 		passthroughCopyGlob: "**/*.{jpg,jpeg,png,gif,webp,avif,svg,geojson,gpx}"
 	};
