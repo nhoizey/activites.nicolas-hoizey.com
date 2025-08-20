@@ -12,7 +12,7 @@ permalink: "/activites/{{ type | slugify }}/"
 {%- css "critical" %}{% renderFile "src/assets/sass/components/filters.scss" %}{% endcss %}
 
 <ul class="filtres">
-  <li><a href="/activites/">tout</a></li>
+  <li><a href="/activites/">toutes</a></li>
   {% for typeItem in collections.types %}
     {% if typeItem == type %}
       <li class="actif"><span>{% inline_icon typeItem %} {{ typeItem | safe }}</span></li>

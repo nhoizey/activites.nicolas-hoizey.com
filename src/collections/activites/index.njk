@@ -9,7 +9,7 @@ nav:
 {%- css "critical" %}{% renderFile "src/assets/sass/components/filters.scss" %}{% endcss %}
 
 <ul class="filtres">
-  <li class="actif"><span>tout</span></li>
+  <li class="actif"><span>toutes</span></li>
   {% for typeItem in collections.types %}
     <li><a href="/activites/{{ typeItem | slugify }}/">{% inline_icon typeItem %} {{ typeItem | safe }}</a></li>
   {% endfor %}
