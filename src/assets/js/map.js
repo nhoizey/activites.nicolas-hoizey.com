@@ -17,7 +17,8 @@ import { lineString, bbox } from "@turf/turf";
     VTT: '#de5590',
     marche: '#08bdba',
     tennis: '#8a3ffc',
-    padel: '#a36df4ff',
+    padel: '#a36df4',
+    badminton: '#d4bbff',
     'ski alpin': '#4589ff',
   };
 

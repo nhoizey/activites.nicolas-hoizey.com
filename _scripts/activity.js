@@ -32,7 +32,7 @@ const folder = path.join('./src/collections/activites/', argv.date.replaceAll('-
 const file = path.join(folder, 'index.md');
 const content = `---
 title: ${argv.title}
-date: ${argv.date}
+date: ${argv.date} …:00 +02:00
 type:
 score:
 duration:
