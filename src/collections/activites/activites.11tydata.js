@@ -6,8 +6,19 @@ import utf8 from "utf8";
 import { execSync } from 'node:child_process';
 import togeojson from "@mapbox/togeojson";
 import { DOMParser } from 'xmldom'
+import { z } from "zod";
+import { fromZodError } from 'zod-validation-error';
 
 export default {
+  eleventyDataSchema: (data) => {
+    const result = z.object({
+      draft: z.boolean().or(z.undefined()),
+    }).safeParse(data);
+
+    if (result.error) {
+      throw fromZodError(result.error);
+    }
+  },
   eleventyComputed: {
     photos: async (data) => {
       if (!data.page.filePathStem.match(/^\/collections\/activites\/[0-9]{4}/)) {

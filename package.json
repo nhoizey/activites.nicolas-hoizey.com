@@ -59,6 +59,8 @@
 		"simple-icons": "^15.9.0",
 		"utf8": "^3.0.0",
 		"xmldom": "^0.6.0",
-		"yargs": "^18.0.0"
+		"yargs": "^18.0.0",
+		"zod": "^4.0.17",
+		"zod-validation-error": "^4.0.1"
 	}
 }
