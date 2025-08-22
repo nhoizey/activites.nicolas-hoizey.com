@@ -41,7 +41,6 @@ export default async function (eleventyConfig) {
 	}
 
 	if (isProd && process.env.CLOUDINARY_CLOUDNAME !== undefined) {
-		console.log(process.env.CLOUDINARY_CLOUDNAME);
 		imageOptions.urlFormat = ({ hash, src, width, format }) => {
 			return `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUDNAME}/image/fetch/q_auto,f_auto/w_${width}/https://activites.nicolas-hoizey.com/${src.replace(/^src\//, "").replace(/^collections\//, "")}`;
 		};
