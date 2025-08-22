@@ -1,4 +1,5 @@
-import path from "node:path";
+// biome-ignore lint/correctness/noUnusedImports: dotenv
+import { } from "dotenv/config";
 
 import eleventyPluginPack11ty from "eleventy-plugin-pack11ty";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
@@ -39,9 +40,10 @@ export default async function (eleventyConfig) {
 		fixOrientation: true,
 	}
 
-	if (isProd) {
+	if (isProd && process.env.CLOUDINARY_CLOUDNAME !== undefined) {
+		console.log(process.env.CLOUDINARY_CLOUDNAME);
 		imageOptions.urlFormat = ({ hash, src, width, format }) => {
-			return `https://res.cloudinary.com/nho/image/fetch/q_auto,f_auto/w_${width}/https://activites.nicolas-hoizey.com/${src.replace(/^src\//, "").replace(/^collections\//, "")}`;
+			return `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUDNAME}/image/fetch/q_auto,f_auto/w_${width}/https://activites.nicolas-hoizey.com/${src.replace(/^src\//, "").replace(/^collections\//, "")}`;
 		};
 	}
 

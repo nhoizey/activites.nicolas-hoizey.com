@@ -1,3 +1,6 @@
+// biome-ignore lint/correctness/noUnusedImports: dotenv
+import { } from "dotenv/config";
+
 import getShareImage from "@jlengstorf/get-share-image";
 
 export const ogImage = (title) => {
@@ -5,7 +8,7 @@ export const ogImage = (title) => {
 		? getShareImage({
 				imageWidth: 1200,
 				imageHeight: 630,
-				cloudName: "nho",
+			cloudName: process.env.CLOUDINARY_CLOUDNAME,
 			imagePublicID: "resources/activites-opengraph-background",
 			titleFont: "Roboto",
 			textAreaWidth: 900,
