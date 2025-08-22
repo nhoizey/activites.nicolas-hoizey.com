@@ -4,6 +4,8 @@ import { } from "dotenv/config";
 import eleventyPluginPack11ty from "eleventy-plugin-pack11ty";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 
+import { colorsOnDark, colorsByType } from './src/_data/colors.js';
+
 const isProd = process.env.ELEVENTY_RUN_MODE === "build";
 
 export default async function (eleventyConfig) {
@@ -56,6 +58,9 @@ export default async function (eleventyConfig) {
 	eleventyConfig.setQuietMode(true);
 
 	eleventyConfig.setWatchJavaScriptDependencies(false);
+
+	eleventyConfig.addNunjucksGlobal("colorsOnDark", colorsOnDark);
+	eleventyConfig.addNunjucksGlobal("colorsByType", colorsByType);
 
 	return {
 		templateFormats: ["md", "njk"],

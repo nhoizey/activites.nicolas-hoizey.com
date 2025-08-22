@@ -1,5 +1,6 @@
 import mapboxgl from "mapbox-gl/dist/mapbox-gl.js";
 import { lineString, bbox } from "@turf/turf";
+import { colorsOnDark, colorsByType } from '../../_data/colors.js';
 
 (async (window) => {
   // Load Mapbox map if necessary
@@ -7,20 +8,6 @@ import { lineString, bbox } from "@turf/turf";
   const mapElement = window.document.getElementById(mapElementId);
 
   const MAX_ZOOM_LEVEL = 18;
-
-  // https://carbondesignsystem.com/data-visualization/color-palettes/
-  // const TRACE_COLORS_ON_LIGHT = ['#6929c4', '#1192e8', '#005d5d', '#9f1853', '#9f1853', '#570408', '#198038', '#002d9c', '#ee538b', '#b28600', '#009d9a', '#012749', '#8a3800', '#a56eff'];
-  const TRACE_COLORS_ON_DARK = ['#8a3ffc', '#33b1ff', '#007d79', '#ff7eb6', '#fa4d56', '#fff1f1', '#6fdc8c', '#4589ff', '#d12771', '#d2a106', '#08bdba', '#bae6ff', '#ba4e00', '#d4bbff'];
-  const TRACE_COLORS_BY_TYPE = {
-    gravel: '#d12771',
-    vélo: '#ee80af',
-    VTT: '#de5590',
-    marche: '#08bdba',
-    tennis: '#8a3ffc',
-    padel: '#a36df4',
-    badminton: '#d4bbff',
-    'ski alpin': '#4589ff',
-  };
 
   const geoJsonDatas = window.traces;
   let allCoordinates = [];
@@ -94,7 +81,7 @@ import { lineString, bbox } from "@turf/turf";
             'line-cap': 'round'
           },
           'paint': {
-            'line-color': TRACE_COLORS_BY_TYPE[geoJsonData.features[0].properties.type] || TRACE_COLORS_ON_DARK[traceIndex % TRACE_COLORS_ON_DARK.length],
+            'line-color': colorsByType[geoJsonData.features[0].properties.type] || colorsOnDark[traceIndex % colorsOnDark.length],
             'line-width': [
               'interpolate',
               ['linear'],
@@ -224,7 +211,7 @@ import { lineString, bbox } from "@turf/turf";
       <label for="${type}">
         <input type="checkbox" id="${type}" checked />
         <span class="name">${type}</span>
-        <span class="color" style="background-color: ${TRACE_COLORS_BY_TYPE[type]}"></span>
+        <span class="color" style="background-color: ${colorsByType[type]}"></span>
       </label>
     </li>`).join('')}
   </ul>

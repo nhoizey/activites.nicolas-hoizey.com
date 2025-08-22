@@ -1,9 +1,9 @@
 import mapboxgl from "mapbox-gl/dist/mapbox-gl.js";
 import { lineString, bbox, bearing, point } from "@turf/turf";
+import { colorsOnDark } from '../../_data/colors.js';
 
 (async (window) => {
   const MAX_ZOOM_LEVEL = 18;
-  const TRACE_COLORS_ON_DARK = ['#8a3ffc', '#33b1ff', '#007d79', '#ff7eb6', '#fa4d56', '#fff1f1', '#6fdc8c', '#4589ff', '#d12771', '#d2a106', '#08bdba', '#bae6ff', '#ba4e00', '#d4bbff'];
 
   const highligthRoute = (map, activityId, bbox) => {
     map.setPaintProperty(`route-${activityId}-white`, 'line-width', 8).setPaintProperty(`route-${activityId}-white`, 'line-opacity', 1);
@@ -111,7 +111,7 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
                 'line-cap': 'round'
               },
               'paint': {
-                'line-color': TRACE_COLORS_ON_DARK[traceIndex % TRACE_COLORS_ON_DARK.length],
+                'line-color': colorsOnDark[traceIndex % colorsOnDark.length],
                 'line-width': 3,
                 'line-opacity': .8,
               }
