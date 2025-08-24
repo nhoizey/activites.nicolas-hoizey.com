@@ -13,13 +13,11 @@ squadrats:
   - yardinho: 57
 ---
 
-Une dernière sortie pour clore les vacances estivales.
+Une dernière sortie gravel pour clore les vacances estivales.
 
 Encore de jolis coins découverts en forêt, et des passages sympas dans les villes des alentours, dans la vallée de l’Yerres.
 
-J'ai encore vu pas mal de chiens qui promenaient leurs maîtres.
-
-L’occasion aussi de voir des oies et ragondins en bord d’Yerres.
+J'ai vu pas mal de chiens qui promenaient leurs maîtres. L’occasion aussi de voir des oies et ragondins en bord d’Yerres.
 
 Et juste après, une belle côte à 14% pour revenir ! 😱
 
