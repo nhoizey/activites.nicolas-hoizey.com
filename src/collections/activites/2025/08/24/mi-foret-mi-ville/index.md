@@ -7,7 +7,7 @@ distance: 20.52
 elevation: 115
 tags: []
 strava: https://www.strava.com/activities/15573902240
-komoot:
+komoot: https://www.komoot.com/fr-fr/tour/2525127024
 squadrats:
   - squadratinhos: 36
   - yardinho: 57
