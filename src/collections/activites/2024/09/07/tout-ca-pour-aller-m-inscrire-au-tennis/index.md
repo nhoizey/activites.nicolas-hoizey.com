@@ -1,7 +1,7 @@
 ---
 title: Tout ça pour aller m’inscrire au tennis 🤷‍♂️
 date: 2024-09-07 16:04:00 +02:00
-type: VTT
+type: vtt
 duration: 1:47:49
 distance: 23.92
 elevation: 113
