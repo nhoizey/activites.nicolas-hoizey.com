@@ -49,7 +49,7 @@ let duration = activityStats.querySelector('li:has([data-glossary-term="definiti
 if (duration.split(':').length === 2) {
   duration = `00:${duration}`;
 }
-const elevation = activityStats.querySelector('strong:has(abbr[title="mètres"])')?.childNodes[0].nodeValue.trim() || '0';
+const elevation = activityStats.querySelector('strong:has(abbr[title="mètres"])')?.childNodes[0].nodeValue.trim().replace(/\s+/g, "") || '0';
 
 let content = `---
 title: ${title}
