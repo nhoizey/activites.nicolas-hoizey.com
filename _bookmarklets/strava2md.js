@@ -72,8 +72,14 @@ elevation: ${elevation}`;
 
 content += `
 tags: []
-strava: ${stravaUrl}
-komoot:
+strava: ${stravaUrl}`;
+
+if (!['tennis', 'padel', 'badminton'].includes(type)) {
+  content += `
+komoot:`;
+}
+
+content += `
 squadrats:
   - url:
   - squadrats: 0
