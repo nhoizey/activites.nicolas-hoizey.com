@@ -31,6 +31,8 @@ Un script `./_scripts/activity.js` permet d'ajouter une nouvelle activité en cr
 
 Il se lance avec la commande `./_scripts/activity.js "Titre de l'activité" YYYY-MM-DD`. Si la date n'est pas fournie, la date du jour est utilisée.
 
+Un bookmarklet peut être ajouté au navigateur sur la page `/strava2md.html`. En étant sur la page d'une activité Strava, il va récupérer un maximum d'informations et générer dans le presse-papier le contenu du fichier Markdown, qu'il suffit de coller à la place de celui par défaut.
+
 #### Données d'activité
 
 Le fichier de trace GPX doit être placé dans le sous dossier `sources`, avec le nom `original.gpx`.

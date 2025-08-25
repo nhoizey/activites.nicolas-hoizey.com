@@ -42,6 +42,7 @@ tags: []
 strava:
 komoot:
 squadrats:
+  - url:
   - squadrats: 0
   - yard: 0
   - übersquadrat: 0
