@@ -9,30 +9,30 @@
   {%- css "critical" %}{% renderFile "src/assets/sass/components/card.scss" %}{% endcss %}
 
   {{ card(type, title, url, date, distance, duration, "page") }}
-  <section class="description">
-    {{ content | safe }}
+  <section class="content">
+    <div class="description">
+      {{ content | safe }}
 
-    {% if strava or komoot %}
-    <aside class="links">
-      <p>Vous pouvez retrouver cette activité sur {% if strava %}{% inline_icon 'strava' %}&nbsp;<a href="{{ strava }}">Strava</a>{% endif %}{% if strava and komoot %} et {% endif %}{% if komoot %} {% inline_icon 'komoot' %}&nbsp;<a href="{{ komoot }}">Komoot</a>{% endif %}.</p>
-    </aside>
-    {% endif %}
-  </section>
+      {% if strava or komoot %}
+      <aside class="links">
+        <p>Vous pouvez retrouver cette activité sur {% if strava %}{% inline_icon 'strava' %}&nbsp;<a href="{{ strava }}">Strava</a>{% endif %}{% if strava and komoot %} et {% endif %}{% if komoot %} {% inline_icon 'komoot' %}&nbsp;<a href="{{ komoot }}">Komoot</a>{% endif %}.</p>
+      </aside>
+      {% endif %}
+    </div>
 
-  {% if trace %}
-    <section class="trace">
-      <div id="map"></div>
+    {% if trace %}
+      <div id="map" class="map"></div>
       <noscript>
         <p>JavaScript doit être activé pour voir cette carte.</p>
       </noscript>
       <script>
       window.trace = {{ trace | safe }};
       </script>
-    </section>
 
-    <script type="module" src="{% getBundleFileUrl "js", "activite" %}"></script>
-    {%- js "activite" %}{% renderFile "src/assets/js/activite.js" %}{% endjs %}
-  {% endif %}
+      <script type="module" src="{% getBundleFileUrl "js", "activite" %}"></script>
+      {%- js "activite" %}{% renderFile "src/assets/js/activite.js" %}{% endjs %}
+    {% endif %}
+  </section>
 
   {% set photosNumber = photos | length %}
 

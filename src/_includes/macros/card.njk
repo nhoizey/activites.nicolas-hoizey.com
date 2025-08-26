@@ -3,7 +3,7 @@
     {%- if type != "blog" and type != "recits" -%}
     <div class="type">
       {%- inline_icon type -%}
-      <small>{{ type }}</small>
+      <span class="label">{{ type }}</span>
     </div>
     {%- endif -%}
     {%- if where=="page" -%}
