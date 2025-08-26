@@ -71,16 +71,15 @@
 	border: 1px solid var(--map-border);
 	border-radius: .5em;
 
-  height: calc(35vh - 2 * var(--gap));
-  height: calc(35dvh - 2 * var(--gap));
-
   // Add a bottom shadow to enhance the sticky/floating effect
   box-shadow: calc(-1 * var(--gap)) 0 var(--surface-0), var(--gap) 0 var(--surface-0), 0 calc(-1 * var(--gap)) 0 var(--surface-0), 0 var(--gap) calc(var(--gap) / 2) calc(var(--gap) / -2) rgb(0, 0, 0, .3);
 
+	height: calc(35vh - 2 * var(--gap));
+	height: calc(35dvh - 2 * var(--gap));
+
   @media screen and (min-width: $breakpoint-map) {
+		height: calc(100vh - ((3 + .8 * 1.5 + 1) * (0.9rem + 0.3vw)) - 5 * var(--gap));
 		height: calc(100dvh - ((3 + .8 * 1.5 + 1) * (0.9rem + 0.3vw)) - 5 * var(--gap));
-  	// max-height: calc(100vh - 2 * var(--gap));
-  	// max-height: calc(100dvh - 2 * var(--gap));
   }
 
 	.mapboxgl-ctrl-top-right {
