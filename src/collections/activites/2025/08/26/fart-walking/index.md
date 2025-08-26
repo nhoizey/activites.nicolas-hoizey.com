@@ -15,3 +15,5 @@ squadrats:
 Ok, j'aurais pu parler de « marche postprandiale » pour faire plus distingué, mais il paraît qu'il faut savoir vivre avec son temps, alors j'adopte [cette tendance Tiktok](https://mapetiterando.fr/conseils/pourquoi-la-marche-du-prout-simpose-comme-votre-nouvel-allie-digestion-et-perte-de-poids/) !
 
 Une balade digestive, donc, l'occasion d'explorer un peu les alentours du bureau. C'est fou comme on ne connaît en général qu'une zone limitée, déterminée par les trajets faits pour rejoindre les moyens de transports et les sources d'alimentation.
+
+J'ai donc notamment eu le plaisir de découvrir le joli square des Batignolles.
