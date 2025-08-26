@@ -65,7 +65,6 @@
 	border: 1px solid var(--map-border);
   border-radius: .5em;
 
-  height: calc(35vh - 2 * var(--gap));
   height: calc(35dvh - 2 * var(--gap));
 
   // Add a bottom shadow to enhance the sticky/floating effect
@@ -73,7 +72,6 @@
 
   @media screen and (min-width: $breakpoint-map) {
     height: auto;
-  	max-height: calc(100vh - 2 * var(--gap));
   	max-height: calc(100dvh - 2 * var(--gap));
   }
 }
