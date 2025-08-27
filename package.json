@@ -35,11 +35,13 @@
 		"build:debug": "DEBUG=Eleventy* npm run build",
 		"lint": "npx @biomejs/biome check --write",
 		"benchmark": "DEBUG=Eleventy:Benchmark* npm run build >benchmark.log 2>&1",
-		"bookmarklet": "bookmarklet --demo _bookmarklets/strava2md.js src/static/strava2md.html"
+		"bookmarklet": "bookmarklet --demo _bookmarklets/strava2md.js src/static/strava2md.html",
+		"deploy": "rsync -azh --info=progress2 --stats ./_site/ nhoizey@ssh-nhoizey.alwaysdata.net:/home/nhoizey/www/activites.nicolas-hoizey.com/_site/"
 	},
 	"devDependencies": {
 		"@11ty/eleventy": "^3.1.2",
 		"@11ty/eleventy-img": "^6.0.4",
+		"@11ty/eleventy-plugin-directory-output": "^1.0.1",
 		"@biomejs/biome": "^2.2.2",
 		"@jlengstorf/get-share-image": "^1.0.2",
 		"@mapbox/togeojson": "^0.16.2",

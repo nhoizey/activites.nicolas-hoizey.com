@@ -3,6 +3,7 @@ import { } from "dotenv/config";
 
 import eleventyPluginPack11ty from "eleventy-plugin-pack11ty";
 import eleventyImage, { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
+import eleventyDirOutputPlugin from "@11ty/eleventy-plugin-directory-output";
 
 import { colorsOnDark, colorsByType } from './src/_data/colors.js';
 
@@ -58,6 +59,9 @@ export default async function (eleventyConfig) {
 
 	eleventyConfig.setDataDeepMerge(true);
 	eleventyConfig.setQuietMode(true);
+
+	// https://www.11ty.dev/docs/plugins/directory-output/
+	eleventyConfig.addPlugin(eleventyDirOutputPlugin);
 
 	eleventyConfig.setWatchJavaScriptDependencies(false);
 
