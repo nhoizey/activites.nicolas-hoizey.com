@@ -2,9 +2,11 @@
 import { } from "dotenv/config";
 
 import eleventyPluginPack11ty from "eleventy-plugin-pack11ty";
-import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
+import eleventyImage, { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 
 import { colorsOnDark, colorsByType } from './src/_data/colors.js';
+
+eleventyImage.concurrency = 1;
 
 const isProd = process.env.ELEVENTY_RUN_MODE === "build";
 
