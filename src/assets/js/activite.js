@@ -25,7 +25,21 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
   //   },
   // ];
 
-  const geoJsonData = window.trace;
+  const getGeojson = async (url) => {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error(error.message);
+      return {};
+    }
+  }
+
+  const geoJsonData = await getGeojson(window.geojsonUrl);
   const coordinates = geoJsonData.features[0].geometry.coordinates;
   const bboxCoordinates = bbox(lineString(coordinates));
 

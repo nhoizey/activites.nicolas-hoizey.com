@@ -8,7 +8,7 @@
   {%- css "critical" %}{% renderFile "src/assets/sass/activite.scss" %}{% endcss %}
   {%- css "critical" %}{% renderFile "src/assets/sass/components/card.scss" %}{% endcss %}
 
-  {{ card(type, title, url, date, distance, duration, "page") }}
+  {{ card(type, title, page.url, date, distance, duration, "page") }}
   <section class="content">
     <div class="description">
       {{ content | safe }}
@@ -26,7 +26,7 @@
         <p>JavaScript doit être activé pour voir cette carte.</p>
       </noscript>
       <script>
-      window.trace = {{ trace | safe }};
+      window.geojsonUrl = "{{ page.url }}trace.geojson";
       </script>
 
       <script type="module" src="{% getBundleFileUrl "js", "activite" %}"></script>
