@@ -57,11 +57,21 @@ export default async function (eleventyConfig) {
 	// General configuration
 	// ------------------------------------------------------------------------
 
+	// eleventyConfig.addPassthroughCopy({ "src/_cache/traces/collections/activites/": "activites/" });
+
+	eleventyConfig.addPassthroughCopy(
+		{ "src/_cache/traces/collections/activites/": "activites/" },
+		{
+			filter: ["**/*.geojson"],
+		},
+	);
+
+
 	eleventyConfig.setDataDeepMerge(true);
 	eleventyConfig.setQuietMode(true);
 
 	// https://www.11ty.dev/docs/plugins/directory-output/
-	eleventyConfig.addPlugin(eleventyDirOutputPlugin);
+	// eleventyConfig.addPlugin(eleventyDirOutputPlugin);
 
 	eleventyConfig.setWatchJavaScriptDependencies(false);
 
