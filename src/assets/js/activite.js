@@ -1,6 +1,7 @@
 import mapboxgl from "mapbox-gl/dist/mapbox-gl.js";
 // import { MapboxStyleSwitcherControl } from "mapbox-gl-style-switcher";
 import { lineString, bbox, bearing, point } from "@turf/turf";
+import { fetchGeojson } from "./fetch-geojson.js";
 
 (async (window) => {
   // Load Mapbox map if necessary
@@ -25,21 +26,7 @@ import { lineString, bbox, bearing, point } from "@turf/turf";
   //   },
   // ];
 
-  const getGeojson = async (url) => {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`Response status: ${response.status}`);
-      }
-
-      return await response.json();
-    } catch (error) {
-      console.error(error.message);
-      return {};
-    }
-  }
-
-  const geoJsonData = await getGeojson(window.geojsonUrl);
+  const geoJsonData = await fetchGeojson(window.geojsonUrl);
   const coordinates = geoJsonData.features[0].geometry.coordinates;
   const bboxCoordinates = bbox(lineString(coordinates));
 
