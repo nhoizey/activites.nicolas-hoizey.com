@@ -16,12 +16,12 @@
     '{{ type }}'{% if not loop.last %},{% endif %}
     {% endfor %}
   ];
-  window.traces = [];
+  window.traces = {};
 
   {% for entry in collections.activites %}
     {% set trace = entry.data.trace %}
     {% if trace %}
-    window.traces['{{ entry.date | isoDate }}'] = {{ trace | safe }};
+    window.traces['{{ entry.date | isoDate }}|{{ entry.data.type }}'] = "{{ entry.url }}trace.geojson";
     {% endif %}
   {% endfor %}
   </script>

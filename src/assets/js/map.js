@@ -1,6 +1,7 @@
 import mapboxgl from "mapbox-gl/dist/mapbox-gl.js";
 import { lineString, bbox } from "@turf/turf";
 import { colorsOnDark, colorsByType } from '../../_data/colors.js';
+import { fetchGeojson } from "./fetch-geojson.js";
 
 (async (window) => {
   // Load Mapbox map if necessary
@@ -15,10 +16,15 @@ import { colorsOnDark, colorsByType } from '../../_data/colors.js';
   const allTypes = new Set();
 
   // Loop through all traces to collect useful data
-  for (const [traceDate, geoJsonData] of Object.entries(geoJsonDatas)) {
+  for (let [traceId, geoJsonData] of Object.entries(geoJsonDatas)) {
+    const [date, type] = traceId.split('|');
+    if (typeof geoJsonData === "string") {
+      geoJsonData = await fetchGeojson(geoJsonData);
+      geoJsonDatas[traceId] = geoJsonData;
+    }
     allCoordinates = [...allCoordinates, ...geoJsonData.features[0].geometry.coordinates];
     allMonths.add(geoJsonData.features[0].properties.month);
-    allTypes.add(geoJsonData.features[0].properties.type);
+    allTypes.add(type);
   }
   const bboxCoordinates = bbox(lineString(allCoordinates));
 
