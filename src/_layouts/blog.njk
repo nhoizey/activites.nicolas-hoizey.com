@@ -12,10 +12,10 @@
   </section>
   <script>
   if (window.embeds !== undefined) {
-    let embedMapsScript = document.createElement('script');
-    embedMapsScript.src = "{% getBundleFileUrl "js", "embedMaps" %}";
-    window.document.querySelector("head").appendChild(embedMapsScript);
+    let embedScript = document.createElement('script');
+    embedScript.src = "{% getBundleFileUrl "js", "embed" %}";
+    window.document.querySelector("head").appendChild(embedScript);
   }
   </script>
-  {%- js "embedMaps" %}{% renderFile "src/assets/js/embed-maps.js" %}{% endjs %}
+  {%- js "embed" %}{% renderFile "src/assets/js/embed.js" %}{% endjs %}
 {% endblock %}

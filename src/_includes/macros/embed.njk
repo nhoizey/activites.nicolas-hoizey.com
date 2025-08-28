@@ -31,7 +31,7 @@
               {%- if tracesNumber == 1 -%}
               window.embeds["{{- embedId -}}"] = {};
               {%- endif -%}
-              window.embeds["{{- embedId -}}"]["{{- pathStem -}}"] = {{- activity.data.trace | safe -}};
+              window.embeds["{{- embedId -}}"]["{{- pathStem -}}"] = false;
               </script>
             {%- endif -%}
           {%- endif -%}

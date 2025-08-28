@@ -1,6 +1,7 @@
 import mapboxgl from "mapbox-gl/dist/mapbox-gl.js";
 import { lineString, bbox, bearing, point } from "@turf/turf";
 import { colorsOnDark } from '../../_data/colors.js';
+import { fetchGeojson } from "./fetch-geojson.js";
 
 (async (window) => {
   const MAX_ZOOM_LEVEL = 18;
@@ -45,7 +46,11 @@ import { colorsOnDark } from '../../_data/colors.js';
 
       let allCoordinates = [];
 
-      for (const [activityId, geoJsonData] of Object.entries(embedData)) {
+      for (let [activityId, geoJsonData] of Object.entries(embedData)) {
+        if (geoJsonData === false) {
+          geoJsonData = await fetchGeojson(`/activites/${activityId}trace.geojson`);
+          embedData[activityId] = geoJsonData;
+        }
         allCoordinates = [...allCoordinates, ...geoJsonData.features[0].geometry.coordinates];
       }
       const embedBbox = bbox(lineString(allCoordinates));
