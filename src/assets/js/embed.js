@@ -46,6 +46,7 @@ import { fetchGeojson } from "./fetch-geojson.js";
 
       let allCoordinates = [];
 
+      // TODO: use Promise.all to fetch all traces in parallel
       for (let [activityId, geoJsonData] of Object.entries(embedData)) {
         if (geoJsonData === false) {
           geoJsonData = await fetchGeojson(`/activites/${activityId}trace.geojson`);
