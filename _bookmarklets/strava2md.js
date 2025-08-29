@@ -28,7 +28,7 @@ const contentRoot = window.document.getElementById('heading');
 const activityInfo = contentRoot.querySelector('.details');
 const activityStats = contentRoot.querySelector('.activity-stats');
 
-const stravaType = contentRoot.querySelector('header .title').childNodes[2].nodeValue.replace(/(\n|–)/g, "").trim();
+const stravaType = contentRoot.querySelector('header .title').childNodes[2].nodeValue.replace(/\n+/g, "").trim().split('–')[1].trim();
 let type = stravaType.toLowerCase();
 
 const timeAndDate = activityInfo.querySelector('time').textContent.trim().split(',');

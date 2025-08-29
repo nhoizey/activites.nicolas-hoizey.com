@@ -6,8 +6,8 @@ export const colorsOnLight = ['#6929c4', '#1192e8', '#005d5d', '#9f1853', '#9f18
 export const colorsOnDark = ['#8a3ffc', '#33b1ff', '#007d79', '#ff7eb6', '#fa4d56', '#fff1f1', '#6fdc8c', '#4589ff', '#d12771', '#d2a106', '#08bdba', '#bae6ff', '#ba4e00', '#d4bbff'];
 
 export const colorsByType = {
-  gravel: '#d12771',
   vélo: '#ee80af',
+  gravel: '#d12771',
   vtt: '#de5590',
   marche: '#08bdba',
   tennis: '#8a3ffc',
