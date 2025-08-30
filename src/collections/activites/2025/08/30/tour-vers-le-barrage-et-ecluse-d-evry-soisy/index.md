@@ -20,9 +20,13 @@ Traversée de la forêt de Sénart pour aller vers Ris-Orangis, de l'autre côt�
 
 Retour sur l'autre rive de la Seine par le barrage et écluse d'Évry-Soisy, comme son nom l'indique entre Évry et Soisy-sur-Seine.
 
+![Selfie avec mon vélo sur la passerelle du barrage](photos/IMG_4887.jpeg){.center}
+
 Parcours de nombreuses rue de Soisy-sur-Seine pour compléter les squadratinhos dans le coin. C'est à flanc du plateau de la Brie, donc alternance de montées et descente, ça fait travailler les jambes. 😅
 
 Et puis évidemment tentative de passage par un « chemin » Komoot sous une ligne à haute tension, 3e mauvaise expérience en la matière ces dernières semaines. Cette semaine, j'ai déjà retiré les 2 autres de OpenStreetMap, mais là le chemin est plus visible, il va falloir mettre d'autres informations.
+
+![Chemin sous la ligne à haute tension, mais pas praticable](photos/IMG_4898.jpeg){.center}
 
 Au passage, nouvelle expérience du confort des pneus tubeless, avec une crevaison immédiatement et automatiquement « soignée ». 😍
 
