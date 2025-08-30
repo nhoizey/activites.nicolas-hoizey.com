@@ -8,6 +8,10 @@ elevation: 57
 tags: []
 strava: https://www.strava.com/activities/9532381017
 komoot: https://www.komoot.com/fr-fr/tour/787543142
+squadrats:
+  - url: https://squadrats.com/activity/9OOnrRTXBhMYeT9pxGS4
+  - squadrats: 1
+  - squadratinhos: 22
 ---
 
 
