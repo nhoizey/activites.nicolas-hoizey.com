@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="GPSBabel - https://www.gpsbabel.org" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:gpxpx="http://www.garmin.com/xmlschemas/PowerExtension/v1" xmlns:gpx_style="http://www.topografix.com/GPX/gpx_style/0/2">
+  <metadata>
+    <name>gps4cam trip started at 2015-05-24 14-16 decoded at 2015-05-25 19-43-03</name>
+    <link href="http://gps4cam.com">
+      <text>gps4cam</text>
+    </link>
+    <time>2025-09-03T22:07:31.189Z</time>
+    <bounds minlat="40.701926231" minlon="-74.017692446" maxlat="40.704100901" maxlon="-74.012628463"/>
+  </metadata>
+  <trk>
+    <name>gps4cam trip started at: 2015-05-24T12:16:26Z</name>
+    <trkseg>
+      <trkpt lat="40.701926231" lon="-74.012628463">
+        <time>2015-05-24T13:57:20Z</time>
+      </trkpt>
+      <trkpt lat="40.702736792" lon="-74.015852672">
+        <time>2015-05-24T14:01:31Z</time>
+      </trkpt>
+      <trkpt lat="40.703581818" lon="-74.016971356">
+        <time>2015-05-24T14:06:33Z</time>
+      </trkpt>
+      <trkpt lat="40.704100901" lon="-74.017461559">
+        <time>2015-05-24T14:11:32Z</time>
+      </trkpt>
+      <trkpt lat="40.703848101" lon="-74.017385857">
+        <time>2015-05-24T14:16:31Z</time>
+      </trkpt>
+      <trkpt lat="40.703820407" lon="-74.017460729">
+        <time>2015-05-24T14:21:32Z</time>
+      </trkpt>
+      <trkpt lat="40.703536107" lon="-74.017692446">
+        <time>2015-05-24T14:26:33Z</time>
+      </trkpt>
+      <trkpt lat="40.703428253" lon="-74.017175810">
+        <time>2015-05-24T14:31:31Z</time>
+      </trkpt>
+      <trkpt lat="40.702381928" lon="-74.015579534">
+        <time>2015-05-24T14:36:34Z</time>
+      </trkpt>
+      <trkpt lat="40.701938452" lon="-74.016423535">
+        <time>2015-05-24T14:41:33Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

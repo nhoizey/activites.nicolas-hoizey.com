@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="GPSBabel - https://www.gpsbabel.org" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:gpxpx="http://www.garmin.com/xmlschemas/PowerExtension/v1" xmlns:gpx_style="http://www.topografix.com/GPX/gpx_style/0/2">
+  <metadata>
+    <name>gps4cam trip started at 2015-08-08 12-06 decoded at 2015-08-09 01-23-53</name>
+    <link href="http://gps4cam.com">
+      <text>gps4cam</text>
+    </link>
+    <time>2025-09-03T22:07:31.304Z</time>
+    <bounds minlat="22.278179410" minlon="114.159587242" maxlat="22.287815993" maxlon="114.161108584"/>
+  </metadata>
+  <trk>
+    <name>gps4cam trip started at: 2015-08-08T04:06:46Z</name>
+    <trkseg>
+      <trkpt lat="22.278179410" lon="114.160438847">
+        <ele>89.000</ele>
+        <time>2015-08-08T14:56:52Z</time>
+      </trkpt>
+      <trkpt lat="22.279852672" lon="114.161108227">
+        <ele>218.000</ele>
+        <time>2015-08-08T15:01:52Z</time>
+      </trkpt>
+      <trkpt lat="22.281194383" lon="114.160829740">
+        <ele>38.000</ele>
+        <time>2015-08-08T15:06:49Z</time>
+      </trkpt>
+      <trkpt lat="22.284502692" lon="114.159587242">
+        <ele>46.000</ele>
+        <time>2015-08-08T15:11:53Z</time>
+      </trkpt>
+      <trkpt lat="22.286717753" lon="114.160945781">
+        <ele>99.000</ele>
+        <time>2015-08-08T15:17:01Z</time>
+      </trkpt>
+      <trkpt lat="22.287815993" lon="114.161108584">
+        <ele>19.000</ele>
+        <time>2015-08-08T15:21:53Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

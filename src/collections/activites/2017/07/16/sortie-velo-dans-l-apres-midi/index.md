@@ -7,14 +7,6 @@ distance: 25.30
 elevation: 97
 tags: []
 strava: https://www.strava.com/activities/15670724855
-squadrats:
-  - url:
-  - squadrats: 0
-  - yard: 0
-  - übersquadrat: 0
-  - squadratinhos: 0
-  - yardinho: 0
-  - übersquadratinho: 0
 ---
 
 

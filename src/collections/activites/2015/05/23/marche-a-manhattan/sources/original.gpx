@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx creator="gps4cam - http://gps4cam.com" version="1.1" schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd http://www.garmin.com/xmlschemas/PowerExtension/v1 http://www.garmin.com/xmlschemas/PowerExtensionv1.xsd http://www.topografix.com/GPX/gpx_style/0/2 http://www.topografix.com/GPX/gpx_style/0/2/gpx_style.xsd" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:gpxpx="http://www.garmin.com/xmlschemas/PowerExtension/v1" xmlns:gpx_style="http://www.topografix.com/GPX/gpx_style/0/2">
+  <metadata>
+    <name>gps4cam trip started at 2015-05-23 09-44 decoded at 2015-05-24 00-45-45</name>
+    <author>
+      <name>gpx.studio</name>
+      <link href="https://gpx.studio"/>
+    </author>
+    <link href="http://gps4cam.com">
+      <text>gps4cam</text>
+    </link>
+    <time>2015-05-24T04:45:50.000Z</time>
+  </metadata>
+  <trk>
+    <name>gps4cam trip started at: 2015-05-23T13:44:36Z</name>
+    <trkseg>
+      <trkpt lat="40.7641146404" lon="-73.9942575212">
+        <time>2015-05-23T13:44:36.000Z</time>
+      </trkpt>
+      <trkpt lat="40.7641260772" lon="-73.9944114068">
+        <time>2015-05-23T13:49:38.000Z</time>
+      </trkpt>
+      <trkpt lat="40.7641151913" lon="-73.9943628776">
+        <time>2015-05-23T13:54:36.000Z</time>
+      </trkpt>
+      <trkpt lat="40.7641319044" lon="-73.9943638831">
+        <time>2015-05-23T13:59:59.000Z</time>
+      </trkpt>
+      <trkpt lat="40.7645543496" lon="-73.9942552507">
+        <time>2015-05-23T14:04:37.000Z</time>
+      </trkpt>
+      <trkpt lat="40.7642177801" lon="-73.9946658688">
+        <time>2015-05-23T14:09:36.000Z</time>
+      </trkpt>
+      <trkpt lat="40.763385186" lon="-73.9930710447">
+        <time>2015-05-23T14:14:41.000Z</time>
+      </trkpt>
+      <trkpt lat="40.7619608356" lon="-73.9889641236">
+        <time>2015-05-23T14:19:41.000Z</time>
+      </trkpt>
+      <trkpt lat="40.760178066" lon="-73.984922184">
+        <time>2015-05-23T14:24:44.000Z</time>
+      </trkpt>
+      <trkpt lat="40.7607878461" lon="-73.9755663503">
+        <time>2015-05-23T14:29:36.000Z</time>
+      </trkpt>
+      <trkpt lat="40.7597531463" lon="-73.9843862034">
+        <time>2015-05-23T14:35:03.000Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>
