@@ -730,7 +730,12 @@ RewriteRule ^.well-known/(host-meta|webfinger).* https://fed.brid.gy/$0  [redire
 # Renamed or moved articles and pages
 # ----------------------------------------------------------------------
 
+# Création de la section pour les récits
 RewriteRule ^blog/2025/08/13/4-jours-a-velo-en-bourgogne-franche-comte/ https://activites.nicolas-hoizey.com/recits/2025/08/13/4-jours-a-velo-en-bourgogne-franche-comte/ [QSA,L,R=301]
+
+# Changement de date de publication
+RewriteRule ^recits/2025/08/13/4-jours-a-velo-en-bourgogne-franche-comte/ https://activites.nicolas-hoizey.com/recits/2025/07/29/4-jours-a-velo-en-bourgogne-franche-comte/ [QSA,L,R=301]
+RewriteRule ^recits/2025/08/14/3-jours-a-trondheim-en-norvege/ https://activites.nicolas-hoizey.com/recits/2025/08/11/3-jours-a-trondheim-en-norvege/ [QSA,L,R=301]
 
 # ##############################################################################
 # # HOMAGE TO Terry Pratchett: http://www.gnuterrypratchett.com/               #

@@ -1,6 +1,6 @@
 ---
 title: 4 jours à vélo en Bourgogne-Franche-Comté
-date: 2025-08-13 16:50:27 +02:00
+date: 2025-07-29 16:50:27 +02:00
 tags: [bikepacking]
 ---
 
