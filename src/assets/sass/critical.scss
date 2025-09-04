@@ -37,8 +37,12 @@ main {
 	padding: var(--gap);
 
 	h1, h2, h3, h4, h5, h6 {
-		margin-block: 0 var(--gap);
+		margin-block: var(--gap);
 		line-height: 1.2;
+
+		&:first-child {
+			margin-block-start: 0;
+		}
 	}
 
 	h1, h2 {

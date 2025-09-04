@@ -3,9 +3,10 @@
 {% block bodyclasses %}map{% endblock %}
 
 {% block content %}
-  <style>{% renderFile "src/assets/sass/map.scss" %}</style>
 
   <h1>{{ title }}</h1>
+
+  <style>{% renderFile "src/assets/sass/map.scss" %}</style>
   <div id="map"></div>
   <noscript>
     <p>JavaScript doit être activé pour voir cette carte.</p>
