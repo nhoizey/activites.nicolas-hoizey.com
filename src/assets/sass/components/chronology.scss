@@ -1,0 +1,40 @@
+@use '../variables' as *;
+
+.chronology {
+  margin-block-start: calc(3 * var(--gap));
+
+  ul {
+    list-style-type: none;
+    padding-inline-start: 0;
+
+    display: grid;
+    grid-template-columns: 1fr 5vw 1fr;
+    grid-row-gap: var(--gap);
+    grid-column-gap: 0;
+
+    grid-template-areas:
+      'prev prev void1'
+      'void2 next next';
+
+      @media screen and (min-width: $breakpoint-map) {
+        grid-template-areas:
+        'prev void next';
+      }
+
+    .older, .newer {
+      p {
+        margin-block: var(--gap);
+      }
+    }
+
+    .older {
+      grid-area: prev;
+      justify-self: start;
+    }
+
+    .newer {
+      grid-area: next;
+      justify-self: end;
+    }
+  }
+}

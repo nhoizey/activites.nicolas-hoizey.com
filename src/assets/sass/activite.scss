@@ -6,7 +6,8 @@
 	display: grid;
 
 	grid-template-areas: "card"
-											 "content";
+											 "content"
+											 "chronology";
 	grid-template-columns: 1fr;
 	align-content: start;
 	gap: var(--gap);
@@ -20,13 +21,18 @@
 	.content {
 		grid-area: content;
 	}
+
+	.chronology {
+		grid-area: chronology;
+	}
 }
 
 .activite main:has(.photos) {
 	grid-template-areas: "card"
 											 "content"
 											 "photos-title"
-											 "photos";
+											 "photos"
+											 "chronology";
 
 	.photos-title {
 		grid-area: photos-title;

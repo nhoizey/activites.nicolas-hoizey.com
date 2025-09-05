@@ -56,4 +56,24 @@
     </section>
   {% endif %}
 
+  {%- css "critical" %}{% renderFile "src/assets/sass/components/chronology.scss" %}{% endcss %}
+  {% set olderContent = collections.activites | getNextCollectionItem(page) %}
+  {% set newerContent = collections.activites | getPreviousCollectionItem(page) %}
+  <section class="chronology">
+    <ul>
+      {% if olderContent %}
+      <li class="older">
+          <p>Précédemment&nbsp;:</p>
+          {{ card(olderContent.data.type, olderContent.data.title, olderContent.url, olderContent.data.date, olderContent.data.distance, olderContent.data.duration, "list") }}
+      </li>
+      {% endif %}
+      {% if newerContent %}
+        <li class="newer">
+          <p>Ultérieurement&nbsp;:</p>
+          {{ card(newerContent.data.type, newerContent.data.title, newerContent.url, newerContent.data.date, newerContent.data.distance, newerContent.data.duration, "list") }}
+        </li>
+      {% endif %}
+    </ul>
+  </section>
+
 {% endblock %}
