@@ -137,15 +137,10 @@ export default {
       } else {
         const originalGpxFile = path.join("src", path.dirname(data.page.filePathStem), "sources/original.gpx");
         if (fs.existsSync(originalGpxFile)) {
-          if (process.env.ELEVENTY_RUN_MODE === "build") {
-            // No GPSBabel conversion in production
-            gpxContentFile = originalGpxFile;
-          } else {
-            // Use GPSBabel to simplify the GPX file with 5 meters tolerance
-            // https://www.gpsbabel.org/htmldoc-development/filter_simplify.html
-            execSync(`/opt/homebrew/bin/gpsbabel -r -i gpx -f ${originalGpxFile} -x simplify,error=0.0005k -o gpx -F ${gpsbabelFile}`);
-            gpxContentFile = gpsbabelFile;
-          }
+          // Use GPSBabel to simplify the GPX file with 5 meters tolerance
+          // https://www.gpsbabel.org/htmldoc-development/filter_simplify.html
+          execSync(`/opt/homebrew/bin/gpsbabel -r -i gpx -f ${originalGpxFile} -x simplify,error=0.0005k -o gpx -F ${gpsbabelFile}`);
+          gpxContentFile = gpsbabelFile;
         }
       }
 
@@ -156,6 +151,16 @@ export default {
         geoJSON.features[0].properties.month = `${geoJSON.features[0].properties.time.slice(0, 7)}-01`;
         const geoJSONString = JSON.stringify(geoJSON);
         fs.writeFileSync(geojsonFile, geoJSONString, 'utf8');
+
+        // The first time we also write the file in the final _site folder
+        console.log(data.page.filePathStem);
+        const siteDir = path.join("_site", path.dirname(data.page.filePathStem).replace(/^\/collections\//, ''));
+        console.log(siteDir);
+        if (!fs.existsSync(siteDir)) {
+          fs.mkdirSync(siteDir, { recursive: true });
+        }
+        fs.writeFileSync(path.join(siteDir, 'trace.geojson'), geoJSONString, 'utf8');
+
         return geoJSONString;
       }
 
