@@ -10,8 +10,10 @@ export const colorsByType = {
   gravel: '#d12771',
   vtt: '#de5590',
   marche: '#08bdba',
+  randonnée: '#00bfa5',
   tennis: '#8a3ffc',
   padel: '#a36df4',
   badminton: '#d4bbff',
+  golf: '#d2a106',
   'ski alpin': '#4589ff',
 };
