@@ -50,7 +50,6 @@ squadrats:
   - yardinho: 0
   - übersquadratinho: 0
 ---
-
 `;
 
 if (fs.existsSync(folder)) {

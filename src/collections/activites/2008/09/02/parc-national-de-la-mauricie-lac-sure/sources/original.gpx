@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="LoadMyTracks/073 http://www.cluetrust.com/LoadMyTracks.html" schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd
+http://www.cluetrust.com/XML/GPXDATA/1/0 http://www.cluetrust.com/Schemas/gpxdata10.xsd" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd http://www.garmin.com/xmlschemas/PowerExtension/v1 http://www.garmin.com/xmlschemas/PowerExtensionv1.xsd http://www.topografix.com/GPX/gpx_style/0/2 http://www.topografix.com/GPX/gpx_style/0/2/gpx_style.xsd" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:gpxpx="http://www.garmin.com/xmlschemas/PowerExtension/v1" xmlns:gpx_style="http://www.topografix.com/GPX/gpx_style/0/2">
+  <metadata>
+    <name>2008-09-14 22 01 21</name>
+    <author>
+      <name>gpx.studio</name>
+      <link href="https://gpx.studio"/>
+    </author>
+  </metadata>
+  <trk>
+    <name>unnamed</name>
+    <trkseg>
+      <trkpt lat="46.767054" lon="-73.026429">
+        <ele>280.84</ele>
+        <time>2008-09-02T18:48:48.000Z</time>
+      </trkpt>
+      <trkpt lat="46.766995" lon="-73.026405">
+        <ele>280.84</ele>
+        <time>2008-09-02T18:48:56.000Z</time>
+      </trkpt>
+      <trkpt lat="46.766774" lon="-73.026322">
+        <ele>281.8</ele>
+        <time>2008-09-02T18:49:16.000Z</time>
+      </trkpt>
+      <trkpt lat="46.76668" lon="-73.026146">
+        <ele>281.32</ele>
+        <time>2008-09-02T18:49:36.000Z</time>
+      </trkpt>
+      <trkpt lat="46.766551" lon="-73.026012">
+        <ele>281.32</ele>
+        <time>2008-09-02T18:49:50.000Z</time>
+      </trkpt>
+      <trkpt lat="46.766358" lon="-73.025781">
+        <ele>281.32</ele>
+        <time>2008-09-02T18:50:12.000Z</time>
+      </trkpt>
+      <trkpt lat="46.766328" lon="-73.025867">
+        <ele>283.25</ele>
+        <time>2008-09-02T18:50:51.000Z</time>
+      </trkpt>
+      <trkpt lat="46.766326" lon="-73.025857">
+        <ele>284.21</ele>
+        <time>2008-09-02T18:51:08.000Z</time>
+      </trkpt>
+      <trkpt lat="46.766233" lon="-73.025704">
+        <ele>285.65</ele>
+        <time>2008-09-02T18:51:49.000Z</time>
+      </trkpt>
+      <trkpt lat="46.766255" lon="-73.025776">
+        <ele>287.09</ele>
+        <time>2008-09-02T18:52:18.000Z</time>
+      </trkpt>
+      <trkpt lat="46.766412" lon="-73.025697">
+        <ele>289.49</ele>
+        <time>2008-09-02T18:53:17.000Z</time>
+      </trkpt>
+      <trkpt lat="46.766451" lon="-73.025701">
+        <ele>290.94</ele>
+        <time>2008-09-02T18:53:41.000Z</time>
+      </trkpt>
+      <trkpt lat="46.766511" lon="-73.025795">
+        <ele>291.9</ele>
+        <time>2008-09-02T18:54:05.000Z</time>
+      </trkpt>
+      <trkpt lat="46.766537" lon="-73.025822">
+        <ele>291.9</ele>
+        <time>2008-09-02T18:54:08.000Z</time>
+      </trkpt>
+      <trkpt lat="46.766669" lon="-73.025963">
+        <ele>293.34</ele>
+        <time>2008-09-02T18:54:24.000Z</time>
+      </trkpt>
+      <trkpt lat="46.766812" lon="-73.02613">
+        <ele>294.78</ele>
+        <time>2008-09-02T18:54:44.000Z</time>
+      </trkpt>
+      <trkpt lat="46.766871" lon="-73.026188">
+        <ele>295.74</ele>
+        <time>2008-09-02T18:55:06.000Z</time>
+      </trkpt>
+      <trkpt lat="46.767029" lon="-73.026342">
+        <ele>297.67</ele>
+        <time>2008-09-02T18:55:26.000Z</time>
+      </trkpt>
+      <trkpt lat="46.76705" lon="-73.026433">
+        <ele>299.11</ele>
+        <time>2008-09-02T18:55:49.000Z</time>
+      </trkpt>
+      <trkpt lat="46.767015" lon="-73.026339">
+        <ele>301.51</ele>
+        <time>2008-09-02T18:57:04.000Z</time>
+      </trkpt>
+      <trkpt lat="46.767038" lon="-73.026318">
+        <ele>302.47</ele>
+        <time>2008-09-02T18:57:23.000Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

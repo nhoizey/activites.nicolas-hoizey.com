@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="LoadMyTracks/073 http://www.cluetrust.com/LoadMyTracks.html" schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd
+http://www.cluetrust.com/XML/GPXDATA/1/0 http://www.cluetrust.com/Schemas/gpxdata10.xsd" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd http://www.garmin.com/xmlschemas/PowerExtension/v1 http://www.garmin.com/xmlschemas/PowerExtensionv1.xsd http://www.topografix.com/GPX/gpx_style/0/2 http://www.topografix.com/GPX/gpx_style/0/2/gpx_style.xsd" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:gpxpx="http://www.garmin.com/xmlschemas/PowerExtension/v1" xmlns:gpx_style="http://www.topografix.com/GPX/gpx_style/0/2">
+  <metadata>
+    <name>2008-09-14 22 01 21</name>
+    <author>
+      <name>gpx.studio</name>
+      <link href="https://gpx.studio"/>
+    </author>
+  </metadata>
+  <trk>
+    <name>unnamed</name>
+    <trkseg>
+      <trkpt lat="46.70841" lon="-73.033532">
+        <ele>337.56</ele>
+        <time>2008-09-02T19:36:50.000Z</time>
+      </trkpt>
+      <trkpt lat="46.708306" lon="-73.033313">
+        <ele>337.56</ele>
+        <time>2008-09-02T19:36:59.000Z</time>
+      </trkpt>
+      <trkpt lat="46.70851" lon="-73.033609">
+        <ele>336.12</ele>
+        <time>2008-09-02T19:37:18.000Z</time>
+      </trkpt>
+      <trkpt lat="46.708537" lon="-73.033394">
+        <ele>335.16</ele>
+        <time>2008-09-02T19:38:01.000Z</time>
+      </trkpt>
+      <trkpt lat="46.7086" lon="-73.033324">
+        <ele>334.2</ele>
+        <time>2008-09-02T19:38:23.000Z</time>
+      </trkpt>
+      <trkpt lat="46.708685" lon="-73.033286">
+        <ele>330.83</ele>
+        <time>2008-09-02T19:38:38.000Z</time>
+      </trkpt>
+      <trkpt lat="46.708816" lon="-73.033403">
+        <ele>330.35</ele>
+        <time>2008-09-02T19:38:55.000Z</time>
+      </trkpt>
+      <trkpt lat="46.708825" lon="-73.033352">
+        <ele>330.35</ele>
+        <time>2008-09-02T19:39:14.000Z</time>
+      </trkpt>
+      <trkpt lat="46.708902" lon="-73.033125">
+        <ele>329.87</ele>
+        <time>2008-09-02T19:39:36.000Z</time>
+      </trkpt>
+      <trkpt lat="46.708913" lon="-73.033114">
+        <ele>330.35</ele>
+        <time>2008-09-02T19:40:11.000Z</time>
+      </trkpt>
+      <trkpt lat="46.70878" lon="-73.033024">
+        <ele>330.35</ele>
+        <time>2008-09-02T19:40:45.000Z</time>
+      </trkpt>
+      <trkpt lat="46.708795" lon="-73.033066">
+        <ele>331.31</ele>
+        <time>2008-09-02T19:42:06.000Z</time>
+      </trkpt>
+      <trkpt lat="46.708768" lon="-73.03308">
+        <ele>331.31</ele>
+        <time>2008-09-02T19:42:51.000Z</time>
+      </trkpt>
+      <trkpt lat="46.708784" lon="-73.033288">
+        <ele>333.23</ele>
+        <time>2008-09-02T19:43:12.000Z</time>
+      </trkpt>
+      <trkpt lat="46.708687" lon="-73.03335">
+        <ele>336.6</ele>
+        <time>2008-09-02T19:43:28.000Z</time>
+      </trkpt>
+      <trkpt lat="46.708621" lon="-73.033549">
+        <ele>339</ele>
+        <time>2008-09-02T19:44:09.000Z</time>
+      </trkpt>
+      <trkpt lat="46.70863" lon="-73.03359">
+        <ele>339</ele>
+        <time>2008-09-02T19:44:12.000Z</time>
+      </trkpt>
+      <trkpt lat="46.708734" lon="-73.033812">
+        <ele>339.96</ele>
+        <time>2008-09-02T19:44:28.000Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="GPSBabel - https://www.gpsbabel.org" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:gpxpx="http://www.garmin.com/xmlschemas/PowerExtension/v1" xmlns:gpx_style="http://www.topografix.com/GPX/gpx_style/0/2">
+  <metadata>
+    <name>2008-09-14 22 01 21</name>
+    <time>2025-09-08T13:47:49.113Z</time>
+    <bounds minlat="47.007472000" minlon="-70.820565000" maxlat="47.008015000" maxlon="-70.820242000"/>
+  </metadata>
+  <trk>
+    <name>unnamed</name>
+    <trkseg>
+      <trkpt lat="47.007886000" lon="-70.820466000">
+        <ele>96.750</ele>
+        <time>2008-09-03T22:39:12Z</time>
+      </trkpt>
+      <trkpt lat="47.008015000" lon="-70.820482000">
+        <ele>96.270</ele>
+        <time>2008-09-03T22:39:47Z</time>
+      </trkpt>
+      <trkpt lat="47.007980000" lon="-70.820507000">
+        <ele>95.790</ele>
+        <time>2008-09-03T22:41:22Z</time>
+      </trkpt>
+      <trkpt lat="47.007984000" lon="-70.820525000">
+        <ele>95.790</ele>
+        <time>2008-09-03T22:41:50Z</time>
+      </trkpt>
+      <trkpt lat="47.007970000" lon="-70.820492000">
+        <ele>95.790</ele>
+        <time>2008-09-03T22:43:26Z</time>
+      </trkpt>
+      <trkpt lat="47.007949000" lon="-70.820565000">
+        <ele>83.290</ele>
+        <time>2008-09-03T22:48:05Z</time>
+      </trkpt>
+      <trkpt lat="47.007933000" lon="-70.820552000">
+        <ele>79.930</ele>
+        <time>2008-09-03T22:48:18Z</time>
+      </trkpt>
+      <trkpt lat="47.007849000" lon="-70.820532000">
+        <ele>77.040</ele>
+        <time>2008-09-03T22:48:38Z</time>
+      </trkpt>
+      <trkpt lat="47.007632000" lon="-70.820403000">
+        <ele>77.040</ele>
+        <time>2008-09-03T22:48:58Z</time>
+      </trkpt>
+      <trkpt lat="47.007472000" lon="-70.820242000">
+        <ele>77.040</ele>
+        <time>2008-09-03T22:49:15Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

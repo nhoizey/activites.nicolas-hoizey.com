@@ -153,9 +153,7 @@ export default {
         fs.writeFileSync(geojsonFile, geoJSONString, 'utf8');
 
         // The first time we also write the file in the final _site folder
-        console.log(data.page.filePathStem);
         const siteDir = path.join("_site", path.dirname(data.page.filePathStem).replace(/^\/collections\//, ''));
-        console.log(siteDir);
         if (!fs.existsSync(siteDir)) {
           fs.mkdirSync(siteDir, { recursive: true });
         }
