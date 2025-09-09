@@ -47,9 +47,10 @@ const description = activityInfo.querySelector('.activity-description .content')
 const distance = activityStats.querySelector('strong:has(abbr[title="kilomètres"])')?.childNodes[0].nodeValue.replace(",", ".").trim() || '0';
 let duration = activityStats.querySelector('li:has([data-glossary-term="definition-moving-time"]) strong')?.textContent.trim() || '00:00:00';
 duration = duration.split(':').map(part => part.trim().padStart(2, '0'));
-if (duration.split(':').length === 2) {
-  duration = `00:${duration}`;
+if (duration.length === 2) {
+  duration = ['00', ...duration];
 }
+duration = duration.join(':');
 const elevation = activityStats.querySelector('strong:has(abbr[title="mètres"])')?.childNodes[0].nodeValue.trim().replace(/\s+/g, "") || '0';
 
 let content = `---
