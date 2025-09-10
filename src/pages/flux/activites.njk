@@ -14,14 +14,19 @@ layout: null
     <email>{{ pkg.author.email }}</email>
   </author>
   {% for entry in collections.activites | limit(20) %}
-    {% set absoluteEntryUrl %}{{ entry.url | url | absoluteUrl(pkg.homepage) }}{% endset %}
-    {% set titleDate = entry.date | readableDate %}
+    {%- set absoluteEntryUrl -%}{{ entry.url | url | absoluteUrl(pkg.homepage) }}{%- endset -%}
+    {%- set titleDate = entry.date | readableDate -%}
+    {%- set photosNumber = entry.data.photos | length -%}
     <entry>
       <title>{{ entry.data.type | activityEmoji }} {{ entry.data.title or entry.data.layout }}</title>
       <link href="{{ absoluteEntryUrl }}"/>
       <updated>{{ entry.date | dateToRfc3339 }}</updated>
       <id>{{ absoluteEntryUrl }}</id>
-      <content type="html">{{ entry.templateContent | cleanDeepLinks | htmlToAbsoluteUrls(absoluteEntryUrl) }}</content>
+      <content type="html">
+        {{ entry.templateContent | cleanDeepLinks | htmlToAbsoluteUrls(absoluteEntryUrl) }}
+
+        &lt;p&gt;Vous pouvez &lt;a href=&quot;{{- activity.url -}}&quot;&gt;voir cette activité en détail&lt;/a&gt;{%- if photosNumber == 0 %} et{%- else -%},{%- endif %} interagir avec sa carte{%- if photosNumber > 0 %} et voir &lt;strong&gt;{% if photosNumber == 1 %}sa photo{% else %}ses {{ photosNumber }} photos{%- endif -%}&lt;/strong&gt;{%- endif -%}.&lt;/p&gt;
+      </content>
     </entry>
   {% endfor %}
 </feed>
