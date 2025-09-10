@@ -10,6 +10,8 @@ Pour l'instant, je continuerai à utiliser ces services et d'autres, mais je veu
 
 Je crains notamment que certains de ces services se dégradent (notamment [Komoot](https://www.dcrainmaker.com/2025/03/komoot-acquired-history-says-this-wont-end-well.html)) et/ou ferment un jour, ou que leurs conditions d'utilisation ou coût changent, et je veux pouvoir continuer à partager mes activités sans dépendre de qui que ce soit.
 
+Vous pouvez vous abonner aux différents flux de syndication de ce site pour être informé quand de nouveaux contenus sont publiés. Ils sont listés dans <a href="/flux/">la page « Flux »</a>.
+
 J'ai aussi [un site plutôt dédié au Web](https://nicolas-hoizey.com/) avec des articles et liens vers des ressources intéressantes, et [un site pour mes photos de voyages et de nature](https://nicolashoizey.com/).
 
 Si vous souhaitez échanger avec moi, vous pouvez me retrouver sur {% inline_icon 'mastodon' %}&nbsp;[Mastodon](https://mamot.fr/@nhoizey).

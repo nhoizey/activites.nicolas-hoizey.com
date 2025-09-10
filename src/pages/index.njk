@@ -11,7 +11,7 @@ nav:
 <p>Bienvenue sur ce site qui présente mes <strong>activités sportives</strong>.</p>
 <p>Je m'appelle <strong>Nicolas Hoizey</strong>, et je pratique essentiellement des sports de raquette, le cyclisme et la marche. Vous pouvez en apprendre plus dans la <a href="/a-propos/">page « à propos »</a>.</p>
 
-<h2>Dernières activités</h2>
+<h2>Dernières activités <a href="/flux/activites.xml" title="Abonnez-vous au flux des dernières activités" aria-label="Abonnez-vous au flux des dernières activités" class="feed">{%- inline_icon 'feeds' -%}</a></h2>
 
 <div class="activites cards">
 
@@ -20,7 +20,7 @@ nav:
   {% endfor %}
 </div>
 
-<h2>Récits</h2>
+<h2>Récits <a href="/flux/recits.xml" title="Abonnez-vous au flux des derniers récits" aria-label="Abonnez-vous au flux des derniers récits" class="feed">{%- inline_icon 'feeds' -%}</a></h2>
 
 <div class="recits cards">
   {% for entry in collections.recits %}
@@ -29,7 +29,7 @@ nav:
 </div>
 
 
-<h2>Dans le blog</h2>
+<h2>Dans le blog <a href="/flux/blog.xml" title="Abonnez-vous au flux des derniers billets de blog" aria-label="Abonnez-vous au flux des derniers billets de blog" class="feed">{%- inline_icon 'feeds' -%}</a></h2>
 
 <div class="blog cards">
   {% for entry in collections.blog %}
