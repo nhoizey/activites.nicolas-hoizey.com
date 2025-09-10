@@ -9,7 +9,7 @@ export const activityEmoji = (type) => {
   switch (type) {
     case 'ski alpin': return '⛷️';
     case 'randonnée': return '🥾';
-    case 'marche': return '🥾';
+    case 'marche': return '🚶‍♂️';
     case 'vélo': return '🚴‍♂️';
     case 'gravel': return '🚵';
     case 'vtt': return '🚵';

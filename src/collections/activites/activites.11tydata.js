@@ -88,7 +88,17 @@ export default {
               src: path.join("photos", file)
             };
 
-            const photoExif = await exifr.parse(path.join(photosPath, file), exifrOptions);
+
+            let photoExif;
+            try {
+              photoExif = await exifr.parse(path.join(photosPath, file), exifrOptions);
+            } catch (err) {
+              console.error(`Error reading EXIF data for photo: ${photo.src}`, err);
+            }
+
+            if (!photoExif) {
+              console.warn(`No EXIF data found for photo: ${photo.src}`);
+            }
 
             const photoTitle = photoExif.dc?.title.value || photoExif.iptc?.ObjectName;
             if (photoTitle) {
