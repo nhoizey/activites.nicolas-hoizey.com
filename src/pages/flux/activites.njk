@@ -1,23 +1,23 @@
 ---
-permalink: feeds/blog.xml
+permalink: flux/activites.xml
 layout: null
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Blog de {{ pkg.title }}</title>
-  <link href="{{ pkg.homepage }}/feeds/blog.xml" rel="self"/>
+  <title>Dernières activités sportives de Nicolas Hoizey</title>
+  <link href="{{ pkg.homepage }}/flux/activites.xml" rel="self"/>
   <link href="{{ pkg.homepage }}/"/>
-  <updated>{{ collections.blog | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
+  <updated>{{ collections.activites | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
   <id>{{ pkg.homepage }}</id>
   <author>
     <name>{{ pkg.author.name }}</name>
     <email>{{ pkg.author.email }}</email>
   </author>
-  {% for entry in collections.blog | limit(20) %}
+  {% for entry in collections.activites | limit(20) %}
     {% set absoluteEntryUrl %}{{ entry.url | url | absoluteUrl(pkg.homepage) }}{% endset %}
     {% set titleDate = entry.date | readableDate %}
     <entry>
-      <title>{{ entry.data.title or entry.data.layout + ' from ' + titleDate }}</title>
+      <title>{{ entry.data.type | activityEmoji }} {{ entry.data.title or entry.data.layout }}</title>
       <link href="{{ absoluteEntryUrl }}"/>
       <updated>{{ entry.date | dateToRfc3339 }}</updated>
       <id>{{ absoluteEntryUrl }}</id>
