@@ -20,6 +20,28 @@ export default {
     }
   },
   eleventyComputed: {
+    type_family: async (data) => {
+      if (!data.page.filePathStem.match(/^\/collections\/activites\/[0-9]{4}/)) {
+        return false;
+      }
+      const familyOfType = {
+        "vélo": "vélo",
+        "gravel": "vélo",
+        "vtt": "vélo",
+        "marche": "marche",
+        "randonnée": "marche",
+        "tennis": "raquettes",
+        "padel": "raquettes",
+        "badminton": "raquettes",
+        "golf": "golf",
+        "ski alpin": "ski",
+        "escalade": "escalade"
+      };
+      if (data.type && familyOfType[data.type] !== undefined) {
+        return familyOfType[data.type];
+      }
+      return "autre";
+    },
     photos: async (data) => {
       if (!data.page.filePathStem.match(/^\/collections\/activites\/[0-9]{4}/)) {
         return false;

@@ -10,8 +10,8 @@ nav:
 
 <ul class="filtres">
   <li class="actif"><span>toutes</span></li>
-  {% for typeItem in collections.types %}
-    <li><a href="/activites/{{ typeItem | slugify }}/">{% inline_icon typeItem %} {{ typeItem | safe }}</a></li>
+  {% for typeFamiliesItem in collections.type_families %}
+    <li><a href="/activites/{{ typeFamiliesItem | slugify }}/">{% inline_icon typeFamiliesItem %} {{ typeFamiliesItem | safe }}</a></li>
   {% endfor %}
 </ul>
 

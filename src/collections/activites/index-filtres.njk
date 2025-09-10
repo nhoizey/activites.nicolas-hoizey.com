@@ -2,22 +2,22 @@
 layout: pages
 title: "Activités"
 pagination:
-  data: collections.types
+  data: collections.type_families
   size: 1
-  alias: type
+  alias: type_families_item
   addAllPagesToCollections: false
-permalink: "/activites/{{ type | slugify }}/"
+permalink: "/activites/{{ type_families_item | slugify }}/"
 ---
 
 {%- css "critical" %}{% renderFile "src/assets/sass/components/filters.scss" %}{% endcss %}
 
 <ul class="filtres">
   <li><a href="/activites/">toutes</a></li>
-  {% for typeItem in collections.types %}
-    {% if typeItem == type %}
-      <li class="actif"><span>{% inline_icon typeItem %} {{ typeItem | safe }}</span></li>
+  {% for typeFamiliesItem in collections.type_families %}
+    {% if typeFamiliesItem == type_families_item %}
+      <li class="actif"><span>{% inline_icon typeFamiliesItem %} {{ typeFamiliesItem | safe }}</span></li>
     {% else %}
-      <li><a href="/activites/{{ typeItem | slugify }}/">{% inline_icon typeItem %} {{ typeItem | safe }}</a></li>
+      <li><a href="/activites/{{ typeFamiliesItem | slugify }}/">{% inline_icon typeFamiliesItem %} {{ typeFamiliesItem | safe }}</a></li>
     {% endif %}
   {% endfor %}
 </ul>
@@ -26,7 +26,7 @@ permalink: "/activites/{{ type | slugify }}/"
 {% from "macros/card.njk" import card %}
 
 <div class="activites cards">
-  {% for entry in collections.activites | type(type) %}
+  {% for entry in collections.activites | type_family(type_families_item) %}
     {{ card(entry.data.type, entry.data.title, entry.url, entry.data.date, entry.data.distance, entry.data.duration, "list") }}
   {% endfor %}
 </div>

@@ -1,7 +1,29 @@
+const allTypes = new Set(["vélo", "gravel", "vtt", "marche", "randonnée", "tennis", "padel", "badminton", "golf", "ski alpin", "escalade"]);
+const typeFamilies = new Set([
+  "vélo",
+  "raquettes",
+  "marche",
+  "ski",
+  "escalade",
+  "golf"
+]);
+
 export const types = (collection) => {
-  const types = new Set(["vélo", "gravel", "vtt", "marche", "randonnée", "tennis", "padel", "badminton", "golf", "ski alpin"]);
   collection
     .getFilteredByGlob("src/collections/activites/**/index.md")
-    .map((activite) => types.add(activite.data.type));
-  return [...types];
+    .map((activite) => {
+      allTypes.add(activite.data.type);
+      return activite;
+    });
+  return [...allTypes];
+}
+
+export const type_families = (collection) => {
+  collection
+    .getFilteredByGlob("src/collections/activites/**/index.md")
+    .map((activite) => {
+      typeFamilies.add(activite.data.type_family);
+      return activite;
+    });
+  return [...typeFamilies];
 }
