@@ -3,32 +3,32 @@
  *********************************************************** */
 
 :root {
-  --surface-0: light-dark(var(--moka-200), var(--moka-1000));
-  --surface-1: light-dark(var(--moka-150), var(--moka-900));
-  --surface-2: light-dark(var(--moka-100), var(--moka-700));
+  --surface-0: light-dark(var(--brown-200), var(--brown-1000));
+  --surface-1: light-dark(var(--brown-150), var(--brown-900));
+  --surface-2: light-dark(var(--brown-100), var(--brown-700));
 
-  --text-primary: light-dark(var(--moka-900), var(--moka-100));
-  --text-secondary: light-dark(var(--moka-500), var(--moka-200));
+  --text-primary: light-dark(var(--brown-900), var(--brown-100));
+  --text-secondary: light-dark(var(--brown-500), var(--brown-200));
 
-  --heading: light-dark(var(--moka-700), var(--moka-300));
-  --sub-heading: light-dark(var(--moka-500), var(--moka-100));
+  --heading: light-dark(var(--brown-700), var(--brown-300));
+  --sub-heading: light-dark(var(--brown-500), var(--brown-100));
 
   --link-text: light-dark(var(--green-500), var(--green-200));
   --link-decoration: light-dark(var(--green-300), var(--green-400));
   --link-text-hover: light-dark(var(--green-700), var(--green-100));
   --link-decoration-hover: light-dark(var(--green-500), var(--green-300));
 
-  --meta: light-dark(var(--green-700), var(--moka-400));
-  --meta-icon: light-dark(var(--green-500), var(--moka-500));
+  --meta: light-dark(var(--green-700), var(--brown-400));
+  --meta-icon: light-dark(var(--green-500), var(--brown-500));
 
-  --map-border: light-dark(var(--green-500), var(--moka-200));
+  --map-border: light-dark(var(--green-500), var(--brown-200));
 
-  --message-background: light-dark(var(--moka-150), var(--moka-900));
-  --message-border: light-dark(var(--moka-100), var(--moka-700));
-  --message-text: light-dark(var(--moka-700), var(--moka-200));
+  --message-background: light-dark(var(--brown-150), var(--brown-900));
+  --message-border: light-dark(var(--brown-100), var(--brown-700));
+  --message-text: light-dark(var(--brown-700), var(--brown-200));
 
-  --filtre-off-background: light-dark(var(--moka-500), var(--moka-800));
-  --filtre-off-text: light-dark(var(--moka-100), var(--moka-300));
+  --filtre-off-background: light-dark(var(--brown-500), var(--brown-800));
+  --filtre-off-text: light-dark(var(--brown-100), var(--brown-300));
   --filtre-on-background: light-dark(var(--green-600), var(--green-800));
   --filtre-on-text: light-dark(var(--green-100), var(--green-100));
 }
