@@ -6,9 +6,18 @@ import { fetchGeojson } from "./fetch-geojson.js";
 (async (window) => {
   const MAX_ZOOM_LEVEL = 18;
 
+  const ROUTE_OPACITY = 0.8;
+  const ROUTE_WIDTH = 4;
+
+  const ROUTE_HIGHLIGHT_OPACITY = 1;
+  const ROUTE_HIGHLIGHT_WIDTH = 6;
+
+  const ROUTE_SHADOW_ADDITIONAL_WIDTH = 3;
+  const ROUTE_SHADOW_OPACITY = 0.7;
+
   const highligthRoute = (map, activityId, bbox) => {
-    map.setPaintProperty(`route-${activityId}-white`, 'line-width', 8).setPaintProperty(`route-${activityId}-white`, 'line-opacity', 1);
-    map.setPaintProperty(`route-${activityId}`, 'line-width', 6).setPaintProperty(`route-${activityId}`, 'line-opacity', 1);
+    map.setPaintProperty(`route-${activityId}-shadow`, 'line-width', ROUTE_HIGHLIGHT_WIDTH + ROUTE_SHADOW_ADDITIONAL_WIDTH);
+    map.setPaintProperty(`route-${activityId}`, 'line-width', ROUTE_HIGHLIGHT_WIDTH).setPaintProperty(`route-${activityId}`, 'line-opacity', ROUTE_HIGHLIGHT_OPACITY);
     if (bbox !== undefined) {
       map.fitBounds(bbox, {
         fitBoundsOptions: {
@@ -22,8 +31,8 @@ import { fetchGeojson } from "./fetch-geojson.js";
     }
   };
   const unhighligthRoute = (map, activityId, bbox) => {
-    map.setPaintProperty(`route-${activityId}-white`, 'line-width', 5).setPaintProperty(`route-${activityId}-white`, 'line-opacity', .8);
-    map.setPaintProperty(`route-${activityId}`, 'line-width', 3).setPaintProperty(`route-${activityId}`, 'line-opacity', .8);
+    map.setPaintProperty(`route-${activityId}-shadow`, 'line-width', ROUTE_WIDTH + ROUTE_SHADOW_ADDITIONAL_WIDTH);
+    map.setPaintProperty(`route-${activityId}`, 'line-width', ROUTE_WIDTH).setPaintProperty(`route-${activityId}`, 'line-opacity', ROUTE_OPACITY);
     if (bbox !== undefined) {
       map.fitBounds(bbox, {
         fitBoundsOptions: {
@@ -85,22 +94,22 @@ import { fetchGeojson } from "./fetch-geojson.js";
           for (const [activityId, geoJsonData] of Object.entries(embedData)) {
             const activityBbox = bbox(lineString(geoJsonData.features[0].geometry.coordinates))
 
-            map.addSource(`trace-${activityId}-white`, {
+            map.addSource(`trace-${activityId}-shadow`, {
               type: "geojson",
               data: geoJsonData,
             });
             map.addLayer({
-              'id': `route-${activityId}-white`,
+              'id': `route-${activityId}-shadow`,
               'type': 'line',
-              'source': `trace-${activityId}-white`,
+              'source': `trace-${activityId}-shadow`,
               'layout': {
                 'line-join': 'round',
                 'line-cap': 'round'
               },
               'paint': {
-                'line-color': 'white',
-                'line-width': 5,
-                'line-opacity': .8,
+                'line-color': 'black',
+                'line-width': ROUTE_WIDTH + ROUTE_SHADOW_ADDITIONAL_WIDTH,
+                'line-opacity': ROUTE_SHADOW_OPACITY,
               }
             });
 
@@ -118,8 +127,8 @@ import { fetchGeojson } from "./fetch-geojson.js";
               },
               'paint': {
                 'line-color': colorsOnDark[traceIndex % colorsOnDark.length],
-                'line-width': 3,
-                'line-opacity': .8,
+                'line-width': ROUTE_WIDTH,
+                'line-opacity': ROUTE_OPACITY,
               }
             });
 
