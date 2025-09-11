@@ -1,23 +1,15 @@
 import mapboxgl from "mapbox-gl/dist/mapbox-gl.js";
 import { lineString, bbox, bearing, point } from "@turf/turf";
 import { colorsOnDark } from '../../_data/colors.js';
+import { route_settings } from './route-settings.js';
 import { fetchGeojson } from "./fetch-geojson.js";
 
 (async (window) => {
   const MAX_ZOOM_LEVEL = 18;
 
-  const ROUTE_OPACITY = 0.8;
-  const ROUTE_WIDTH = 4;
-
-  const ROUTE_HIGHLIGHT_OPACITY = 1;
-  const ROUTE_HIGHLIGHT_WIDTH = 6;
-
-  const ROUTE_SHADOW_ADDITIONAL_WIDTH = 3;
-  const ROUTE_SHADOW_OPACITY = 0.7;
-
   const highligthRoute = (map, activityId, bbox) => {
-    map.setPaintProperty(`route-${activityId}-shadow`, 'line-width', ROUTE_HIGHLIGHT_WIDTH + ROUTE_SHADOW_ADDITIONAL_WIDTH);
-    map.setPaintProperty(`route-${activityId}`, 'line-width', ROUTE_HIGHLIGHT_WIDTH).setPaintProperty(`route-${activityId}`, 'line-opacity', ROUTE_HIGHLIGHT_OPACITY);
+    map.setPaintProperty(`route-${activityId}-shadow`, 'line-width', route_settings.route_highlight_width + route_settings.route_shadow_additional_width);
+    map.setPaintProperty(`route-${activityId}`, 'line-width', route_settings.route_highlight_width).setPaintProperty(`route-${activityId}`, 'line-opacity', route_settings.route_highlight_opacity);
     if (bbox !== undefined) {
       map.fitBounds(bbox, {
         fitBoundsOptions: {
@@ -31,8 +23,8 @@ import { fetchGeojson } from "./fetch-geojson.js";
     }
   };
   const unhighligthRoute = (map, activityId, bbox) => {
-    map.setPaintProperty(`route-${activityId}-shadow`, 'line-width', ROUTE_WIDTH + ROUTE_SHADOW_ADDITIONAL_WIDTH);
-    map.setPaintProperty(`route-${activityId}`, 'line-width', ROUTE_WIDTH).setPaintProperty(`route-${activityId}`, 'line-opacity', ROUTE_OPACITY);
+    map.setPaintProperty(`route-${activityId}-shadow`, 'line-width', route_settings.route_width + route_settings.route_shadow_additional_width);
+    map.setPaintProperty(`route-${activityId}`, 'line-width', route_settings.route_width).setPaintProperty(`route-${activityId}`, 'line-opacity', route_settings.route_opacity);
     if (bbox !== undefined) {
       map.fitBounds(bbox, {
         fitBoundsOptions: {
@@ -108,8 +100,8 @@ import { fetchGeojson } from "./fetch-geojson.js";
               },
               'paint': {
                 'line-color': 'black',
-                'line-width': ROUTE_WIDTH + ROUTE_SHADOW_ADDITIONAL_WIDTH,
-                'line-opacity': ROUTE_SHADOW_OPACITY,
+                'line-width': route_settings.route_width + route_settings.route_shadow_additional_width,
+                'line-opacity': route_settings.route_shadow_opacity,
               }
             });
 
@@ -127,8 +119,8 @@ import { fetchGeojson } from "./fetch-geojson.js";
               },
               'paint': {
                 'line-color': colorsOnDark[traceIndex % colorsOnDark.length],
-                'line-width': ROUTE_WIDTH,
-                'line-opacity': ROUTE_OPACITY,
+                'line-width': route_settings.route_width,
+                'line-opacity': route_settings.route_opacity,
               }
             });
 

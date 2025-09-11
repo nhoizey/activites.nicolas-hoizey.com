@@ -1,6 +1,7 @@
 import mapboxgl from "mapbox-gl/dist/mapbox-gl.js";
 // import { MapboxStyleSwitcherControl } from "mapbox-gl-style-switcher";
 import { lineString, bbox, bearing, point } from "@turf/turf";
+import { route_settings } from './route-settings.js';
 import { fetchGeojson } from "./fetch-geojson.js";
 
 (async (window) => {
@@ -58,22 +59,22 @@ import { fetchGeojson } from "./fetch-geojson.js";
 
 
     map.on('load', () => {
-      map.addSource("trace-white", {
+      map.addSource("trace-shadow", {
         type: "geojson",
         data: geoJsonData,
       });
       map.addLayer({
-        'id': 'route-white',
+        'id': 'route-shadow',
         'type': 'line',
-        'source': 'trace-white',
+        'source': 'trace-shadow',
         'layout': {
           'line-join': 'round',
           'line-cap': 'round'
         },
         'paint': {
-          'line-color': 'white',
-          'line-width': 6,
-          'line-opacity': 1
+          'line-color': 'black',
+          'line-width': route_settings.route_width + route_settings.route_shadow_additional_width,
+          'line-opacity': route_settings.route_shadow_opacity,
         }
       });
 
@@ -91,8 +92,8 @@ import { fetchGeojson } from "./fetch-geojson.js";
         },
         'paint': {
           'line-color': TRACE_COLOR,
-          'line-width': 4,
-          'line-opacity': 1
+          'line-width': route_settings.route_width,
+          'line-opacity': route_settings.route_opacity,
         }
       });
 
@@ -268,8 +269,8 @@ import { fetchGeojson } from "./fetch-geojson.js";
             },
             'paint': {
               'line-color': TRACE_COLOR,
-              'line-width': 7,
-              'line-opacity': 1
+              'line-width': route_settings.route_highlight_width,
+              'line-opacity': route_settings.route_highlight_opacity,
             }
           });
 
@@ -295,8 +296,8 @@ import { fetchGeojson } from "./fetch-geojson.js";
                 0, TRACE_COLOR,
                 1, TRACE_COLOR_HEAD
               ],
-              'line-width': 8,
-              'line-opacity': 1
+              'line-width': route_settings.route_highlight_width,
+              'line-opacity': route_settings.route_highlight_opacity
             }
           });
 
@@ -322,7 +323,7 @@ import { fetchGeojson } from "./fetch-geojson.js";
                 resetTime = true;
                 map.setLayoutProperty('route-dyn', 'visibility', 'none');
                 map.setLayoutProperty('route-dyn-head', 'visibility', 'none');
-                map.setLayoutProperty('route-white', 'visibility', 'visible');
+                map.setLayoutProperty('route-shadow', 'visibility', 'visible');
                 map.setLayoutProperty('route', 'visibility', 'visible');
 
                 map.fitBounds(bboxCoordinates, {
@@ -411,7 +412,7 @@ import { fetchGeojson } from "./fetch-geojson.js";
             if (currentlyPlaying) {
               progress = 0;
 
-              map.setLayoutProperty('route-white', 'visibility', 'none');
+              map.setLayoutProperty('route-shadow', 'visibility', 'none');
               map.setLayoutProperty('route', 'visibility', 'none');
               map.setLayoutProperty('route-dyn', 'visibility', 'visible');
               map.setLayoutProperty('route-dyn-head', 'visibility', 'visible');
@@ -449,7 +450,7 @@ import { fetchGeojson } from "./fetch-geojson.js";
 
               map.setLayoutProperty('route-dyn', 'visibility', 'none');
               map.setLayoutProperty('route-dyn-head', 'visibility', 'none');
-              map.setLayoutProperty('route-white', 'visibility', 'visible');
+              map.setLayoutProperty('route-shadow', 'visibility', 'visible');
               map.setLayoutProperty('route', 'visibility', 'visible');
             }
 
