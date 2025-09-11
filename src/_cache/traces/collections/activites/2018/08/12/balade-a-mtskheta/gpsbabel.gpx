@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="GPSBabel - https://www.gpsbabel.org" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:gpxpx="http://www.garmin.com/xmlschemas/PowerExtension/v1" xmlns:gpx_style="http://www.topografix.com/GPX/gpx_style/0/2">
+  <metadata>
+    <name>gps4cam trip started at 2018-08-12 11-20 decoded at 2018-08-15 09-35-27</name>
+    <link href="http://gps4cam.com">
+      <text>gps4cam</text>
+    </link>
+    <time>2025-09-11T12:33:13.476Z</time>
+    <bounds minlat="41.840300750" minlon="44.716865529" maxlat="41.842465300" maxlon="44.721501182"/>
+  </metadata>
+  <trk>
+    <name>gps4cam trip started at: 2018-08-12T09:20:11Z</name>
+    <trkseg>
+      <trkpt lat="41.841463531" lon="44.717505034">
+        <time>2018-08-12T14:00:10Z</time>
+      </trkpt>
+      <trkpt lat="41.841757747" lon="44.719446386">
+        <time>2018-08-12T14:05:10Z</time>
+      </trkpt>
+      <trkpt lat="41.841814731" lon="44.720080575">
+        <time>2018-08-12T14:10:10Z</time>
+      </trkpt>
+      <trkpt lat="41.841750411" lon="44.720468228">
+        <time>2018-08-12T14:15:10Z</time>
+      </trkpt>
+      <trkpt lat="41.841765358" lon="44.720670284">
+        <time>2018-08-12T14:20:11Z</time>
+      </trkpt>
+      <trkpt lat="41.841772069" lon="44.721501182">
+        <time>2018-08-12T14:25:10Z</time>
+      </trkpt>
+      <trkpt lat="41.841812829" lon="44.721371885">
+        <time>2018-08-12T14:30:11Z</time>
+      </trkpt>
+      <trkpt lat="41.841843836" lon="44.720136599">
+        <time>2018-08-12T14:35:11Z</time>
+      </trkpt>
+      <trkpt lat="41.842435991" lon="44.720364366">
+        <time>2018-08-12T14:40:11Z</time>
+      </trkpt>
+      <trkpt lat="41.842057844" lon="44.720798220">
+        <time>2018-08-12T14:45:12Z</time>
+      </trkpt>
+      <trkpt lat="41.840300750" lon="44.720137302">
+        <time>2018-08-12T14:50:12Z</time>
+      </trkpt>
+      <trkpt lat="41.842219013" lon="44.720522458">
+        <time>2018-08-12T14:55:36Z</time>
+      </trkpt>
+      <trkpt lat="41.842465300" lon="44.720510223">
+        <time>2018-08-12T15:00:11Z</time>
+      </trkpt>
+      <trkpt lat="41.841677558" lon="44.719227757">
+        <time>2018-08-12T15:05:11Z</time>
+      </trkpt>
+      <trkpt lat="41.841336486" lon="44.716865529">
+        <time>2018-08-12T15:10:11Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

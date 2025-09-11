@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx creator="gps4cam - http://gps4cam.com" version="1.1" schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd http://www.garmin.com/xmlschemas/PowerExtension/v1 http://www.garmin.com/xmlschemas/PowerExtensionv1.xsd http://www.topografix.com/GPX/gpx_style/0/2 http://www.topografix.com/GPX/gpx_style/0/2/gpx_style.xsd" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:gpxpx="http://www.garmin.com/xmlschemas/PowerExtension/v1" xmlns:gpx_style="http://www.topografix.com/GPX/gpx_style/0/2">
+  <metadata>
+    <name>gps4cam trip started at 2018-08-11 12-16 decoded at 2018-08-15 09-35-37</name>
+    <author>
+      <name>gpx.studio</name>
+      <link href="https://gpx.studio"/>
+    </author>
+    <link href="http://gps4cam.com">
+      <text>gps4cam</text>
+    </link>
+    <time>2018-08-15T08:09:47.000Z</time>
+  </metadata>
+  <trk>
+    <name>gps4cam trip started at: 2018-08-11T10:16:14Z</name>
+    <trkseg>
+      <trkpt lat="41.6960063002" lon="44.7894698797">
+        <time>2018-08-11T10:56:13.000Z</time>
+      </trkpt>
+      <trkpt lat="41.6958752474" lon="44.7890893734">
+        <time>2018-08-11T11:01:13.000Z</time>
+      </trkpt>
+      <trkpt lat="41.695894278" lon="44.7889212671">
+        <time>2018-08-11T11:06:13.000Z</time>
+      </trkpt>
+      <trkpt lat="41.6960224081" lon="44.7890048972">
+        <time>2018-08-11T11:11:14.000Z</time>
+      </trkpt>
+      <trkpt lat="41.6957979152" lon="44.7890560015">
+        <time>2018-08-11T11:16:13.000Z</time>
+      </trkpt>
+      <trkpt lat="41.6957979152" lon="44.7890560015">
+        <time>2018-08-11T11:21:14.000Z</time>
+      </trkpt>
+      <trkpt lat="41.6957979152" lon="44.7890560015">
+        <time>2018-08-11T11:26:14.000Z</time>
+      </trkpt>
+      <trkpt lat="41.6957979152" lon="44.7890560015">
+        <time>2018-08-11T11:31:14.000Z</time>
+      </trkpt>
+      <trkpt lat="41.6957979152" lon="44.7890560015">
+        <time>2018-08-11T11:36:14.000Z</time>
+      </trkpt>
+      <trkpt lat="41.6957979152" lon="44.7890560015">
+        <time>2018-08-11T11:41:14.000Z</time>
+      </trkpt>
+      <trkpt lat="41.6957979152" lon="44.7890560015">
+        <time>2018-08-11T11:46:14.000Z</time>
+      </trkpt>
+      <trkpt lat="41.6957979152" lon="44.7890560015">
+        <time>2018-08-11T11:51:14.000Z</time>
+      </trkpt>
+      <trkpt lat="41.6957979152" lon="44.7890560015">
+        <time>2018-08-11T11:56:15.000Z</time>
+      </trkpt>
+      <trkpt lat="41.6955271662" lon="44.7888887866">
+        <time>2018-08-11T12:01:42.000Z</time>
+      </trkpt>
+      <trkpt lat="41.695973977" lon="44.7889266237">
+        <time>2018-08-11T12:06:24.000Z</time>
+      </trkpt>
+      <trkpt lat="41.6959288914" lon="44.7893916949">
+        <time>2018-08-11T12:11:20.000Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>
