@@ -1,6 +1,7 @@
 import mapboxgl from "mapbox-gl/dist/mapbox-gl.js";
 import { lineString, bbox } from "@turf/turf";
 import { colorsOnDark, colorsByType } from '../../_data/colors.js';
+import { route_settings } from './route-settings.js';
 import { fetchGeojson } from "./fetch-geojson.js";
 
 (async (window) => {
@@ -74,6 +75,38 @@ import { fetchGeojson } from "./fetch-geojson.js";
       let traceIndex = 0;
 
       for (const [traceDate, geoJsonData] of Object.entries(geoJsonDatas)) {
+        map.addSource(`trace-${traceDate}-shadow`, {
+          type: "geojson",
+          data: geoJsonData,
+        });
+        map.addLayer({
+          'id': `route-${traceDate}-shadow`,
+          'type': 'line',
+          'source': `trace-${traceDate}-shadow`,
+          'layout': {
+            'line-join': 'round',
+            'line-cap': 'round'
+          },
+          'paint': {
+            'line-color': 'black',
+            'line-width': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              0, 0,
+              14, 0,
+              16, route_settings.route_width + route_settings.route_shadow_additional_width
+            ],
+            'line-opacity': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              0, 0,
+              16, route_settings.route_shadow_opacity
+            ],
+          }
+        });
+
         map.addSource(`trace-${traceDate}`, {
           type: "geojson",
           data: geoJsonData,
@@ -93,14 +126,14 @@ import { fetchGeojson } from "./fetch-geojson.js";
               ['linear'],
               ['zoom'],
               0, 40,
-              16, 3
+              16, route_settings.route_width
             ],
             'line-opacity': [
               'interpolate',
               ['linear'],
               ['zoom'],
               0, .6,
-              16, .9
+              16, route_settings.route_opacity
             ],
           }
         });
@@ -184,10 +217,12 @@ import { fetchGeojson } from "./fetch-geojson.js";
               // Show or hide activités based on active filters
               if (currentFilters.includes(geoJsonData.features[0].properties.type) && currentMonths.includes(geoJsonData.features[0].properties.month)) {
                 // show
+                map.setLayoutProperty(`route-${traceDate}-shadow`, 'visibility', 'visible');
                 map.setLayoutProperty(`route-${traceDate}`, 'visibility', 'visible');
                 shownCoordinates = [...shownCoordinates, ...geoJsonData.features[0].geometry.coordinates];
               } else {
                 // hide
+                map.setLayoutProperty(`route-${traceDate}-shadow`, 'visibility', 'none');
                 map.setLayoutProperty(`route-${traceDate}`, 'visibility', 'none');
               }
             }
