@@ -22,7 +22,15 @@
   {% for entry in collections.activites %}
     {% set trace = entry.data.trace %}
     {% if trace %}
-    window.traces['{{ entry.date | isoDate }}|{{ entry.data.type }}'] = "{{ entry.url }}trace.geojson";
+    window.traces['{{ entry.date | isoDate }}|{{ entry.data.type }}'] = {
+      trace: "{{ entry.url }}trace.geojson",
+      title: "{{ entry.data.title | escape }}",
+      type: "{{ entry.data.type }}",
+      date: "{{ entry.date | isoDate }}",
+      duration: "{{ entry.data.duration | default('') }}",
+      distance: "{{ entry.data.distance | default('') }}",
+      url: "{{ entry.url }}"
+    };
     {% endif %}
   {% endfor %}
   </script>

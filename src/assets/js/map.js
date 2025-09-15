@@ -16,15 +16,139 @@ import { fetchGeojson } from "./fetch-geojson.js";
   const allMonths = new Set();
   const allTypes = new Set();
 
+  let routeHovered = false;
+  let routePopupHovered = false;
+
+  const routePopup = new mapboxgl.Popup({
+    closeButton: false,
+    closeOnClick: true,
+    focusAfterOpen: false,
+    offset: 10,
+  });
+
+  const highligthRoute = (event, map, activityId, bbox) => {
+    map.setPaintProperty(`route-${activityId}-shadow`, 'line-width', [
+      'interpolate',
+      ['linear'],
+      ['zoom'],
+      0, 40,
+      16, route_settings.route_width + route_settings.route_shadow_additional_width * 2
+    ]).setPaintProperty(`route-${activityId}-shadow`, 'line-opacity', route_settings.route_shadow_opacity);
+    map.setPaintProperty(`route-${activityId}`, 'line-opacity', route_settings.route_highlight_opacity);
+    if (bbox !== undefined) {
+      map.fitBounds(bbox, {
+        fitBoundsOptions: {
+          padding: 25
+        },
+        pitch: 0,
+        bearing: 0,
+        duration: 3000,
+        essential: true,
+      });
+    }
+
+    let content = `
+<p><strong>${geoJsonDatas[activityId].title}</a></strong><br />
+${geoJsonDatas[activityId].type}<br />
+${new Date(geoJsonDatas[activityId].date).toLocaleDateString('fr-FR', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })}`;
+
+    if (geoJsonDatas[activityId].duration) {
+      content += `<br />Durée : ${geoJsonDatas[activityId].duration.split(':').slice(0, 2).join('h')}`;
+    }
+    if (geoJsonDatas[activityId].distance) {
+      content += `<br />Distance : ${geoJsonDatas[activityId].distance} km`;
+    }
+
+    content += `</p>
+<p><a href="${geoJsonDatas[activityId].url}">Voir l'activité</a></p>`;
+
+    routePopup.setLngLat(event.lngLat).setHTML(content).addTo(map);
+
+    const popupElement = window.document.querySelector('.mapboxgl-popup-content');
+
+    popupElement.addEventListener('mouseenter', () => {
+      routePopupHovered = true;
+    });
+    popupElement.addEventListener('mouseleave', () => {
+      routePopupHovered = false;
+
+      if (!routeHovered) {
+        window.setTimeout(() => {
+          if (!routeHovered) {
+            routePopup.remove();
+          }
+        }, 1000);
+      }
+    });
+
+    routeHovered = true;
+  };
+
+  const unhighligthRoute = (event, map, activityId, bbox) => {
+    map.setPaintProperty(`route-${activityId}-shadow`, 'line-width', [
+      'interpolate',
+      ['linear'],
+      ['zoom'],
+      0, 0,
+      12, 0,
+      16, route_settings.route_width + route_settings.route_shadow_additional_width
+    ]).setPaintProperty(`route-${activityId}-shadow`, 'line-opacity', [
+      'interpolate',
+      ['linear'],
+      ['zoom'],
+      0, 0,
+      12, 0,
+      16, route_settings.route_shadow_opacity
+    ]);
+    map.setPaintProperty(`route-${activityId}`, 'line-width', [
+      'interpolate',
+      ['linear'],
+      ['zoom'],
+      0, 40,
+      16, route_settings.route_width
+    ]).setPaintProperty(`route-${activityId}`, 'line-opacity', [
+      'interpolate',
+      ['linear'],
+      ['zoom'],
+      0, .6,
+      16, route_settings.route_opacity
+    ]);
+    if (bbox !== undefined) {
+      map.fitBounds(bbox, {
+        fitBoundsOptions: {
+          padding: 25
+        },
+        pitch: 0,
+        bearing: 0,
+        duration: 3000,
+        essential: true,
+      });
+    }
+    routeHovered = false;
+
+    if (!routePopupHovered) {
+      window.setTimeout(() => {
+        if (!routeHovered && !routePopupHovered) {
+          routePopup.remove();
+        }
+      }, 1000);
+    }
+  };
+
   // Loop through all traces to collect useful data
   for (let [traceId, geoJsonData] of Object.entries(geoJsonDatas)) {
     const [date, type] = traceId.split('|');
-    if (typeof geoJsonData === "string") {
-      geoJsonData = await fetchGeojson(geoJsonData);
-      geoJsonDatas[traceId] = geoJsonData;
+    if (typeof geoJsonData.trace === "string") {
+      geoJsonData.trace = await fetchGeojson(geoJsonData.trace);
+      geoJsonDatas[traceId].trace = geoJsonData.trace;
     }
-    allCoordinates = [...allCoordinates, ...geoJsonData.features[0].geometry.coordinates];
-    allMonths.add(geoJsonData.features[0].properties.month);
+    allCoordinates = [...allCoordinates, ...geoJsonData.trace.features[0].geometry.coordinates];
+    allMonths.add(geoJsonData.trace.features[0].properties.month);
     allTypes.add(type);
   }
   const bboxCoordinates = bbox(lineString(allCoordinates));
@@ -75,9 +199,11 @@ import { fetchGeojson } from "./fetch-geojson.js";
       let traceIndex = 0;
 
       for (const [traceDate, geoJsonData] of Object.entries(geoJsonDatas)) {
+        const activityBbox = bbox(lineString(geoJsonData.trace.features[0].geometry.coordinates))
+
         map.addSource(`trace-${traceDate}-shadow`, {
           type: "geojson",
-          data: geoJsonData,
+          data: geoJsonData.trace,
         });
         map.addLayer({
           'id': `route-${traceDate}-shadow`,
@@ -94,7 +220,7 @@ import { fetchGeojson } from "./fetch-geojson.js";
               ['linear'],
               ['zoom'],
               0, 0,
-              14, 0,
+              12, 0,
               16, route_settings.route_width + route_settings.route_shadow_additional_width
             ],
             'line-opacity': [
@@ -102,6 +228,7 @@ import { fetchGeojson } from "./fetch-geojson.js";
               ['linear'],
               ['zoom'],
               0, 0,
+              12, 0,
               16, route_settings.route_shadow_opacity
             ],
           }
@@ -109,7 +236,7 @@ import { fetchGeojson } from "./fetch-geojson.js";
 
         map.addSource(`trace-${traceDate}`, {
           type: "geojson",
-          data: geoJsonData,
+          data: geoJsonData.trace,
         });
         map.addLayer({
           'id': `route-${traceDate}`,
@@ -120,7 +247,7 @@ import { fetchGeojson } from "./fetch-geojson.js";
             'line-cap': 'round'
           },
           'paint': {
-            'line-color': colorsByType[geoJsonData.features[0].properties.type] || colorsOnDark[traceIndex % colorsOnDark.length],
+            'line-color': colorsByType[geoJsonData.trace.features[0].properties.type] || colorsOnDark[traceIndex % colorsOnDark.length],
             'line-width': [
               'interpolate',
               ['linear'],
@@ -137,6 +264,18 @@ import { fetchGeojson } from "./fetch-geojson.js";
             ],
           }
         });
+
+        // Add interactivity on the routes on the map
+        map.on('mouseenter', `route-${traceDate}`, (event) => {
+          highligthRoute(event, map, traceDate);
+        });
+        map.on('mouseleave', `route-${traceDate}`, (event) => {
+          unhighligthRoute(event, map, traceDate);
+        });
+        map.on('click', `route-${traceDate}`, (event) => {
+          highligthRoute(event, map, traceDate, activityBbox);
+        });
+
 
         traceIndex++;
       }
@@ -215,11 +354,11 @@ import { fetchGeojson } from "./fetch-geojson.js";
 
             for (const [traceDate, geoJsonData] of Object.entries(geoJsonDatas)) {
               // Show or hide activités based on active filters
-              if (currentFilters.includes(geoJsonData.features[0].properties.type) && currentMonths.includes(geoJsonData.features[0].properties.month)) {
+              if (currentFilters.includes(geoJsonData.trace.features[0].properties.type) && currentMonths.includes(geoJsonData.features[0].properties.month)) {
                 // show
                 map.setLayoutProperty(`route-${traceDate}-shadow`, 'visibility', 'visible');
                 map.setLayoutProperty(`route-${traceDate}`, 'visibility', 'visible');
-                shownCoordinates = [...shownCoordinates, ...geoJsonData.features[0].geometry.coordinates];
+                shownCoordinates = [...shownCoordinates, ...geoJsonData.trace.features[0].geometry.coordinates];
               } else {
                 // hide
                 map.setLayoutProperty(`route-${traceDate}-shadow`, 'visibility', 'none');
