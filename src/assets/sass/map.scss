@@ -285,9 +285,39 @@ body.map {
  * Popups
  *********************************************************** */
 
+.mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
+	border-bottom-color: var(--brown-150);
+}
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
+	border-top-color: var(--brown-150);
+}
+.mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+	border-right-color: var(--brown-150);
+}
+.mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+	border-left-color: var(--brown-150);
+}
+
 .mapboxgl-popup-content {
+	background-color: var(--brown-150);
+	color: var(--brown-900);
+
+	a {
+		color: var(--green-500);
+		text-decoration: underline;
+
+		&:hover,
+		&:focus {
+			color: var(--green-700);
+		}
+	}
+
 	strong {
-		color: var(--heading);
+		color: var(--brown-700);
 	}
 
 	svg.icon {
