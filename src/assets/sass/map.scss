@@ -280,3 +280,27 @@ body.map {
 		}
 	}
 }
+
+/* ***********************************************************
+ * Popups
+ *********************************************************** */
+
+.mapboxgl-popup-content {
+	strong {
+		color: var(--heading);
+	}
+
+	svg.icon {
+		fill: none;
+		stroke-width: 1px;
+	}
+
+	svg.typeIcon {
+		width: 1.5em;
+		height: 1.5em;
+		vertical-align: middle;
+
+		stroke-width: 0;
+		fill: currentColor;
+	}
+}

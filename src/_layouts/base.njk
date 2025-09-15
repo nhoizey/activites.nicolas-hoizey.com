@@ -27,6 +27,11 @@
     {% include "components/footer.njk" %}
     <div style="display: none" aria-hidden="true" class="reusable-icons">
       {% inline_icon 'date' %}
+      {% inline_icon 'distance' %}
+      {% inline_icon 'duration' %}
+      {% for type in collections.types %}
+        {% inline_icon type %}
+      {% endfor %}
     </div>
   </body>
 </html>

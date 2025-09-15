@@ -26,6 +26,7 @@
       trace: "{{ entry.url }}trace.geojson",
       title: "{{ entry.data.title | escape }}",
       type: "{{ entry.data.type }}",
+      typeSlug: "{{ entry.data.type | slugify }}",
       date: "{{ entry.date | isoDate }}",
       duration: "{{ entry.data.duration | default('') }}",
       distance: "{{ entry.data.distance | default('') }}",

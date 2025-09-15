@@ -48,20 +48,20 @@ import { fetchGeojson } from "./fetch-geojson.js";
     }
 
     let content = `
-<p><strong>${geoJsonDatas[activityId].title}</a></strong><br />
-${geoJsonDatas[activityId].type}<br />
-${new Date(geoJsonDatas[activityId].date).toLocaleDateString('fr-FR', {
+<p><strong>${geoJsonDatas[activityId].title}</a></strong></p>
+<p><svg class="typeIcon" aria-hidden="true" viewBox="0 0 24 24"><use xlink:href="#${geoJsonDatas[activityId].typeSlug}-icon" /></svg> ${geoJsonDatas[activityId].type}<br />
+<svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><use xlink:href="#date-icon" /></svg> ${new Date(geoJsonDatas[activityId].date).toLocaleDateString('fr-FR', {
       weekday: 'long',
       year: 'numeric',
       month: 'long',
       day: 'numeric',
     })}`;
 
-    if (geoJsonDatas[activityId].duration) {
-      content += `<br />Durée : ${geoJsonDatas[activityId].duration.split(':').slice(0, 2).join('h')}`;
-    }
     if (geoJsonDatas[activityId].distance) {
-      content += `<br />Distance : ${geoJsonDatas[activityId].distance} km`;
+      content += `<br /><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><use xlink:href="#distance-icon" /></svg> ${geoJsonDatas[activityId].distance} km`;
+    }
+    if (geoJsonDatas[activityId].duration) {
+      content += `<br /><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><use xlink:href="#duration-icon" /></svg> ${geoJsonDatas[activityId].duration.split(':').slice(0, 2).join('h')}`;
     }
 
     content += `</p>

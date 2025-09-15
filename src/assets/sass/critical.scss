@@ -130,8 +130,6 @@ svg.icon {
   width: 1.1em;
   height: 1.1em;
   vertical-align: sub;
-  fill: none;
-  stroke-width: 1px;
   stroke-linecap: round;
   stroke-linejoin: round;
 
@@ -144,10 +142,16 @@ svg.icon {
 		stroke-width: 0;
 		fill: currentColor;
 	}
+
+	nav &, .meta & {
+		stroke-width: 1px;
+		fill: none;
+	}
 }
 
 .feed {
 	svg.icon {
+		fill: none;
 		color: #ee8d4b;
     stroke-width: 2px;
 
