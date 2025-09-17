@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx creator="gps4cam - http://gps4cam.com" version="1.1" schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd http://www.garmin.com/xmlschemas/PowerExtension/v1 http://www.garmin.com/xmlschemas/PowerExtensionv1.xsd http://www.topografix.com/GPX/gpx_style/0/2 http://www.topografix.com/GPX/gpx_style/0/2/gpx_style.xsd" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:gpxpx="http://www.garmin.com/xmlschemas/PowerExtension/v1" xmlns:gpx_style="http://www.topografix.com/GPX/gpx_style/0/2">
+  <metadata>
+    <name>gps4cam trip started at 2019-02-27 04-11 decoded at 2019-03-09 11-30-12</name>
+    <author>
+      <name>gpx.studio</name>
+      <link href="https://gpx.studio"/>
+    </author>
+    <link href="http://gps4cam.com">
+      <text>gps4cam</text>
+    </link>
+    <time>2019-03-09T10:30:14.000Z</time>
+  </metadata>
+  <trk>
+    <name>gps4cam trip started at: 2019-02-27T03:11:32Z</name>
+    <trkseg>
+      <trkpt lat="-0.4048665382" lon="36.1082004981">
+        <time>2019-02-27T14:41:34.000Z</time>
+      </trkpt>
+      <trkpt lat="-0.4028431959" lon="36.1082438166">
+        <time>2019-02-27T14:46:34.000Z</time>
+      </trkpt>
+      <trkpt lat="-0.4009521441" lon="36.1082517305">
+        <time>2019-02-27T14:51:34.000Z</time>
+      </trkpt>
+      <trkpt lat="-0.4016224181" lon="36.1083389912">
+        <time>2019-02-27T14:56:35.000Z</time>
+      </trkpt>
+      <trkpt lat="-0.4032474228" lon="36.1082342977">
+        <time>2019-02-27T15:01:36.000Z</time>
+      </trkpt>
+      <trkpt lat="-0.404739983" lon="36.107871853">
+        <time>2019-02-27T15:06:36.000Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

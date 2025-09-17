@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="GPSBabel - https://www.gpsbabel.org" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:gpxpx="http://www.garmin.com/xmlschemas/PowerExtension/v1" xmlns:gpx_style="http://www.topografix.com/GPX/gpx_style/0/2">
+  <metadata>
+    <name>gps4cam trip started at 2019-02-27 04-11 decoded at 2019-03-09 11-30-12</name>
+    <link href="http://gps4cam.com">
+      <text>gps4cam</text>
+    </link>
+    <time>2025-09-17T12:50:29.309Z</time>
+    <bounds minlat="-0.404866538" minlon="36.107871853" maxlat="-0.400952144" maxlon="36.108338991"/>
+  </metadata>
+  <trk>
+    <name>gps4cam trip started at: 2019-02-27T03:11:32Z</name>
+    <trkseg>
+      <trkpt lat="-0.404866538" lon="36.108200498">
+        <time>2019-02-27T14:41:34Z</time>
+      </trkpt>
+      <trkpt lat="-0.402843196" lon="36.108243817">
+        <time>2019-02-27T14:46:34Z</time>
+      </trkpt>
+      <trkpt lat="-0.400952144" lon="36.108251731">
+        <time>2019-02-27T14:51:34Z</time>
+      </trkpt>
+      <trkpt lat="-0.401622418" lon="36.108338991">
+        <time>2019-02-27T14:56:35Z</time>
+      </trkpt>
+      <trkpt lat="-0.403247423" lon="36.108234298">
+        <time>2019-02-27T15:01:36Z</time>
+      </trkpt>
+      <trkpt lat="-0.404739983" lon="36.107871853">
+        <time>2019-02-27T15:06:36Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>
