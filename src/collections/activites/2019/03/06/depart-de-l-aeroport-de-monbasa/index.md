@@ -1,5 +1,5 @@
 ---
-title: Départ de l'aéroport de Nairobi
+title: Départ de l'aéroport de Monbasa
 date: 2019-03-06 15:07:00 +03:00
 type: marche
 duration: 00:17:56
