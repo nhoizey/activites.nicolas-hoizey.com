@@ -32,6 +32,7 @@ export default {
         "randonnée": "marche",
         "tennis": "raquettes",
         "padel": "raquettes",
+        "pickleball": "raquettes",
         "badminton": "raquettes",
         "golf": "golf",
         "ski alpin": "ski",

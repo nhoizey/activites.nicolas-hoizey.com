@@ -18,6 +18,7 @@ export const activityEmoji = (type) => {
     case 'escalade': return '🧗‍♂️';
     case 'tennis': return '🎾';
     case 'padel': return '🎾';
+    case 'pickleball': return '🎾';
     case 'badminton': return '🏸';
     case 'ping pong': return '🏓';
     case 'golf': return '🏌️‍♂️';

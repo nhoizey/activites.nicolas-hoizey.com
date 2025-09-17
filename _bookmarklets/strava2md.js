@@ -58,7 +58,7 @@ title: ${title}
 date: ${date} ${time}:00 +0${new Date(date).getTimezoneOffset() / -60}:00
 type: ${type}`;
 
-if (['tennis', 'padel', 'badminton'].includes(type)) {
+if (['tennis', 'padel', 'badminton', 'pickleball'].includes(type)) {
   content += `
 score: `;
 }
@@ -67,7 +67,7 @@ content += `
 duration: ${duration}
 distance: ${distance}`;
 
-if (!['tennis', 'padel', 'badminton'].includes(type)) {
+if (!['tennis', 'padel', 'badminton', 'pickleball'].includes(type)) {
   content += `
 elevation: ${elevation}`;
 }
@@ -76,7 +76,7 @@ content += `
 tags: []
 strava: ${stravaUrl}`;
 
-if (!['tennis', 'padel', 'badminton'].includes(type)) {
+if (!['tennis', 'padel', 'badminton', 'pickleball'].includes(type)) {
   content += `
 komoot:`;
 }

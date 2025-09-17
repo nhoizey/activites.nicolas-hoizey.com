@@ -13,6 +13,7 @@ export const colorsByType = {
   randonnée: '#00bfa5',
   tennis: '#8a3ffc',
   padel: '#a36df4',
+  pickleball: '#a979f1',
   badminton: '#d4bbff',
   golf: '#d2a106',
   'ski alpin': '#4589ff',

@@ -1,4 +1,4 @@
-const allTypes = new Set(["vélo", "gravel", "vtt", "marche", "randonnée", "tennis", "padel", "badminton", "golf", "ski alpin", "escalade"]);
+const allTypes = new Set(["vélo", "gravel", "vtt", "marche", "randonnée", "tennis", "padel", "badminton", "pickleball", "golf", "ski alpin", "escalade"]);
 const typeFamilies = new Set([
   "vélo",
   "raquettes",
