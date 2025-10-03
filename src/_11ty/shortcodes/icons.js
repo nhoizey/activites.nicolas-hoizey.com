@@ -40,12 +40,14 @@ const ICONS = {
   gravel: { name: "gravel", source: "local" }, // https://www.svgrepo.com/svg/509755/bicycle MIT
   vtt: { name: "vtt", source: "local" }, // https://www.svgrepo.com/svg/509755/bicycle MIT
   tennis: { name: "tennis", source: "local" }, // https://www.svgrepo.com/svg/308122/tennis-person-play-sport CC0
+  "fit-tennis": { name: "fit-tennis", source: "local" }, // https://www.svgrepo.com/svg/308122/tennis-person-play-sport CC0 + https://www.svgrepo.com/svg/509704/activity MIT
   padel: { name: "padel", source: "local" }, // https://www.svgrepo.com/svg/308122/tennis-person-play-sport CC0
   pickleball: { name: "pickleball", source: "local" }, // https://www.svgrepo.com/svg/308122/tennis-person-play-sport CC0
   marche: { name: "marche", source: "local" }, // https://www.svgrepo.com/svg/308152/walking-person-go-walk-move
   randonnee: { name: "randonnee", source: "local" }, // https://www.svgrepo.com/svg/308152/walking-person-go-walk-move
   "ski-alpin": { name: "ski-alpin", source: "local" }, // https://www.svgrepo.com/svg/521848/skiing
   badminton: { name: "badminton", source: "local" }, // https://www.svgrepo.com/svg/127976/badminton-player + https://www.svgrepo.com/svg/521498/badminton
+  entraînement: { name: "entrainement", source: "local" }, // https://www.svgrepo.com/svg/509704/activity MIT
 };
 
 const inline_iconMemoize = {};

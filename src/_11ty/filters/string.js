@@ -17,11 +17,13 @@ export const activityEmoji = (type) => {
     case 'natation': return '🏊‍♂️';
     case 'escalade': return '🧗‍♂️';
     case 'tennis': return '🎾';
+    case 'fit tennis': return '🏋️‍♀️';
     case 'padel': return '🎾';
     case 'pickleball': return '🎾';
     case 'badminton': return '🏸';
     case 'ping pong': return '🏓';
     case 'golf': return '🏌️‍♂️';
+    case 'entraînement': return '🏋️‍♀️';
     default: return `[${type}]`;
   }
 }

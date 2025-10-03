@@ -12,9 +12,11 @@ export const colorsByType = {
   marche: '#08bdba',
   randonnée: '#00bfa5',
   tennis: '#8a3ffc',
+  'fit tennis': '#9957fc',
   padel: '#a36df4',
   pickleball: '#a979f1',
   badminton: '#d4bbff',
   golf: '#d2a106',
   'ski alpin': '#4589ff',
+  'entraînement': '#3dc664',
 };

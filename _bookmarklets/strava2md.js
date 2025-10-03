@@ -67,7 +67,7 @@ content += `
 duration: ${duration}
 distance: ${distance}`;
 
-if (!['tennis', 'padel', 'badminton', 'pickleball'].includes(type)) {
+if (!['tennis', 'padel', 'badminton', 'pickleball', 'fit tennis'].includes(type)) {
   content += `
 elevation: ${elevation}`;
 }
@@ -76,7 +76,7 @@ content += `
 tags: []
 strava: ${stravaUrl}`;
 
-if (!['tennis', 'padel', 'badminton', 'pickleball'].includes(type)) {
+if (!['tennis', 'padel', 'badminton', 'pickleball', 'fit tennis'].includes(type)) {
   content += `
 komoot:`;
 }
