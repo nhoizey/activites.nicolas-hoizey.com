@@ -9,8 +9,10 @@ tags: []
 strava: https://www.strava.com/activities/16022235581?%24deep_link=true&%243p=e_it
 ---
 
-En gros du air tennis, mais en bien plus physique.
-
-Je suis HS.
+En gros du air tennis, mais en bien plus physique. Je suis HS. 😮‍💨
 
 Il paraît que ça devient plus « facile » au fil des séances…
+
+Pour découvrir cette activité, merci Télé Matin !
+
+https://www.youtube.com/watch?v=2rk8xiF8K58
