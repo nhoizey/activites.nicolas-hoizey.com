@@ -10,7 +10,7 @@ import { fetchGeojson } from "./fetch-geojson.js";
   const mapElement = window.document.querySelector(`#${mapElementId}`);
 
   const MAX_ZOOM_LEVEL = 18;
-  const TRACE_COLOR = '#bd12f1';
+  const TRACE_COLOR = '#d87bf4';
   const TRACE_COLOR_HEAD = '#f1123f';
   const SEGMENT_BASE_LENGTH = 30;
   const ANIMATED_POINTS_PER_SECOND = 10;
