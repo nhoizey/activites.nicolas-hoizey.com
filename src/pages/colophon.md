@@ -6,7 +6,7 @@ Ce site est statique, généré avec {% inline_icon 'eleventy' %}&nbsp;[{{ eleve
 
 Les contenus sont rédigés en Markdown et les gabarits de pages sont écrits en Nunjucks.
 
-Le site est hébergé chez {% inline_icon 'alwaysdata' %}&nbsp;[alwaysdata](https://www.alwaysdata.com/fr/), où il est re-généré automatiquement à chaque push sur {% inline_icon 'github' %}&nbsp;GitHub grâce à un hook (Merci GoOz pour [le tuto](https://blog.foojin.com/2025/04/11/comment-deployer-son-site-statique-11ty-depuis-github-vers-alwaysdata/#configuration-du-deploiement)).
+Le site est hébergé chez {% inline_icon 'alwaysdata' %}&nbsp;[alwaysdata](https://www.alwaysdata.com/fr/), où je le « pousse » avec `rsync` après build sur mon ordinateur.
 
 Les icônes d'interface proviennent de {% inline_icon 'lucide' %}&nbsp;[Lucide](https://lucide.dev/).
 
