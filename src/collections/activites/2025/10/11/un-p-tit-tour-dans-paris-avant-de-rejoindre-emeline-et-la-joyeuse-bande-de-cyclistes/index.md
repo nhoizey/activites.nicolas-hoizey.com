@@ -14,3 +14,8 @@ squadrats:
   - squadratinhos: 56
 ---
 
+Venu en RER à Paris pour être sûr de ne pas rater le rendez-vous pour [la balade avec Émeline](../balade-a-velo-avec-emeline-et-olympe/), me voilà en avance !
+
+L'occasion de faire un petit tour pour découvrir Paris en vélo, ma vraie première fois si on ignore le passage éclair le long de la Seine pour aller et [revenir de la gare de Bercy](../../../07/28/retour-a-la-maison/).
+
+Et tant qu'à faire, de prendre un petit déjeuner en terrasse, éclairé par le soleil matinal.
