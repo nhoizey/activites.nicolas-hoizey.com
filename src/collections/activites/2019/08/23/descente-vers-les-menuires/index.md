@@ -8,3 +8,7 @@ elevation: 0
 tags: []
 strava: https://www.strava.com/activities/16130640558
 ---
+
+Une dernière randonnée en descente, pour conclure cette belle semaine complètement improvisée.
+
+![Vue sur Les Ménuires depuis la montagne](photos/2019-08-23-12h15m20s_.jpeg){.center}

@@ -9,3 +9,4 @@ tags: []
 strava: https://www.strava.com/activities/16130603775
 ---
 
+Découverte de la station des Ménuires, c'est quand même pas super joli en été, par rapport à l'hiver quand c'est couvert de neige.

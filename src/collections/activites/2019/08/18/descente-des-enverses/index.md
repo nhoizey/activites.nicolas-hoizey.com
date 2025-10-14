@@ -9,3 +9,4 @@ tags: []
 strava: https://www.strava.com/activities/16130546664
 ---
 
+Première randonnée de la semaine, on commence en douceur avec une descente, après être monté en télécabine.
