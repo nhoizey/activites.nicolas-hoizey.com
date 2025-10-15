@@ -83,12 +83,9 @@ export default {
         const photosDataPromises = fs.readdirSync(photosPath)
           .filter(file => /\.jpe?g$/i.test(file))
           .map(async file => {
-
-
             const photo = {
               src: path.join("photos", file)
             };
-
 
             let photoExif;
             try {
@@ -136,7 +133,6 @@ export default {
                 photo.geo.city = utf8.decode(photoExif.iptc.City);
               }
             }
-
 
             return photo;
           });
