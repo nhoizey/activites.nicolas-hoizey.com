@@ -100,8 +100,22 @@ import { fetchGeojson } from "./fetch-geojson.js";
               },
               'paint': {
                 'line-color': 'black',
-                'line-width': route_settings.route_width + route_settings.route_shadow_additional_width,
-                'line-opacity': route_settings.route_shadow_opacity,
+                'line-width': [
+                  'interpolate',
+                  ['linear'],
+                  ['zoom'],
+                  0, 0,
+                  12, 0,
+                  16, route_settings.route_width + route_settings.route_shadow_additional_width
+                ],
+                'line-opacity': [
+                  'interpolate',
+                  ['linear'],
+                  ['zoom'],
+                  0, 0,
+                  12, 0,
+                  16, route_settings.route_shadow_opacity
+                ],
               }
             });
 
@@ -119,8 +133,20 @@ import { fetchGeojson } from "./fetch-geojson.js";
               },
               'paint': {
                 'line-color': colorsOnDark[traceIndex % colorsOnDark.length],
-                'line-width': route_settings.route_width,
-                'line-opacity': route_settings.route_opacity,
+                'line-width': [
+                  'interpolate',
+                  ['linear'],
+                  ['zoom'],
+                  0, 40,
+                  16, route_settings.route_width
+                ],
+                'line-opacity': [
+                  'interpolate',
+                  ['linear'],
+                  ['zoom'],
+                  0, .6,
+                  16, route_settings.route_opacity
+                ],
               }
             });
 
