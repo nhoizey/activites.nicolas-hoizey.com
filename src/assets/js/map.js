@@ -16,25 +16,18 @@ import { fetchGeojson } from "./fetch-geojson.js";
   const allMonths = new Set();
   const allTypes = new Set();
 
-  let routeHovered = false;
-  let routePopupHovered = false;
+  let routeSelected = false;
+  let selectedRouteId = null;
+  let routePopupOpened = false;
 
   const routePopup = new mapboxgl.Popup({
-    closeButton: false,
+    closeButton: true,
     closeOnClick: true,
     focusAfterOpen: false,
     offset: 10,
   });
 
-  const highligthRoute = (event, map, activityId, bbox) => {
-    map.setPaintProperty(`route-${activityId}-shadow`, 'line-width', [
-      'interpolate',
-      ['linear'],
-      ['zoom'],
-      0, 40,
-      16, route_settings.route_width + route_settings.route_shadow_additional_width * 2
-    ]).setPaintProperty(`route-${activityId}-shadow`, 'line-opacity', route_settings.route_shadow_opacity);
-    map.setPaintProperty(`route-${activityId}`, 'line-opacity', route_settings.route_highlight_opacity);
+  const bboxRoute = (map, bbox) => {
     if (bbox !== undefined) {
       map.fitBounds(bbox, {
         fitBoundsOptions: {
@@ -46,6 +39,36 @@ import { fetchGeojson } from "./fetch-geojson.js";
         essential: true,
       });
     }
+  };
+
+  const selectRoute = (event, map, activityId, bbox) => {
+    if (routeSelected) {
+      // A route is already selected, unselect it first
+      unSelectRoute(map, selectedRouteId);
+
+      // If the same route is clicked again, just unselect it
+      if (selectedRouteId === activityId) {
+        routeSelected = false;
+        selectedRouteId = null;
+        return;
+      }
+
+    }
+
+    // TODO: lower opacity of other routes
+
+    // Otherwise, select the new route
+    routeSelected = true;
+    selectedRouteId = activityId;
+
+    map.setPaintProperty(`route-${activityId}-shadow`, 'line-width', [
+      'interpolate',
+      ['linear'],
+      ['zoom'],
+      0, 40,
+      16, route_settings.route_width + route_settings.route_shadow_additional_width * 2
+    ]).setPaintProperty(`route-${activityId}-shadow`, 'line-opacity', route_settings.route_shadow_opacity);
+    map.setPaintProperty(`route-${activityId}`, 'line-opacity', route_settings.route_highlight_opacity);
 
     let content = `
 <p><strong>${geoJsonDatas[activityId].title}</a></strong></p>
@@ -65,31 +88,24 @@ import { fetchGeojson } from "./fetch-geojson.js";
     }
 
     content += `</p>
-<p><a href="${geoJsonDatas[activityId].url}">Voir l'activité</a></p>`;
+<p><button>Centrer sur la trace</button></p>`;
+
+    content += `</p>
+<p><a href="${geoJsonDatas[activityId].url}">Voir la page de l'activité</a></p>`;
 
     routePopup.setLngLat(event.lngLat).setHTML(content).addTo(map);
+    routePopupOpened = true;
 
-    const popupElement = window.document.querySelector('.mapboxgl-popup-content');
-
-    popupElement.addEventListener('mouseenter', () => {
-      routePopupHovered = true;
+    // Add event listener to the "Center on route" button
+    const centerButton = routePopup.getElement().querySelector("button");
+    centerButton.addEventListener("click", () => {
+      bboxRoute(map, bbox);
     });
-    popupElement.addEventListener('mouseleave', () => {
-      routePopupHovered = false;
-
-      if (!routeHovered) {
-        window.setTimeout(() => {
-          if (!routeHovered) {
-            routePopup.remove();
-          }
-        }, 1000);
-      }
-    });
-
-    routeHovered = true;
   };
 
-  const unhighligthRoute = (event, map, activityId, bbox) => {
+  const unSelectRoute = (map, activityId) => {
+  // TODO: restore opacity of all routes
+
     map.setPaintProperty(`route-${activityId}-shadow`, 'line-width', [
       'interpolate',
       ['linear'],
@@ -118,30 +134,15 @@ import { fetchGeojson } from "./fetch-geojson.js";
       0, .6,
       16, route_settings.route_opacity
     ]);
-    if (bbox !== undefined) {
-      map.fitBounds(bbox, {
-        fitBoundsOptions: {
-          padding: 25
-        },
-        pitch: 0,
-        bearing: 0,
-        duration: 3000,
-        essential: true,
-      });
-    }
-    routeHovered = false;
 
-    if (!routePopupHovered) {
-      window.setTimeout(() => {
-        if (!routeHovered && !routePopupHovered) {
-          routePopup.remove();
-        }
-      }, 1000);
+    if (routePopupOpened) {
+      routePopup.remove();
+      routePopupOpened = false;
     }
   };
 
   // Loop through all traces to collect useful data
-  for (let [traceId, geoJsonData] of Object.entries(geoJsonDatas)) {
+  for (const [traceId, geoJsonData] of Object.entries(geoJsonDatas)) {
     const [date, type] = traceId.split('|');
     if (typeof geoJsonData.trace === "string") {
       geoJsonData.trace = await fetchGeojson(geoJsonData.trace);
@@ -266,14 +267,14 @@ import { fetchGeojson } from "./fetch-geojson.js";
         });
 
         // Add interactivity on the routes on the map
-        map.on('mouseenter', `route-${traceDate}`, (event) => {
-          highligthRoute(event, map, traceDate);
-        });
-        map.on('mouseleave', `route-${traceDate}`, (event) => {
-          unhighligthRoute(event, map, traceDate);
-        });
+        // map.on('mouseenter', `route-${traceDate}`, (event) => {
+        //   selectRoute(event, map, traceDate);
+        // });
+        // map.on('mouseleave', `route-${traceDate}`, (event) => {
+        //   unSelectRoute(event, map, traceDate);
+        // });
         map.on('click', `route-${traceDate}`, (event) => {
-          highligthRoute(event, map, traceDate, activityBbox);
+          selectRoute(event, map, traceDate, activityBbox);
         });
 
 
