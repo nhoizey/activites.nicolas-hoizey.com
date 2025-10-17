@@ -17,6 +17,11 @@
     '{{ type }}'{% if not loop.last %},{% endif %}
     {% endfor %}
   ];
+  window.months = [
+    {% for month in collections.months %}
+    '{{ month }}'{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ];
   window.traces = {};
 
   {% for entry in collections.activites %}
@@ -28,6 +33,7 @@
       type: "{{ entry.data.type }}",
       typeSlug: "{{ entry.data.type | slugify }}",
       date: "{{ entry.date | isoDate }}",
+      month: "{{ entry.data.month }}",
       duration: "{{ entry.data.duration | default('') }}",
       distance: "{{ entry.data.distance | default('') }}",
       url: "{{ entry.url }}"

@@ -20,6 +20,12 @@ export default {
     }
   },
   eleventyComputed: {
+    month: (data) => {
+      if (!data.page.filePathStem.match(/^\/collections\/activites\/[0-9]{4}/)) {
+        return false;
+      }
+      return `${DateTime.fromJSDate(data.date).toFormat('yyyy-MM')}-01`;
+    },
     type_family: async (data) => {
       if (!data.page.filePathStem.match(/^\/collections\/activites\/[0-9]{4}/)) {
         return false;

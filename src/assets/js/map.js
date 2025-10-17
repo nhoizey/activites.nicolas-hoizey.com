@@ -11,10 +11,19 @@ import { fetchGeojson } from "./fetch-geojson.js";
 
   const MAX_ZOOM_LEVEL = 18;
 
+  // France bounding box
+  const franceBbox = [-5.1406, 41.3337, 9.6625, 51.0890];
+
   const geoJsonDatas = window.traces;
-  let allCoordinates = [];
-  const allMonths = new Set();
-  const allTypes = new Set();
+  const allMonths = window.months;
+  const sliderMaxValue = allMonths.length - 1;
+  const readableMonths = allMonths.map((month) => {
+    const date = new Date(month);
+    return date.toLocaleDateString('fr-FR', {
+      month: 'long',
+      year: 'numeric',
+    });
+  });
 
   let routeSelected = false;
   let selectedRouteId = null;
@@ -141,35 +150,6 @@ import { fetchGeojson } from "./fetch-geojson.js";
     }
   };
 
-  // Loop through all traces to collect useful data
-  for (const [traceId, geoJsonData] of Object.entries(geoJsonDatas)) {
-    const [date, type] = traceId.split('|');
-    if (typeof geoJsonData.trace === "string") {
-      geoJsonData.trace = await fetchGeojson(geoJsonData.trace);
-      geoJsonDatas[traceId].trace = geoJsonData.trace;
-    }
-    allCoordinates = [...allCoordinates, ...geoJsonData.trace.features[0].geometry.coordinates];
-    allMonths.add(geoJsonData.trace.features[0].properties.month);
-    allTypes.add(type);
-  }
-  const bboxCoordinates = bbox(lineString(allCoordinates));
-
-  // Sort months
-  const sortedMonths = Array.from(allMonths).sort((a, b) => {
-    return new Date(a) - new Date(b);
-  });
-  const readableMonths = sortedMonths.map((month) => {
-    const date = new Date(month);
-    return date.toLocaleDateString('fr-FR', {
-      month: 'long',
-      year: 'numeric',
-    });
-  });
-  const sliderMaxValue = sortedMonths.length - 1;
-
-  const shownTypes = Array.from(allTypes.intersection(new Set(window.types)));
-  shownTypes.sort((a, b) => window.types.indexOf(a) - window.types.indexOf(b));
-
   if (mapElement) {
     mapboxgl.accessToken = window.MAPBOX_ACCESS_TOKEN;
     const map = new mapboxgl.Map({
@@ -182,7 +162,7 @@ import { fetchGeojson } from "./fetch-geojson.js";
         }
       },
       projection: "globe",
-      bounds: bboxCoordinates,
+      bounds: franceBbox,
       fitBoundsOptions: {
         padding: 50
       },
@@ -196,90 +176,8 @@ import { fetchGeojson } from "./fetch-geojson.js";
       language: "fr",
     });
 
-    map.on('load', () => {
+    map.on('load', async () => {
       let traceIndex = 0;
-
-      for (const [traceDate, geoJsonData] of Object.entries(geoJsonDatas)) {
-        const activityBbox = bbox(lineString(geoJsonData.trace.features[0].geometry.coordinates))
-
-        map.addSource(`trace-${traceDate}-shadow`, {
-          type: "geojson",
-          data: geoJsonData.trace,
-        });
-        map.addLayer({
-          'id': `route-${traceDate}-shadow`,
-          'type': 'line',
-          'source': `trace-${traceDate}-shadow`,
-          'layout': {
-            'line-join': 'round',
-            'line-cap': 'round'
-          },
-          'paint': {
-            'line-color': 'black',
-            'line-width': [
-              'interpolate',
-              ['linear'],
-              ['zoom'],
-              0, 0,
-              12, 0,
-              16, route_settings.route_width + route_settings.route_shadow_additional_width
-            ],
-            'line-opacity': [
-              'interpolate',
-              ['linear'],
-              ['zoom'],
-              0, 0,
-              12, 0,
-              16, route_settings.route_shadow_opacity
-            ],
-          }
-        });
-
-        map.addSource(`trace-${traceDate}`, {
-          type: "geojson",
-          data: geoJsonData.trace,
-        });
-        map.addLayer({
-          'id': `route-${traceDate}`,
-          'type': 'line',
-          'source': `trace-${traceDate}`,
-          'layout': {
-            'line-join': 'round',
-            'line-cap': 'round'
-          },
-          'paint': {
-            'line-color': colorsByType[geoJsonData.trace.features[0].properties.type] || colorsOnDark[traceIndex % colorsOnDark.length],
-            'line-width': [
-              'interpolate',
-              ['linear'],
-              ['zoom'],
-              0, 40,
-              16, route_settings.route_width
-            ],
-            'line-opacity': [
-              'interpolate',
-              ['linear'],
-              ['zoom'],
-              0, .6,
-              16, route_settings.route_opacity
-            ],
-          }
-        });
-
-        // Add interactivity on the routes on the map
-        // map.on('mouseenter', `route-${traceDate}`, (event) => {
-        //   selectRoute(event, map, traceDate);
-        // });
-        // map.on('mouseleave', `route-${traceDate}`, (event) => {
-        //   unSelectRoute(event, map, traceDate);
-        // });
-        map.on('click', `route-${traceDate}`, (event) => {
-          selectRoute(event, map, traceDate, activityBbox);
-        });
-
-
-        traceIndex++;
-      }
 
       map.addSource('mapbox-dem', {
         'type': 'raster-dem',
@@ -351,31 +249,36 @@ import { fetchGeojson } from "./fetch-geojson.js";
               }
             }
 
-            const currentMonths = sortedMonths.slice(fromMonth, toMonth + 1);
+            const currentMonths = allMonths.slice(fromMonth, toMonth + 1);
 
-            for (const [traceDate, geoJsonData] of Object.entries(geoJsonDatas)) {
+            for (const [traceId, geoJsonData] of Object.entries(geoJsonDatas)) {
               // Show or hide activités based on active filters
-              if (currentFilters.includes(geoJsonData.trace.features[0].properties.type) && currentMonths.includes(geoJsonData.features[0].properties.month)) {
+              if (currentFilters.includes(geoJsonData.type) && currentMonths.includes(geoJsonData.month)) {
                 // show
-                map.setLayoutProperty(`route-${traceDate}-shadow`, 'visibility', 'visible');
-                map.setLayoutProperty(`route-${traceDate}`, 'visibility', 'visible');
-                shownCoordinates = [...shownCoordinates, ...geoJsonData.trace.features[0].geometry.coordinates];
+                if (typeof geoJsonData.trace !== "string") {
+                  // TODO: load and render trace if not done yet
+                  map.setLayoutProperty(`route-${traceId}-shadow`, 'visibility', 'visible');
+                  map.setLayoutProperty(`route-${traceId}`, 'visibility', 'visible');
+                  // shownCoordinates = [...shownCoordinates, ...geoJsonData.trace.features[0].geometry.coordinates];
+                }
               } else {
                 // hide
-                map.setLayoutProperty(`route-${traceDate}-shadow`, 'visibility', 'none');
-                map.setLayoutProperty(`route-${traceDate}`, 'visibility', 'none');
+                if (typeof geoJsonData.trace !== "string") {
+                  map.setLayoutProperty(`route-${traceId}-shadow`, 'visibility', 'none');
+                  map.setLayoutProperty(`route-${traceId}`, 'visibility', 'none');
+                }
               }
             }
 
-            const newBboxCoordinates = bbox(lineString(shownCoordinates));
-            map.fitBounds(newBboxCoordinates, {
-              fitBoundsOptions: {
-                padding: 50
-              },
-              easing: (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2,
-              speed: .8,
-              essential: true,
-            });
+            // const newBboxCoordinates = bbox(lineString(shownCoordinates));
+            // map.fitBounds(newBboxCoordinates, {
+            //   fitBoundsOptions: {
+            //     padding: 50
+            //   },
+            //   easing: (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2,
+            //   speed: .8,
+            //   essential: true,
+            // });
           };
 
           const div = document.createElement("div");
@@ -387,7 +290,7 @@ import { fetchGeojson } from "./fetch-geojson.js";
 <div class="filters">
   <p>Types d'activités :</p>
   <ul class="types">
-    ${shownTypes.map(type => `
+    ${window.types.map(type => `
     <li>
       <label for="${type}">
         <input type="checkbox" id="${type}" checked />
@@ -535,34 +438,83 @@ import { fetchGeojson } from "./fetch-geojson.js";
       // https://docs.mapbox.com/mapbox-gl-js/example/navigation-scale/
       map.addControl(new mapboxgl.ScaleControl());
 
-      // window.document.querySelectorAll("ul.activites a").forEach((getElementById){     //   const isoDate = activity.querySelector("time").getAttribute("datetime");
-      //   if (isoDate in geoJsonDatas) {
-      //     activity.addEventListener("mouseenter", (event) => {
-      //       map.setPaintProperty(`route-${isoDate}`, 'line-opacity', 1).setPaintProperty(`route-${isoDate}`, 'line-width', 5);
-      //       map.fitBounds(bbox(lineString(geoJsonDatas[isoDate].features[0].geometry.coordinates)), {
-      //         fitBoundsOptions: {
-      //           padding: 25
-      //         },
-      //         pitch: 0,
-      //         bearing: 0,
-      //         duration: 3000,
-      //         essential: true,
-      //       });
-      //     });
-      //     activity.addEventListener("mouseleave", (event) => {
-      //       map.setPaintProperty(`route-${isoDate}`, 'line-opacity', .7).setPaintProperty(`route-${isoDate}`, 'line-width', 2);
-      //       map.fitBounds(bboxCoordinates, {
-      //         fitBoundsOptions: {
-      //           padding: 25
-      //         },
-      //         pitch: 0,
-      //         bearing: 0,
-      //         duration: 2000,
-      //         essential: true,
-      //       });
-      //     });
-      //   }
-      // });
+      // Load and display traces
+      for (const [traceId, geoJsonData] of Object.entries(geoJsonDatas)) {
+        if (typeof geoJsonData.trace === "string") {
+          geoJsonDatas[traceId].trace = await fetchGeojson(geoJsonData.trace);
+        }
+        const activityBbox = bbox(lineString(geoJsonData.trace.features[0].geometry.coordinates))
+
+        map.addSource(`trace-${traceId}-shadow`, {
+          type: "geojson",
+          data: geoJsonData.trace,
+        });
+        map.addLayer({
+          'id': `route-${traceId}-shadow`,
+          'type': 'line',
+          'source': `trace-${traceId}-shadow`,
+          'layout': {
+            'line-join': 'round',
+            'line-cap': 'round'
+          },
+          'paint': {
+            'line-color': 'black',
+            'line-width': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              0, 0,
+              12, 0,
+              16, route_settings.route_width + route_settings.route_shadow_additional_width
+            ],
+            'line-opacity': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              0, 0,
+              12, 0,
+              16, route_settings.route_shadow_opacity
+            ],
+          }
+        });
+
+        map.addSource(`trace-${traceId}`, {
+          type: "geojson",
+          data: geoJsonData.trace,
+        });
+        map.addLayer({
+          'id': `route-${traceId}`,
+          'type': 'line',
+          'source': `trace-${traceId}`,
+          'layout': {
+            'line-join': 'round',
+            'line-cap': 'round'
+          },
+          'paint': {
+            'line-color': colorsByType[geoJsonData.trace.features[0].properties.type] || colorsOnDark[traceIndex % colorsOnDark.length],
+            'line-width': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              0, 40,
+              16, route_settings.route_width
+            ],
+            'line-opacity': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              0, .6,
+              16, route_settings.route_opacity
+            ],
+          }
+        });
+
+        map.on('click', `route-${traceId}`, (event) => {
+          selectRoute(event, map, traceId, activityBbox);
+        });
+
+        traceIndex++;
+      }
     });
   }
 })(window);

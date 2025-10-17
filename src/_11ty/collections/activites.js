@@ -8,6 +8,7 @@ const typeFamilies = new Set([
   "golf",
   "nautisme"
 ]);
+const monthsSet = new Set([]);
 
 export const types = (collection) => {
   collection
@@ -27,4 +28,14 @@ export const type_families = (collection) => {
       return activite;
     });
   return [...typeFamilies];
+}
+
+export const months = (collection) => {
+  collection
+    .getFilteredByGlob("src/collections/activites/**/index.md")
+    .map((activite) => {
+      monthsSet.add(activite.data.month);
+      return activite;
+    });
+  return [...monthsSet].sort();
 }
