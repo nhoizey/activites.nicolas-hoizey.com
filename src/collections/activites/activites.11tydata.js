@@ -36,7 +36,8 @@ export default {
         "badminton": "raquettes",
         "golf": "golf",
         "ski alpin": "ski",
-        "escalade": "escalade"
+        "escalade": "escalade",
+        "voile": "nautisme"
       };
       if (data.type && familyOfType[data.type] !== undefined) {
         return familyOfType[data.type];

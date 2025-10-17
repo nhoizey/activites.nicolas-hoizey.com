@@ -1,4 +1,4 @@
-const allTypes = new Set(["vélo", "gravel", "vtt", "marche", "randonnée", "tennis", "padel", "badminton", "pickleball", "fit tennis", "golf", "ski alpin", "escalade"]);
+const allTypes = new Set(["vélo", "gravel", "vtt", "marche", "randonnée", "tennis", "padel", "badminton", "pickleball", "fit tennis", "golf", "ski alpin", "escalade", "voile"]);
 const typeFamilies = new Set([
   "vélo",
   "raquettes",
@@ -6,6 +6,7 @@ const typeFamilies = new Set([
   "ski",
   "escalade",
   "golf",
+  "nautisme"
 ]);
 
 export const types = (collection) => {

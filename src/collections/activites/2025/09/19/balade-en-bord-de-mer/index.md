@@ -5,7 +5,7 @@ type: marche
 duration: 00:37:29
 distance: 2.74
 elevation: 8
-tags: []
+tags: ["Clever Age", "Mystery Tour"]
 strava: https://www.strava.com/activities/15864739110
 squadrats:
   - url: https://squadrats.com/activity/JnMCuCkUXd6xSfiZ01Zd

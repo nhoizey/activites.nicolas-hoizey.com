@@ -19,4 +19,5 @@ export const colorsByType = {
   golf: '#d2a106',
   'ski alpin': '#4589ff',
   'entraînement': '#3dc664',
+  voile: '#33b1ff',
 };

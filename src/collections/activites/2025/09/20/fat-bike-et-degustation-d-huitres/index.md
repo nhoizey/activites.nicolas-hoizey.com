@@ -5,7 +5,7 @@ type: vtt
 duration: 01:22:16
 distance: 24.01
 elevation: 94
-tags: []
+tags: ["Clever Age", "Mystery Tour"]
 strava: https://www.strava.com/activities/15874016645
 squadrats:
   - url: https://squadrats.com/activity/w8eygRGNdB2pAAKtnu0j

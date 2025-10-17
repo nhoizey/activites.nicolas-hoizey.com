@@ -48,6 +48,8 @@ const ICONS = {
   "ski-alpin": { name: "ski-alpin", source: "local" }, // https://www.svgrepo.com/svg/521848/skiing
   badminton: { name: "badminton", source: "local" }, // https://www.svgrepo.com/svg/127976/badminton-player + https://www.svgrepo.com/svg/521498/badminton
   entraînement: { name: "entrainement", source: "local" }, // https://www.svgrepo.com/svg/509704/activity MIT
+  voile: { name: "voile", source: "local" }, // https://www.svgrepo.com/svg/308325/sail-boat-sea-travel-sail-sailboat CC0
+  nautisme: { name: "nautisme", source: "local" }, // https://www.svgrepo.com/svg/308325/sail-boat-sea-travel-sail-sailboat CC0
 };
 
 const inline_iconMemoize = {};

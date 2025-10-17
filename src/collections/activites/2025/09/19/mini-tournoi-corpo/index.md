@@ -4,7 +4,7 @@ date: 2025-09-19 17:16:00 +02:00
 type: tennis
 duration: 01:40:06
 distance: 4.75
-tags: []
+tags: ["Clever Age", "Mystery Tour"]
 strava: https://www.strava.com/activities/15867269158
 squadrats:
   - url: https://squadrats.com/activity/gUcAYdhqE9jqv0nCvFx7

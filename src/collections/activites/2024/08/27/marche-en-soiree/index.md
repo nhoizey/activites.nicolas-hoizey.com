@@ -5,7 +5,7 @@ type: marche
 duration: 0:08:54
 distance: 0.69
 elevation: 0
-tags: []
+tags: ["Clever Age"]
 strava: https://www.strava.com/activities/12256918935
 komoot:
 squadrats:

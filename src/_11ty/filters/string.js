@@ -24,6 +24,7 @@ export const activityEmoji = (type) => {
     case 'ping pong': return '🏓';
     case 'golf': return '🏌️‍♂️';
     case 'entraînement': return '🏋️‍♀️';
+    case 'voile': return '⛵️';
     default: return `[${type}]`;
   }
 }

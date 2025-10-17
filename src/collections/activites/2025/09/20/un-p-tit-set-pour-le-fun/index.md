@@ -5,7 +5,7 @@ type: tennis
 score: 3/6
 duration: 00:45:14
 distance: 2.49
-tags: []
+tags: ["Clever Age", "Mystery Tour"]
 strava: https://www.strava.com/activities/15876753589
 ---
 

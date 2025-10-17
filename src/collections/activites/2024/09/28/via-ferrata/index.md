@@ -3,7 +3,7 @@ title: Via ferrata
 date: 2024-09-28 15:00:00 +02:00
 type: escalade
 duration: 3:09:01
-tags: []
+tags: ["Clever Age", "Mystery Tour"]
 strava: https://www.strava.com/activities/12525535520
 ---
 

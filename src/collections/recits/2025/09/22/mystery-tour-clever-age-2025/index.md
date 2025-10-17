@@ -1,7 +1,7 @@
 ---
 title: Mystery Tour Clever Age 2025
 date: 2025-09-22 13:50:27 +02:00
-tags: ["Clever Age"]
+tags: ["Clever Age", "Mystery Tour"]
 ---
 
 {%- css "critical" %}{% renderFile "src/assets/sass/components/embed.scss" %}{% endcss %}
