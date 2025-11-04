@@ -181,7 +181,7 @@ import { fetchGeojson } from "./fetch-geojson.js";
             'tileSize': 512,
             'maxzoom': MAX_ZOOM_LEVEL
           });
-          map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 2 });
+          map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': route_settings.exaggeration });
 
           // https://docs.mapbox.com/mapbox-gl-js/example/navigation-scale/
           map.addControl(new mapboxgl.ScaleControl());

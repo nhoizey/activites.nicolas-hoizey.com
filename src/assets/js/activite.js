@@ -103,7 +103,7 @@ import { fetchGeojson } from "./fetch-geojson.js";
         'tileSize': 512,
         'maxzoom': MAX_ZOOM_LEVEL
       });
-      map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
+      map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': route_settings.exaggeration });
 
       const points = [];
       geoJsonData.features[0].properties.coordTimes.forEach((time, index) => {
