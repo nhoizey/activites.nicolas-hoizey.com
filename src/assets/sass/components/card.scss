@@ -7,15 +7,12 @@ $cardRounding: 1em;
 .cards {
   margin-block: calc(2 * var(--gap));
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(min(100%, 25em), 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, 32rem), 1fr));
 	gap: var(--gap);
 }
 
 .card {
   .card__content {
-    display: grid;
-    grid-template-areas: "content map";
-    grid-template-columns: 1fr 30%;
     padding: var(--gap);
 
     display: grid;
@@ -36,7 +33,11 @@ $cardRounding: 1em;
   &:has(.card__map) {
     display: grid;
     grid-template-areas: "content map";
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 3fr 1fr;
+
+    .card__content {
+      grid-area: content;
+    }
   }
 
   .cards & {
@@ -127,11 +128,9 @@ $cardRounding: 1em;
 
 
     img {
-      // aspect-ratio: 1;
-      border-radius: 0 $cardRounding $cardRounding 0;
+      border-radius: $cardRounding;
       object-fit: cover;
     }
   }
-
 }
 
