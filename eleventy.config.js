@@ -57,15 +57,18 @@ export default async function (eleventyConfig) {
 	// General configuration
 	// ------------------------------------------------------------------------
 
-	// eleventyConfig.addPassthroughCopy({ "src/_cache/traces/collections/activites/": "activites/" });
-
 	eleventyConfig.addPassthroughCopy(
 		{ "src/_cache/traces/collections/activites/": "activites/" },
 		{
 			filter: ["**/*.geojson"],
 		},
 	);
-
+	eleventyConfig.addPassthroughCopy(
+		{ "src/_cache/maps/collections/activites/": "activites/" },
+		{
+			filter: ["**/map.png"],
+		},
+	);
 
 	eleventyConfig.setDataDeepMerge(true);
 	eleventyConfig.setQuietMode(true);

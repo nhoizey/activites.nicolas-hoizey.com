@@ -10,24 +10,35 @@
 }
 
 .card {
-	display: grid;
-	grid-template-areas: "title"
-												"meta";
-  grid-template-columns: 1fr;
+  .content {
+    display: grid;
+    grid-template-areas: "content map";
+    grid-template-columns: 1fr 30%;
+    padding: var(--gap);
 
-  &:has(> .type) {
-  	grid-template-areas: "type title"
-												"type meta";
-    grid-template-columns: fit-content(4em) 1fr;
+    display: grid;
+    grid-template-areas: "title"
+                          "meta";
+    grid-template-columns: 1fr;
+
+    &:has(> .type) {
+      grid-template-areas: "type title"
+                          "type meta";
+      grid-template-columns: 5rem 1fr;
+    }
+
+    align-items: flex-start;
+    gap: var(--gap);
   }
 
-  align-items: flex-start;
-	gap: var(--gap);
-
-	padding: 0;
+  &:has(.map) {
+    display: grid;
+    grid-template-areas: "content map";
+    grid-template-columns: 1fr 30%;
+  }
 
   .cards & {
-    padding: var(--gap);
+    padding: 0;
     background-color: var(--surface-1);
     border-radius: .5em;
 
@@ -83,6 +94,7 @@
     padding: 0;
 
     display: flex;
+
     gap: .3em 1em;
     flex-wrap: wrap;
 
@@ -100,6 +112,20 @@
       fill: none;
       color: var(--meta-icon);
       stroke: currentColor;
+    }
+  }
+
+  &:has(.map) .meta {
+    flex-direction: column;
+  }
+
+  .map {
+    grid-area: map;
+
+    aspect-ratio: 1;
+
+    img {
+      border-radius: .5em;
     }
   }
 

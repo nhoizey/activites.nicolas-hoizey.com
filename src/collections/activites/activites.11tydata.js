@@ -199,6 +199,18 @@ export default {
       }
 
       return false;
+    },
+    map: (data) => {
+      if (!data.page.filePathStem.match(/^\/collections\/activites\/[0-9]{4}/)) {
+        return false;
+      }
+
+      const cachedMap = path.join("src/_cache/maps/", path.dirname(data.page.filePathStem), "map.png");
+      if (!fs.existsSync(cachedMap)) {
+        return false;
+      }
+
+      return true;
     }
   }
 };
