@@ -2,6 +2,8 @@
  * Cards
  *********************************************************** */
 
+$cardRounding: 1em;
+
 .cards {
   margin-block: calc(2 * var(--gap));
 	display: grid;
@@ -34,13 +36,13 @@
   &:has(.map) {
     display: grid;
     grid-template-areas: "content map";
-    grid-template-columns: 1fr 30%;
+    grid-template-columns: 2fr 1fr;
   }
 
   .cards & {
     padding: 0;
     background-color: var(--surface-1);
-    border-radius: .5em;
+    border-radius: $cardRounding;
 
     a {
       color: var(--heading);
@@ -95,7 +97,7 @@
 
     display: flex;
 
-    gap: .3em 1em;
+    gap: 0 1em;
     flex-wrap: wrap;
 
     font-size: 0.9em;
@@ -121,11 +123,13 @@
 
   .map {
     grid-area: map;
+    padding: 3px;
 
-    aspect-ratio: 1;
 
     img {
-      border-radius: .5em;
+      // aspect-ratio: 1;
+      border-radius: 0 $cardRounding $cardRounding 0;
+      object-fit: cover;
     }
   }
 
