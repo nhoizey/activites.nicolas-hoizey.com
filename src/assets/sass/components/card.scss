@@ -12,7 +12,7 @@ $cardRounding: 1em;
 }
 
 .card {
-  .content {
+  .card__content {
     display: grid;
     grid-template-areas: "content map";
     grid-template-columns: 1fr 30%;
@@ -33,7 +33,7 @@ $cardRounding: 1em;
     gap: var(--gap);
   }
 
-  &:has(.map) {
+  &:has(.card__map) {
     display: grid;
     grid-template-areas: "content map";
     grid-template-columns: 2fr 1fr;
@@ -117,11 +117,11 @@ $cardRounding: 1em;
     }
   }
 
-  &:has(.map) .meta {
+  &:has(.card__map) .meta {
     flex-direction: column;
   }
 
-  .map {
+  .card__map {
     grid-area: map;
     padding: 3px;
 
