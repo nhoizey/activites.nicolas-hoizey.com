@@ -10,8 +10,6 @@ import { fetchGeojson } from "./fetch-geojson.js";
   const mapElement = window.document.querySelector(`#${mapElementId}`);
 
   const MAX_ZOOM_LEVEL = 18;
-  const TRACE_COLOR = '#e496fb';
-  const TRACE_COLOR_HEAD = '#f1123f';
   const SEGMENT_BASE_LENGTH = 30;
   const ANIMATED_POINTS_PER_SECOND = 10;
   const DYNAMIC_PITCH = 40;
@@ -46,7 +44,7 @@ import { fetchGeojson } from "./fetch-geojson.js";
       projection: "globe",
       bounds: bboxCoordinates,
       fitBoundsOptions: {
-        padding: 25
+        padding: 35
       },
       minZoom: 1,
       maxZoom: MAX_ZOOM_LEVEL,
@@ -91,7 +89,7 @@ import { fetchGeojson } from "./fetch-geojson.js";
           'line-cap': 'round'
         },
         'paint': {
-          'line-color': TRACE_COLOR,
+          'line-color': route_settings.single_trace_color,
           'line-width': route_settings.route_width,
           'line-opacity': route_settings.route_opacity,
         }
@@ -268,7 +266,7 @@ import { fetchGeojson } from "./fetch-geojson.js";
               'line-cap': 'round'
             },
             'paint': {
-              'line-color': TRACE_COLOR,
+              'line-color': route_settings.single_trace_color,
               'line-width': route_settings.route_highlight_width,
               'line-opacity': route_settings.route_highlight_opacity,
             }
@@ -288,13 +286,13 @@ import { fetchGeojson } from "./fetch-geojson.js";
               'line-cap': 'round'
             },
             'paint': {
-              'line-color': TRACE_COLOR,
+              'line-color': route_settings.single_trace_color,
               'line-gradient': [
                 'interpolate',
                 ['linear'],
                 ['line-progress'],
-                0, TRACE_COLOR,
-                1, TRACE_COLOR_HEAD
+                0, route_settings.single_trace_color,
+                1, route_settings.single_trace_head_color
               ],
               'line-width': route_settings.route_highlight_width,
               'line-opacity': route_settings.route_highlight_opacity
