@@ -12,4 +12,5 @@
 <noscript><link rel="stylesheet" href="{% getBundleFileUrl 'css', 'not-critical' %}"></noscript>
 
 {%- css "critical" %}{% renderFile "src/assets/sass/critical.scss" %}{% endcss %}
+{%- css "critical" %}{% renderFile "src/assets/sass/view-transitions.scss" %}{% endcss %}
 {%- css "not-critical" %}{% renderFile "src/assets/sass/not-critical.scss" %}{% endcss %}
