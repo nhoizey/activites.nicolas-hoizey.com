@@ -19,9 +19,8 @@ nav {
 		width: max-content;
 
 		display: flex;
-		gap: calc(2 * var(--gap));
-
 		flex-direction: row;
+		gap: calc(2 * var(--gap));
 
 		@media (min-width: $breakpoint) {
 			flex-direction: column;

@@ -11,16 +11,18 @@ permalink: "/activites/{{ type_families_item | slugify }}/"
 
 {%- css "critical" %}{% renderFile "src/assets/sass/components/filters.scss" %}{% endcss %}
 
-<ul class="filtres">
-  <li><a href="/activites/">toutes</a></li>
-  {% for typeFamiliesItem in collections.type_families %}
-    {% if typeFamiliesItem == type_families_item %}
-      <li class="actif"><span>{% inline_icon typeFamiliesItem %} {{ typeFamiliesItem | safe }}</span></li>
-    {% else %}
-      <li><a href="/activites/{{ typeFamiliesItem | slugify }}/">{% inline_icon typeFamiliesItem %} {{ typeFamiliesItem | safe }}</a></li>
-    {% endif %}
-  {% endfor %}
-</ul>
+<div class="filtres">
+  <ul>
+    <li><a href="/activites/">toutes</a></li>
+    {% for typeFamiliesItem in collections.type_families %}
+      {% if typeFamiliesItem == type_families_item %}
+        <li class="actif"><span>{% inline_icon typeFamiliesItem %} {{ typeFamiliesItem | safe }}</span></li>
+      {% else %}
+        <li><a href="/activites/{{ typeFamiliesItem | slugify }}/">{% inline_icon typeFamiliesItem %} {{ typeFamiliesItem | safe }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
 
 {%- css "critical" %}{% renderFile "src/assets/sass/components/card.scss" %}{% endcss %}
 {% from "macros/card.njk" import card %}

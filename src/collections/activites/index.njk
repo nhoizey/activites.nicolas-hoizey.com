@@ -8,12 +8,14 @@ nav:
 
 {%- css "critical" %}{% renderFile "src/assets/sass/components/filters.scss" %}{% endcss %}
 
-<ul class="filtres">
-  <li class="actif"><span>toutes</span></li>
-  {% for typeFamiliesItem in collections.type_families %}
-    <li><a href="/activites/{{ typeFamiliesItem | slugify }}/">{% inline_icon typeFamiliesItem %} {{ typeFamiliesItem | safe }}</a></li>
-  {% endfor %}
-</ul>
+<div class="filtres">
+  <ul>
+    <li class="actif"><span>toutes</span></li>
+    {% for typeFamiliesItem in collections.type_families %}
+      <li><a href="/activites/{{ typeFamiliesItem | slugify }}/">{% inline_icon typeFamiliesItem %} {{ typeFamiliesItem | safe }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
 
 {%- css "critical" %}{% renderFile "src/assets/sass/components/card.scss" %}{% endcss %}
 {% from "macros/card.njk" import card %}
