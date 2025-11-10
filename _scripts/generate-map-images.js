@@ -42,7 +42,7 @@ import puppeteer from "puppeteer-core";
       });
     }
 
-    const file = path.join(folder, "map.png");
+    const file = path.join(folder, "map.jpeg");
 
     if (existsSync(file)) {
       return;
@@ -77,7 +77,7 @@ import puppeteer from "puppeteer-core";
     // Take a screenshot of the map
     const map = await page.$("#map");
     if (map) {
-      await map.screenshot({ path: file, type: "png" });
+      await map.screenshot({ path: file, type: "jpeg" });
     }
   });
 
