@@ -66,7 +66,7 @@ export default async function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy(
 		{ "src/_cache/maps/collections/activites/": "activites/" },
 		{
-			filter: ["**/map.png"],
+			filter: ["**/map.jpeg"],
 		},
 	);
 

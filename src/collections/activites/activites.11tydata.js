@@ -205,7 +205,7 @@ export default {
         return false;
       }
 
-      const cachedMap = path.join("src/_cache/maps/", path.dirname(data.page.filePathStem), "map.png");
+      const cachedMap = path.join("src/_cache/maps/", path.dirname(data.page.filePathStem), "map.jpeg");
       if (!fs.existsSync(cachedMap)) {
         return false;
       }
