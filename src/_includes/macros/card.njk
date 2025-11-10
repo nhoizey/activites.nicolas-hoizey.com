@@ -1,4 +1,4 @@
-{% macro card(type, title, url, date, distance=0, duration=0, where="page", map=false) %}
+{% macro card(type, title, url, date, distance=0, duration=0, where="page", map=false, image_index=false) %}
   <div class="card" style="view-transition-name: {{ url | slugify }}">
     <div class="card__content">
       {%- if type != "blog" and type != "recits" -%}

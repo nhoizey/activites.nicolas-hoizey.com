@@ -22,6 +22,6 @@ nav:
 
 <div class="activites cards">
   {% for entry in collections.activites %}
-    {{ card(entry.data.type, entry.data.title, entry.url, entry.data.date, entry.data.distance, entry.data.duration, "list", entry.data.map) }}
+    {{ card(entry.data.type, entry.data.title, entry.url, entry.data.date, entry.data.distance, entry.data.duration, "list", entry.data.map, loop.index) }}
   {% endfor %}
 </div>
