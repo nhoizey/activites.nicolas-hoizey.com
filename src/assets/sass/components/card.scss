@@ -1,4 +1,5 @@
-$cardRounding: 1em;
+$cardRounding: 20px;
+$photoPadding: 10px;
 
 .cards {
   margin-block: calc(2 * var(--gap));
@@ -120,11 +121,11 @@ $cardRounding: 1em;
 
   .card__map {
     grid-area: map;
-    padding: 3px;
+    padding: $photoPadding;
 
 
     img {
-      border-radius: $cardRounding;
+      border-radius: $cardRounding - $photoPadding;
       object-fit: cover;
     }
   }
