@@ -9,6 +9,29 @@ import { DOMParser } from 'xmldom'
 import { z } from "zod";
 import { fromZodError } from 'zod-validation-error';
 
+const EXIFR_OPTIONS = {
+  mergeOutput: false,
+  crs: false,
+  dc: false,
+  lr: false,
+  photoshop: false,
+  ifd0: {
+    pick: ["ImageDescription"],
+  },
+  exif: [
+    "DateTimeOriginal",
+    "OffsetTime",
+    "ExifImageWidth",
+    "ExifImageHeight"
+  ],
+  gps: {
+    pick: ["latitude", "longitude", "direction"],
+  },
+  iptc: { pick: ["ObjectName", "Caption", "Country", "City"] },
+  userComment: false,
+};
+
+
 export default {
   eleventyDataSchema: (data) => {
     const result = z.object({
@@ -54,28 +77,6 @@ export default {
       if (!data.page.filePathStem.match(/^\/collections\/activites\/[0-9]{4}/)) {
         return false;
       }
-      const exifrOptions = {
-        mergeOutput: false,
-        crs: false,
-        dc: false,
-        lr: false,
-        photoshop: false,
-        ifd0: {
-          pick: ["ImageDescription"],
-        },
-        exif: [
-          "DateTimeOriginal",
-          "OffsetTime",
-          "ExifImageWidth",
-          "ExifImageHeight"
-        ],
-        gps: {
-          pick: ["latitude", "longitude", "direction"],
-        },
-        iptc: { pick: ["ObjectName", "Caption", "Country", "City"] },
-        userComment: false,
-      };
-
       const cacheDir = path.join("src/_cache/photos/", path.dirname(data.page.filePathStem));
       if (!fs.existsSync(cacheDir)) {
         fs.mkdirSync(cacheDir, { recursive: true });
@@ -97,7 +98,7 @@ export default {
 
             let photoExif;
             try {
-              photoExif = await exifr.parse(path.join(photosPath, file), exifrOptions);
+              photoExif = await exifr.parse(path.join(photosPath, file), EXIFR_OPTIONS);
             } catch (err) {
               console.error(`Error reading EXIF data for photo: ${photo.src}`, err);
             }
