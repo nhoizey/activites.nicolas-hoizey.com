@@ -7,6 +7,10 @@
       "latitude": 48.78830833333333,
       "longitude": 2.47085,
       "direction": 332.13739021329985
+    },
+    "dimensions": {
+      "width": 4032,
+      "height": 3024
     }
   },
   {
@@ -17,6 +21,10 @@
       "latitude": 48.788719444444446,
       "longitude": 2.474911111111111,
       "direction": 103.70132450331126
+    },
+    "dimensions": {
+      "width": 4032,
+      "height": 3024
     }
   },
   {
@@ -27,6 +35,66 @@
       "latitude": 48.79387222222222,
       "longitude": 2.4703,
       "direction": 260.10562130177516
+    },
+    "dimensions": {
+      "width": 4032,
+      "height": 3024
+    }
+  },
+  {
+    "src": "photos/IMG_6094.jpeg",
+    "date": "2025-11-11T16:36:03.000+01:00",
+    "readableTime": "16h36",
+    "geo": {
+      "latitude": 48.79564166666666,
+      "longitude": 2.4693472222222224,
+      "direction": 169.2662048490846
+    },
+    "dimensions": {
+      "width": 4032,
+      "height": 3024
+    }
+  },
+  {
+    "src": "photos/IMG_6096.jpeg",
+    "date": "2025-11-11T16:40:15.000+01:00",
+    "readableTime": "16h40",
+    "geo": {
+      "latitude": 48.79569722222222,
+      "longitude": 2.4682166666666667,
+      "direction": 0.443695068359375
+    },
+    "dimensions": {
+      "width": 4032,
+      "height": 3024
+    }
+  },
+  {
+    "src": "photos/IMG_6100.jpeg",
+    "date": "2025-11-11T16:50:56.000+01:00",
+    "readableTime": "16h50",
+    "geo": {
+      "latitude": 48.797038888888885,
+      "longitude": 2.4682861111111114,
+      "direction": 109.31629934608864
+    },
+    "dimensions": {
+      "width": 4032,
+      "height": 3024
+    }
+  },
+  {
+    "src": "photos/IMG_6101.jpeg",
+    "date": "2025-11-11T16:55:58.000+01:00",
+    "readableTime": "16h55",
+    "geo": {
+      "latitude": 48.79873333333333,
+      "longitude": 2.467966666666667,
+      "direction": 137.59420783645655
+    },
+    "dimensions": {
+      "width": 4032,
+      "height": 3024
     }
   }
 ]

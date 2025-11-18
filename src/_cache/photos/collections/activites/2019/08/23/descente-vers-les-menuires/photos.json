@@ -2,17 +2,29 @@
   {
     "src": "photos/2019-08-23-10h53m51s_.jpeg",
     "date": "2019-08-23T10:53:51.000+02:00",
-    "readableTime": "10h53"
+    "readableTime": "10h53",
+    "dimensions": {
+      "width": 1280,
+      "height": 854
+    }
   },
   {
     "src": "photos/2019-08-23-11h01m40s_.jpeg",
     "date": "2019-08-23T11:01:40.000+02:00",
-    "readableTime": "11h01"
+    "readableTime": "11h01",
+    "dimensions": {
+      "width": 1280,
+      "height": 854
+    }
   },
   {
     "src": "photos/2019-08-23-11h03m46s_.jpeg",
     "date": "2019-08-23T11:03:46.000+02:00",
-    "readableTime": "11h03"
+    "readableTime": "11h03",
+    "dimensions": {
+      "width": 1280,
+      "height": 854
+    }
   },
   {
     "src": "photos/2019-08-23-11h56m37s_.jpeg",
@@ -23,6 +35,10 @@
       "longitude": 6.544816666666667,
       "country": "France",
       "city": "Les Belleville"
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 854
     }
   },
   {
@@ -34,6 +50,10 @@
       "longitude": 6.543233333333333,
       "country": "France",
       "city": "Les Belleville"
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 854
     }
   },
   {
@@ -45,6 +65,10 @@
       "longitude": 6.544683333333333,
       "country": "France",
       "city": "Les Belleville"
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 854
     }
   },
   {
@@ -56,6 +80,10 @@
       "longitude": 6.541883333333333,
       "country": "France",
       "city": "Les Belleville"
+    },
+    "dimensions": {
+      "width": 1280,
+      "height": 854
     }
   }
 ]

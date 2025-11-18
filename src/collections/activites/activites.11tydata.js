@@ -66,8 +66,9 @@ export default {
         exif: [
           "DateTimeOriginal",
           "OffsetTime",
+          "ExifImageWidth",
+          "ExifImageHeight"
         ],
-
         gps: {
           pick: ["latitude", "longitude", "direction"],
         },
@@ -102,7 +103,7 @@ export default {
             }
 
             if (!photoExif) {
-              console.warn(`No EXIF data found for photo: ${photo.src}`);
+              console.warn(`No EXIF data found for photo: ${path.join(photosPath, photo.src)}`);
             }
 
             const photoTitle = photoExif.dc?.title.value || photoExif.iptc?.ObjectName;
@@ -139,6 +140,15 @@ export default {
                 // photo.geo.city = photoExif.iptc.City;
                 photo.geo.city = utf8.decode(photoExif.iptc.City);
               }
+            }
+
+            if (photoExif.exif.ExifImageWidth && photoExif.exif.ExifImageHeight) {
+              photo.dimensions = {
+                width: photoExif.exif.ExifImageWidth,
+                height: photoExif.exif.ExifImageHeight,
+              };
+            } else {
+              console.warn(`No dimensions in EXIF for ${path.join(photosPath, photo.src)}`);
             }
 
             return photo;

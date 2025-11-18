@@ -2,11 +2,19 @@
   {
     "src": "photos/65ab8ec1-2d28-490a-8e1f-2cdc4747fb4f.jpeg",
     "date": "2025-03-09T13:55:40.000+01:00",
-    "readableTime": "13h55"
+    "readableTime": "13h55",
+    "dimensions": {
+      "width": 854,
+      "height": 1280
+    }
   },
   {
     "src": "photos/cb750ddc-6e49-4910-9065-29ab1819cfe9.jpeg",
     "date": "2025-03-09T13:55:40.000+01:00",
-    "readableTime": "13h55"
+    "readableTime": "13h55",
+    "dimensions": {
+      "width": 1280,
+      "height": 854
+    }
   }
 ]

@@ -7,6 +7,10 @@
       "latitude": 48.68601666666666,
       "longitude": 2.467327777777778,
       "direction": 26.528137225398737
+    },
+    "dimensions": {
+      "width": 4032,
+      "height": 3024
     }
   },
   {
@@ -17,6 +21,10 @@
       "latitude": 48.685988888888886,
       "longitude": 2.467105555555556,
       "direction": 50.01019283746557
+    },
+    "dimensions": {
+      "width": 4032,
+      "height": 3024
     }
   },
   {
@@ -27,6 +35,10 @@
       "latitude": 48.68597777777777,
       "longitude": 2.4672722222222223,
       "direction": 50.31443783275916
+    },
+    "dimensions": {
+      "width": 4032,
+      "height": 3024
     }
   },
   {
@@ -37,6 +49,10 @@
       "latitude": 48.653705555555554,
       "longitude": 2.490738888888889,
       "direction": 102.0039977155911
+    },
+    "dimensions": {
+      "width": 4032,
+      "height": 3024
     }
   },
   {
@@ -47,6 +63,10 @@
       "latitude": 48.60429444444445,
       "longitude": 2.508188888888889,
       "direction": 252.2451171875
+    },
+    "dimensions": {
+      "width": 4032,
+      "height": 3024
     }
   },
   {
@@ -57,6 +77,10 @@
       "latitude": 48.59417222222223,
       "longitude": 2.5146333333333333,
       "direction": 76.03265383163458
+    },
+    "dimensions": {
+      "width": 4032,
+      "height": 3024
     }
   },
   {
@@ -67,6 +91,10 @@
       "latitude": 48.59416944444445,
       "longitude": 2.5146305555555557,
       "direction": 74.5491943777854
+    },
+    "dimensions": {
+      "width": 4032,
+      "height": 3024
     }
   },
   {
@@ -77,6 +105,10 @@
       "latitude": 48.594680555555556,
       "longitude": 2.5183194444444443,
       "direction": 265.65905743740797
+    },
+    "dimensions": {
+      "width": 4032,
+      "height": 3024
     }
   },
   {
@@ -87,6 +119,10 @@
       "latitude": 48.594591666666666,
       "longitude": 2.517661111111111,
       "direction": 195.49969493593656
+    },
+    "dimensions": {
+      "width": 4032,
+      "height": 3024
     }
   },
   {
@@ -96,6 +132,10 @@
     "geo": {
       "latitude": 48.59147222222222,
       "longitude": 2.525497222222222
+    },
+    "dimensions": {
+      "width": 3520,
+      "height": 1980
     }
   },
   {
@@ -106,6 +146,10 @@
       "latitude": 48.59120555555556,
       "longitude": 2.526475,
       "direction": 133.10931768158474
+    },
+    "dimensions": {
+      "width": 4032,
+      "height": 3024
     }
   },
   {
@@ -116,6 +160,10 @@
       "latitude": 48.581250000000004,
       "longitude": 2.531736111111111,
       "direction": 72.553466796875
+    },
+    "dimensions": {
+      "width": 4032,
+      "height": 3024
     }
   },
   {
@@ -126,6 +174,10 @@
       "latitude": 48.57585277777778,
       "longitude": 2.5336944444444445,
       "direction": 140.98362720403023
+    },
+    "dimensions": {
+      "width": 4032,
+      "height": 3024
     }
   },
   {
@@ -136,6 +188,10 @@
       "latitude": 48.57918055555556,
       "longitude": 2.5428777777777776,
       "direction": 235.29370134465677
+    },
+    "dimensions": {
+      "width": 4032,
+      "height": 3024
     }
   },
   {
@@ -146,11 +202,19 @@
       "latitude": 48.57918888888889,
       "longitude": 2.542822222222222,
       "direction": 261.92652881654203
+    },
+    "dimensions": {
+      "width": 4032,
+      "height": 3024
     }
   },
   {
     "src": "photos/IMG_3174.jpeg",
     "date": "2025-06-09T13:22:43.000+02:00",
-    "readableTime": "13h22"
+    "readableTime": "13h22",
+    "dimensions": {
+      "width": 3088,
+      "height": 2316
+    }
   }
 ]
