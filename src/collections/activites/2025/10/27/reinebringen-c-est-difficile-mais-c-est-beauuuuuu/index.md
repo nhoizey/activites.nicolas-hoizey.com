@@ -12,7 +12,7 @@ komoot: https://www.komoot.com/tour/2666580657
 
 Gravir environ 2000 marches inégales en pierre c’est pas facile, mais la vue méritait bien ça !
 
-![Vue sur Reine et Hamnoy, ainsi que plus largement les Lofoten, depuis Reinebringen](photos/2025-10-27%2012h44m55s_.jpg){.center}
+![Vue sur Reine et Hamnoy, ainsi que plus largement les Lofoten, depuis Reinebringen](photos/2025-10-27-12h44m55s.jpg){.center}
 
 Plusieurs centaines d'[escaliers en pierre naturelle ont été aménagés dans différents sites de Norvège](https://www.visitnorway.fr/activites-norvege/plein-air/randonnee/des-escaliers-qui-menent-au-sommet/), bâtis par une centaine de sherpas venus spécialement du Népal. De tels escaliers en pierre ou en bois avaient déjà été construits bien avant, par des moines.
 
