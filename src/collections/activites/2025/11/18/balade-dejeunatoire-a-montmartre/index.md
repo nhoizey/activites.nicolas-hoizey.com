@@ -29,6 +29,8 @@ Petit tour sur les hauteurs de la Butte Montmartre jusqu'au très joli [Moulin d
 
 …puis redescente vers le [cimetière de Montmartre](https://fr.wikipedia.org/wiki/Cimeti%C3%A8re_de_Montmartre), où se trouvent les tombes de plusieurs célébrités, dont France Gall et Michel Berger.
 
+![Tombe de France Gall et Michel Berger](photos/IMG_6156.jpeg){.center}
+
 J'ai aussi cherché Ampère, mais je ne l'ai pas trouvé, il ne devait pas être au courant que j'allais passer.
 
 C'est la première fois que j'allais au cimetière de Montmartre, c'est un peu particulier de voir le [pont Caulaincourt](https://fr.wikipedia.org/wiki/Pont_Caulaincourt) l'enjamber, à quelques centimètres de certaines tombes. Elles ont au moins l'avantage de moins subir les intempéries.
