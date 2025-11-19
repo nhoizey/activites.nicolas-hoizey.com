@@ -28,3 +28,7 @@ export const activityEmoji = (type) => {
     default: return `[${type}]`;
   }
 }
+
+export const cleanImageUrlsInRecits = (content, siteUrl) => {
+  return content.replace(/<img src="\/collections\/activites\//g, `<img width="600" src="${siteUrl}activites/`);
+}
