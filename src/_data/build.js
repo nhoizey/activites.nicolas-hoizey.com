@@ -1,5 +1,5 @@
 // biome-ignore lint/correctness/noUnusedImports: dotenv
-import { } from "dotenv/config";
+import {} from "dotenv/config";
 
 const thisTimestamp = new Date();
 

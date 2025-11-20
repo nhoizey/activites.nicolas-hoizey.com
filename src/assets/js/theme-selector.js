@@ -1,38 +1,38 @@
-const themeSelector = document.querySelector('#theme-selector');
+const themeSelector = document.querySelector("#theme-selector");
 
 if (themeSelector) {
-  // Get the range input element
-  const rangeInput = themeSelector.querySelector('input[type="range"]');
+	// Get the range input element
+	const rangeInput = themeSelector.querySelector('input[type="range"]');
 
-  // Get the list of theme items
-  const themeItems = themeSelector.querySelectorAll('.theme-labels li');
+	// Get the list of theme items
+	const themeItems = themeSelector.querySelectorAll(".theme-labels li");
 
-  // Get the list of theme names
-  const themes = [...themeItems].map((item) => item.className);
+	// Get the list of theme names
+	const themes = [...themeItems].map((item) => item.className);
 
-  // Set the initial value based on localStorage or default to 'auto'
-  rangeInput.value = themes.indexOf(localStorage.getItem('theme') || 'auto');
+	// Set the initial value based on localStorage or default to 'auto'
+	rangeInput.value = themes.indexOf(localStorage.getItem("theme") || "auto");
 
-  // Update the theme when the range input changes
-  rangeInput.addEventListener('input', (event) => {
-    const newTheme = themes[event.target.value];
-    localStorage.setItem('theme', newTheme);
+	// Update the theme when the range input changes
+	rangeInput.addEventListener("input", (event) => {
+		const newTheme = themes[event.target.value];
+		localStorage.setItem("theme", newTheme);
 
-    if (!document.startViewTransition) {
-      document.querySelector('html').dataset.theme = newTheme;
-      return;
-    }
+		if (!document.startViewTransition) {
+			document.querySelector("html").dataset.theme = newTheme;
+			return;
+		}
 
-    document.startViewTransition(() => {
-      document.querySelector('html').dataset.theme = newTheme;
-    });
-  });
+		document.startViewTransition(() => {
+			document.querySelector("html").dataset.theme = newTheme;
+		});
+	});
 
-  // Add event listeners to the labels
-  themeItems.forEach((item, index) => {
-    item.addEventListener('click', () => {
-      rangeInput.value = index;
-      rangeInput.dispatchEvent(new Event('input'));
-    });
-  });
+	// Add event listeners to the labels
+	themeItems.forEach((item, index) => {
+		item.addEventListener("click", () => {
+			rangeInput.value = index;
+			rangeInput.dispatchEvent(new Event("input"));
+		});
+	});
 }
