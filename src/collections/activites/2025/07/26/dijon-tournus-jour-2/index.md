@@ -23,4 +23,4 @@ Petite péripétie en route tout de même, quand nous nous retrouvons bloqués p
 
 Une fois encore, après que nous soyons arrivés à l'hôtel à Louhans, un gros orage s'est déclenché. Un peu de chance pour nous ! 🤞
 
-![Photo de la pluie intense tombant sur Louhans](/collections/activites/2025/07/26/balade-a-louhans/photos/IMG_3856.jpeg){.center}
+![Photo de la pluie intense tombant sur Louhans](photos/IMG_3856.jpeg){.center}
