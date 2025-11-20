@@ -21,7 +21,7 @@ layout: null
       <link href="{{ absoluteEntryUrl }}"/>
       <updated>{{ entry.date | dateToRfc3339 }}</updated>
       <id>{{ absoluteEntryUrl }}</id>
-      <content type="html">{{ entry.data.cleanContent | markdownify | cleanDeepLinks }}</content>
+      <content type="html">{{ entry.data.atomContent | markdownify | cleanDeepLinks }}</content>
     </entry>
   {% endfor %}
 </feed>

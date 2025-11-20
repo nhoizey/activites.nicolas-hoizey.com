@@ -9,7 +9,7 @@ const rawContent = (data) => {
 export default {
   eleventyComputed: {
     rawContent: (data) => rawContent(data),
-    cleanContent: (data) => {
+    atomContent: (data) => {
       let content = rawContent(data);
 
       // Remove frontmatter
