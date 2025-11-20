@@ -1,479 +1,520 @@
-import mapboxgl from "mapbox-gl/dist/mapbox-gl.js";
 // import { MapboxStyleSwitcherControl } from "mapbox-gl-style-switcher";
-import { lineString, bbox, bearing, point } from "@turf/turf";
-import { route_settings } from './route-settings.js';
+import { bbox, bearing, lineString, point } from "@turf/turf";
+import mapboxgl from "mapbox-gl/dist/mapbox-gl.js";
 import { fetchGeojson } from "./fetch-geojson.js";
+import { route_settings } from "./route-settings.js";
 
 (async (window) => {
-  // Load Mapbox map if necessary
-  const mapElementId = "map";
-  const mapElement = window.document.querySelector(`#${mapElementId}`);
+	// Load Mapbox map if necessary
+	const mapElementId = "map";
+	const mapElement = window.document.querySelector(`#${mapElementId}`);
 
-  const MAX_ZOOM_LEVEL = 18;
-  const SEGMENT_BASE_LENGTH = 30;
-  const ANIMATED_POINTS_PER_SECOND = 10;
-  const DYNAMIC_PITCH = 40;
+	const MAX_ZOOM_LEVEL = 18;
+	const SEGMENT_BASE_LENGTH = 30;
+	const ANIMATED_POINTS_PER_SECOND = 10;
+	const DYNAMIC_PITCH = 40;
 
-  // const mapStyles = [
-  //   {
-  //     title: "Satellite",
-  //     uri: 'mapbox://styles/mapbox/standard-satellite',
-  //   },
-  //   {
-  //     title: "Standard",
-  //     uri: 'mapbox://styles/mapbox/standard',
-  //   },
-  // ];
+	// const mapStyles = [
+	//   {
+	//     title: "Satellite",
+	//     uri: 'mapbox://styles/mapbox/standard-satellite',
+	//   },
+	//   {
+	//     title: "Standard",
+	//     uri: 'mapbox://styles/mapbox/standard',
+	//   },
+	// ];
 
-  const geoJsonData = await fetchGeojson(window.geojsonUrl);
-  const coordinates = geoJsonData.features[0].geometry.coordinates;
-  const bboxCoordinates = bbox(lineString(coordinates));
+	const geoJsonData = await fetchGeojson(window.geojsonUrl);
+	const coordinates = geoJsonData.features[0].geometry.coordinates;
+	const bboxCoordinates = bbox(lineString(coordinates));
 
-  if (mapElement) {
-    mapboxgl.accessToken = window.MAPBOX_ACCESS_TOKEN;
-    const map = new mapboxgl.Map({
-      container: mapElementId,
-      // style: `mapbox://styles/mapbox/standard${localStorage.getItem("mapStyle") === "Satellite" ? "-satellite" : ""}`,
-      style: "mapbox://styles/mapbox/standard-satellite",
-      config: {
-        basemap: {
-          show3dObjects: false,
-          showLandmarkIcons: true,
-        }
-      },
-      projection: "globe",
-      bounds: bboxCoordinates,
-      fitBoundsOptions: {
-        padding: 35
-      },
-      minZoom: 1,
-      maxZoom: MAX_ZOOM_LEVEL,
-      scrollZoom: true,
-      attributionControl: true,
-      cooperativeGestures: false, // https://docs.mapbox.com/mapbox-gl-js/example/cooperative-gestures/
-      hash: false,
-      renderWorldCopies: true,
-    });
+	if (mapElement) {
+		mapboxgl.accessToken = window.MAPBOX_ACCESS_TOKEN;
+		const map = new mapboxgl.Map({
+			container: mapElementId,
+			// style: `mapbox://styles/mapbox/standard${localStorage.getItem("mapStyle") === "Satellite" ? "-satellite" : ""}`,
+			style: "mapbox://styles/mapbox/standard-satellite",
+			config: {
+				basemap: {
+					show3dObjects: false,
+					showLandmarkIcons: true,
+				},
+			},
+			projection: "globe",
+			bounds: bboxCoordinates,
+			fitBoundsOptions: {
+				padding: 35,
+			},
+			minZoom: 1,
+			maxZoom: MAX_ZOOM_LEVEL,
+			scrollZoom: true,
+			attributionControl: true,
+			cooperativeGestures: false, // https://docs.mapbox.com/mapbox-gl-js/example/cooperative-gestures/
+			hash: false,
+			renderWorldCopies: true,
+		});
 
+		map.on("load", () => {
+			map.addSource("trace-shadow", {
+				type: "geojson",
+				data: geoJsonData,
+			});
+			map.addLayer({
+				id: "route-shadow",
+				type: "line",
+				source: "trace-shadow",
+				layout: {
+					"line-join": "round",
+					"line-cap": "round",
+				},
+				paint: {
+					"line-color": "black",
+					"line-width":
+						route_settings.route_width +
+						route_settings.route_shadow_additional_width,
+					"line-opacity": route_settings.route_shadow_opacity,
+				},
+			});
 
-    map.on('load', () => {
-      map.addSource("trace-shadow", {
-        type: "geojson",
-        data: geoJsonData,
-      });
-      map.addLayer({
-        'id': 'route-shadow',
-        'type': 'line',
-        'source': 'trace-shadow',
-        'layout': {
-          'line-join': 'round',
-          'line-cap': 'round'
-        },
-        'paint': {
-          'line-color': 'black',
-          'line-width': route_settings.route_width + route_settings.route_shadow_additional_width,
-          'line-opacity': route_settings.route_shadow_opacity,
-        }
-      });
+			map.addSource("trace", {
+				type: "geojson",
+				data: geoJsonData,
+			});
+			map.addLayer({
+				id: "route",
+				type: "line",
+				source: "trace",
+				layout: {
+					"line-join": "round",
+					"line-cap": "round",
+				},
+				paint: {
+					"line-color": route_settings.single_trace_color,
+					"line-width": route_settings.route_width,
+					"line-opacity": route_settings.route_opacity,
+				},
+			});
 
-      map.addSource("trace", {
-        type: "geojson",
-        data: geoJsonData,
-      });
-      map.addLayer({
-        'id': 'route',
-        'type': 'line',
-        'source': 'trace',
-        'layout': {
-          'line-join': 'round',
-          'line-cap': 'round'
-        },
-        'paint': {
-          'line-color': route_settings.single_trace_color,
-          'line-width': route_settings.route_width,
-          'line-opacity': route_settings.route_opacity,
-        }
-      });
+			map.addSource("mapbox-dem", {
+				type: "raster-dem",
+				url: "mapbox://mapbox.mapbox-terrain-dem-v1",
+				tileSize: 512,
+				maxzoom: MAX_ZOOM_LEVEL,
+			});
+			map.setTerrain({
+				source: "mapbox-dem",
+				exaggeration: route_settings.exaggeration,
+			});
 
-      map.addSource('mapbox-dem', {
-        'type': 'raster-dem',
-        'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
-        'tileSize': 512,
-        'maxzoom': MAX_ZOOM_LEVEL
-      });
-      map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': route_settings.exaggeration });
+			const points = [];
+			geoJsonData.features[0].properties.coordTimes.forEach((time, index) => {
+				const pointCoordinates = coordinates[index];
+				points.push({
+					date: Date.parse(time),
+					type: "point",
+					coordinates: {
+						longitude: pointCoordinates[0],
+						latitude: pointCoordinates[1],
+						altitude: pointCoordinates[2] || 0,
+					},
+				});
+			});
 
-      const points = [];
-      geoJsonData.features[0].properties.coordTimes.forEach((time, index) => {
-        const pointCoordinates = coordinates[index];
-        points.push({
-          date: Date.parse(time),
-          type: "point",
-          coordinates: {
-            longitude: pointCoordinates[0],
-            latitude: pointCoordinates[1],
-            altitude: pointCoordinates[2] || 0,
-          },
-        });
-      });
+			const photos = window.document.querySelectorAll(".photos figure");
+			if (photos.length > 0) {
+				photos.forEach((photo) => {
+					const longitude = photo.getAttribute("data-longitude");
+					const latitude = photo.getAttribute("data-latitude");
+					if (longitude && latitude) {
+						const imageElement = photo.querySelector("img");
+						const src = imageElement.getAttribute("src");
 
-      const photos = window.document.querySelectorAll(".photos figure");
-      if (photos.length > 0) {
-        photos.forEach((photo) => {
-          const longitude = photo.getAttribute("data-longitude");
-          const latitude = photo.getAttribute("data-latitude");
-          if (longitude && latitude) {
-            const imageElement = photo.querySelector("img");
-            const src = imageElement.getAttribute("src");
+						const photoPoint = {
+							date: Date.parse(
+								photo.querySelector("time").getAttribute("datetime"),
+							),
+							type: "photo",
+							coordinates: {
+								longitude: Number.parseFloat(longitude),
+								latitude: Number.parseFloat(latitude),
+								altitude: 0,
+							},
+							innerHTML: photo.innerHTML,
+						};
+						points.push(photoPoint);
 
-            const photoPoint = {
-              date: Date.parse(photo.querySelector('time').getAttribute("datetime")),
-              type: "photo",
-              coordinates: {
-                longitude: Number.parseFloat(longitude),
-                latitude: Number.parseFloat(latitude),
-                altitude: 0,
-              },
-              innerHTML: photo.innerHTML,
-            };
-            points.push(photoPoint);
+						// Create a DOM element for each marker.
+						const el = document.createElement("div");
+						el.className = "marker";
+						el.style.backgroundImage = `url(${src.replace(/\/w_640\//, "/c_fill,g_auto,h_150,w_150/")})`;
 
-            // Create a DOM element for each marker.
-            const el = document.createElement('div');
-            el.className = 'marker';
-            el.style.backgroundImage = `url(${src.replace(/\/w_640\//, '/c_fill,g_auto,h_150,w_150/')})`;
+						// Add the marker to the map
+						new mapboxgl.Marker(el)
+							.setLngLat([longitude, latitude])
+							.setPopup(
+								new mapboxgl.Popup({ offset: 25 }).setHTML(photo.innerHTML),
+							)
+							.addTo(map);
+					}
+				});
+			}
 
-            // Add the marker to the map
-            new mapboxgl.Marker(el)
-              .setLngLat([longitude, latitude])
-              .setPopup(
-                new mapboxgl.Popup({ offset: 25 })
-                  .setHTML(photo.innerHTML)
-              )
-              .addTo(map);
-          }
-        });
-      }
+			points.sort((a, b) => a.date - b.date);
 
-      points.sort((a, b) => a.date - b.date);
+			map.addControl(
+				new mapboxgl.NavigationControl({
+					showCompass: true,
+					visualizePitch: true,
+				}),
+				"top-right",
+			);
 
-      map.addControl(
-        new mapboxgl.NavigationControl({
-          showCompass: true,
-          visualizePitch: true,
-        }),
-        "top-right",
-      );
+			// Add button to toggle between 2D and 3D views
+			// Based on https://github.com/tobinbradley/mapbox-gl-pitch-toggle-control
+			class PitchToggle {
+				onAdd(map) {
+					const div = document.createElement("div");
+					div.className = "mapboxgl-ctrl mapboxgl-ctrl-group";
+					div.innerHTML = `<button class="mapboxgl-ctrl-3d-toggle"><span class="mapboxgl-ctrl-icon" aria-hidden="true" aria-label="Toggle 3D"></span></button>`;
+					if (map.getPitch() !== 0) {
+						div
+							.querySelector("button")
+							.classList.toggle("mapboxgl-ctrl-3d-toggle-active", true);
+					}
+					div.addEventListener("contextmenu", (e) => e.preventDefault());
+					div.addEventListener("click", () => {
+						if (map.getPitch() === 0) {
+							map.easeTo({ pitch: 70, bearing: -20 });
+							div
+								.querySelector("button")
+								.classList.toggle("mapboxgl-ctrl-3d-toggle-active", true);
+						} else {
+							map.easeTo({ pitch: 0, bearing: 0 });
+							div
+								.querySelector("button")
+								.classList.toggle("mapboxgl-ctrl-3d-toggle-active", false);
+						}
+					});
 
-      // Add button to toggle between 2D and 3D views
-      // Based on https://github.com/tobinbradley/mapbox-gl-pitch-toggle-control
-      class PitchToggle {
-        onAdd(map) {
-          const div = document.createElement("div");
-          div.className = "mapboxgl-ctrl mapboxgl-ctrl-group";
-          div.innerHTML = `<button class="mapboxgl-ctrl-3d-toggle"><span class="mapboxgl-ctrl-icon" aria-hidden="true" aria-label="Toggle 3D"></span></button>`;
-          if (map.getPitch() !== 0) {
-            div
-              .querySelector("button")
-              .classList.toggle("mapboxgl-ctrl-3d-toggle-active", true);
-          }
-          div.addEventListener("contextmenu", (e) => e.preventDefault());
-          div.addEventListener("click", () => {
-            if (map.getPitch() === 0) {
-              map.easeTo({ pitch: 70, bearing: -20 });
-              div
-                .querySelector("button")
-                .classList.toggle("mapboxgl-ctrl-3d-toggle-active", true);
-            } else {
-              map.easeTo({ pitch: 0, bearing: 0 });
-              div
-                .querySelector("button")
-                .classList.toggle("mapboxgl-ctrl-3d-toggle-active", false);
-            }
-          });
+					return div;
+				}
+			}
+			map.addControl(new PitchToggle());
 
-          return div;
-        }
-      }
-      map.addControl(new PitchToggle());
+			// Add button to toggle fullscreen mode
+			map.addControl(new mapboxgl.FullscreenControl());
 
-      // Add button to toggle fullscreen mode
-      map.addControl(new mapboxgl.FullscreenControl());
+			// Add buttons to switch between drawn map and satellite photography
+			// map.addControl(
+			//   new MapboxStyleSwitcherControl(mapStyles, {
+			//     defaultStyle: localStorage.getItem("mapStyle") || "Satellite",
+			//     eventListeners: {
+			//       onChange: (_event, style) => {
+			//         localStorage.setItem(
+			//           "mapStyle",
+			//           style.match(/satellite/) ? "Satellite" : "Terrain",
+			//         );
+			//         // map.setConfigProperty(style.match(/satellite/) ? "satellite" : "terrain", 'show3dObjects', false);
+			//       },
+			//     },
+			//   }),
+			// );
 
-      // Add buttons to switch between drawn map and satellite photography
-      // map.addControl(
-      //   new MapboxStyleSwitcherControl(mapStyles, {
-      //     defaultStyle: localStorage.getItem("mapStyle") || "Satellite",
-      //     eventListeners: {
-      //       onChange: (_event, style) => {
-      //         localStorage.setItem(
-      //           "mapStyle",
-      //           style.match(/satellite/) ? "Satellite" : "Terrain",
-      //         );
-      //         // map.setConfigProperty(style.match(/satellite/) ? "satellite" : "terrain", 'show3dObjects', false);
-      //       },
-      //     },
-      //   }),
-      // );
+			class AutoPlayButton {
+				onAdd(map) {
+					let currentlyPlaying = false;
 
-      class AutoPlayButton {
-        onAdd(map) {
-          let currentlyPlaying = false;
+					let previousIndex = 0;
+					let animation;
+					let startTime = 0;
+					let progress = 0;
+					let resetTime = false;
 
-          let previousIndex = 0;
-          let animation;
-          let startTime = 0;
-          let progress = 0;
-          let resetTime = false;
+					const animatedGeoJSON = {
+						type: "FeatureCollection",
+						features: [
+							{
+								type: "Feature",
+								geometry: {
+									type: "LineString",
+									coordinates: [],
+								},
+							},
+						],
+					};
 
-          const animatedGeoJSON = {
-            'type': 'FeatureCollection',
-            'features': [
-              {
-                'type': 'Feature',
-                'geometry': {
-                  'type': 'LineString',
-                  'coordinates': [],
-                }
-              }
-            ]
-          };
+					const animatedGeoJSONHead = {
+						type: "FeatureCollection",
+						features: [
+							{
+								type: "Feature",
+								geometry: {
+									type: "LineString",
+									coordinates: [],
+								},
+							},
+						],
+					};
 
-          const animatedGeoJSONHead = {
-            'type': 'FeatureCollection',
-            'features': [
-              {
-                'type': 'Feature',
-                'geometry': {
-                  'type': 'LineString',
-                  'coordinates': [],
-                }
-              }
-            ]
-          };
+					// Add dynamic source and layer
+					map.addSource("trace-dyn", {
+						type: "geojson",
+						data: animatedGeoJSON,
+					});
+					map.addLayer({
+						id: "route-dyn",
+						type: "line",
+						source: "trace-dyn",
+						layout: {
+							"line-join": "round",
+							"line-cap": "round",
+						},
+						paint: {
+							"line-color": route_settings.single_trace_color,
+							"line-width": route_settings.route_highlight_width,
+							"line-opacity": route_settings.route_highlight_opacity,
+						},
+					});
 
-          // Add dynamic source and layer
-          map.addSource("trace-dyn", {
-            'type': 'geojson',
-            'data': animatedGeoJSON
-          });
-          map.addLayer({
-            'id': 'route-dyn',
-            'type': 'line',
-            'source': 'trace-dyn',
-            'layout': {
-              'line-join': 'round',
-              'line-cap': 'round'
-            },
-            'paint': {
-              'line-color': route_settings.single_trace_color,
-              'line-width': route_settings.route_highlight_width,
-              'line-opacity': route_settings.route_highlight_opacity,
-            }
-          });
+					map.addSource("trace-dyn-head", {
+						type: "geojson",
+						lineMetrics: true,
+						data: animatedGeoJSONHead,
+					});
+					map.addLayer({
+						id: "route-dyn-head",
+						type: "line",
+						source: "trace-dyn-head",
+						layout: {
+							"line-join": "round",
+							"line-cap": "round",
+						},
+						paint: {
+							"line-color": route_settings.single_trace_color,
+							"line-gradient": [
+								"interpolate",
+								["linear"],
+								["line-progress"],
+								0,
+								route_settings.single_trace_color,
+								1,
+								route_settings.single_trace_head_color,
+							],
+							"line-width": route_settings.route_highlight_width,
+							"line-opacity": route_settings.route_highlight_opacity,
+						},
+					});
 
-          map.addSource("trace-dyn-head", {
-            'type': 'geojson',
-            'lineMetrics': true,
-            'data': animatedGeoJSONHead
-          });
-          map.addLayer({
-            'id': 'route-dyn-head',
-            'type': 'line',
-            'source': 'trace-dyn-head',
-            'layout': {
-              'line-join': 'round',
-              'line-cap': 'round'
-            },
-            'paint': {
-              'line-color': route_settings.single_trace_color,
-              'line-gradient': [
-                'interpolate',
-                ['linear'],
-                ['line-progress'],
-                0, route_settings.single_trace_color,
-                1, route_settings.single_trace_head_color
-              ],
-              'line-width': route_settings.route_highlight_width,
-              'line-opacity': route_settings.route_highlight_opacity
-            }
-          });
+					function animateTrace(timestamp) {
+						if (resetTime) {
+							// resume previous progress
+							startTime = performance.now() - progress;
+							resetTime = false;
+						} else {
+							progress = timestamp - startTime;
+						}
 
-          function animateTrace(timestamp) {
-            if (resetTime) {
-              // resume previous progress
-              startTime = performance.now() - progress;
-              resetTime = false;
-            } else {
-              progress = timestamp - startTime;
-            }
+						const currentIndex = Math.max(
+							0,
+							Math.floor((progress * ANIMATED_POINTS_PER_SECOND) / 1000),
+						);
 
-            const currentIndex = Math.max(0, Math.floor(progress * ANIMATED_POINTS_PER_SECOND / 1000));
+						if (currentIndex !== previousIndex) {
+							const easeToDuration =
+								((currentIndex - previousIndex) / ANIMATED_POINTS_PER_SECOND) *
+								5000;
 
-            if (currentIndex !== previousIndex) {
-              const easeToDuration = (currentIndex - previousIndex) / ANIMATED_POINTS_PER_SECOND * 5000;
+							previousIndex = currentIndex;
 
-              previousIndex = currentIndex;
+							// stop animation if we reached the end of the points
+							if (currentIndex >= coordinates.length) {
+								cancelAnimationFrame(animation);
+								resetTime = true;
+								map.setLayoutProperty("route-dyn", "visibility", "none");
+								map.setLayoutProperty("route-dyn-head", "visibility", "none");
+								map.setLayoutProperty("route-shadow", "visibility", "visible");
+								map.setLayoutProperty("route", "visibility", "visible");
 
-              // stop animation if we reached the end of the points
-              if (currentIndex >= coordinates.length) {
-                cancelAnimationFrame(animation);
-                resetTime = true;
-                map.setLayoutProperty('route-dyn', 'visibility', 'none');
-                map.setLayoutProperty('route-dyn-head', 'visibility', 'none');
-                map.setLayoutProperty('route-shadow', 'visibility', 'visible');
-                map.setLayoutProperty('route', 'visibility', 'visible');
+								map.fitBounds(bboxCoordinates, {
+									fitBoundsOptions: {
+										padding: 25,
+									},
+									pitch: 0,
+									bearing: 0,
+									duration: 1500,
+									essential: true,
+								});
 
-                map.fitBounds(bboxCoordinates, {
-                  fitBoundsOptions: {
-                    padding: 25
-                  },
-                  pitch: 0,
-                  bearing: 0,
-                  duration: 1500,
-                  essential: true,
-                });
+								currentlyPlaying = false;
+								div
+									.querySelector("button")
+									.classList.toggle(
+										"mapboxgl-ctrl-autoplay-active",
+										currentlyPlaying,
+									);
 
-                currentlyPlaying = false;
-                div
-                  .querySelector("button")
-                  .classList.toggle(
-                    "mapboxgl-ctrl-autoplay-active",
-                    currentlyPlaying,
-                  );
+								// TODO: reset play button
+							} else {
+								animatedGeoJSON.features[0].geometry.coordinates =
+									coordinates.slice(0, Math.max(0, currentIndex - 9));
+								map.getSource("trace-dyn").setData(animatedGeoJSON);
 
-                // TODO: reset play button
-              } else {
-                animatedGeoJSON.features[0].geometry.coordinates = coordinates.slice(0, Math.max(0, currentIndex - 9));
-                map.getSource('trace-dyn').setData(animatedGeoJSON);
+								animatedGeoJSONHead.features[0].geometry.coordinates =
+									coordinates.slice(
+										Math.max(0, currentIndex - 11),
+										currentIndex,
+									);
+								map.getSource("trace-dyn-head").setData(animatedGeoJSONHead);
 
-                animatedGeoJSONHead.features[0].geometry.coordinates = coordinates.slice(Math.max(0, currentIndex - 11), currentIndex);
-                map.getSource('trace-dyn-head').setData(animatedGeoJSONHead);
+								// Find the segment of points around the current index
+								const currentSegment = coordinates
+									.slice(
+										Math.max(0, currentIndex - SEGMENT_BASE_LENGTH * 2),
+										Math.min(
+											coordinates.length - 1,
+											currentIndex + SEGMENT_BASE_LENGTH,
+										),
+									)
+									.map((point) => point.slice(0, 2));
 
-                // Find the segment of points around the current index
-                const currentSegment = coordinates.slice(Math.max(0, currentIndex - SEGMENT_BASE_LENGTH * 2), Math.min(coordinates.length - 1, currentIndex + SEGMENT_BASE_LENGTH)).map(point => point.slice(0, 2));
+								// Find the bearing angle between the extremes of the current segment
+								const bearingAngle = bearing(
+									point(currentSegment[0]),
+									point(currentSegment[currentSegment.length - 1]),
+								);
 
-                // Find the bearing angle between the extremes of the current segment
-                const bearingAngle = bearing(point(currentSegment[0]), point(currentSegment[currentSegment.length - 1]));
+								// Move the map to the new point
+								map.fitBounds(bbox(lineString(currentSegment)), {
+									pitch: DYNAMIC_PITCH,
+									bearing: bearingAngle,
+									duration: easeToDuration,
+									essential: true, // This animation is considered essential with respect to &prefers-reduced-motion
+								});
+							}
+						}
+						// Request the next frame of the animation.
+						animation = requestAnimationFrame(animateTrace);
+					}
 
-                // Move the map to the new point
-                map.fitBounds(bbox(lineString(currentSegment)), {
-                  pitch: DYNAMIC_PITCH,
-                  bearing: bearingAngle,
-                  duration: easeToDuration,
-                  essential: true, // This animation is considered essential with respect to &prefers-reduced-motion
-                });
-              }
-            }
-            // Request the next frame of the animation.
-            animation = requestAnimationFrame(animateTrace);
-          };
+					// const flyToNextPoint = () => {
+					//   // if (popup) {
+					//   //   popup.remove();
+					//   //   popup = null;
+					//   // }
 
-          // const flyToNextPoint = () => {
-          //   // if (popup) {
-          //   //   popup.remove();
-          //   //   popup = null;
-          //   // }
+					//   // Either use the direction embedded in the photo's metadata, or a random variation from previous bearing
+					//   // bearing =
+					//   //   photoData.geometry.direction ||
+					//   //   (bearing + Math.random() * 60 - 30) % 360; // 360 degrees starting from North
 
-          //   // Either use the direction embedded in the photo's metadata, or a random variation from previous bearing
-          //   // bearing =
-          //   //   photoData.geometry.direction ||
-          //   //   (bearing + Math.random() * 60 - 30) % 360; // 360 degrees starting from North
+					//     // if (popup) {
+					//     //   popup.remove();
+					//     //   popup = null;
+					//     // }
 
+					//     // popup = new AnimatedPopup({
+					//     //   openingAnimation: POPUP_OPENING_ANIMATION,
+					//     //   closingAnimation: POPUP_CLOSING_ANIMATION,
+					//     //   offset: 20,
+					//     //   closeButton: false,
+					//     //   maxWidth: `${Math.floor(targetWidth)}px`,
+					//     //   className: `autoplay ${photoProperties.height / photoProperties.width > 1 ? "portrait" : "landscape"}`,
+					//     // })
+					//     //   .setLngLat(photoData.geometry.coordinates)
+					//     //   .setHTML(
+					//     //     `<a href="${photoProperties.url}"><img src="/photos/${photoProperties.slug}/small.jpg" width="${targetWidth}" height="${targetHeight}" alt>${photoProperties.title}</a>`,
+					//     //   )
+					//     //   .addTo(map);
 
-          //     // if (popup) {
-          //     //   popup.remove();
-          //     //   popup = null;
-          //     // }
+					const div = document.createElement("div");
+					div.className = "mapboxgl-ctrl mapboxgl-ctrl-group";
+					div.innerHTML = `<button class="mapboxgl-ctrl-autoplay"><span class="mapboxgl-ctrl-icon" aria-hidden="true" title="Auto play"></span></button>`;
+					div.addEventListener("contextmenu", (e) => e.preventDefault());
+					div.addEventListener("click", () => {
+						currentlyPlaying = !currentlyPlaying;
 
-          //     // popup = new AnimatedPopup({
-          //     //   openingAnimation: POPUP_OPENING_ANIMATION,
-          //     //   closingAnimation: POPUP_CLOSING_ANIMATION,
-          //     //   offset: 20,
-          //     //   closeButton: false,
-          //     //   maxWidth: `${Math.floor(targetWidth)}px`,
-          //     //   className: `autoplay ${photoProperties.height / photoProperties.width > 1 ? "portrait" : "landscape"}`,
-          //     // })
-          //     //   .setLngLat(photoData.geometry.coordinates)
-          //     //   .setHTML(
-          //     //     `<a href="${photoProperties.url}"><img src="/photos/${photoProperties.slug}/small.jpg" width="${targetWidth}" height="${targetHeight}" alt>${photoProperties.title}</a>`,
-          //     //   )
-          //     //   .addTo(map);
+						if (currentlyPlaying) {
+							progress = 0;
 
-          const div = document.createElement("div");
-          div.className = "mapboxgl-ctrl mapboxgl-ctrl-group";
-          div.innerHTML = `<button class="mapboxgl-ctrl-autoplay"><span class="mapboxgl-ctrl-icon" aria-hidden="true" title="Auto play"></span></button>`;
-          div.addEventListener("contextmenu", (e) => e.preventDefault());
-          div.addEventListener("click", () => {
-            currentlyPlaying = !currentlyPlaying;
+							map.setLayoutProperty("route-shadow", "visibility", "none");
+							map.setLayoutProperty("route", "visibility", "none");
+							map.setLayoutProperty("route-dyn", "visibility", "visible");
+							map.setLayoutProperty("route-dyn-head", "visibility", "visible");
 
-            if (currentlyPlaying) {
-              progress = 0;
+							const currentIndex = Math.max(
+								0,
+								Math.floor((progress * ANIMATED_POINTS_PER_SECOND) / 1000),
+							);
 
-              map.setLayoutProperty('route-shadow', 'visibility', 'none');
-              map.setLayoutProperty('route', 'visibility', 'none');
-              map.setLayoutProperty('route-dyn', 'visibility', 'visible');
-              map.setLayoutProperty('route-dyn-head', 'visibility', 'visible');
+							// Find the segment of points around the current index
+							const currentSegment = coordinates
+								.slice(
+									Math.max(0, currentIndex - SEGMENT_BASE_LENGTH * 2),
+									Math.min(
+										coordinates.length - 1,
+										currentIndex + SEGMENT_BASE_LENGTH,
+									),
+								)
+								.map((point) => point.slice(0, 2));
 
-              const currentIndex = Math.max(0, Math.floor(progress * ANIMATED_POINTS_PER_SECOND / 1000));
+							// Find the bearing angle between the extremes of the current segment
+							const bearingAngle = bearing(
+								point(currentSegment[0]),
+								point(currentSegment[currentSegment.length - 1]),
+							);
 
-              // Find the segment of points around the current index
-              const currentSegment = coordinates.slice(Math.max(0, currentIndex - SEGMENT_BASE_LENGTH * 2), Math.min(coordinates.length - 1, currentIndex + SEGMENT_BASE_LENGTH)).map(point => point.slice(0, 2));
+							// Move the map to the new point
+							map.fitBounds(bbox(lineString(currentSegment)), {
+								pitch: DYNAMIC_PITCH,
+								bearing: bearingAngle,
+								duration: 500,
+								essential: true, // This animation is considered essential with respect to &prefers-reduced-motion
+							});
 
-              // Find the bearing angle between the extremes of the current segment
-              const bearingAngle = bearing(point(currentSegment[0]), point(currentSegment[currentSegment.length - 1]));
+							resetTime = true;
+							setTimeout(animateTrace, 1000);
+						} else {
+							cancelAnimationFrame(animation);
 
-              // Move the map to the new point
-              map.fitBounds(bbox(lineString(currentSegment)), {
-                pitch: DYNAMIC_PITCH,
-                bearing: bearingAngle,
-                duration: 500,
-                essential: true, // This animation is considered essential with respect to &prefers-reduced-motion
-              });
+							map.fitBounds(bboxCoordinates, {
+								fitBoundsOptions: {
+									padding: 25,
+								},
+								pitch: 0,
+								bearing: 0,
+								duration: 1500,
+								essential: true, // This animation is considered essential with respect to &prefers-reduced-motion
+							});
 
-              resetTime = true;
-              setTimeout(animateTrace, 1000);
-            } else {
-              cancelAnimationFrame(animation);
+							map.setLayoutProperty("route-dyn", "visibility", "none");
+							map.setLayoutProperty("route-dyn-head", "visibility", "none");
+							map.setLayoutProperty("route-shadow", "visibility", "visible");
+							map.setLayoutProperty("route", "visibility", "visible");
+						}
 
-              map.fitBounds(bboxCoordinates, {
-                fitBoundsOptions: {
-                  padding: 25
-                },
-                pitch: 0,
-                bearing: 0,
-                duration: 1500,
-                essential: true, // This animation is considered essential with respect to &prefers-reduced-motion
-              });
+						div
+							.querySelector("button")
+							.classList.toggle(
+								"mapboxgl-ctrl-autoplay-active",
+								currentlyPlaying,
+							);
+					});
 
-              map.setLayoutProperty('route-dyn', 'visibility', 'none');
-              map.setLayoutProperty('route-dyn-head', 'visibility', 'none');
-              map.setLayoutProperty('route-shadow', 'visibility', 'visible');
-              map.setLayoutProperty('route', 'visibility', 'visible');
-            }
+					return div;
+				}
+			}
+			map.addControl(new AutoPlayButton());
 
-            div
-              .querySelector("button")
-              .classList.toggle(
-                "mapboxgl-ctrl-autoplay-active",
-                currentlyPlaying,
-              );
-          });
+			// https://docs.mapbox.com/mapbox-gl-js/example/navigation-scale/
+			map.addControl(new mapboxgl.ScaleControl());
 
-          return div;
-        }
-      }
-      map.addControl(new AutoPlayButton());
-
-      // https://docs.mapbox.com/mapbox-gl-js/example/navigation-scale/
-      map.addControl(new mapboxgl.ScaleControl());
-
-    //   map.addControl(
-    //     new GlobeMinimap({
-    //       globeSize: Math.min(100, window.innerWidth / 10),
-    //     }),
-    //     "bottom-right",
-    //   );
-    });
-  }
+			//   map.addControl(
+			//     new GlobeMinimap({
+			//       globeSize: Math.min(100, window.innerWidth / 10),
+			//     }),
+			//     "bottom-right",
+			//   );
+		});
+	}
 })(window);

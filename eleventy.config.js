@@ -1,11 +1,13 @@
 // biome-ignore lint/correctness/noUnusedImports: dotenv
-import { } from "dotenv/config";
 
-import eleventyPluginPack11ty from "eleventy-plugin-pack11ty";
-import eleventyImage, { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
+import eleventyImage, {
+	eleventyImageTransformPlugin,
+} from "@11ty/eleventy-img";
 import eleventyDirOutputPlugin from "@11ty/eleventy-plugin-directory-output";
+import {} from "dotenv/config";
+import eleventyPluginPack11ty from "eleventy-plugin-pack11ty";
 
-import { colorsOnDark, colorsByType } from './src/_data/colors.js';
+import { colorsByType, colorsOnDark } from "./src/_data/colors.js";
 
 eleventyImage.concurrency = 1;
 
@@ -23,7 +25,7 @@ export default async function (eleventyConfig) {
 			firstLevel: 2,
 			containers: ["info", "success", "warning", "error"],
 		},
-		passthroughCopyGlob: "**/*.{jpg,jpeg,png,gif,webp,avif,svg,geojson,gpx}"
+		passthroughCopyGlob: "**/*.{jpg,jpeg,png,gif,webp,avif,svg,geojson,gpx}",
 	};
 
 	eleventyConfig.addPlugin(eleventyPluginPack11ty, pack11tyConfig);
@@ -40,10 +42,10 @@ export default async function (eleventyConfig) {
 				loading: "lazy",
 				decoding: "async",
 			},
-			pictureAttributes: {}
+			pictureAttributes: {},
 		},
 		fixOrientation: true,
-	}
+	};
 
 	if (isProd && process.env.CLOUDINARY_CLOUDNAME !== undefined) {
 		imageOptions.urlFormat = ({ hash, src, width, format }) => {
