@@ -26,11 +26,10 @@ import puppeteer from "puppeteer-core";
 	});
 
 	await cluster.task(async ({ page, data: resourcePath }) => {
+		// Viewport defined to get a map image of 1113 × 1125 pixels
 		await page.setViewport({
 			width: 1454,
 			height: 924,
-			// width: 397,
-			// height: 1133,
 			deviceScaleFactor: 1.5,
 		});
 		await page.setDefaultNavigationTimeout(50000);
