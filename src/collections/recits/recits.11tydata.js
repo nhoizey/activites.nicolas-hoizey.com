@@ -27,9 +27,6 @@ export default {
         "",
       );
 
-      // Fix photo relative URLs
-      content = content.replace(/!\[([^\]]*)\]\(\/collections\/activites\/([^)]+)\)/g, "![$1](/activites/$2){width=600}");
-
       const embeds = [...content.matchAll(/{{\s*embed\(collections\.activites,\s*\[([^\]]+)\]\)\s*}}/g)];
 
       if (embeds.length > 0) {
@@ -93,6 +90,9 @@ export default {
           content = content.replace(embed[0], embedContent.trim());
         }
       }
+
+      // Fix photo absolute URLs
+      content = content.replace(/!\[([^\]]*)\]\(\/collections\/activites\/([^)]+)\)/g, "![$1](/activites/$2){width=600}");
 
       return content;
     },
