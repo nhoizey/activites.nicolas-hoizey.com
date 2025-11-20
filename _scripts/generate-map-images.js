@@ -27,8 +27,10 @@ import puppeteer from "puppeteer-core";
 
 	await cluster.task(async ({ page, data: resourcePath }) => {
 		await page.setViewport({
-			width: 397,
-			height: 1133,
+			width: 1454,
+			height: 924,
+			// width: 397,
+			// height: 1133,
 			deviceScaleFactor: 1.5,
 		});
 		await page.setDefaultNavigationTimeout(50000);
