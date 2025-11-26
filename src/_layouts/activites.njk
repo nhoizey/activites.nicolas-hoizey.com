@@ -9,12 +9,12 @@
   {%- css "critical" %}{% renderFile "src/assets/sass/components/card.scss" %}{% endcss %}
 
   {{ card(type, title, page.url, date, distance, duration, "page") }}
-  <section class="content">
-    <div class="description">
+  <section class="content" data-pagefind-meta="title:{{ title }}" data-pagefind-filter="Type d'activité:{{ type }}" data-pagefind-sort="date:{{- date | isoDate -}}" data-pagefind-meta="date:{{- date | isoDate -}}"{% if trace %} data-pagefind-meta="image:{{ page.url }}/map.jpeg" data-pagefind-meta="image_alt:Carte de l'activité {{ title | escape }}"{% endif %}>
+    <div class="description" data-pagefind-body>
       {{ content | safe }}
 
       {% if strava or komoot %}
-      <aside class="links">
+      <aside class="links" data-pagefind-ignore>
         <p>Vous pouvez retrouver cette activité sur {% if strava %}{% inline_icon 'strava' %}&nbsp;<a href="{{ strava }}">Strava</a>{% endif %}{% if strava and komoot %} et {% endif %}{% if komoot %} {% inline_icon 'komoot' %}&nbsp;<a href="{{ komoot }}">Komoot</a>{% endif %}.</p>
       </aside>
       {% endif %}
@@ -43,7 +43,7 @@
         {% for photo in photos %}
           <li>
             <figure{% if photo.geo %} data-longitude="{{ photo.geo.longitude }}" data-latitude="{{ photo.geo.latitude }}"{% endif %}>
-              <a href="{{ photo.src }}" target="_blank"><img src="{{ photo.src }}" alt="{{ photo.description }}" sizes="27rem" /></a>
+              <a href="{{ photo.src }}" target="_blank"><img src="{{ photo.src }}" alt="{{ photo.description }}" sizes="27rem" data-pagefind-index-attrs="alt" /></a>
               <figcaption>
                 <time class="dt-published" datetime="{{ photo.date }}" data-pagefind-sort="date[datetime]">{{ photo.readableTime }}</time>
                 {{ ":" if photo.title }}

@@ -1,0 +1,60 @@
+---
+title: "Recherche"
+---
+{# nav:
+  order: 6
+  icon: search #}
+
+<style>{% renderFile "src/assets/sass/components/pagefind.scss" %}</style>
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const search_ui = new PagefindUI(
+      {
+        element: "#search",
+        autofocus: true,
+        pageSize: 10,
+        showEmptyFilters: false,
+        excerptLength: 50,
+        showImages: true,
+        showSubResults: false,
+        openFilters: ['Type'],
+        resetStyles: false,
+        translations: {
+          placeholder: "Tapez votre recherche…",
+          clear_search: "Vider",
+          load_more: "Charger plus de résultats",
+          search_label: "Chercher sur le site",
+          filters_label: "Filtres",
+          zero_results: "Aucun résultat trouvé pour « [SEARCH_TERM] ».",
+          many_results: "[COUNT] résultats trouvés pour « [SEARCH_TERM] » :",
+          one_result: "[COUNT] résultat trouvé pour « [SEARCH_TERM] » :",
+          alt_search: "Aucun résultat trouvé pour « [SEARCH_TERM] ». Affichage de résultats pour « [DIFFERENT_TERM] » à la place :",
+          search_suggestion: "Aucun résultat trouvé pour « [SEARCH_TERM] ». Essayez l'une de ces recherches à la place :",
+          searching: "Recherche de « [SEARCH_TERM] »…"
+        },
+        processTerm: function (term) {
+          history.replaceState({}, "", `?q=${encodeURIComponent(term)}`);
+          return term;
+        },
+        processResult: function (result) {
+          // Remove the title from the excerpt if it's not highlighted
+          result.excerpt = result.excerpt.replace(`${result.meta.title}. `, '');
+
+          // Add the type to the title
+          if (!result.raw_title) {
+            result.raw_title = result.meta.title;
+          }
+          result.meta.title = `${result.filters['Type d\'activité']} ▸ ${result.raw_title}`;
+
+          return result;
+        }
+      });
+
+      const params = new URLSearchParams(window.location.search);
+      if (params.has('q')) {
+        search_ui.triggerSearch(params.get('q'));
+      }
+  });
+</script>

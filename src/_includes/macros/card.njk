@@ -15,7 +15,7 @@
       <ul class="meta">
         <li class="date">
           <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><use xlink:href="#date-icon" /></svg>
-          <time class="dt-published" datetime="{{- date | isoDate -}}" data-pagefind-sort="date[datetime]">{{- date | readableDate -}}</time>
+          <time class="dt-published" datetime="{{- date | isoDate -}}">{{- date | readableDate -}}</time>
         </li>
         {%- if distance != 0 -%}
           <li class="distance">
