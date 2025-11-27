@@ -7,7 +7,11 @@
 
 {% block content %}
   {{ card("blog", title, page.url, date, where="page") }}
-  <section class="description">
+  <section
+      class="description"
+      data-pagefind-body
+      data-pagefind-filter="Contenu:Récits"
+      data-pagefind-sort="date:{{- date | isoDate -}}">
     {{ content | safe }}
   </section>
   <script>

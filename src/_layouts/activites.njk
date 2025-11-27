@@ -9,8 +9,12 @@
   {%- css "critical" %}{% renderFile "src/assets/sass/components/card.scss" %}{% endcss %}
 
   {{ card(type, title, page.url, date, distance, duration, "page") }}
-  <section class="content" data-pagefind-meta="title:{{ title }}" data-pagefind-filter="Type d'activité:{{ type }}" data-pagefind-sort="date:{{- date | isoDate -}}" data-pagefind-meta="date:{{- date | isoDate -}}"{% if trace %} data-pagefind-meta="image:{{ page.url }}/map.jpeg" data-pagefind-meta="image_alt:Carte de l'activité {{ title | escape }}"{% endif %}>
-    <div class="description" data-pagefind-body>
+  <section class="content">
+    <div
+        class="description"
+        data-pagefind-body
+        data-pagefind-filter="Contenu:Activités"
+        data-pagefind-sort="date:{{- date | isoDate -}}">
       {{ content | safe }}
 
       {% if strava or komoot %}
@@ -21,7 +25,7 @@
     </div>
 
     {% if trace %}
-      <div id="map" class="map"></div>
+      <div id="map" class="map" data-static-url="{{ page.url }}/map.jpeg" data-pagefind-meta="image[data-static-url],image_alt:Carte de l'activité {{ title | escape }}"></div>
       <noscript>
         <p>JavaScript doit être activé pour voir cette carte.</p>
       </noscript>

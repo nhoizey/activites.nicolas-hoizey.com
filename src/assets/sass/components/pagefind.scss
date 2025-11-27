@@ -1,15 +1,15 @@
 :root {
   --pagefind-ui-scale: 1;
-  --pagefind-ui-primary: #663399;
-  --pagefind-ui-text: #f6f5f9;
+  --pagefind-ui-primary: var(--text-primary);
+  --pagefind-ui-text: var(--text-primary);
   --pagefind-ui-background: #fff;
   --pagefind-ui-border: #999;
-  --pagefind-ui-tag: #663399;
+  --pagefind-ui-tag: var(--text-primary);
   --pagefind-ui-border-width: 2px;
   --pagefind-ui-border-radius: 2rem;
   --pagefind-ui-image-border-radius: 0;
   --pagefind-ui-image-box-ratio: 3 / 2;
-  --pagefind-ui-font: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
+  --pagefind-ui-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .pagefind-ui {
@@ -31,7 +31,7 @@
 }
 
 .pagefind-ui__form:before {
-  background-color: #8a58bb;
+  background-color: var(--brown-700);
   width: 1.5rem;
   height: 1.5rem;
   top: 0.8rem;
@@ -52,7 +52,7 @@
   padding: 0 4rem 0 3rem;
   background-color: white;
   color: #292929;
-  border: 2px solid rebeccapurple;
+  border: 2px solid var(--brown-700);
   border-radius: 2rem;
   font-size: 1.3rem;
   position: relative;
@@ -99,9 +99,9 @@
   color: white;
   font-size: 1rem;
   cursor: pointer;
-  background-color: #8a58bb;
+  background-color: var(--brown-500);
 
-  border-color: rebeccapurple;
+  border-color: var(--brown-700);
   border-style: solid;
   border-width: 2px;
   border-radius: 2rem;
@@ -111,7 +111,7 @@
   text-align: center;
 
   &:hover {
-    background-color: rebeccapurple;
+    background-color: var(--brown-700);
   }
 }
 
@@ -165,8 +165,7 @@
   height: auto;
   max-width: 100%;
   max-height: 100%;
-
-  box-shadow: 0 0 0 4px #040404, 0 0 0 5px #b1b1b1;
+  border-radius: 10px;
 }
 
 .pagefind-ui__result-inner {
@@ -218,8 +217,8 @@
   padding: .1rem .5rem;
   font-size: .9rem;
   border-radius: 1rem;
-  color: #f6f5f9;
-  background-color: #444;
+  color: var(--text-primary);
+  background-color: var(--surface-1);
 }
 
 // ***********************************************************
@@ -237,7 +236,7 @@ details legend {
   margin: 2rem 0 0;
   padding: 0 .5rem;
 
-  background-color: #333;
+  background-color: var(--surface-1);
   border: none;
   border-radius: 1rem;
 
@@ -294,7 +293,7 @@ details legend {
 }
 
 .pagefind-ui__filter-block[open] {
-  background-color: #444;
+  background-color: var(--surface-2);
   border-radius: .5rem;
 
   .pagefind-ui__filter-name {

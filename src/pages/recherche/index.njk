@@ -1,9 +1,9 @@
 ---
 title: "Recherche"
----
-{# nav:
+nav:
   order: 6
-  icon: search #}
+  icon: search
+---
 
 <style>{% renderFile "src/assets/sass/components/pagefind.scss" %}</style>
 <script src="/pagefind/pagefind-ui.js"></script>
@@ -19,7 +19,7 @@ title: "Recherche"
         excerptLength: 50,
         showImages: true,
         showSubResults: false,
-        openFilters: ['Type'],
+        openFilters: ['Type d\'activité', 'Contenu'],
         resetStyles: false,
         translations: {
           placeholder: "Tapez votre recherche…",
@@ -46,7 +46,15 @@ title: "Recherche"
           if (!result.raw_title) {
             result.raw_title = result.meta.title;
           }
-          result.meta.title = `${result.filters['Type d\'activité']} ▸ ${result.raw_title}`;
+          result.meta.title = result.raw_title;
+
+          if (result.filters['Type d\'activité'] !== undefined) {
+            result.meta.title = `${result.filters['Type d\'activité']} ▸ ${result.meta.title}`;
+          }
+
+          if (result.filters['Contenu'] !== undefined) {
+            result.meta.title = `${result.filters['Contenu']} ▸ ${result.meta.title}`;
+          }
 
           return result;
         }
