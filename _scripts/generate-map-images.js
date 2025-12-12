@@ -49,6 +49,10 @@ import puppeteer from "puppeteer-core";
 			return;
 		}
 
+		if (!existsSync(path.join('src/collections', resourcePath, "sources/original.gpx"))) {
+			return;
+		}
+
 		const activiteUrl = `http://localhost:8080/${resourcePath}/`;
 
 		console.log(`Get map image from ${activiteUrl}`);
