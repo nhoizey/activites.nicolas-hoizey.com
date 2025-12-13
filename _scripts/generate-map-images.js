@@ -49,7 +49,11 @@ import puppeteer from "puppeteer-core";
 			return;
 		}
 
-		if (!existsSync(path.join('src/collections', resourcePath, "sources/original.gpx"))) {
+		if (
+			!existsSync(
+				path.join("src/collections", resourcePath, "sources/original.gpx"),
+			)
+		) {
 			return;
 		}
 
