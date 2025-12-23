@@ -11,6 +11,6 @@ nav:
 
 <div class="blog cards">
   {% for entry in collections.blog %}
-    {{ card("blog", entry.data.title, entry.url, entry.data.date, where="list") }}
+    {{ card(type="blog", title=entry.data.title, url=entry.url, date=entry.data.date, where="list") }}
   {% endfor %}
 </div>

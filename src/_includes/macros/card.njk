@@ -1,4 +1,4 @@
-{% macro card(type, title, url, date, distance=0, duration=0, where="page", map=false, image_index=false, env=false) %}
+{% macro card(type, title, url, date, distance=0, duration=0, score="", where="page", map=false, image_index=false, env=false) %}
   <div class="card" style="view-transition-name: {{ url | slugify }}">
     <div class="card__content">
       {%- if type != "blog" and type != "recits" -%}
@@ -17,16 +17,22 @@
           <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><use xlink:href="#date-icon" /></svg>
           <time class="dt-published" datetime="{{- date | isoDate -}}" data-pagefind-sort="date[datetime]" data-pagefind-meta="date">{{- date | readableDate -}}</time>
         </li>
-        {%- if distance != 0 -%}
+        {%- if distance and distance != 0 -%}
           <li class="distance">
             {%- inline_icon 'distance' -%}
             <span>{{- distance -}}&nbsp;km</span>
           </li>
         {%- endif -%}
-        {%- if duration != 0 -%}
+        {%- if duration and duration != 0 -%}
           <li class="duration">
             {%- inline_icon 'duration' -%}
             <span>{{- duration -}}</span>
+          </li>
+        {%- endif -%}
+        {%- if score and score != "" -%}
+          <li class="score">
+            {%- inline_icon 'score' -%}
+            <span>{{- score | scoreToHtml | safe -}}</span>
           </li>
         {%- endif -%}
       </ul>

@@ -21,6 +21,7 @@ const ICONS = {
 	info: { name: "info", source: "lucide" },
 	map: { name: "map", source: "lucide" },
 	recits: { name: "route", source: "lucide" },
+	score: { name: "trophy", source: "lucide" },
 	search: { name: "search", source: "lucide" },
 	share: { name: "share", source: "lucide" },
 	statistics: { name: "pie-chart", source: "lucide" },

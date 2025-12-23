@@ -6,7 +6,7 @@
 {%- css "critical" %}{% renderFile "src/assets/sass/components/card.scss" %}{% endcss %}
 
 {% block content %}
-  {{ card("blog", title, page.url, date, where="page") }}
+  {{ card(type="blog", title=title, url=page.url, date=date, where="page") }}
   <section
       class="description"
       data-pagefind-body

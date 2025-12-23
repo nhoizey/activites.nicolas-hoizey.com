@@ -16,7 +16,7 @@ nav:
 <div class="activites cards">
 
   {% for entry in collections.activites | limit(5) %}
-    {{ card(entry.data.type, entry.data.title, entry.url, entry.data.date, entry.data.distance, entry.data.duration, "list", entry.data.map, loop.index, build.env) }}
+    {{ card(type=entry.data.type, title=entry.data.title, url=entry.url, date=entry.data.date, distance=entry.data.distance, duration=entry.data.duration, score=entry.data.score, where="list", map=entry.data.map, index=loop.index, env=build.env) }}
   {% endfor %}
 </div>
 
@@ -24,7 +24,7 @@ nav:
 
 <div class="recits cards">
   {% for entry in collections.recits %}
-    {{ card("recits", entry.data.title, entry.url, entry.data.date, where="list") }}
+    {{ card(type="recits", title=entry.data.title, url=entry.url, date=entry.data.date, where="list") }}
   {% endfor %}
 </div>
 
@@ -32,6 +32,6 @@ nav:
 
 <div class="blog cards">
   {% for entry in collections.blog %}
-    {{ card("blog", entry.data.title, entry.url, entry.data.date, where="list") }}
+    {{ card(type="blog", title=entry.data.title, url=entry.url, date=entry.data.date, where="list") }}
   {% endfor %}
 </div>
