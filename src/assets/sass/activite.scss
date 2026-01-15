@@ -83,7 +83,7 @@
 
   @media screen and (min-width: $breakpoint-map) {
 		--header-height: calc(0.9rem + 0.3vw + 2 * var(--gap));
-		--card-height: calc((3 + 0.8) * 1em + 3 * var(--gap));
+		--card-height: calc((3 + 0.8) * (0.9rem + 0.3vw) + 3 * var(--gap));
 		height: calc(100dvh - var(--header-height) - var(--card-height) - 3 * var(--gap));
   }
 
