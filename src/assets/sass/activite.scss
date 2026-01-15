@@ -82,7 +82,9 @@
 	height: calc(35dvh - 2 * var(--gap));
 
   @media screen and (min-width: $breakpoint-map) {
-		height: calc(100dvh - ((3 + .8 * 1.5 + 1) * (0.9rem + 0.3vw)) - 5 * var(--gap));
+		--header-height: calc(0.9rem + 0.3vw + 2 * var(--gap));
+		--card-height: calc((3 + 0.8) * 1em + 3 * var(--gap));
+		height: calc(100dvh - var(--header-height) - var(--card-height) - 3 * var(--gap));
   }
 
 	.mapboxgl-ctrl button.mapboxgl-ctrl-autoplay .mapboxgl-ctrl-icon {
