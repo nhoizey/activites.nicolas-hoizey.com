@@ -45,7 +45,7 @@
 		"@11ty/eleventy": "^3.1.2",
 		"@11ty/eleventy-img": "^6.0.4",
 		"@11ty/eleventy-plugin-directory-output": "^1.0.2",
-		"@biomejs/biome": "^2.3.11",
+		"@biomejs/biome": "^2.3.12",
 		"@jlengstorf/get-share-image": "^1.0.2",
 		"@mapbox/togeojson": "^0.16.2",
 		"@turf/turf": "^7.3.2",
@@ -57,9 +57,9 @@
 		"exifr": "^7.1.3",
 		"fast-glob": "^3.3.3",
 		"image-size": "^2.0.2",
-		"lodash-es": "^4.17.22",
+		"lodash-es": "^4.17.23",
 		"lucide-static": "^0.542.0",
-		"mapbox-gl": "^3.18.0",
+		"mapbox-gl": "^3.18.1",
 		"mapbox-gl-style-switcher": "^1.0.11",
 		"npm-run-all": "^4.1.5",
 		"pagefind": "^1.4.0",
@@ -71,7 +71,7 @@
 		"utf8": "^3.0.0",
 		"xmldom": "^0.6.0",
 		"yargs": "^18.0.0",
-		"zod": "^4.3.5",
+		"zod": "^4.3.6",
 		"zod-validation-error": "^4.0.2"
 	}
 }
