@@ -31,7 +31,7 @@ Beau parcours donc, avec un long passage agréable en bord de Seine, du côté d
 
 C'est par là justement que je me suis écarté d’une centaine de mètres du chemin optimal du retour pour aller attraper un squadratinhos, quand tout à coup… 😍
 
-https://youtu.be/zD4lloSKISE
+{% indymotion "6jbeQZ3tnyy7Z57jCe8eqK" %}
 
 Il n’y a pas que pour les lieux que les #squadrats permettent des découvertes !
 

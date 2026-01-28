@@ -18,3 +18,5 @@ Je rate deux squadratinhos de peu, zut…
 Le premier, je pensais que c'était bon, incompréhension potentielle quelque part entre Komoot, Garmin et Strava. 🤷‍♂️
 
 Le second, j'étais un peu plus prudent après avoir entendu puis vu un sanglier à une quinzaine de mètres, je ne suis pas allé aussi loin hors piste que prévu… 😅
+
+{% indymotion "revYU8CSrGbGvukPVyJiyf" %}

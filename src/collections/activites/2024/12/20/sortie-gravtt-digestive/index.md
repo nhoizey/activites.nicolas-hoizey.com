@@ -13,3 +13,5 @@ squadrats:
 ---
 
 Voulant passer sur certains singles que je connais qu’il ne proposait pas en gravel, j’ai demandé à Komoot de faire une trace VTT… ce qu’il a fait. 😅
+
+{% indymotion "5Zkg5aH48xRRiBpx776AgS" %}

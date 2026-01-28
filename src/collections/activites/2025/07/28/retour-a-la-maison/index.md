@@ -17,4 +17,4 @@ J'ai donc décidé de prolonger un peu cette escapade à vélo, et de rentrer à
 
 Petit bonus, vidéo accélérée de ce trajet, soit presque une heure en juste un peu plus de 3 minutes :
 
-https://youtu.be/KRAw_ssj41o
+{% indymotion "p9dcFwRWCaVFmqekDr7yx8" %}
