@@ -1,0 +1,11 @@
+.indymotion {
+	position: relative;
+  margin-block: calc(2 * var(--gap));
+	aspect-ratio: 16/9;
+
+	iframe {
+		position: absolute;
+		inset: 0;
+		border: 0;
+	}
+}

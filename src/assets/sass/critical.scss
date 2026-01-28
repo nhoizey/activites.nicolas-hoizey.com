@@ -13,6 +13,7 @@
 @use 'components/nav' as *;
 @use 'components/footer' as *;
 @use 'components/theme-selector' as *;
+@use 'components/indymotion' as *;
 
 body {
 	background-color: var(--surface-0);
