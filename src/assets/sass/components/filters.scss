@@ -24,7 +24,7 @@
 
 	li :is(a, span) {
 		display: inline-block;
-		white-space: nowrap;
+		min-inline-size: fit-content;
 		background-color: var(--filtre-off-background);
 		color: var(--filtre-off-text);
 		padding: 0.2rem .75rem;

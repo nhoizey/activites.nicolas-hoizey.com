@@ -104,7 +104,7 @@ $photoPadding: 10px;
     list-style-type: none;
 
     & > li {
-      white-space: nowrap;
+      min-inline-size: fit-content;
     }
 
     svg.icon {
