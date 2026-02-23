@@ -24,7 +24,7 @@ layout: null
       <id>{{ absoluteEntryUrl }}</id>
       <content type="html">
         {% if entry.data.map %}
-          &lt;img src="{{ absoluteEntryUrl }}map.jpeg" style="float: right; width: 500px; max-width: 40%" /&gt;
+          &lt;img src="{{ absoluteEntryUrl }}map.jpeg" style="float: right; width: 500px; max-width: 30%" /&gt;
         {% endif %}
         {{ entry.templateContent | cleanDeepLinks | addPhotoDimensions(entry.filePathStem, 600) | htmlToAbsoluteUrls(absoluteEntryUrl) }}
 

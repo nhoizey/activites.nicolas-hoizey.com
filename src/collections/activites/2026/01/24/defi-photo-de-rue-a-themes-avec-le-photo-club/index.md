@@ -5,7 +5,7 @@ type: marche
 duration: 02:33:52
 distance: 10.82
 elevation: 95
-tags: []
+tags: ["Photo Club"]
 strava: https://www.strava.com/activities/17163539286
 squadrats:
   - url: https://squadrats.com/activity/0rLYQZiwQ2wxx4ERG4Lk
