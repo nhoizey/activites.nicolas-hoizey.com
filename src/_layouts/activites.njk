@@ -9,55 +9,51 @@
   {%- css "critical" %}{% renderFile "src/assets/sass/components/card.scss" %}{% endcss %}
 
   {{ card(type=type, title=title, url=page.url, date=date, distance=distance, duration=duration, score=score, where="page") }}
-  <section class="content">
-    <div
-        class="description"
-        data-pagefind-body
-        data-pagefind-filter="Contenu:Activités"
-        data-pagefind-sort="date:{{- date | isoDate -}}">
-      {{ content | safe }}
 
-      {% if strava or komoot %}
-      <aside class="links" data-pagefind-ignore>
-        <p>Vous pouvez retrouver cette activité sur {% if strava %}{% inline_icon 'strava' %}&nbsp;<a href="{{ strava }}">Strava</a>{% endif %}{% if strava and komoot %} et {% endif %}{% if komoot %} {% inline_icon 'komoot' %}&nbsp;<a href="{{ komoot }}">Komoot</a>{% endif %}.</p>
-      </aside>
-      {% endif %}
-    </div>
+  {% if trace %}
+    <div id="map" class="map" data-static-url="{{ page.url }}/map.jpeg" data-pagefind-meta="image[data-static-url],image_alt:Carte de l'activité {{ title | escape }}"></div>
+    <noscript>
+      <p>JavaScript doit être activé pour voir cette carte.</p>
+    </noscript>
+    <script>
+    window.geojsonUrl = "{{ page.url }}trace.geojson";
+    </script>
 
-    {% if trace %}
-      <div id="map" class="map" data-static-url="{{ page.url }}/map.jpeg" data-pagefind-meta="image[data-static-url],image_alt:Carte de l'activité {{ title | escape }}"></div>
-      <noscript>
-        <p>JavaScript doit être activé pour voir cette carte.</p>
-      </noscript>
-      <script>
-      window.geojsonUrl = "{{ page.url }}trace.geojson";
-      </script>
+    <script type="module" src="{% getBundleFileUrl "js", "activite" %}"></script>
+    {%- js "activite" %}{% renderFile "src/assets/js/activite.js" %}{% endjs %}
+  {% endif %}
 
-      <script type="module" src="{% getBundleFileUrl "js", "activite" %}"></script>
-      {%- js "activite" %}{% renderFile "src/assets/js/activite.js" %}{% endjs %}
+  <div
+      class="description"
+      data-pagefind-body
+      data-pagefind-filter="Contenu:Activités"
+      data-pagefind-sort="date:{{- date | isoDate -}}">
+    {{ content | safe }}
+
+    {% if strava or komoot %}
+    <aside class="links" data-pagefind-ignore>
+      <p>Vous pouvez retrouver cette activité sur {% if strava %}{% inline_icon 'strava' %}&nbsp;<a href="{{ strava }}">Strava</a>{% endif %}{% if strava and komoot %} et {% endif %}{% if komoot %} {% inline_icon 'komoot' %}&nbsp;<a href="{{ komoot }}">Komoot</a>{% endif %}.</p>
+    </aside>
     {% endif %}
-  </section>
+  </div>
 
   {% set photosNumber = photos | length %}
 
   {% if photosNumber > 0 %}
-    <h2 class="photos-title">Photos</h2>
-    <section class="photos">
-      <ul>
-        {% for photo in photos %}
-          <li>
-            <figure{% if photo.geo %} data-longitude="{{ photo.geo.longitude }}" data-latitude="{{ photo.geo.latitude }}"{% endif %}>
-              <a href="{{ photo.src }}" target="_blank"><img src="{{ photo.src }}" alt="{{ photo.description }}" sizes="27rem" data-pagefind-index-attrs="alt" /></a>
-              <figcaption>
-                <time class="dt-published" datetime="{{ photo.date }}" data-pagefind-sort="date[datetime]">{{ photo.readableTime }}</time>
-                {{ ":" if photo.title }}
-                {{ photo.title }}
-              </figcaption>
-            </figure>
-          </li>
-        {% endfor %}
-      </ul>
-    </section>
+    <ul class="photos">
+      {% for photo in photos %}
+        <li>
+          <figure{% if photo.geo %} data-longitude="{{ photo.geo.longitude }}" data-latitude="{{ photo.geo.latitude }}"{% endif %}>
+            <a href="{{ photo.src }}" target="_blank"><img src="{{ photo.src }}" alt="{{ photo.description }}" sizes="27rem" data-pagefind-index-attrs="alt" /></a>
+            <figcaption>
+              <time class="dt-published" datetime="{{ photo.date }}" data-pagefind-sort="date[datetime]">{{ photo.readableTime }}</time>
+              {{ ":" if photo.title }}
+              {{ photo.title }}
+            </figcaption>
+          </figure>
+        </li>
+      {% endfor %}
+    </ul>
   {% endif %}
 
   {%- css "critical" %}{% renderFile "src/assets/sass/components/chronology.scss" %}{% endcss %}
