@@ -1,10 +1,12 @@
-// biome-ignore lint/correctness/noUnusedImports: dotenv
-
 import eleventyImage, {
 	eleventyImageTransformPlugin,
 } from "@11ty/eleventy-img";
-import eleventyDirOutputPlugin from "@11ty/eleventy-plugin-directory-output";
+
+// import eleventyDirOutputPlugin from "@11ty/eleventy-plugin-directory-output";
+
+// biome-ignore lint/correctness/noUnusedImports: dotenv
 import {} from "dotenv/config";
+
 import eleventyPluginPack11ty from "eleventy-plugin-pack11ty";
 
 import { colorsByType, colorsOnDark } from "./src/_data/colors.js";

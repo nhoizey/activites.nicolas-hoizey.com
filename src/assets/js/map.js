@@ -272,7 +272,7 @@ import { route_settings } from "./route-settings.js";
 
 					// Function to update the visibility of activities based on selected filters
 					const updateActivities = () => {
-						const shownCoordinates = [];
+						// const shownCoordinates = [];
 
 						const currentFilters = [];
 						for (const input of div.querySelectorAll("input")) {
@@ -455,7 +455,7 @@ import { route_settings } from "./route-settings.js";
 
 			// Add button to show filters
 			class Help {
-				onAdd(map) {
+				onAdd(_map) {
 					let isHelpShown = false;
 
 					const div = document.createElement("div");

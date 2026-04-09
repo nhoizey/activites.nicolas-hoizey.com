@@ -1,4 +1,4 @@
-import { bbox, bearing, lineString, point } from "@turf/turf";
+import { bbox, lineString } from "@turf/turf";
 import mapboxgl from "mapbox-gl/dist/mapbox-gl.js";
 import { colorsOnDark } from "../../_data/colors.js";
 import { fetchGeojson } from "./fetch-geojson.js";

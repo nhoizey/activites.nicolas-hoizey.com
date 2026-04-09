@@ -1,6 +1,6 @@
-// biome-ignore lint/correctness/noUnusedImports: dotenv
-
 import getShareImage from "@jlengstorf/get-share-image";
+
+// biome-ignore lint/correctness/noUnusedImports: dotenv
 import {} from "dotenv/config";
 
 export const ogImage = (title) => {

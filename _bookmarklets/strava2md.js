@@ -43,7 +43,7 @@ const timeAndDate = activityInfo
 const date = timeAndDate[1]
 	.replace(
 		/\sle\s[a-z]+\s([0-9]{1,2})\s([a-zéû]+)\s([0-9]{4})$/,
-		(match, p1, p2, p3, offset, string) => {
+		(_match, p1, p2, p3, _offset, _string) => {
 			return `${p3}-${months[p2]}-${p1.padStart(2, "0")}`;
 		},
 	)
