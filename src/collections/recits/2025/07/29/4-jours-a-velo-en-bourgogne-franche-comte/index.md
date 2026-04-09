@@ -7,7 +7,7 @@ tags: [bikepacking]
 {%- css "critical" %}{% renderFile "src/assets/sass/components/embed.scss" %}{% endcss %}
 {% from "macros/embed.njk" import embed %}
 
-![](/collections/activites/2025/07/27/dijon-tournus-jour-3/photos/IMG_3870.jpeg){.right}
+![](/collections/activites/2025/07/27/dijon-tournus-jour-3/photos/IMG_3870.jpeg){.right}{eleventy:pictureattr:loading=eager}
 
 Il y a quelques mois, Laurence et Olivier m'ont proposé qu'on passe quelques jours ensemble à vélo, durant l'été. J'ai bien sûr immédiatement accepté, enfin l'occasion de tester [mon vélo](/materiel/velo-gravel-sauvage-lapiste/) — et surtout moi-même 😅 — sur un parcours de plusieurs jours !
 
