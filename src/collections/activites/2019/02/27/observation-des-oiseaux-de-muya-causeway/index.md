@@ -2,7 +2,6 @@
 title: Observation des oiseaux de Muya Causeway
 date: 2019-02-27 17:41:00 +03:00
 type: randonnée
-duration: 0s
 distance: 0.86
 elevation: 0
 tags: []

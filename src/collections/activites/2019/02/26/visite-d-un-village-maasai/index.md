@@ -2,7 +2,6 @@
 title: Visite d'un village Maasai
 date: 2019-02-26 10:07:00 +03:00
 type: marche
-duration: 0s
 distance: 0.96
 elevation: 0
 tags: []
