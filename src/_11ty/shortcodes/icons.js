@@ -51,6 +51,7 @@ const ICONS = {
 	entraînement: { name: "entrainement", source: "local" }, // https://www.svgrepo.com/svg/509704/activity MIT
 	voile: { name: "voile", source: "local" }, // https://www.svgrepo.com/svg/308325/sail-boat-sea-travel-sail-sailboat CC0
 	nautisme: { name: "nautisme", source: "local" }, // https://www.svgrepo.com/svg/308325/sail-boat-sea-travel-sail-sailboat CC0
+	elevation: { name: "elevation", source: "local" }, // https://lucide.dev/icons/mountain-snow + https://lucide.dev/icons/move-up-right ISC
 };
 
 const inline_iconMemoize = {};

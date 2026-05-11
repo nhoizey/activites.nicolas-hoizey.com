@@ -8,7 +8,7 @@
   {%- css "critical" %}{% renderFile "src/assets/sass/activite.scss" %}{% endcss %}
   {%- css "critical" %}{% renderFile "src/assets/sass/components/card.scss" %}{% endcss %}
 
-  {{ card(type=type, title=title, url=page.url, date=date, distance=distance, duration=duration, score=score, where="page") }}
+  {{ card(type=type, title=title, url=page.url, date=date, distance=distance, duration=duration, elevation=elevation, score=score, where="page") }}
   <section class="content">
     <div
         class="description"
@@ -68,13 +68,13 @@
       {% if olderContent %}
       <li class="older">
           <p>Précédemment&nbsp;:</p>
-          {{ card(type=olderContent.data.type, title=olderContent.data.title, url=olderContent.url, date=olderContent.data.date, distance=olderContent.data.distance, duration=olderContent.data.duration, score=olderContent.data.score, where="list") }}
+          {{ card(type=olderContent.data.type, title=olderContent.data.title, url=olderContent.url, date=olderContent.data.date, distance=olderContent.data.distance, duration=olderContent.data.duration, elevation=olderContent.data.elevation, score=olderContent.data.score, where="list") }}
       </li>
       {% endif %}
       {% if newerContent %}
         <li class="newer">
           <p>Ultérieurement&nbsp;:</p>
-          {{ card(type=newerContent.data.type, title=newerContent.data.title, url=newerContent.url, date=newerContent.data.date, distance=newerContent.data.distance, duration=newerContent.data.duration, score=newerContent.data.score, where="list") }}
+          {{ card(type=newerContent.data.type, title=newerContent.data.title, url=newerContent.url, date=newerContent.data.date, distance=newerContent.data.distance, duration=newerContent.data.duration, elevation=newerContent.data.elevation, score=newerContent.data.score, where="list") }}
         </li>
       {% endif %}
     </ul>

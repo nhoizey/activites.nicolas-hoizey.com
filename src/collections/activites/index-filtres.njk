@@ -29,6 +29,6 @@ permalink: "/activites/{{ type_families_item | slugify }}/"
 
 <div class="activites cards">
   {% for entry in collections.activites | type_family(type_families_item) %}
-    {{ card(type=entry.data.type, title=entry.data.title, url=entry.url, date=entry.data.date, distance=entry.data.distance, duration=entry.data.duration, score=entry.data.score, where="list", map=entry.data.map, image_index=loop.index, env=build.env) }}
+    {{ card(type=entry.data.type, title=entry.data.title, url=entry.url, date=entry.data.date, distance=entry.data.distance, duration=entry.data.duration, elevation=entry.data.elevation, score=entry.data.score, where="list", map=entry.data.map, image_index=loop.index, env=build.env) }}
   {% endfor %}
 </div>

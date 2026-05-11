@@ -18,7 +18,7 @@
           {%- if activity -%}
             {%- set photosNumber = activity.data.photos | length -%}
             <div class="activite" data-activity-id="{{- pathStem -}}" style="--activite-color: {{- colorsOnDark[tracesNumber % COLORS_NUMBER] -}}">
-              {{- card(type=activity.data.type, title=activity.data.title, url=activity.url, date=activity.date, distance=activity.data.distance, duration=activity.data.duration, where="list") -}}
+              {{- card(type=activity.data.type, title=activity.data.title, url=activity.url, date=activity.date, distance=activity.data.distance, elevation=activity.data.elevation, duration=activity.data.duration, where="list") -}}
               <section class="description">
                 {{- activity.content | fixPhotoUrls(pathStem) | safe -}}
 
