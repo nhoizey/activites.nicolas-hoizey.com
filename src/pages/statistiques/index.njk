@@ -1,0 +1,32 @@
+---
+title: Statistiques
+nav:
+  order: 5
+  icon: statistics
+---
+
+<p>Voici quelques statistiques concernant les activités disponibles sur ce site.</p>
+
+{%- css "critical" %}{% renderFile "src/assets/sass/statistiques.scss" %}{% endcss %}
+
+<h2>Chronologie</h2>
+
+<p>Voici la répartition par année de l'ensemble des activités :</p>
+<div id="activities_by_year"></div>
+
+<p>Plus en détail, la répartition par année et mois :</p>
+<div id="activities_by_year_month"></div>
+
+<p>Et enfin une vue par mois quelle que soit l'année :</p>
+<div id="activities_by_month"></div>
+
+<h2>Types d'activités</h2>
+
+<h3>Activités par famille de type</h3>
+<div id="activities_by_type_family"></div>
+
+<h3>Activités par type</h3>
+<div id="activities_by_type"></div>
+
+{%- js "statistiques" %}{% renderFile "src/assets/js/statistiques.js" %}{% endjs %}
+<script type="module" src="{% getBundleFileUrl "js", "statistiques" %}"></script>

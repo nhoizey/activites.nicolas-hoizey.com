@@ -24,7 +24,7 @@ const ICONS = {
 	score: { name: "trophy", source: "lucide" },
 	search: { name: "search", source: "lucide" },
 	share: { name: "share", source: "lucide" },
-	statistics: { name: "pie-chart", source: "lucide" },
+	statistics: { name: "chart-spline", source: "lucide" },
 	tag: { name: "tag", source: "lucide" },
 
 	alwaysdata: { name: "alwaysdata", source: "simple" },

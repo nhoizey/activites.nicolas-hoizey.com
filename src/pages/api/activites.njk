@@ -1,0 +1,25 @@
+---
+layout: null
+permalink: /api/activites.json
+---
+[
+{% for activite in collections.activites %}
+  {% set gear = photo.data.origin.data.gear %}
+  {% set settings = photo.data.origin.data.settings %}
+  {
+    "title": "{{ activite.data.title }}",
+    "slug": "{{ activite.fileSlug }}",
+    "url": "{{ activite.url }}",
+    "date": "{{ activite.data.date }}",
+    "date_iso": "{{ activite.data.date | isoDate }}",
+    "year": {{ activite.data.date | year }},
+    "year_month": "{{ activite.data.date | year_month }}",
+    "month": "{{ activite.data.date | month }}",
+    "type": "{{ activite.data.type }}",
+    "type_family": "{{ activite.data.type_family }}",
+    "distance": {{ activite.data.distance | default(0) }},
+    "duration": {{ activite.data.duration | durationInSeconds }},
+    "elevation": {{ activite.data.elevation | default(0) }}
+  }{% if not loop.last %},{% endif %}
+{% endfor %}
+]
