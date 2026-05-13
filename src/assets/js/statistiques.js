@@ -9,9 +9,28 @@ import {
   hexbin,
   plot,
   pointer,
+  ruleX,
   ruleY,
   tip,
 } from "@observablehq/plot";
+
+// https://observablehq.com/@observablehq/plot-cheatsheets-colors
+const colorSchemes = {
+  'linear': 'ylgn',
+  'categorical': 'Category10'
+};
+
+const graphRatio = 4 / 3;
+const maxHeight = Math.min(window.innerHeight - 32, 600);
+const graphWidth = Math.min(window.document.querySelector('main').offsetWidth - 32, 800, maxHeight * graphRatio);
+
+const graphLayout = {
+  width: graphWidth,
+  height: graphWidth / graphRatio,
+  marginTop: 32,
+  inset: 32,
+  fontSize: 14
+}
 
 const generateStats = async () => {
   const activitiesData = await fetch("/api/activites.json").then((response) =>
@@ -19,7 +38,15 @@ const generateStats = async () => {
   );
 
   const activitiesPerYear = plot({
-    marginBottom: 50,
+    width: graphLayout.width,
+    height: graphLayout.height,
+    marginTop: graphLayout.marginTop,
+    marginBottom: 60,
+    insetBottom: 0,
+    insetLeft: 0,
+    style: {
+      fontSize: graphLayout.fontSize,
+    },
     x: {
       label: "Années",
       tickRotate: 90
@@ -30,44 +57,50 @@ const generateStats = async () => {
     },
     color: {
       type: "linear",
-      scheme: "Purples",
+      scheme: colorSchemes.linear,
     },
     marks: [
       barY(activitiesData, groupX({ y: "count", fill: "count" }, {
-        x: "year"
+        x: "year",
       })),
+      ruleX([0]),
       ruleY([0]),
     ]
   });
   document.getElementById("activities_by_year").append(activitiesPerYear);
 
   const activitiesPerYearMonth = plot({
-    marginBottom: 50,
-    marginTop: 50,
+    width: graphLayout.width,
+    height: graphLayout.height,
+    marginTop: graphLayout.marginTop,
+    marginBottom: 60,
+    insetBottom: 0,
+    insetLeft: graphLayout.inset,
+    fontSize: graphLayout.fontSize,
     x: {
       label: "Année",
-      tickRotate: 90
+      tickRotate: 90,
     },
     y: {
       label: "Mois",
-      grid: true
+      grid: true,
     },
     color: {
       type: "linear",
-      scheme: "Warm",
+      scheme: colorSchemes.linear,
     },
     marks: [
       dot(
         activitiesData,
         group({ r: "count", fill: "count" }, { x: "year", y: "month" }),
       ),
-      ruleY([0]),
       tip(
         activitiesData,
         pointer({
           x: "year",
           y: "month",
           // title: (d) => `${d.r} activités durant le mois ${d.month} de ${d.year}`,
+          fontSize: graphLayout.fontSize
         }),
       ),
     ],
@@ -75,7 +108,13 @@ const generateStats = async () => {
   document.getElementById("activities_by_year_month").append(activitiesPerYearMonth);
 
   const activitiesPerMonth = plot({
+    width: graphLayout.width,
+    height: graphLayout.height,
+    marginTop: graphLayout.marginTop,
     marginBottom: 50,
+    insetBottom: 0,
+    insetLeft: 0,
+    fontSize: graphLayout.fontSize,
     x: {
       label: "Mois, toutes années confondues",
       tickRotate: 90
@@ -86,25 +125,34 @@ const generateStats = async () => {
     },
     color: {
       type: "linear",
-      scheme: "Purples",
+      scheme: colorSchemes.linear,
     },
     marks: [
       barY(activitiesData, groupX({ y: "count", fill: "count" }, { x: "month" })),
+      ruleX([0]),
       ruleY([0]),
     ],
   });
   document.getElementById("activities_by_month").append(activitiesPerMonth);
 
   const activitiesPerTypeFamily = plot({
+    width: graphLayout.width,
+    height: graphLayout.height,
+    marginTop: graphLayout.marginTop,
+    marginBottom: 80,
+    insetBottom: 0,
+    insetLeft: graphLayout.inset,
+    fontSize: graphLayout.fontSize,
     x: {
-      label: "Famille d'activité"
+      label: "Famille d'activité",
+      tickRotate: 90
     },
     y: {
       label: "Nombre d'activités",
     },
     color: {
       type: "categorical",
-      scheme: "Category10",
+      scheme: colorSchemes.categorical,
       label: "Type family",
       legend: true,
     },
@@ -120,20 +168,30 @@ const generateStats = async () => {
           },
         ),
       ),
+      ruleX([0]),
+      ruleY([0]),
     ],
   });
   document.getElementById("activities_by_type_family").append(activitiesPerTypeFamily);
 
   const activitiesByType = plot({
+    width: graphLayout.width,
+    height: graphLayout.height,
+    marginTop: graphLayout.marginTop,
+    marginBottom: 80,
+    insetBottom: 0,
+    insetLeft: graphLayout.inset,
+    fontSize: graphLayout.fontSize,
     x: {
-      label: "Type d'activité"
+      label: "Type d'activité",
+      tickRotate: 90
     },
     y: {
       label: "Nombre d'activités",
     },
     color: {
       type: "categorical",
-      scheme: "Category10",
+      scheme: colorSchemes.categorical,
       label: "Type",
       legend: true,
     },
@@ -149,6 +207,8 @@ const generateStats = async () => {
           },
         ),
       ),
+      ruleX([0]),
+      ruleY([0]),
     ],
   });
   document.getElementById("activities_by_type").append(activitiesByType);
