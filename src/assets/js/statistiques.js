@@ -1,4 +1,5 @@
 import {
+  areaY,
   axisX,
   barY,
   dot,
@@ -7,6 +8,7 @@ import {
   groupX,
   hexagon,
   hexbin,
+  lineY,
   plot,
   pointer,
   ruleX,
@@ -37,7 +39,31 @@ const generateStats = async () => {
     response.json(),
   );
 
-  const activitiesPerYear = plot({
+  /* **************************************************************************
+   * Prepare data
+   * *********************************************************************** */
+
+  const activityFamilies = new Set();
+  for (const activity of activitiesData) {
+    activityFamilies.add(activity.type_family);
+  }
+
+  const yearMonthFamilySums = {};
+  for (const activity of activitiesData) {
+    const key = `${activity.year_month}|${activity.type_family}`;
+    if (yearMonthFamilySums[key] === undefined) {
+      yearMonthFamilySums[key] = { year_month: activity.year_month, family: activity.type_family, distance: 0, duration: 0, elevation: 0 };
+    }
+    yearMonthFamilySums[key].distance += activity.distance || 0;
+    yearMonthFamilySums[key].duration += activity.duration || 0;
+    yearMonthFamilySums[key].elevation += activity.elevation || 0;
+  }
+
+  /* **************************************************************************
+   * Define graphs
+   * *********************************************************************** */
+
+  const plotActivitiesNumberYear = plot({
     width: graphLayout.width,
     height: graphLayout.height,
     marginTop: graphLayout.marginTop,
@@ -67,9 +93,9 @@ const generateStats = async () => {
       ruleY([0]),
     ]
   });
-  document.getElementById("activities_by_year").append(activitiesPerYear);
+  document.getElementById("activities_number_year").append(plotActivitiesNumberYear);
 
-  const activitiesPerYearMonth = plot({
+  const plotActivitiesNumberYearMonth = plot({
     width: graphLayout.width,
     height: graphLayout.height,
     marginTop: graphLayout.marginTop,
@@ -105,9 +131,9 @@ const generateStats = async () => {
       ),
     ],
   });
-  document.getElementById("activities_by_year_month").append(activitiesPerYearMonth);
+  document.getElementById("activities_number_year_month").append(plotActivitiesNumberYearMonth);
 
-  const activitiesPerMonth = plot({
+  const plotActivitiesNumberMonth = plot({
     width: graphLayout.width,
     height: graphLayout.height,
     marginTop: graphLayout.marginTop,
@@ -133,9 +159,9 @@ const generateStats = async () => {
       ruleY([0]),
     ],
   });
-  document.getElementById("activities_by_month").append(activitiesPerMonth);
+  document.getElementById("activities_number_month").append(plotActivitiesNumberMonth);
 
-  const activitiesPerTypeFamily = plot({
+  const plotActivitiesFamily = plot({
     width: graphLayout.width,
     height: graphLayout.height,
     marginTop: graphLayout.marginTop,
@@ -172,9 +198,9 @@ const generateStats = async () => {
       ruleY([0]),
     ],
   });
-  document.getElementById("activities_by_type_family").append(activitiesPerTypeFamily);
+  document.getElementById("activities_family").append(plotActivitiesFamily);
 
-  const activitiesByType = plot({
+  const plotActivitiesType = plot({
     width: graphLayout.width,
     height: graphLayout.height,
     marginTop: graphLayout.marginTop,
@@ -211,7 +237,45 @@ const generateStats = async () => {
       ruleY([0]),
     ],
   });
-  document.getElementById("activities_by_type").append(activitiesByType);
+  document.getElementById("activities_type").append(plotActivitiesType);
+
+  // https://observablehq.com/plot/transforms/stack
+  const plotActivitiesDuration = plot({
+    width: graphLayout.width,
+    height: graphLayout.height,
+    marginTop: graphLayout.marginTop,
+    marginBottom: 60,
+    insetBottom: 0,
+    insetLeft: 0,
+    style: {
+      fontSize: graphLayout.fontSize,
+    },
+    x: {
+      label: "Mois",
+      tickRotate: 90
+    },
+    y: {
+      label: "Durée par famille",
+      grid: true
+    },
+    color: {
+      // type: "linear",
+      // scheme: colorSchemes.linear,
+    },
+    marks: [
+      areaY(yearMonthFamilySums, {
+        x: "year_month",
+        y: (d) => d.duration / 3600,
+        z: "family",
+        fill: "group",
+        order: "appearance"
+      }),
+      ruleX([0]),
+      ruleY([0]),
+    ]
+  });
+  document.getElementById("activities_duration").append(plotActivitiesDuration);
+
 
   // const photosPerYearAndBrand = plot({
   //   marginBottom: 50,

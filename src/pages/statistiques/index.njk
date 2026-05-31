@@ -11,22 +11,27 @@ nav:
 
 <h2>Chronologie</h2>
 
-<p>Voici la répartition par année de l'ensemble des activités :</p>
-<div id="activities_by_year"></div>
+<p>Nombre d'activités par année :</p>
+<div id="activities_number_year"></div>
 
-<p>Plus en détail, la répartition par année et mois :</p>
-<div id="activities_by_year_month"></div>
+<p>Nombre d'activités par année et mois :</p>
+<div id="activities_number_year_month"></div>
 
-<p>Et enfin une vue par mois quelle que soit l'année :</p>
-<div id="activities_by_month"></div>
+<p>Nombre d'activités par mois quelle que soit l'année :</p>
+<div id="activities_number_month"></div>
 
 <h2>Types d'activités</h2>
 
-<h3>Activités par famille de type</h3>
-<div id="activities_by_type_family"></div>
+<p>Nombre d'activités par grande famille :</p>
+<div id="activities_family"></div>
 
-<h3>Activités par type</h3>
-<div id="activities_by_type"></div>
+<p>Et le détail des activités par type :</p>
+<div id="activities_type"></div>
+
+<h2>Statistiques plus représentatives de l'effort</h2>
+
+<p>Voici les cumuls de durée :</p>
+<div id="activities_duration"></div>
 
 {%- js "statistiques" %}{% renderFile "src/assets/js/statistiques.js" %}{% endjs %}
 <script type="module" src="{% getBundleFileUrl "js", "statistiques" %}"></script>

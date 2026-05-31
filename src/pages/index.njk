@@ -12,7 +12,7 @@ nav:
 <p>Je m'appelle <strong>Nicolas Hoizey</strong>, et je pratique essentiellement des sports de raquette, le cyclisme et la marche. Vous pouvez en apprendre plus dans la <a href="/a-propos/">page « à propos »</a>.</p>
 
 {% for entry in collections.activityStats | limit(1) %}
-<p><strong>Depuis un an</strong>, j'ai pratiqué ces activités pendant {{ entry.full.oneYear.duration }}, dont <strong>{{ entry.raquettes.oneYear.duration }} de <a href="/activites/raquettes/">sports de raquette</a></strong>, et <strong>{{ entry['vélo'].oneYear.duration }} de <a href="https://activites.nicolas-hoizey.com/activites/velo/">vélo</a></strong> (pour {{ entry['vélo'].oneYear.distance }} km et {{ entry['vélo'].oneYear.elevation }} m de D+). Sommées comme ça, ces stats sont peu utiles, mais c'est un début en attendant une page détaillée.</p>
+<p><strong>Depuis un an</strong>, j'ai pratiqué ces activités pendant {{ entry.full.oneYear.duration }}, dont <strong>{{ entry.raquettes.oneYear.duration }} de <a href="/activites/raquettes/">sports de raquette</a></strong>, et <strong>{{ entry['vélo'].oneYear.duration }} de <a href="https://activites.nicolas-hoizey.com/activites/velo/">vélo</a></strong> (pour {{ entry['vélo'].oneYear.distance }} km et {{ entry['vélo'].oneYear.elevation }} m de D+). Sommées comme ça, ces stats sont peu utiles, il faut mieux aller voir une <a href="/statistiques/">page de statistiques détaillées</a>.</p>
 {% endfor %}
 
 <h2>Dernières activités <a href="/flux/activites.xml" title="Abonnez-vous au flux des dernières activités" aria-label="Abonnez-vous au flux des dernières activités" class="feed">{%- inline_icon 'feeds' -%}</a></h2>
