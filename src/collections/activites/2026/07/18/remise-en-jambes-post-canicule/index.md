@@ -7,7 +7,7 @@ distance: 82.65
 elevation: 398
 tags: []
 strava: https://www.strava.com/activities/19362898909
-komoot: https://www.komoot.com/fr-fr/tour/3120903160
+komoot: https://www.komoot.com/fr-fr/tour/3129997067
 squadrats:
   - url: https://squadrats.com/expedition/4gNsKspbx2R0Gkrjxikq
   - squadrats: 17
