@@ -40,7 +40,8 @@
 		"deploy": "rsync -azh --info=progress2 --stats ./_site/ nhoizey@ssh-nhoizey.alwaysdata.net:/home/nhoizey/www/activites.nicolas-hoizey.com/",
 		"profile:cpu": "npx --node-options=\"--cpu-prof\" @11ty/eleventy --quiet",
 		"profile:memory": "npx --node-options=\"--inspect\" @11ty/eleventy --quiet",
-		"generate": "./_scripts/generate-map-images.js && ./_scripts/generate-opengraph-images.js"
+		"map": "./_scripts/generate-map-images.js",
+		"opengraph": "./_scripts/generate-opengraph-images.js"
 	},
 	"devDependencies": {
 		"@11ty/eleventy": "^3.1.5",
