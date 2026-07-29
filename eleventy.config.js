@@ -73,6 +73,12 @@ export default async function (eleventyConfig) {
 			filter: ["**/map.jpeg"],
 		},
 	);
+	eleventyConfig.addPassthroughCopy(
+		{ "src/_cache/opengraph/collections/activites/": "activites/" },
+		{
+			filter: ["**/opengraph.jpg"],
+		},
+	);
 
 	eleventyConfig.setDataDeepMerge(true);
 	eleventyConfig.setQuietMode(true);

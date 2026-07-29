@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"title": "Les activités de Nicolas Hoizey",
 	"description": "un site pour partager des activités sportives",
-	"homepage": "https://activites.nicolas-hoizey.com/",
+	"homepage": "https://activites.nicolas-hoizey.com",
 	"author": {
 		"name": "Nicolas Hoizey",
 		"url": "https://nicolas-hoizey.com/",
@@ -39,7 +39,8 @@
 		"bookmarklet": "bookmarklet --demo _bookmarklets/strava2md.js src/static/strava2md.html",
 		"deploy": "rsync -azh --info=progress2 --stats ./_site/ nhoizey@ssh-nhoizey.alwaysdata.net:/home/nhoizey/www/activites.nicolas-hoizey.com/",
 		"profile:cpu": "npx --node-options=\"--cpu-prof\" @11ty/eleventy --quiet",
-		"profile:memory": "npx --node-options=\"--inspect\" @11ty/eleventy --quiet"
+		"profile:memory": "npx --node-options=\"--inspect\" @11ty/eleventy --quiet",
+		"generate": "./_scripts/generate-map-images.js && ./_scripts/generate-opengraph-images.js"
 	},
 	"devDependencies": {
 		"@11ty/eleventy": "^3.1.5",
