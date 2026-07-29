@@ -2,6 +2,15 @@
 
 {% block bodyclasses %}activite{% endblock %}
 
+{% block opengraphimage %}
+  {% set opengraphFile = 'src/_cache/opengraph' + page.filePathStem | replace('/index', '') + '/opengraph.jpg' %}
+  {% if opengraphFile | exists %}
+    <meta property="og:image" content="{{ site.url }}/{{ page.filePathStem | replace('/index', '') }}/opengraph.jpg" />
+  {% else %}
+    {{ ("Missing: " + opengraphFile) | log }}
+  {% endif %}
+{% endblock %}
+
 {% from "macros/card.njk" import card %}
 
 {% block content %}

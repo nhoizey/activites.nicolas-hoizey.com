@@ -1,0 +1,79 @@
+---
+pagination:
+  data: collections.activites
+  size: 1
+  alias: activite
+  filter:
+    - all
+  addAllPagesToCollections: false
+layout: false
+eleventyComputed:
+  title: opengraph image for “{{ activite.title }}”
+permalink: "{{ activite.url }}opengraph.html"
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Opengraph image for “{{ activite.data.title }}”</title>
+    <style>{% renderFile "src/assets/sass/components/opengraph.scss" %}</style>
+    <style>
+      .title h1 {
+        {% set titleLength = activite.data.title | length %}
+        --adaptive-font: {{ 45 - titleLength / 8 }}px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="opengraph" class="activite">
+      <div class="meta">
+        <div class="title">
+          <div class="type">
+            {% inline_icon activite.data.type %}
+            <span class="label">{{ activite.data.type }}</span>
+          </div>
+          <h1>{{ activite.data.title }}</h1>
+          <ul class="infos">
+            <li class="date">
+              {%- inline_icon 'date' %}
+              <time>{{- activite.data.date | readableDate -}}</time>
+            </li>
+            {%- if activite.data.distance and activite.data.distance != 0 -%}
+              <li class="distance">
+                  {%- inline_icon 'distance' %}
+                  <span>{{- activite.data.distance -}}&nbsp;km</span>
+              </li>
+            {%- endif -%}
+            {%- if activite.data.elevation and activite.data.elevation != 0 -%}
+              <li class="elevation">
+                  {%- inline_icon 'elevation' %}
+                  <span>{{- activite.data.elevation -}}&nbsp;m</span>
+              </li>
+            {%- endif -%}
+            {%- if activite.data.duration and activite.data.duration != 0 -%}
+              <li class="duration">
+                  {%- inline_icon 'duration' %}
+                  <span>{{- activite.data.duration -}}</span>
+              </li>
+            {%- endif -%}
+            {%- if activite.data.score and activite.data.score != "" -%}
+              <li class="score">
+                  {%- inline_icon 'score' %}
+                  <span>{{- activite.data.score | scoreToHtml | safe -}}</span>
+              </li>
+            {%- endif -%}
+          </ul>
+        </div>
+        <p class="logo"></p>
+      </div>
+      <div class="content">
+        {% if activite.data.map %}
+          <img src="{{ activite.url }}map.jpeg" eleventy:ignore />
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

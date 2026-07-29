@@ -1,0 +1,132 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fff;
+  color: #f7f5fa;
+  
+  padding: 20px;
+  
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#opengraph {
+  margin: 0;
+  padding: 0;
+
+  width: 1200px;
+  height: 630px;
+
+  background-color: #483933;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  gap: 0;
+
+  .meta {
+    padding: 40px;
+    height: 630px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: center;
+  }
+
+  .title {
+    flex: 1;
+
+    .type {
+      font-size: 3rem;
+
+      color: #a38b82;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+
+      svg {
+        width: 1.2em;
+        height: 1.2em;
+        padding: .1em;
+        fill: #c8b9b4;
+        stroke-width: 0;
+      }
+
+      .label {
+        padding-inline-start: 0.3em;
+        font-size: 2rem;
+      }
+    }
+
+
+    h1 {
+      margin: 40px 0;
+      padding: 0;
+
+      font-size: clamp(20px, var(--adaptive-font), 40px);
+      font-weight: bold;
+      line-height: 1.2;
+      text-wrap: balance;
+
+      color: #f0c056;
+    }
+  }
+
+  .content {
+    padding: 40px 40px 40px 0;
+
+    flex-shrink: 0;
+    flex-basis: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .activite {
+    align-self: center;
+  }
+
+  .infos {
+    display: flex;
+    flex-direction: column;
+    gap: 1em 0;
+
+    font-size: 1.8em;
+    color: #c8b9b4;
+
+    list-style-type: none;
+
+    & > li {
+      min-inline-size: fit-content;
+    }
+
+    svg.icon {
+      width: 1.2em;
+      height: 1.2em;
+      vertical-align: sub;
+
+      opacity: 0.8;
+      fill: none;
+      color: #a38b82;
+      stroke: currentColor;
+      stroke-width: 2px;
+    }
+  }
+
+  img {
+    display: block;
+    width: 550px;
+    height: 550px;
+
+    background-color: #53403a;
+    border: 1px solid #cad5d5;
+    border-radius: 0.5em;
+    box-shadow: calc(-1 * calc(.5rem + .5vw)) 0 #483933, calc(.5rem + .5vw) 0 #483933, 0 calc(-1 * calc(.5rem + .5vw)) 0 #483933, 0 calc(.5rem + .5vw) calc(calc(.5rem + .5vw) / 2) calc(calc(.5rem + .5vw) / -2) rgba(0, 0, 0, 0.3);
+  }
+}
