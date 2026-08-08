@@ -2,6 +2,7 @@
 title: Ski aux Arcs avec des potes
 date: 2026-03-21 13:50:27 +02:00
 tags: ["ski", "Les Arcs", "Alpes"]
+image: /activites/2026/03/25/matinee-top-apres-midi-blizzard/photos/dji_fly_20260325_114854_0009_1774440006593_photo.jpeg
 ---
 
 {%- css "critical" %}{% renderFile "src/assets/sass/components/embed.scss" %}{% endcss %}

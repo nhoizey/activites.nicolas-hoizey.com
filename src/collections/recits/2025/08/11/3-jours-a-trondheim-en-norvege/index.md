@@ -2,10 +2,13 @@
 title: 3 jours à Trondheim, en Norvège
 date: 2025-08-11 11:50:27 +02:00
 tags: []
+image: /activites/2025/08/10/une-derniere-balade-avant-de-quitter-trondheim/photos/IMG_4382.jpeg
 ---
 
 {%- css "critical" %}{% renderFile "src/assets/sass/components/embed.scss" %}{% endcss %}
 {% from "macros/embed.njk" import embed %}
+
+![](/collections/activites/2025/08/10/une-derniere-balade-avant-de-quitter-trondheim/photos/IMG_4382.jpeg){.right}{eleventy:pictureattr:loading=eager}
 
 Cette année, ma grande fille a la chance de pouvoir faire un semestre d'études à l'étranger pour sa deuxième année de licence. Elle a choisi la Norvège, et plus précisément **Trondheim**, une ville universitaire située au centre du pays.
 

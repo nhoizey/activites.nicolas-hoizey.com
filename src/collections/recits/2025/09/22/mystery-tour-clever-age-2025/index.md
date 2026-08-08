@@ -2,10 +2,14 @@
 title: Mystery Tour Clever Age 2025
 date: 2025-09-22 13:50:27 +02:00
 tags: ["Clever Age", "Mystery Tour"]
+image: /activites/2025/09/20/fat-bike-et-degustation-d-huitres/photos/IMG_5117.jpeg
 ---
 
 {%- css "critical" %}{% renderFile "src/assets/sass/components/embed.scss" %}{% endcss %}
 {% from "macros/embed.njk" import embed %}
+
+![](/collections/activites/2025/09/20/fat-bike-et-degustation-d-huitres/photos/IMG_5117.jpeg){.right}{eleventy:pictureattr:loading=eager}
+
 
 Nous étions réunis pour le week-end au [village vacances Azureva de Ronce-les-Bains](https://www.azureva-vacances.com/fr/hebergement/village-vacances-ronce-les-bains/) en Charente Maritime, avec 200 collègues de [Clever Age](https://www.clever-age.com/), pour notre « Mystery Tour » 2025.
 

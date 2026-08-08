@@ -2,6 +2,9 @@
 title: 4 jours à vélo en Bourgogne-Franche-Comté
 date: 2025-07-29 16:50:27 +02:00
 tags: [bikepacking]
+distance: 250
+elevation: 900
+image: /activites/2025/07/27/dijon-tournus-jour-3/photos/IMG_3870.jpeg
 ---
 
 {%- css "critical" %}{% renderFile "src/assets/sass/components/embed.scss" %}{% endcss %}

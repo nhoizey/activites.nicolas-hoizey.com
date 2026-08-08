@@ -2,6 +2,7 @@
 title: Ski aux Arcs avec ma fille
 date: 2026-03-03 13:50:27 +02:00
 tags: ["ski", "Les Arcs", "Alpes"]
+image: /activites/2026/03/07/panorama-splendide-et-sensations-fortes/photos/IMG_7141.jpeg
 ---
 
 {%- css "critical" %}{% renderFile "src/assets/sass/components/embed.scss" %}{% endcss %}
