@@ -2,6 +2,11 @@
 
 {% block bodyclasses %}activite{% endblock %}
 
+{% block opengraph %}
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="{{- date | isoDate -}}">
+{% endblock %}
+
 {% block opengraphimage %}
   {% set opengraphFile = 'src/_cache/opengraph' + page.filePathStem | replace('/index', '') + '/opengraph.jpg' %}
   {% if opengraphFile | exists %}

@@ -49,10 +49,17 @@
     # opengraph
     # ########################################################}
     <meta property="og:site_name" content="{{ pkg.title }}" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="article:author" content="Nicolas Hoizey" />
     {#
     https://developers.facebook.com/docs/sharing/best-practices?locale=fr_FR#images
     https://developers.facebook.com/tools/debug/sharing/
     #}
+    {% block opengraph %}
+      <meta property="og:type" content="website">
+      <meta property="article:published_time" content="2026-08-01T09:00:00+02:00">
+    {% endblock %}
+    <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     {% block opengraphimage %}

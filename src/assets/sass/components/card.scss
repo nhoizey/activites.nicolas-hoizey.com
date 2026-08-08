@@ -27,7 +27,7 @@ $photoPadding: 10px;
     gap: var(--gap);
   }
 
-  &:has(.card__map) {
+  &:has(.card__illustration) {
     display: grid;
     grid-template-areas: "content map";
     grid-template-columns: 3fr 1fr;
@@ -115,11 +115,11 @@ $photoPadding: 10px;
     }
   }
 
-  &:has(.card__map) .meta {
+  &:has(.card__illustration) .meta {
     flex-direction: column;
   }
 
-  .card__map {
+  .card__illustration {
     grid-area: map;
     padding: $photoPadding;
 

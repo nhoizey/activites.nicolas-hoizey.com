@@ -79,6 +79,12 @@ export default async function (eleventyConfig) {
 			filter: ["**/opengraph.jpg"],
 		},
 	);
+	eleventyConfig.addPassthroughCopy(
+		{ "src/_cache/opengraph/collections/recits/": "recits/" },
+		{
+			filter: ["**/opengraph.jpg"],
+		},
+	);
 
 	eleventyConfig.setDataDeepMerge(true);
 	eleventyConfig.setQuietMode(true);

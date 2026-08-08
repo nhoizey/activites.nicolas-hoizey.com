@@ -2,11 +2,25 @@
 
 {% block bodyclasses %}recit{% endblock %}
 
+{% block opengraph %}
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="{{- date | isoDate -}}">
+{% endblock %}
+
+{% block opengraphimage %}
+  {% set opengraphFile = 'src/_cache/opengraph' + page.filePathStem | replace('/index', '') + '/opengraph.jpg' %}
+  {% if opengraphFile | exists %}
+    <meta property="og:image" content="{{ pkg.homepage }}{{ page.filePathStem | replace('/collections', '') | replace('/index', '') }}/opengraph.jpg" />
+  {% else %}
+    {{ ("Missing: " + opengraphFile) | log }}
+  {% endif %}
+{% endblock %}
+
 {% from "macros/card.njk" import card %}
 {%- css "critical" %}{% renderFile "src/assets/sass/components/card.scss" %}{% endcss %}
 
 {% block content %}
-  {{ card(type="blog", title=title, url=page.url, date=date, where="page") }}
+  {{ card(type="blog", title=title, url=page.url, date=date, distance=distance, elevation=elevation, where="page") }}
   <section
       class="description"
       data-pagefind-body

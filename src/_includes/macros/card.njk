@@ -1,4 +1,4 @@
-{% macro card(type, title, url, date, distance=0, duration=0, elevation=0, score="", where="page", map=false, image_index=false, env=false) %}
+{% macro card(type, title, url, date, distance=0, duration=0, elevation=0, score="", where="page", map=false, image=false, image_index=false, env=false) %}
   <div class="card" style="view-transition-name: {{ url | slugify }}">
     <div class="card__content">
       {%- if type != "blog" and type != "recits" -%}
@@ -44,7 +44,7 @@
       </ul>
     </div>
     {%- if map -%}
-      <div class="card__map">
+      <div class="card__illustration">
         <img
           {% if env and env == 'build' %}
             src="https://res.cloudinary.com/nho/image/fetch/q_auto,f_auto/c_limit,w_320/https://activites.nicolas-hoizey.com{{ url }}map.jpeg"
@@ -52,7 +52,27 @@
             src="{{ url }}map.jpeg"
           {% endif %}
           eleventy:ignore
-          alt="Carte de l'activité {{ title | escape }}"
+          alt="Carte de l'activité « {{ title | escape }} »"
+          {% if image_index == 1 %}
+            fetchpriority="high"
+            loading="eager"
+          {% endif %}
+          {% if image_index > 6 %}
+            loading="lazy"
+          {% endif %}
+        />
+      </div>
+    {%- endif -%}
+    {%- if image -%}
+      <div class="card__illustration">
+        <img
+          {% if env and env == 'build' %}
+            src="https://res.cloudinary.com/nho/image/fetch/q_auto,f_auto/c_limit,w_320/https://activites.nicolas-hoizey.com{{ image }}"
+          {% else %}
+            src="{{ image }}"
+          {% endif %}
+          eleventy:ignore
+          alt="Illustration de l'activité « {{ title | escape }} »"
           {% if image_index == 1 %}
             fetchpriority="high"
             loading="eager"

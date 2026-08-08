@@ -89,8 +89,19 @@ import puppeteer from "puppeteer-core";
 		onlyDirectories: true,
 	});
 
-	// Queue processing of all photos and galleries
+	// Queue processing of all activities
 	for (const resourcePath of activites) {
+		cluster.queue(resourcePath);
+	}
+
+	// Get the list of recits
+	const recits = await glob(["recits/*/*/*/*"], {
+		cwd: "src/collections/",
+		onlyDirectories: true,
+	});
+
+	// Queue processing of all recits
+	for (const resourcePath of recits) {
 		cluster.queue(resourcePath);
 	}
 
