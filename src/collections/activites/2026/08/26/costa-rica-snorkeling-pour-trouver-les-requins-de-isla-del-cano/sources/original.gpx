@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx creator="StravaGPX" version="1.1" schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd http://www.garmin.com/xmlschemas/PowerExtension/v1 http://www.garmin.com/xmlschemas/PowerExtensionv1.xsd http://www.topografix.com/GPX/gpx_style/0/2 http://www.topografix.com/GPX/gpx_style/0/2/gpx_style.xsd" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:gpxpx="http://www.garmin.com/xmlschemas/PowerExtension/v1" xmlns:gpx_style="http://www.topografix.com/GPX/gpx_style/0/2">
+  <metadata>
+    <name>original</name>
+    <author>
+      <name>gpx.studio</name>
+      <link href="https://gpx.studio"/>
+    </author>
+    <time>2026-08-26T14:10:03.000Z</time>
+  </metadata>
+  <trk>
+    <name>Costa Rica - Bateau jusqu&apos;à Isla del Caño</name>
+    <type>Canoeing</type>
+    <trkseg>
+      <trkpt lat="8.71053" lon="-83.886144">
+        <ele>20.6</ele>
+        <time>2026-08-26T16:18:22.000Z</time>
+        <extensions>
+          <gpxtpx:TrackPointExtension>
+            <gpxtpx:hr>94</gpxtpx:hr>
+          </gpxtpx:TrackPointExtension>
+        </extensions>
+      </trkpt>
+      <trkpt lat="8.71065" lon="-83.886062">
+        <ele>7.56</ele>
+        <time>2026-08-26T16:18:27.097Z</time>
+      </trkpt>
+      <trkpt lat="8.711657" lon="-83.886105">
+        <ele>7.56</ele>
+        <time>2026-08-26T16:19:02.578Z</time>
+      </trkpt>
+      <trkpt lat="8.712166" lon="-83.88619">
+        <ele>7.56</ele>
+        <time>2026-08-26T16:19:20.738Z</time>
+      </trkpt>
+      <trkpt lat="8.712675" lon="-83.886598">
+        <ele>7.56</ele>
+        <time>2026-08-26T16:19:43.599Z</time>
+      </trkpt>
+      <trkpt lat="8.713014" lon="-83.887156">
+        <ele>7.56</ele>
+        <time>2026-08-26T16:20:06.389Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>
