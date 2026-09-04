@@ -13,6 +13,11 @@ const allTypes = new Set([
 	"ski alpin",
 	"escalade",
 	"voile",
+	"natation",
+	"snorkeling",
+	"bus",
+	"voiture",
+	"bateau",
 ]);
 const typeFamilies = new Set([
 	"vélo",
@@ -22,12 +27,14 @@ const typeFamilies = new Set([
 	"escalade",
 	"golf",
 	"nautisme",
+	"transport"
 ]);
 const monthsSet = new Set([]);
 
 export const types = (collection) => {
 	collection
 		.getFilteredByGlob("src/collections/activites/**/index.md")
+		.filter((activite) => activite.data.listed !== false)
 		.map((activite) => {
 			allTypes.add(activite.data.type);
 			return activite;
@@ -38,6 +45,7 @@ export const types = (collection) => {
 export const type_families = (collection) => {
 	collection
 		.getFilteredByGlob("src/collections/activites/**/index.md")
+		.filter((activite) => activite.data.listed !== false)
 		.map((activite) => {
 			typeFamilies.add(activite.data.type_family);
 			return activite;
@@ -48,6 +56,7 @@ export const type_families = (collection) => {
 export const months = (collection) => {
 	collection
 		.getFilteredByGlob("src/collections/activites/**/index.md")
+		.filter((activite) => activite.data.listed !== false)
 		.map((activite) => {
 			monthsSet.add(activite.data.month);
 			return activite;
@@ -66,6 +75,7 @@ export const activityStats = (collection) => {
 
 	collection
 		.getFilteredByGlob("src/collections/activites/**/index.md")
+		.filter((activite) => activite.data.listed !== false)
 		.map((activite) => {
 			const family = activite.data.type_family;
 			if (stats[family] === undefined) {

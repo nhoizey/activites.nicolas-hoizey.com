@@ -37,6 +37,11 @@ const ICONS = {
 	mastodon: { name: "mastodon", source: "simple" },
 	strava: { name: "strava", source: "simple" },
 
+	bateau: { name: "ship", source: "local" }, // from Lucide
+	voiture: { name: "car", source: "local" }, // from Lucide
+	bus: { name: "bus", source: "local" }, // from Lucide
+	transport: { name: "bus", source: "local" }, // from Lucide
+
 	velo: { name: "velo", source: "local" }, // https://www.svgrepo.com/svg/509755/bicycle MIT
 	gravel: { name: "gravel", source: "local" }, // https://www.svgrepo.com/svg/509755/bicycle MIT
 	vtt: { name: "vtt", source: "local" }, // https://www.svgrepo.com/svg/509755/bicycle MIT
@@ -51,6 +56,7 @@ const ICONS = {
 	entraînement: { name: "entrainement", source: "local" }, // https://www.svgrepo.com/svg/509704/activity MIT
 	voile: { name: "voile", source: "local" }, // https://www.svgrepo.com/svg/308325/sail-boat-sea-travel-sail-sailboat CC0
 	nautisme: { name: "nautisme", source: "local" }, // https://www.svgrepo.com/svg/308325/sail-boat-sea-travel-sail-sailboat CC0
+	snorkeling: { name: "snorkeling", source: "local" }, // https://www.svgrepo.com/svg/121000/snorkel CC0
 	elevation: { name: "elevation", source: "local" }, // https://lucide.dev/icons/mountain-snow + https://lucide.dev/icons/move-up-right ISC
 };
 
