@@ -37,8 +37,8 @@ const ICONS = {
 	mastodon: { name: "mastodon", source: "simple" },
 	strava: { name: "strava", source: "simple" },
 
-	bateau: { name: "ship", source: "local" }, // from Lucide
-	voiture: { name: "car", source: "local" }, // from Lucide
+	bateau: { name: "bateau", source: "local" }, // from Lucide
+	voiture: { name: "voiture", source: "local" }, // from Lucide
 	bus: { name: "bus", source: "local" }, // from Lucide
 	transport: { name: "bus", source: "local" }, // from Lucide
 

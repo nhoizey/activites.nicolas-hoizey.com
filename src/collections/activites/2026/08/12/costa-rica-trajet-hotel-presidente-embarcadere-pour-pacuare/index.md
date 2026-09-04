@@ -2,7 +2,7 @@
 listed: false
 title: Costa Rica - Trajet hôtel Presidente → Embarcadère pour Pacuare
 date: 2026-08-12 07:09:00 -06:00
-type: bus
+type: voiture
 duration: 02:11:04
 distance: 104.57
 elevation: 1364
