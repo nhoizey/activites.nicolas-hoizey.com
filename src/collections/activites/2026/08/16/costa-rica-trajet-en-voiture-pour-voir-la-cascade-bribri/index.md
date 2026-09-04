@@ -1,4 +1,5 @@
 ---
+listed: false
 title: Costa Rica - Trajet en voiture pour voir la cascade Bribri
 date: 2026-08-16 11:35:46 -06:00
 type: voiture

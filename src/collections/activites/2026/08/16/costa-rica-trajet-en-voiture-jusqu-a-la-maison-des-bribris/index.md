@@ -1,4 +1,5 @@
 ---
+listed: false
 title: Costa Rica - Trajet en voiture jusqu'à la maison des Bribris
 date: 2026-08-16 09:07:46 -06:00
 type: voiture
