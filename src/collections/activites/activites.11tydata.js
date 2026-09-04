@@ -60,6 +60,7 @@ export default {
 				marche: "marche",
 				randonnée: "marche",
 				tennis: "raquettes",
+				"fit tennis": "raquettes",
 				padel: "raquettes",
 				pickleball: "raquettes",
 				badminton: "raquettes",
@@ -67,6 +68,11 @@ export default {
 				"ski alpin": "ski",
 				escalade: "escalade",
 				voile: "nautisme",
+				natation: "nautisme",
+				snorkeling: "nautisme",
+				bus: "transport",
+				voiture: "transport",
+				bateau: "transport"
 			};
 			if (data.type && familyOfType[data.type] !== undefined) {
 				return familyOfType[data.type];
@@ -114,7 +120,7 @@ export default {
 							);
 						} catch (err) {
 							console.error(
-								`Error reading EXIF data for photo: ${photo.src}`,
+								`Error reading EXIF data for photo: ${path.join(photosPath, photo.src)}`,
 								err,
 							);
 						}
@@ -126,20 +132,20 @@ export default {
 						}
 
 						const photoTitle =
-							photoExif.dc?.title.value || photoExif.iptc?.ObjectName;
+							photoExif?.dc?.title.value || photoExif?.iptc?.ObjectName;
 						if (photoTitle) {
 							photo.title = utf8.decode(photoTitle);
 						}
 
-						const photoDescription = photoExif.ifd0?.ImageDescription.trim();
+						const photoDescription = photoExif?.ifd0?.ImageDescription.trim();
 						if (photoDescription) {
 							photo.description = photoDescription;
 						}
 
 						let luxonDate;
 						if (
-							photoExif.exif?.DateTimeOriginal &&
-							photoExif.exif?.OffsetTime
+							photoExif?.exif?.DateTimeOriginal &&
+							photoExif?.exif?.OffsetTime
 						) {
 							luxonDate = DateTime.fromHTTP(
 								photoExif.exif.DateTimeOriginal.toGMTString(),
@@ -150,7 +156,7 @@ export default {
 							photo.readableTime = luxonDate.toFormat("H'h'mm");
 						}
 
-						if (photoExif.gps?.latitude && photoExif.gps?.longitude) {
+						if (photoExif?.gps?.latitude && photoExif?.gps?.longitude) {
 							photo.geo = {
 								latitude: photoExif.gps.latitude,
 								longitude: photoExif.gps.longitude,
@@ -168,8 +174,8 @@ export default {
 						}
 
 						if (
-							photoExif.exif.ExifImageWidth &&
-							photoExif.exif.ExifImageHeight
+							photoExif?.exif.ExifImageWidth &&
+							photoExif?.exif.ExifImageHeight
 						) {
 							photo.dimensions = {
 								width: photoExif.exif.ExifImageWidth,
