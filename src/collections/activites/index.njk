@@ -21,7 +21,7 @@ nav:
 {% from "macros/card.njk" import card %}
 
 <div class="activites cards">
-  {% for entry in collections.activites %}
+  {% for entry in collections.activitesListees %}
     {{ card(type=entry.data.type, title=entry.data.title, url=entry.url, date=entry.data.date, distance=entry.data.distance, duration=entry.data.duration, elevation=entry.data.elevation, score=entry.data.score, where="list", map=entry.data.map, image_index=loop.index, env=build.env) }}
   {% endfor %}
 </div>

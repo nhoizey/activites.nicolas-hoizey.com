@@ -31,6 +31,11 @@ const typeFamilies = new Set([
 ]);
 const monthsSet = new Set([]);
 
+export const activitesListees = (collection) => collection
+	.getFilteredByGlob("src/collections/activites/**/index.md")
+	.filter((activite) => activite.data.listed !== false)
+	.sort((a, b) => b.date - a.date);
+
 export const types = (collection) => {
 	collection
 		.getFilteredByGlob("src/collections/activites/**/index.md")
