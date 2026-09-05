@@ -14,6 +14,12 @@ Le passage en très peu de temps du niveau de la mer à 3 300 mètres d'altitu
 
 Mais nous n'allions pas rater l'occasion de passer dans les montagnes, et d'aller là où nous avions les meilleures chances dans tout le pays de voir des quetzals.
 
+![](photos/2026-08-27_10h41m07s.jpg){.center}
+
+![](photos/2026-08-27_12h00m53s.jpg){.center}
+
 L'occasion aussi de passer par le Cerro de la Muerte (col de la mort 😅), le col à 3 300 mètres, sur la [Ruta 2](https://en.wikipedia.org/wiki/National_Route_2_(Costa_Rica)) (route n°2), une des deux portions costariciennes de la célèbre [Route panaméricaine](https://fr.wikipedia.org/wiki/Route_panam%C3%A9ricaine).
+
+![](photos/2026-08-27_13h13m26s.jpg){.center}
 
 Avec une seule voie de chaque côté la plupart du temps, se retrouver derrière un énorme poids-lourd qui avance très lentement permet de tester sa patience.

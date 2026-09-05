@@ -15,8 +15,22 @@ squadrats:
 
 Petit trail sur un bout de forêt appartenant à notre lieu de résidence pour la nuit, à San Gerardo de Dota.
 
+![](photos/2026-08-27_15h06m04s.jpg){.center}
+
+![](photos/2026-08-27_15h13m51s.jpg){.center}
+
+![](photos/2026-08-27_15h25m46s.jpg){.center}
+
 L’endroit est normalement parfait pour observer le fabuleux Quetzal, mais nous n’en avons vu aucun.
 
 De nombreux colibris étaient là par contre. 🤩
 
+![](photos/2026-08-27_14h41m43s.jpg){.center}
+
+![](photos/2026-08-27_14h45m21s.jpg){.center}
+
+![](photos/2026-08-27_16h03m20s.jpg){.center}
+
 Et pas mal de traces de tapir (empreintes et excréments), animal que nous n’avons malheureusement pas vu durant le séjour.
+
+![](photos/2026-08-27_15h37m42s.jpg){.center}

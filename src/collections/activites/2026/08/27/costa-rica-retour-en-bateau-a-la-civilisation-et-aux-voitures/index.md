@@ -10,3 +10,4 @@ tags: []
 strava: https://www.strava.com/activities/19924030774
 ---
 
+![](photos/2026-08-27_08h40m22s.jpg){.center}

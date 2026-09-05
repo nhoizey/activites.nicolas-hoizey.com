@@ -10,3 +10,6 @@ tags: []
 strava: https://www.strava.com/activities/19900041360
 ---
 
+Les trajets ici se font tous en bateau, pour aller d'une plage à l'autre, avant d'arriver dans le parc national de Corcovado.
+
+![](photos/2026-08-25_07h29m51s.jpg){.center}

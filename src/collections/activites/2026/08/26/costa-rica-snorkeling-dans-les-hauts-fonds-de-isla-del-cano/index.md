@@ -15,3 +15,7 @@ squadrats:
 Pas simple de faire de bonnes prises de vue avec une GoPro quand on fait du snorkeling dans les vagues.
 
 Mais c'était bien mieux en vrai que sur les images, avec de nombreux poissons colorés, de toutes tailles, et plusieurs tortues.
+
+![](photos/2026-08-26_09h58m03s.jpg){.center}
+
+![](photos/2026-08-26_09h58m24s.jpg){.center}

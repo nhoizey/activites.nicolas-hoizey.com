@@ -17,4 +17,10 @@ Nous avons beau être dans le Parque Nacional Los Quetzales, cet oiseau mythique
 
 Après un départ à 6h du matin, et 2h de trail dans la forêt avec un guide spécialisé, nous avons failli rentrer bredouilles.
 
+![](photos/2026-08-28_06h10m46s.jpg){.center}
+
+![](photos/2026-08-28_06h10m55s.jpg){.center}
+
 Heureusement, au tout dernier moment, les sifflements du guide ont trouvé une réponse dans les immenses arbres touffus, et nous avons enfin eu le privilège d’observer quelques instants ce merveilleux oiseau. 😍
+
+![](photos/2026-08-28_07h53m39s.jpg){.center}

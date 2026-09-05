@@ -12,7 +12,13 @@ strava: https://www.strava.com/activities/19940092688
 
 Retour à San José et son aéroport en évitant les grands axes, en restant au maximum sur les crêtes et à flanc de montagne, dans de superbes paysages.
 
+![](photos/2026-08-28_10h35m46s.jpg){.center}
+
+![](photos/2026-08-28_11h28m28s.jpg){.center}
+
 Et petite étape au McDonald's local pour voir si les menus sont différents. 😅
+
+![](photos/2026-08-28_12h37m33s.jpg){.center}
 
 Snif, c'est déjà fini. 😔
 

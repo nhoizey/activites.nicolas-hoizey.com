@@ -31,3 +31,5 @@ Jusqu'à récemment, les touristes s'arrêtaient sur le pont à quelques kilomè
 Nous avons aussi vu de très nombreuses espèces d’oiseaux, dont différentes variétés de hérons, aigrettes, spatules et autres échassiers, des Aras rouge en vol.
 
 ![](photos/2026-08-21_17h05m52s.jpg){.center}
+
+Il est amusant d'observer sur la carte que la trace de notre parcours sur la rivière montre combien son lit à bougé depuis la dernière photo satellite.
