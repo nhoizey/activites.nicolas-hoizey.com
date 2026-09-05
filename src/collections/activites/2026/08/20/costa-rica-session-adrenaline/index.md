@@ -14,3 +14,5 @@ squadrats:
 ---
 
 Plusieurs tyroliennes, dont la plus longue d’Amérique Latine avec **1590 mètres en mode Superman**, et une « liane de Tarzan », on a pris une bonne dose d’adrénaline. 🤩
+
+![](photos/2026-08-20_15h38m01s.jpg){.center}

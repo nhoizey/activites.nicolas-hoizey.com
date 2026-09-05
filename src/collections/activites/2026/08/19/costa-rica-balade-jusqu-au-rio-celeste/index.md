@@ -14,7 +14,13 @@ squadrats:
   - squadratinhos: 6
 ---
 
-Aujourd’hui, nous avons marché dans la forêt pour rejoindre le Rio Celeste, d’un bleu étonnant, avec sa grande cascade et sa « Laguna Azura ».
+Nous marchons dans la forêt — très aménagée au début du parcours — pour rejoindre le [Rio Celeste](https://en.wikipedia.org/wiki/Celeste_River), d’un bleu étonnant, avec sa grande cascade et sa « Laguna Azura ».
+
+![](photos/2026-08-19_10h06m23s.jpg){.center}
+
+![](photos/2026-08-19_10h38m17s.jpg){.center}
+
+![](photos/2026-08-19_11h02m18s.jpg){.center}
 
 Le bleu turquoise provient d’un phénomène physique connu sous le nom de diffusion de Mie.
 

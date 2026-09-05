@@ -10,3 +10,18 @@ tags: []
 strava: https://www.strava.com/activities/19891815564
 ---
 
+Aucune trace du trajet en voiture jusqu'à Sierpe, où nous prenons le bateau pour rejoindre notre nouvelle étape, le logement Poor Man's Paradise sur la côte Pacifique, dans la commune de Drake.
+
+Le bateau est généralement préféré à la voiture pour ce trajet, aucune route digne de ce nom n'étant vraiment présente.
+
+![](photos/2026-08-24_11h59m06s.jpg){.center}
+
+![](photos/2026-08-24_12h23m10s.jpg){.center}
+
+Après avoir descendu la rivière Sierpe, nous rejoignons le Pacifique, pour une fin de parcours un peu plus mouvementée.
+
+![](photos/2026-08-24_12h24m24s.jpg){.center}
+
+![](photos/2026-08-24_12h27m13s.jpg){.center}
+
+![](photos/2026-08-24_12h59m06s.jpg){.center}

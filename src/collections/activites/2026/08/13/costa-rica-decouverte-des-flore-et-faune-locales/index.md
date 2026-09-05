@@ -13,8 +13,10 @@ squadrats:
   - squadratinhos: 3
 ---
 
-Balade le long d’un sentier parallèle à la mer à travers la réserve Pacuare, avec un de ses responsables, pour découvrir la flore et la faune locales.
+Balade le long d’un sentier parallèle à la mer, à travers la réserve Pacuare, avec un de ses responsables, pour découvrir la flore et la faune locales.
 
 Plantes et animaux redoublent d’astuces pour optimiser l’environnement à leur avantage, c’est passionnant.
 
-Mais « humide »… 😅
+Mais l'ambiance est « humide »… 😅
+
+![](photos/2026-08-13_06h40m26s.jpg){.center}

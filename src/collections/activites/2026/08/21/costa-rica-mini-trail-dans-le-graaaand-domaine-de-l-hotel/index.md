@@ -13,4 +13,20 @@ squadrats:
   - squadratinhos: 2
 ---
 
-Le domaine de l’hôtel est immense, à flanc de montagne, et constitué essentiellement de forêt tropicale, d’une belle rivière avec cascades, d’aménagements pour cultiver des plantes pour les repas, et d’autres pour traiter les eaux usées.
+L'hôtel est à flanc de montagne, avec une belle vue sur le Pacifique au loin.
+
+![](photos/2026-08-21_08h39m43s.jpg){.center}
+
+Le domaine de l’hôtel est immense, constitué essentiellement de forêt tropicale à flanc de montagne, et d’une belle rivière avec cascades.
+
+![](photos/2026-08-21_09h18m56s.jpg){.center}
+
+![](photos/2026-08-21_09h25m09s.jpg){.center}
+
+![](photos/2026-08-21_09h44m01s.jpg){.center}
+
+Une zone contient des aménagements pour cultiver des plantes pour les repas, et d’autres pour traiter les eaux usées.
+
+![](photos/2026-08-21_09h49m49s.jpg){.center}
+
+![](photos/2026-08-21_09h49m56s.jpg){.center}

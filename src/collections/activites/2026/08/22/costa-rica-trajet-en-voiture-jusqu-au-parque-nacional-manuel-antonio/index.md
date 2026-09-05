@@ -10,3 +10,6 @@ tags: []
 strava: https://www.strava.com/activities/19852793740
 ---
 
+Nous reprenons la route, le long du Pacifique, pour rejoindre le parc national Manuel Antonio, très réputé.
+
+![](photos/2026-08-22_08h13m06s.jpg){.center}

@@ -10,3 +10,8 @@ tags: []
 strava: https://www.strava.com/activities/19704235297
 ---
 
+Après plus de 11h de vol, nous arrivons en fin d'après-midi à San José, capitale du Costa Rica.
+
+Ici, la nuit se couche aux alentours de 18h toute l'année, puisque nous sommes proches de l'Équateur.
+
+Un taxi nous emmène à notre hôtel, où nous faisons juste un tour du pâté de maisons à pieds pour découvrir l'ambiance de la ville.

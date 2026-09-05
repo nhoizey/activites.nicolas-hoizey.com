@@ -16,4 +16,14 @@ squadrats:
 
 Superbe expérience avec un guide naturaliste, pour découvrir la faune locale qui se dévoile surtout la nuit.
 
-Les photos en gros plan ont été faites par le guide avec son smartphone et un système d'éclairage adapté.
+![](photos/2026-08-17_18h24m50s.jpg){.center}
+
+Les photos en gros plan ont été prises par le guide avec son smartphone et un système d'éclairage adapté.
+
+![](photos/2026-08-17_18h16m41s.jpg){.center}
+
+![](photos/2026-08-17_18h58m48s.jpg){.center}
+
+![](photos/2026-08-17_19h15m54s.jpg){.center}
+
+![](photos/2026-08-17_19h17m00s.jpg){.center}

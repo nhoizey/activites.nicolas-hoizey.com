@@ -15,8 +15,20 @@ Les baleines viennent ici en cette saison pour donner naissance aux baleineaux, 
 
 Nous n’avons vu qu’un mâle, qui passe jusqu’à 45 minutes sous l’eau entre respiration en surface (les baleineaux et leurs mères font surface en gros toutes les 5 minutes). Autant dire qu’on n’a pas vu grand chose, c’est le principe de l’observation en milieu naturel.
 
-Nous avons aussi vu deux groupes de dauphins d’espèces différentes.
+![](photos/2026-08-23_11h04m07s.jpg){.center}
+
+Nous avons aussi vu deux groupes de dauphins d’espèces différentes, qui naviguent volontiers à côté des bateaux.
+
+![](photos/2026-08-23_09h27m47s.jpg){.center}
+
+Ainsi qu'une tortue :
+
+![](photos/2026-08-23_10h21m09s.jpg){.center}
 
 Et nous avons pu profiter d’ananas fraîchement coupés lors d’une pause sur la Playa Piñuelas.
+
+![](photos/2026-08-23_12h04m15s.jpg){.center}
+
+![](photos/2026-08-23_12h08m11s.jpg){.center}
 
 Une belle sortie, malgré le peu d’animaux vus.

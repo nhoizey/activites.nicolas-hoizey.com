@@ -12,3 +12,6 @@ squadrats:
   - squadratinhos: 1
 ---
 
+Cette plage est vraiment fabuleuse, et nous y sommes seuls la plupart du temps. 😍
+
+![](photos/2026-08-24_16h44m27s.jpg){.center}

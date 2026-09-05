@@ -10,3 +10,4 @@ tags: []
 strava: https://www.strava.com/activities/19843859241
 ---
 
+Nous rejoignons ensuite notre logement, pas très loin.

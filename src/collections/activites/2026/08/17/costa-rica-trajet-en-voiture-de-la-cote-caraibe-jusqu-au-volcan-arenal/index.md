@@ -16,4 +16,8 @@ L'itinéraire alternatif proposé impose de faire un grand détour en revenant v
 
 Heureusement, le passage sur le pont est finalement ouvert avant qu'on arrive à l'embranchement qui nous ferait changer d'itinéraire, et nous arrivons sans encombre à destination en moins de 5h.
 
+![](photos/2026-08-17_13h08m50s.jpg){.center}
+
 En cours de route, Waze aura quand même réussi à nous afficher plusieurs fois une alerte pour tempête de neige… 🤣
+
+![](photos/2026-08-17_10h49m50s.jpg){.center}

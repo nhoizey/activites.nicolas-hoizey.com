@@ -9,3 +9,5 @@ strava: https://www.strava.com/activities/19891815786
 ---
 
 Décors de rêve et belles vagues de l’océan Pacifique. 🤩
+
+![](photos/2026-08-24_15h39m47s.jpg){.center}

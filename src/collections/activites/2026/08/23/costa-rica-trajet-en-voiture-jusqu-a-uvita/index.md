@@ -10,3 +10,4 @@ tags: []
 strava: https://www.strava.com/activities/19867326254
 ---
 
+Nous nous rendons non loin de là à Uvita, où la célèbre plage prend la forme d'une queue de baleine à marée basse (que nous ne verrons pas).
