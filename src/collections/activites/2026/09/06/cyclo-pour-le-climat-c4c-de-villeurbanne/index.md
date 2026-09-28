@@ -5,7 +5,7 @@ type: vélo
 duration: 05:47:32
 distance: 102.37
 elevation: 454
-tags: []
+tags: [C4C]
 strava: https://www.strava.com/activities/20062720555
 komoot: https://www.komoot.com/fr-fr/tour/3263727755
 squadrats:

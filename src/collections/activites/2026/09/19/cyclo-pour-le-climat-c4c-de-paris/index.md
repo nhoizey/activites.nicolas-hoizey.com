@@ -5,7 +5,7 @@ type: gravel
 duration: 06:32:04
 distance: 106.46
 elevation: 414
-tags: []
+tags: [C4C]
 strava: https://www.strava.com/activities/20245850573
 komoot: https://www.komoot.com/fr-fr/tour/3294797754
 squadrats:
