@@ -8,9 +8,10 @@ nav:
 
 {%- css "critical" %}{% renderFile "src/assets/sass/components/filters.scss" %}{% endcss %}
 
+{# TODO: use buttons for accessibility #}
 <div class="filtres">
-  <ul>
-    <li class="actif"><span>toutes</span></li>
+  <ul aria-label="Filtres par type d'activité">
+    <li><a href="/activites/" aria-current="true">toutes</a></li>
     {% for typeFamiliesItem in collections.type_families %}
       <li><a href="/activites/{{ typeFamiliesItem | slugify }}/">{% inline_icon typeFamiliesItem %} {{ typeFamiliesItem | safe }}</a></li>
     {% endfor %}

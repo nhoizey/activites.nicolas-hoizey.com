@@ -52,7 +52,7 @@ nav {
 		text-decoration: underline;
 	}
 
-	.current {
+	[aria-current="page"] {
 		a {
 			color: var(--link-text-hover);
 			font-weight: bold;

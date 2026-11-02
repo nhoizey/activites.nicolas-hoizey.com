@@ -7,19 +7,18 @@ pagination:
   alias: type_families_item
   addAllPagesToCollections: false
 permalink: "/activites/{{ type_families_item | slugify }}/"
+eleventyComputed:
+  title: "Activités {{ type_families_item }}"
 ---
 
 {%- css "critical" %}{% renderFile "src/assets/sass/components/filters.scss" %}{% endcss %}
 
+{# TODO: use buttons for accessibility #}
 <div class="filtres">
-  <ul>
+  <ul aria-label="Filtres par type d'activité">
     <li><a href="/activites/">toutes</a></li>
     {% for typeFamiliesItem in collections.type_families %}
-      {% if typeFamiliesItem == type_families_item %}
-        <li class="actif"><span>{% inline_icon typeFamiliesItem %} {{ typeFamiliesItem | safe }}</span></li>
-      {% else %}
-        <li><a href="/activites/{{ typeFamiliesItem | slugify }}/">{% inline_icon typeFamiliesItem %} {{ typeFamiliesItem | safe }}</a></li>
-      {% endif %}
+        <li><a href="/activites/{{ typeFamiliesItem | slugify }}/" {% if typeFamiliesItem == type_families_item %} aria-current="true"{% endif %}>{% inline_icon typeFamiliesItem %} {{ typeFamiliesItem | safe }}</a></li>
     {% endfor %}
   </ul>
 </div>

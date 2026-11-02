@@ -45,7 +45,7 @@
 		stroke-width: 0;
 	}
 
-	.actif span,
+	[aria-current="true"],
 	a:hover,
 	a:focus {
 		background-color: var(--filtre-on-background);
